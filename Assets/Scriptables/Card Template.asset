@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5769c35db5ffe9f4f9fdc084c7c52fe4, type: 3}
+  m_Name: Card Template
+  m_EditorClassIdentifier: 
+  TypeConsumable: {fileID: 21300000, guid: 1780542bb26bacd4f830d7c75ff047f7, type: 3}
+  TypeStamina: {fileID: 21300000, guid: b614f75bf38496445aafe37648f044ec, type: 3}
+  TypeMana: {fileID: 21300000, guid: 67bdb7c4ece3f2345bf5aea74ceefb0a, type: 3}
+  TypeBoth: {fileID: 21300000, guid: 0e5a2a8ed1a368c4aab81911d6622335, type: 3}
+  Frozen: {fileID: 0}
