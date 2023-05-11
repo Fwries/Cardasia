@@ -14,6 +14,9 @@ public class CardDisplay : MonoBehaviour
     public Image CostIcon;
     public GameObject CostText;
 
+    public CardBehaviour cardBehav;
+    public int PositionIndex;
+
     // Start is called before the first frame update
     void Start()
     {
