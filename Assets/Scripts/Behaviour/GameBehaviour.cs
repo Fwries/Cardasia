@@ -31,6 +31,28 @@ public class GameBehaviour : MonoBehaviour
         if (/*Condition to check whether its current player turn*/ true)
         {
             // End of Turn Effects
+            for (int i = 0; i < CurrentPlayerTurn.Character.Count; i++)
+            {
+                if (CurrentPlayerTurn.Character[i].Burn)
+                {
+                    CurrentPlayerTurn.Character[i].Health -= (CurrentPlayerTurn.Character[i].MaxHealth / 16);
+                    if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.Character[i].Burn = false; }
+                }
+
+                CurrentPlayerTurn.Character[i].Freeze = 0;
+                for (int freeze = 0; freeze < CurrentPlayerTurn.Character[i].HandCards.Count; freeze++)
+                {
+                    CurrentPlayerTurn.Character[i].HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
+                }
+
+                CurrentPlayerTurn.Character[i].Shock = 0;
+                for (int shock = 0; shock < CurrentPlayerTurn.Character[i].ShockMana.Length; shock++)
+                {
+                    CurrentPlayerTurn.Character[i].ShockMana[shock] = false;
+                }
+
+                CurrentPlayerTurn.Character[i].Trip = false;
+            }
 
             TurnNo++;
             if (CurrentPlayerTurn == Player)
@@ -53,12 +75,6 @@ public class GameBehaviour : MonoBehaviour
 
                 if (CurrentPlayerTurn.Character[i].IsActive)
                 {
-                    if (CurrentPlayerTurn.Character[i].Burn)
-                    {
-                        CurrentPlayerTurn.Character[i].Health -= (CurrentPlayerTurn.Character[i].MaxHealth / 16);
-                        if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.Character[i].Burn = false; }
-                    }
-
                     if (CurrentPlayerTurn.Character[i].Freeze > CurrentPlayerTurn.Character[i].HandCards.Count) { CurrentPlayerTurn.Character[i].Freeze = CurrentPlayerTurn.Character[i].HandCards.Count; }
                     while (freeze < CurrentPlayerTurn.Character[i].Freeze)
                     {
@@ -94,7 +110,10 @@ public class GameBehaviour : MonoBehaviour
                     CurrentPlayerTurn.Character[i].Stamina = TempStamina;
                     CurrentPlayerTurn.Character[i].Mana = TempMana;
 
-                    CurrentPlayerTurn.Character[i].Draw(1);
+                    if (CurrentPlayerTurn.Character[i].IsActive)
+                    {
+                        CurrentPlayerTurn.Character[i].Draw(1);
+                    }
                 }
             }
         }
