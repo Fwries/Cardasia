@@ -49,9 +49,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         //if (FieldBehav.CurrentPlayerTurn != Cardbehav.playerBehav)
         //    return;
 
-        if (Zones == 1)
-            transform.position = new Vector3((Cardbehav.playerBehav.HandCards.Count - 1) * -75 + Cardbehav.playerBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 150,
-                Cardbehav.playerBehav.HandObject.transform.position.y, 0.0f);
+        //if (Zones == 1)
+        //    transform.position = new Vector3((Cardbehav.playerBehav.HandCards.Count - 1) * -75 + Cardbehav.playerBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 150,
+        //        Cardbehav.playerBehav.HandObject.transform.position.y, 0.0f);
         canvasGroup.blocksRaycasts = true;
         IsDragging = false;
     }
