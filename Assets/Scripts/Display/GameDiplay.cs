@@ -27,19 +27,19 @@ public class GameDiplay : MonoBehaviour
         DisplayCharacterText.text = "Lv. " + GameBehav.Selected.Level + " " + GameBehav.Selected.Character.CardName;
 
         Pointer = 0;
-        for (int i = 0; i < GameBehav.Selected.Both; i++)
+        for (int i = 0; i < GameBehav.Selected.MaxBoth; i++)
         {
             ManaIcon[Pointer].SetActive(true);
-            ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeConsumable;
+            ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeBoth;
             Pointer++;
         }
-        for (int i = 0; i < GameBehav.Selected.Stamina; i++)
+        for (int i = 0; i < GameBehav.Selected.MaxStamina; i++)
         {
             ManaIcon[Pointer].SetActive(true);
             ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeStamina;
             Pointer++;
         }
-        for (int i = 0; i < GameBehav.Selected.Mana; i++)
+        for (int i = 0; i < GameBehav.Selected.MaxMana; i++)
         {
             ManaIcon[Pointer].SetActive(true);
             ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeMana;

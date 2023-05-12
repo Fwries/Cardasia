@@ -9,13 +9,13 @@ public class CharacterBehaviour : MonoBehaviour
     public List<GameObject> HandCards;
     public List<GameObject> Deck;
 
-    public int MaxBoth;
-    public int MaxStamina;
-    public int MaxMana;
+    [HideInInspector] public int MaxBoth;
+    [HideInInspector] public int MaxStamina;
+    [HideInInspector] public int MaxMana;
 
-    [HideInInspector] public int Both;
-    [HideInInspector] public int Stamina;
-    [HideInInspector] public int Mana;
+    public int Both;
+    public int Stamina;
+    public int Mana;
 
     public int Level = 1;
     public bool IsActive;
@@ -28,7 +28,9 @@ public class CharacterBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Both = MaxBoth = Character.MaxBoth;
+        Stamina = MaxStamina = Character.MaxStamina;
+        Mana = MaxMana = Character.MaxMana;
     }
 
     // Update is called once per frame

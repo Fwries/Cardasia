@@ -34,16 +34,19 @@ public class CardDisplay : MonoBehaviour
             switch (Currentcard.CardType)
             {
                 case SC_Card.Type.Consumable:
-                    CostIcon.GetComponent<Image>().sprite = Template.TypeConsumable;
+                    CostIcon.SetActive(false);
                     break;
                 case SC_Card.Type.Stamina:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeStamina;
+                    CostIcon.SetActive(true);
                     break;
                 case SC_Card.Type.Mana:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeMana;
+                    CostIcon.SetActive(true);
                     break;
                 case SC_Card.Type.Both:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeBoth;
+                    CostIcon.SetActive(true);
                     break;
             }
 
