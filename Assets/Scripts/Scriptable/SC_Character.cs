@@ -11,9 +11,9 @@ public class SC_Character : ScriptableObject
     public int Strength;
     public int Armour;
 
-    public int Both;
-    public int Stamina;
-    public int Mana;
+    public int MaxBoth;
+    public int MaxStamina;
+    public int MaxMana;
 
     public enum Class
     {

@@ -9,9 +9,13 @@ public class CharacterBehaviour : MonoBehaviour
     public List<GameObject> HandCards;
     public List<GameObject> Deck;
 
-    public int Both;
-    public int Stamina;
-    public int Mana;
+    public int MaxBoth;
+    public int MaxStamina;
+    public int MaxMana;
+
+    [HideInInspector] public int Both;
+    [HideInInspector] public int Stamina;
+    [HideInInspector] public int Mana;
 
     public int Level = 1;
     public bool IsActive;

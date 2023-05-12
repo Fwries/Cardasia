@@ -880,6 +880,9 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
   HandCards: []
   Deck: []
+  MaxBoth: 0
+  MaxStamina: 0
+  MaxMana: 0
   Both: 1
   Stamina: 1
   Mana: 1
@@ -1032,6 +1035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1312719078}
+  - component: {fileID: 1312719082}
   - component: {fileID: 1312719081}
   - component: {fileID: 1312719080}
   - component: {fileID: 1312719079}
@@ -1111,8 +1115,21 @@ MonoBehaviour:
   Player: {fileID: 1312719080}
   Opponent: {fileID: 1312719079}
   EnemyAI: 0
-  Template: {fileID: 11400000, guid: be19111e1a78a5e4daa9da50a120e277, type: 2}
   Selected: {fileID: 1016123898}
+--- !u!114 &1312719082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312719077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9dda7afef2af04795d9569005b7ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameBehav: {fileID: 1312719081}
+  Template: {fileID: 11400000, guid: be19111e1a78a5e4daa9da50a120e277, type: 2}
   DisplayCharacterText: {fileID: 983456913}
   ManaIcon:
   - {fileID: 474013933}
