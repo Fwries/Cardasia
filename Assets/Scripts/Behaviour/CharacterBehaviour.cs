@@ -13,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour
     public int Stamina;
     public int Mana;
 
+    public int Level = 1;
     public bool IsActive;
 
     public int Freeze;

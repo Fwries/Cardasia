@@ -160,7 +160,7 @@ MonoBehaviour:
   Empty: {fileID: 11400000, guid: 4e7650aefd0e1984f98dc5ed3e5b5459, type: 2}
   Template: {fileID: 11400000, guid: be19111e1a78a5e4daa9da50a120e277, type: 2}
   CardArt: {fileID: 7186671713392610940}
-  CostIcon: {fileID: 7186671712421811553}
+  CostIcon: {fileID: 7186671712421811559}
   CostText: {fileID: 7186671713476721925}
   cardBehav: {fileID: 0}
   PositionIndex: 0

@@ -11,7 +11,7 @@ public class CardDisplay : MonoBehaviour
 
     public SC_Template Template;
     public Image CardArt;
-    public Image CostIcon;
+    public GameObject CostIcon;
     public GameObject CostText;
 
     public CardBehaviour cardBehav;
@@ -34,16 +34,16 @@ public class CardDisplay : MonoBehaviour
             switch (Currentcard.CardType)
             {
                 case SC_Card.Type.Consumable:
-                    CostIcon.sprite = Template.TypeConsumable;
+                    CostIcon.GetComponent<Image>().sprite = Template.TypeConsumable;
                     break;
                 case SC_Card.Type.Stamina:
-                    CostIcon.sprite = Template.TypeStamina;
+                    CostIcon.GetComponent<Image>().sprite = Template.TypeStamina;
                     break;
                 case SC_Card.Type.Mana:
-                    CostIcon.sprite = Template.TypeMana;
+                    CostIcon.GetComponent<Image>().sprite = Template.TypeMana;
                     break;
                 case SC_Card.Type.Both:
-                    CostIcon.sprite = Template.TypeBoth;
+                    CostIcon.GetComponent<Image>().sprite = Template.TypeBoth;
                     break;
             }
 

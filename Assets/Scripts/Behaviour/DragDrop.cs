@@ -13,7 +13,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
     private int Zones;
     [HideInInspector] public bool IsDragging;
 
-    private FieldBehaviour FieldBehav;
+    private GameBehaviour GameBehav;
     private CardBehaviour Cardbehav;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         cam = Camera.main;
         canvasGroup = GetComponent<CanvasGroup>();
         Cardbehav = this.GetComponent<CardBehaviour>();
-        FieldBehav = GameObject.Find("Canvas").GetComponent<FieldBehaviour>();
+        GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
