@@ -41,6 +41,8 @@ public class CharacterDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CharBehav.IsDead) { return; }
+
         AnimTime += Time.deltaTime;
         if (AnimTime >= 0.12f)
         {

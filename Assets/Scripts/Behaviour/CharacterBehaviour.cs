@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDropHandler
 {
@@ -31,6 +32,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public bool[] ShockMana = { false, false, false, false, false };
 
     [HideInInspector] public bool IsActive;
+    [HideInInspector] public bool IsDead;
     [HideInInspector] public float LeftMost;
     [HideInInspector] public GameObject HandObject;
 
@@ -64,6 +66,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     // Update is called once per frame
     void Update()
     {
+        if (IsDead) { return; }
+        if (Health <= 0) 
+        {
+            this.gameObject.GetComponent<Image>().sprite = Character.Dead_Sprite[Random.Range(0, Character.Dead_Sprite.Length)];
+            IsDead = true; 
+        }
+
         if (Input.GetKeyDown("r"))
         {
             Shuffle();
@@ -130,11 +139,14 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (IsDead) { return; }
         GameBehav.Select(this);
     }
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (IsDead) { return; }
+
         CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
         CharacterBehaviour Character = Card.CharacterBehav;
 
