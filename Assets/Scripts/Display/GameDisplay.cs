@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameDiplay : MonoBehaviour
+public class GameDisplay : MonoBehaviour
 {
     public GameBehaviour GameBehav;
 
     public SC_Template Template;
+    public Text ButtonPrint;
     public Text DisplayCharacterText;
 
     public List<GameObject> ManaIcon;

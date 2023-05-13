@@ -9,6 +9,7 @@ public class GameBehaviour : MonoBehaviour
     public PlayerBehaviour Player;
     public PlayerBehaviour Opponent;
 
+    public GameDisplay GameDis;
     public bool EnemyAI;
     public int TurnNo;
 
@@ -57,12 +58,12 @@ public class GameBehaviour : MonoBehaviour
             TurnNo++;
             if (CurrentPlayerTurn == Player)
             {
-                //ButtonPrint.text = "Opponent's Turn";
+                GameDis.ButtonPrint.text = "Opponent's Turn";
                 CurrentPlayerTurn = Opponent;
             }
             else if (CurrentPlayerTurn == Opponent)
             {
-                //ButtonPrint.text = "End Turn";
+                GameDis.ButtonPrint.text = "End Turn";
                 CurrentPlayerTurn = Player;
             }
 

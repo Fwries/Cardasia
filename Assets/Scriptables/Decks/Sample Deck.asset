@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Class: 0
   SubClass: 0
-  Cards:
-  - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
+  Deck:
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}

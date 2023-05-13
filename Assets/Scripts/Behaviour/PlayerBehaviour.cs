@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public GameObject HandObject;
     public List<CharacterBehaviour> Character;
 
     // Start is called before the first frame update
