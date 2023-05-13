@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5769c35db5ffe9f4f9fdc084c7c52fe4, type: 3}
-  m_Name: Card Template
+  m_Name: Template
   m_EditorClassIdentifier: 
   TypeConsumable: {fileID: 21300000, guid: 1780542bb26bacd4f830d7c75ff047f7, type: 3}
   TypeStamina: {fileID: 21300000, guid: b614f75bf38496445aafe37648f044ec, type: 3}

@@ -10,7 +10,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
     private Camera cam;
     private GameObject Display;
 
-    private int Zones;
     [HideInInspector] public bool IsDragging;
 
     private GameBehaviour GameBehav;
@@ -39,7 +38,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav || this.GetComponent<CardBehaviour>().Frozen || Zones != 1)
+        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav || this.GetComponent<CardBehaviour>().Frozen)
             return;
         transform.position = Input.mousePosition - GetMousePos();
     }
@@ -49,8 +48,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav)
             return;
 
-        if (Zones == 1)
-            transform.position = new Vector3((Cardbehav.CharacterBehav.HandCards.Count - 1) * -100 + Cardbehav.CharacterBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 200,
+        transform.position = new Vector3((Cardbehav.CharacterBehav.HandCards.Count - 1) * -100 + Cardbehav.CharacterBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 200,
                 Cardbehav.CharacterBehav.HandObject.transform.position.y, 0.0f);
         canvasGroup.blocksRaycasts = true;
         IsDragging = false;
@@ -58,7 +56,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Zones = GetComponent<CardBehaviour>().Zones;
         //Display.GetComponent<CardDisplay>().Currentcard = this.GetComponent<CardDisplay>().Currentcard;
         //Display.GetComponent<CardDisplay>().cardBehav = this.GetComponent<CardDisplay>().cardBehav;
     }

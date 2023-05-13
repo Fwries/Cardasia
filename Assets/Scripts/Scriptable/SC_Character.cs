@@ -37,6 +37,8 @@ public class SC_Character : ScriptableObject
     };
     public SubClass CharacterSubClass;
 
+    public SC_Deck DefaultDeck;
+
     public Sprite[] Idle_Down_Anim;
     public Sprite[] Idle_Up_Anim;
     public Sprite[] Idle_Left_Anim;

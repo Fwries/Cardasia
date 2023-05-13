@@ -18,7 +18,7 @@ public class GameBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Select(Selected);
     }
 
     // Update is called once per frame
@@ -116,6 +116,22 @@ public class GameBehaviour : MonoBehaviour
                         CurrentPlayerTurn.Character[i].Draw(1);
                     }
                 }
+            }
+        }
+    }
+
+    public void Select(CharacterBehaviour _Selected)
+    {
+        Selected = _Selected;
+        for (int i = 0; i < Player.Character.Count; i++)
+        {
+            if (Selected != Player.Character[i])
+            {
+                Player.Character[i].HandObject.SetActive(false);
+            }
+            else
+            {
+                Player.Character[i].HandObject.SetActive(true);
             }
         }
     }

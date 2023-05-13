@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CharacterBehaviour : MonoBehaviour
+public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDropHandler
 {
     public SC_Character Character;
     [HideInInspector] public GameBehaviour GameBehav;
     [HideInInspector] public PlayerBehaviour PlayerBehav;
+    public CharacterDisplay CharDisplay;
 
     public List<GameObject> HandCards;
     public SC_Deck scDeck;
@@ -42,6 +44,8 @@ public class CharacterBehaviour : MonoBehaviour
     {
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
         PlayerBehav = GameBehav.Player;
+
+        if (PlayerBehav == GameBehav.Player) { CharDisplay.SetActive(true); }
 
         Health = MaxHealth = Character.Health;
         Exp = 0; MaxExp = 100;
@@ -117,12 +121,28 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void AdjustHand()
     {
-        LeftMost = transform.position.x + (HandCards.Count - 1) * -100.0f;
+        LeftMost = HandObject.transform.position.x + (HandCards.Count - 1) * -100.0f;
         for (int i = 0; i < HandCards.Count; i++)
         {
             if (!HandCards[i].GetComponent<DragDrop>().IsDragging)
                 HandCards[i].transform.position = new Vector3(LeftMost + (i * 200), HandObject.transform.position.y, HandObject.transform.position.z);
             HandCards[i].GetComponent<CardDisplay>().PositionIndex = i;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        GameBehav.Select(this);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
+
+        CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
+        Card.CharacterBehav.HandCards.Remove(eventData.pointerDrag);
+
+        Card.CharacterBehav.AdjustHand();
+        Destroy(eventData.pointerDrag);
     }
 }

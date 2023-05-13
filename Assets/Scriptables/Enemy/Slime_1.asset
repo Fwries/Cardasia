@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
+  m_Name: Slime_1
+  m_EditorClassIdentifier: 
+  CardName: Slime
+  Health: 100
+  Strength: 0
+  Armour: 0
+  MaxBoth: 0
+  MaxStamina: 0
+  MaxMana: 0
+  CharacterClass: 0
+  CharacterSubClass: 0
+  Idle_Down_Anim:
+  - {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1115834107, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 412123640, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Idle_Up_Anim:
+  - {fileID: -1325414616, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 313007138, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1784807448, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Idle_Left_Anim:
+  - {fileID: 1890115096, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -568092571, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1230992084, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Idle_Right_Anim:
+  - {fileID: -52001277, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -123845257, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 345077703, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Walk_Down_Anim:
+  - {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1115834107, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 412123640, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Walk_Up_Anim:
+  - {fileID: -1325414616, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 313007138, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1784807448, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Walk_Left_Anim:
+  - {fileID: 1890115096, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -568092571, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1230992084, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Walk_Right_Anim:
+  - {fileID: -52001277, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -123845257, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 345077703, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  Dead_Sprite:
+  - {fileID: 232082956, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}

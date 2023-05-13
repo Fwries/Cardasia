@@ -19,4 +19,9 @@ public class CardBehaviour : MonoBehaviour
     {
 
     }
+
+    public void Play(CharacterBehaviour target)
+    {
+
+    }
 }
