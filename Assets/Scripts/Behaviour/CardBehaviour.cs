@@ -5,7 +5,9 @@ using UnityEngine;
 public class CardBehaviour : MonoBehaviour
 {
     public CharacterBehaviour CharacterBehav;
-    public int Zones;
+    public SC_Card Currentcard;
+
+    public int CardCost;
     public bool Frozen;
 
     // Start is called before the first frame update

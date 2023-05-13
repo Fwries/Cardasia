@@ -41,19 +41,19 @@ public class GameDisplay : MonoBehaviour
         EXPSlider.value = GameBehav.Selected.Exp;
 
         Pointer = 0;
-        for (int i = 0; i < GameBehav.Selected.MaxBoth; i++)
+        for (int i = 0; i < GameBehav.Selected.Both; i++)
         {
             ManaIcon[Pointer].SetActive(true);
             ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeBoth;
             Pointer++;
         }
-        for (int i = 0; i < GameBehav.Selected.MaxStamina; i++)
+        for (int i = 0; i < GameBehav.Selected.Stamina; i++)
         {
             ManaIcon[Pointer].SetActive(true);
             ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeStamina;
             Pointer++;
         }
-        for (int i = 0; i < GameBehav.Selected.MaxMana; i++)
+        for (int i = 0; i < GameBehav.Selected.Mana; i++)
         {
             ManaIcon[Pointer].SetActive(true);
             ManaIcon[Pointer].GetComponent<Image>().sprite = Template.TypeMana;

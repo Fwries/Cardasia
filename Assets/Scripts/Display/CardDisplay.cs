@@ -20,7 +20,8 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cardBehav.Currentcard = Currentcard;
+        cardBehav.CardCost = Currentcard.CardCost;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class CardDisplay : MonoBehaviour
         if (PrevCard != Currentcard)
         {
             CardArt.sprite = Currentcard.CardArt;
-            CostText.GetComponent<Text>().text = "" + Currentcard.CardCost;
+            CostText.GetComponent<Text>().text = "" + cardBehav.CardCost;
 
             switch (Currentcard.CardType)
             {

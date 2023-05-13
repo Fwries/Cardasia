@@ -162,7 +162,7 @@ MonoBehaviour:
   CardArt: {fileID: 7186671713392610940}
   CostIcon: {fileID: 7186671712421811559}
   CostText: {fileID: 7186671713476721925}
-  cardBehav: {fileID: 0}
+  cardBehav: {fileID: 6077245091457496432}
   PositionIndex: 0
 --- !u!114 &6077245091457496432
 MonoBehaviour:
@@ -176,9 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e756774ec6196b7429b0e4e9e279604e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBehav: {fileID: 0}
-  IsDraggable: 0
-  Zones: 0
+  CharacterBehav: {fileID: 0}
+  Currentcard: {fileID: 0}
+  CardCost: 0
+  Frozen: 0
 --- !u!1 &7186671713392610930
 GameObject:
   m_ObjectHideFlags: 0

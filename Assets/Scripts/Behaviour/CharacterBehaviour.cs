@@ -106,7 +106,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 Card.GetComponent<CardBehaviour>().CharacterBehav = this;
 
                 HandCards.Add(Card);
-                Card.GetComponent<CardBehaviour>().Zones = 1;
                 AdjustHand();
                 Deck.RemoveAt(index2);
             }
@@ -136,12 +135,60 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void OnDrop(PointerEventData eventData)
     {
-        eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
-
         CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
-        Card.CharacterBehav.HandCards.Remove(eventData.pointerDrag);
+        CharacterBehaviour Character = Card.CharacterBehav;
 
-        Card.CharacterBehav.AdjustHand();
+        if (Card.CardCost <= Character.Both + Character.Stamina + Character.Mana)
+        {
+            if (Card.Currentcard.CardType == SC_Card.Type.Stamina)
+            {
+                if (Card.CardCost <= Character.Stamina)
+                {
+                    Character.Stamina -= Card.CardCost;
+                }
+                else if (Card.CardCost <= Character.Stamina + Character.Both)
+                {
+                    int LeftOverCost = Card.CardCost - Character.Stamina;
+                    Character.Stamina = 0;
+                    Character.Both -= LeftOverCost;
+                }
+                else { return; }
+            }
+            else if (Card.Currentcard.CardType == SC_Card.Type.Mana)
+            {
+                if (Card.CardCost <= Character.Mana)
+                {
+                    Character.Mana -= Card.CardCost;
+                }
+                else if (Card.CardCost <= Character.Mana + Character.Both)
+                {
+                    int LeftOverCost = Card.CardCost - Character.Mana;
+                    Character.Mana = 0;
+                    Character.Both -= LeftOverCost;
+                }
+                else { return; }
+            }
+            else if (Card.Currentcard.CardType == SC_Card.Type.Both)
+            {
+                if (Card.CardCost <= Character.Mana)
+                {
+                    Character.Mana -= Card.CardCost;
+                }
+                else if (Card.CardCost <= Character.Mana + Character.Stamina)
+                {
+                    int LeftOverCost = Card.CardCost - Character.Mana;
+                    Character.Mana = 0;
+                    Character.Stamina -= LeftOverCost;
+                }
+                else { return; }
+            }
+        }
+        else { return; }
+
+        eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
+        Character.HandCards.Remove(eventData.pointerDrag);
+
+        Character.AdjustHand();
         Destroy(eventData.pointerDrag);
     }
 }
