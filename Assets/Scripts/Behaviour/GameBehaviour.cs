@@ -10,15 +10,27 @@ public class GameBehaviour : MonoBehaviour
     public PlayerBehaviour Opponent;
 
     public GameDisplay GameDis;
+    public List<GameObject> HandObjects;
+
     public bool EnemyAI;
     public int TurnNo;
 
-    public CharacterBehaviour Selected;
+    [HideInInspector] public CharacterBehaviour Selected;
 
     // Start is called before the first frame update
     void Start()
     {
-        Select(Selected);
+        for (int i = 0; i < Player.Character.Count; i++)
+        {
+            Player.Character[i].HandObject = HandObjects[i];
+            Player.Character[i].Draw(3);
+        }
+        for (int i = 0; i < Opponent.Character.Count; i++)
+        {
+            Player.Character[i].Draw(3);
+        }
+
+        Select(Player.Character[0]);
     }
 
     // Update is called once per frame
@@ -74,47 +86,44 @@ public class GameBehaviour : MonoBehaviour
                 int TotalMana = CurrentPlayerTurn.Character[i].MaxBoth + CurrentPlayerTurn.Character[i].MaxStamina + CurrentPlayerTurn.Character[i].MaxMana;
                 int TempBoth = CurrentPlayerTurn.Character[i].MaxBoth, TempStamina = CurrentPlayerTurn.Character[i].MaxStamina, TempMana = CurrentPlayerTurn.Character[i].MaxMana;
 
+                if (CurrentPlayerTurn.Character[i].Freeze > CurrentPlayerTurn.Character[i].HandCards.Count) { CurrentPlayerTurn.Character[i].Freeze = CurrentPlayerTurn.Character[i].HandCards.Count; }
+                while (freeze < CurrentPlayerTurn.Character[i].Freeze)
+                {
+                    int RandInt = Random.Range(0, CurrentPlayerTurn.Character[i].HandCards.Count);
+                    if (CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
+                    {
+                        CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen = true;
+                        freeze++;
+                    }
+                }
+
+                if (CurrentPlayerTurn.Character[i].Shock > TotalMana) { CurrentPlayerTurn.Character[i].Shock = TotalMana; }
+                while (shock < CurrentPlayerTurn.Character[i].Shock)
+                {
+                    int RandInt = Random.Range(0, TotalMana);
+                    if (CurrentPlayerTurn.Character[i].ShockMana[TotalMana] == false)
+                    {
+                        CurrentPlayerTurn.Character[i].ShockMana[TotalMana] = true;
+                        shock++;
+                    }
+                }
+                for (shock = 0; shock < 5; shock++)
+                {
+                    if (CurrentPlayerTurn.Character[i].ShockMana[shock] == true)
+                    {
+                        if (shock < CurrentPlayerTurn.Character[i].MaxBoth) { TempBoth--; }
+                        else if (shock < CurrentPlayerTurn.Character[i].MaxBoth + CurrentPlayerTurn.Character[i].MaxStamina) { TempStamina--; }
+                        else { TempMana--; }
+                    }
+                }
+
+                CurrentPlayerTurn.Character[i].Both = TempBoth;
+                CurrentPlayerTurn.Character[i].Stamina = TempStamina;
+                CurrentPlayerTurn.Character[i].Mana = TempMana;
+
                 if (CurrentPlayerTurn.Character[i].IsActive)
                 {
-                    if (CurrentPlayerTurn.Character[i].Freeze > CurrentPlayerTurn.Character[i].HandCards.Count) { CurrentPlayerTurn.Character[i].Freeze = CurrentPlayerTurn.Character[i].HandCards.Count; }
-                    while (freeze < CurrentPlayerTurn.Character[i].Freeze)
-                    {
-                        int RandInt = Random.Range(0, CurrentPlayerTurn.Character[i].HandCards.Count);
-                        if (CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
-                        {
-                            CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen = true;
-                            freeze++;
-                        }
-                    }
-
-                    if (CurrentPlayerTurn.Character[i].Shock > TotalMana) { CurrentPlayerTurn.Character[i].Shock = TotalMana; }
-                    while (shock < CurrentPlayerTurn.Character[i].Shock)
-                    {
-                        int RandInt = Random.Range(0, TotalMana);
-                        if (CurrentPlayerTurn.Character[i].ShockMana[TotalMana] == false)
-                        {
-                            CurrentPlayerTurn.Character[i].ShockMana[TotalMana] = true;
-                            shock++;
-                        }
-                    }
-                    for (shock = 0; shock < 5; shock++)
-                    {
-                        if (CurrentPlayerTurn.Character[i].ShockMana[TotalMana] == true)
-                        {
-                            if (shock < CurrentPlayerTurn.Character[i].MaxBoth) { TempBoth--; }
-                            else if (shock < CurrentPlayerTurn.Character[i].MaxBoth + CurrentPlayerTurn.Character[i].MaxStamina) { TempStamina--; }
-                            else { TempMana--; }
-                        }
-                    }
-
-                    CurrentPlayerTurn.Character[i].Both = TempBoth;
-                    CurrentPlayerTurn.Character[i].Stamina = TempStamina;
-                    CurrentPlayerTurn.Character[i].Mana = TempMana;
-
-                    if (CurrentPlayerTurn.Character[i].IsActive)
-                    {
-                        CurrentPlayerTurn.Character[i].Draw(1);
-                    }
+                    CurrentPlayerTurn.Character[i].Draw(1);
                 }
             }
         }

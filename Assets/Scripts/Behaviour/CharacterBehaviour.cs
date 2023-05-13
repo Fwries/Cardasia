@@ -32,7 +32,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     [HideInInspector] public bool IsActive;
     [HideInInspector] public float LeftMost;
-    public GameObject HandObject;
+    [HideInInspector] public GameObject HandObject;
 
     public int Freeze;
     public int Shock;
