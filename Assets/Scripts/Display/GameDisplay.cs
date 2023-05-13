@@ -11,6 +11,11 @@ public class GameDisplay : MonoBehaviour
     public Text ButtonPrint;
     public Text DisplayCharacterText;
 
+    public Text HealthText;
+    public Slider HealthSlider;
+    public Text EXPText;
+    public Slider EXPSlider;
+
     public List<GameObject> ManaIcon;
     private int Pointer;
 
@@ -26,6 +31,14 @@ public class GameDisplay : MonoBehaviour
         if (GameBehav.Selected == null) { return; }
 
         DisplayCharacterText.text = "Lv. " + GameBehav.Selected.Level + " " + GameBehav.Selected.Character.CardName;
+
+        HealthText.text = GameBehav.Selected.Health + " / " + GameBehav.Selected.MaxHealth;
+        HealthSlider.maxValue = GameBehav.Selected.MaxHealth;
+        HealthSlider.value = GameBehav.Selected.Health;
+
+        EXPText.text = GameBehav.Selected.Exp + " / " + GameBehav.Selected.MaxExp;
+        EXPSlider.maxValue = GameBehav.Selected.MaxExp;
+        EXPSlider.value = GameBehav.Selected.Exp;
 
         Pointer = 0;
         for (int i = 0; i < GameBehav.Selected.MaxBoth; i++)

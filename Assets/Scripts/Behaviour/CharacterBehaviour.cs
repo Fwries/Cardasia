@@ -12,8 +12,11 @@ public class CharacterBehaviour : MonoBehaviour
     public SC_Deck scDeck;
     public List<SC_Card> Deck;
 
+    public int Level = 1;
     [HideInInspector] public int MaxHealth;
     public int Health;
+    [HideInInspector] public int MaxExp;
+    public int Exp;
 
     [HideInInspector] public int MaxBoth;
     [HideInInspector] public int MaxStamina;
@@ -25,7 +28,6 @@ public class CharacterBehaviour : MonoBehaviour
 
     public bool[] ShockMana = { false, false, false, false, false };
 
-    public int Level = 1;
     [HideInInspector] public bool IsActive;
     [HideInInspector] public float LeftMost;
     public GameObject HandObject;
@@ -42,6 +44,8 @@ public class CharacterBehaviour : MonoBehaviour
         PlayerBehav = GameBehav.Player;
 
         Health = MaxHealth = Character.Health;
+        Exp = 0; MaxExp = 100;
+
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
