@@ -5,7 +5,6 @@ using UnityEngine;
 public class CardBehaviour : MonoBehaviour
 {
     public CharacterBehaviour CharacterBehav;
-    public bool IsDraggable;
     public int Zones;
     public bool Frozen;
 

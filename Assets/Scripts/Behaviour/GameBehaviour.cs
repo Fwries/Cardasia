@@ -27,7 +27,7 @@ public class GameBehaviour : MonoBehaviour
 
     }
 
-    private void EndTurn()
+    public void EndTurn()
     {
         if (/*Condition to check whether its current player turn*/ true)
         {
