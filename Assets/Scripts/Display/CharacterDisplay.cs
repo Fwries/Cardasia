@@ -14,15 +14,42 @@ public class CharacterDisplay : MonoBehaviour
 
     private bool IsPlayer;
 
+    private List<Sprite> CurrAnim;
+    private int CurrFrame;
+    private float AnimTime = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        CurrAnim = new List<Sprite>();
+        if (CharBehav.PlayerBehav == CharBehav.GameBehav.Player)
+        {
+            for (int i = 0; i < CharBehav.Character.Idle_Up_Anim.Length; i++)
+            {
+                CurrAnim.Add(CharBehav.Character.Idle_Up_Anim[i]);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < CharBehav.Character.Idle_Down_Anim.Length; i++)
+            {
+                CurrAnim.Add(CharBehav.Character.Idle_Down_Anim[i]);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        AnimTime += Time.deltaTime;
+        if (AnimTime >= 0.12f)
+        {
+            CurrFrame++;
+            if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
+            this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
+            AnimTime = 0;
+        }
+
         if (IsPlayer) { return; }
 
         DisplayCharacterText.text = "Lv. " + CharBehav.Level + " " + CharBehav.Character.CardName;

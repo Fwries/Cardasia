@@ -39,8 +39,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public bool Burn;
     public bool Trip;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
         PlayerBehav = GameBehav.Player;
