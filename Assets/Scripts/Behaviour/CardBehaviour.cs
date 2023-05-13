@@ -24,6 +24,11 @@ public class CardBehaviour : MonoBehaviour
 
     public void Play(CharacterBehaviour target)
     {
-
+        switch (Currentcard.CardIdx)
+        {
+            case "HB":
+                target.Health -= 70;
+                break;
+        }
     }
 }

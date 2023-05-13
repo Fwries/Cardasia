@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: 7cbd8d26605f79b48a120899f9699001, type: 3}
   CardName: Heavy Blade
+  CardIdx: HB
   CardType: 1
   CardRariety: 0
   CardClass: []
   CardTrait: 
   CardSkill: 70 DMG. If the enemy has BLK, High Crit Chance.
   CardCost: 2
-  CardAtk: 70
-  CardDef: 0
