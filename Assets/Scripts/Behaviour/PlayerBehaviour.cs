@@ -6,26 +6,32 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public List<CharacterBehaviour> Character;
     public CharacterBehaviour[] ActiveCharacter = { null, null, null};
+    public CharacterBehaviour BackCharacter;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Character.Count >= 3)
+        switch (Character.Count)
         {
-            ActiveCharacter[1] = Character[0];
-            ActiveCharacter[0] = Character[1];
-            ActiveCharacter[2] = Character[2];
+            case 1:
+                ActiveCharacter[1] = Character[0];
+                break;
+            case 2:
+                ActiveCharacter[0] = Character[1];
+                ActiveCharacter[1] = Character[0];
+                break;
+            case 3:
+                ActiveCharacter[2] = Character[2];
+                ActiveCharacter[0] = Character[1];
+                ActiveCharacter[1] = Character[0];
+                break;
+            case 4:
+                BackCharacter = Character[3];
+                ActiveCharacter[2] = Character[2];
+                ActiveCharacter[0] = Character[1];
+                ActiveCharacter[1] = Character[0];
+                break;
         }
-        else if (Character.Count >= 2)
-        {
-            ActiveCharacter[1] = Character[0];
-            ActiveCharacter[0] = Character[1];
-        }
-        else if (Character.Count >= 1)
-        {
-            ActiveCharacter[1] = Character[0];
-        }
-
         UpdateActive();
     }
 

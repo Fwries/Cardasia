@@ -146,6 +146,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void OnDrop(PointerEventData eventData)
     {
         if (IsDead) { return; }
+        if (eventData.pointerDrag.GetComponent<CardBehaviour>() == null) { return; }
 
         CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
         CharacterBehaviour Character = Card.CharacterBehav;
