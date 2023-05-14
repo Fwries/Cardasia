@@ -41,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
 
-    void UpdateActive()
+    public void UpdateActive()
     {
         for (int iC = 0; iC < Character.Count; iC++)
         {

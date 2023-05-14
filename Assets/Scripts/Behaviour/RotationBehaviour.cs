@@ -8,12 +8,14 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public GameBehaviour GameBehav;
     private Camera cam;
 
-    public GameObject CentrePos;
-    public GameObject LeftPos;
-    public GameObject RightPos;
+    public Vector2 CentrePos;
+    public Vector2 LeftPos;
+    public Vector2 RightPos;
 
-    public GameObject LeftBackPos;
-    public GameObject RightBackPos;
+    public Vector2 LeftBackPos;
+    public Vector2 RightBackPos;
+
+    public int m_Speed;
 
     private bool OnStartDrag;
     private Vector3 StartPos;
@@ -22,7 +24,6 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     private void Awake()
     {
         cam = Camera.main;
-        //DragOffsetXPos = -0.4f;
     }
 
     // Update is called once per frame
@@ -30,34 +31,70 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     {
         if (DragOffsetXPos < 0)
         {
-            GameBehav.Player.ActiveCharacter[1].transform.position = new Vector3(
-            CentrePos.transform.position.x + LeftPos.transform.position.x * (DragOffsetXPos * 1.14f),
-            CentrePos.transform.position.y + LeftPos.transform.position.y * (DragOffsetXPos / 7), 0);
-
-            GameBehav.Player.ActiveCharacter[0].transform.position = new Vector3(
-            LeftPos.transform.position.x - LeftBackPos.transform.position.x * (DragOffsetXPos / 3),
-            LeftPos.transform.position.y + LeftBackPos.transform.position.y * (DragOffsetXPos * 4), 0);
-
-            GameBehav.Player.ActiveCharacter[2].transform.position = new Vector3(
-            RightPos.transform.position.x + CentrePos.transform.position.x * (DragOffsetXPos / 1.28f),
-            RightPos.transform.position.y - CentrePos.transform.position.y * (DragOffsetXPos / 7), 0);
-
             if (OnStartDrag == true)
             {
-                GameBehav.Player.BackCharacter.transform.position = RightBackPos.transform.position;
+                GameBehav.Player.BackCharacter.transform.position = RightBackPos;
                 OnStartDrag = false;
             }
 
-            //GameBehav.Player.BackCharacter.transform.position = new Vector3(
-            //RightBackPos.transform.position.x - RightPos.transform.position.x * (DragOffsetXPos),
-            //RightBackPos.transform.position.y - RightPos.transform.position.y * (DragOffsetXPos / 2), 0);
+            GameBehav.Player.ActiveCharacter[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+            GameBehav.Player.ActiveCharacter[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+            GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+            GameBehav.Player.BackCharacter.transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
+
+            if (DragOffsetXPos <= -1f)
+            {
+                CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+                Temp0 = GameBehav.Player.ActiveCharacter[0];
+                Temp1 = GameBehav.Player.ActiveCharacter[1];
+                Temp2 = GameBehav.Player.ActiveCharacter[2];
+                Temp3 = GameBehav.Player.BackCharacter;
+
+                GameBehav.Player.ActiveCharacter[0] = Temp1;
+                GameBehav.Player.ActiveCharacter[1] = Temp2;
+                GameBehav.Player.ActiveCharacter[2] = Temp3;
+                GameBehav.Player.BackCharacter = Temp0;
+
+                DragOffsetXPos = 0;
+                StartPos = GetMousePos();
+                OnStartDrag = true;
+
+                GameBehav.Player.UpdateActive();
+                ResetCharPos();
+            }
         }
         if (DragOffsetXPos > 0)
         {
             if (OnStartDrag == true)
             {
-                GameBehav.Player.BackCharacter.transform.position = LeftBackPos.transform.position;
+                GameBehav.Player.BackCharacter.transform.position = LeftBackPos;
                 OnStartDrag = false;
+            }
+
+            GameBehav.Player.ActiveCharacter[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+            GameBehav.Player.ActiveCharacter[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+            GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+            GameBehav.Player.BackCharacter.transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
+
+            if (DragOffsetXPos >= 1f)
+            {
+                CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+                Temp0 = GameBehav.Player.ActiveCharacter[0];
+                Temp1 = GameBehav.Player.ActiveCharacter[1];
+                Temp2 = GameBehav.Player.ActiveCharacter[2];
+                Temp3 = GameBehav.Player.BackCharacter;
+
+                GameBehav.Player.ActiveCharacter[0] = Temp3;
+                GameBehav.Player.ActiveCharacter[1] = Temp0;
+                GameBehav.Player.ActiveCharacter[2] = Temp1;
+                GameBehav.Player.BackCharacter = Temp2;
+
+                DragOffsetXPos = 0;
+                StartPos = GetMousePos();
+                OnStartDrag = true;
+
+                GameBehav.Player.UpdateActive();
+                ResetCharPos();
             }
         }
     }
@@ -92,19 +129,26 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     {
         if (GameBehav.Player.ActiveCharacter[1] != null)
         {
-            GameBehav.Player.ActiveCharacter[1].transform.position = new Vector3(CentrePos.transform.position.x, CentrePos.transform.position.y, 0);
+            GameBehav.Player.ActiveCharacter[1].transform.position = CentrePos;
         }
         if (GameBehav.Player.ActiveCharacter[0] != null)
         {
-            GameBehav.Player.ActiveCharacter[0].transform.position = new Vector3(LeftPos.transform.position.x, LeftPos.transform.position.y, 0);
+            GameBehav.Player.ActiveCharacter[0].transform.position = LeftPos;
         }
         if (GameBehav.Player.ActiveCharacter[2] != null)
         {
-            GameBehav.Player.ActiveCharacter[2].transform.position = new Vector3(RightPos.transform.position.x, RightPos.transform.position.y, 0);
+            GameBehav.Player.ActiveCharacter[2].transform.position = RightPos;
         }
         if (GameBehav.Player.BackCharacter != null)
         {
-            GameBehav.Player.BackCharacter.transform.position = new Vector3(LeftBackPos.transform.position.x, LeftBackPos.transform.position.y, 0);
+            GameBehav.Player.BackCharacter.transform.position = LeftBackPos;
         }
+    }
+
+    private Vector2 DistNormalize(Vector2 A, Vector2 B)
+    {
+        Vector2 C = B - A;
+        C.Normalize();
+        return C;
     }
 }
