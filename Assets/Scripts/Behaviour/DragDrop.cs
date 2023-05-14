@@ -25,8 +25,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav)
-            return;
+        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav) { return; }
         canvasGroup.blocksRaycasts = false;
         IsDragging = true;
     }
@@ -38,15 +37,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav || this.GetComponent<CardBehaviour>().Frozen)
-            return;
+        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav) { return; }
         transform.position = Input.mousePosition - GetMousePos();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav)
-            return;
+        if (GameBehav.CurrentPlayerTurn != Cardbehav.CharacterBehav.PlayerBehav) { return; }
 
         transform.position = new Vector3((Cardbehav.CharacterBehav.HandCards.Count - 1) * -100 + Cardbehav.CharacterBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 200,
                 Cardbehav.CharacterBehav.HandObject.transform.position.y, 0.0f);

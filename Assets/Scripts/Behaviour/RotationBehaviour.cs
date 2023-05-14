@@ -29,6 +29,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     // Update is called once per frame
     void Update()
     {
+        if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+
         if (DragOffsetXPos < 0)
         {
             if (OnStartDrag == true)
@@ -101,17 +103,23 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+
         StartPos = GetMousePos();
         OnStartDrag = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+
         DragOffsetXPos = GetMousePos().x - StartPos.x;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+
         StartPos = new Vector3(0, 0, 0);
         DragOffsetXPos = 0;
         OnStartDrag = false;
