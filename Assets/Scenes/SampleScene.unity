@@ -671,24 +671,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Both
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Mana
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Health
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Stamina
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Character
@@ -1004,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &751909866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1228,7 +1212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1049676390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2151,24 +2135,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Both
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Mana
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Health
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Stamina
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Name
@@ -2299,7 +2267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1723730688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2336,24 +2304,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Both
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Mana
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Health
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Stamina
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Name
@@ -2960,20 +2912,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Both
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Mana
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-      propertyPath: Stamina
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Name
