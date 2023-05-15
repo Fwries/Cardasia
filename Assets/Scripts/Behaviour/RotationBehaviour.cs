@@ -21,6 +21,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     private Vector3 StartPos;
     public float DragOffsetXPos;
 
+    private float prevMouseXPos;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -142,6 +144,23 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         DragOffsetXPos = GetMousePos().x - StartPos.x;
+
+        if (prevMouseXPos > GetMousePos().x)
+        {
+            GameBehav.Player.ActiveCharacter[1].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[1].Character.Walk_Left_Anim);
+            GameBehav.Player.ActiveCharacter[0].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[0].Character.Walk_Down_Anim);
+            GameBehav.Player.ActiveCharacter[2].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[2].Character.Walk_Left_Anim);
+            GameBehav.Player.BackCharacter.CharDisplay.SetCurrAnim(GameBehav.Player.BackCharacter.Character.Walk_Up_Anim);
+        }
+        else if (prevMouseXPos < GetMousePos().x)
+        {
+            GameBehav.Player.ActiveCharacter[1].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[1].Character.Walk_Right_Anim);
+            GameBehav.Player.ActiveCharacter[0].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[0].Character.Walk_Right_Anim);
+            GameBehav.Player.ActiveCharacter[2].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[2].Character.Walk_Down_Anim);
+            GameBehav.Player.BackCharacter.CharDisplay.SetCurrAnim(GameBehav.Player.BackCharacter.Character.Walk_Up_Anim);
+        }
+
+        prevMouseXPos = GetMousePos().x;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -151,9 +170,14 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         StartPos = new Vector3(0, 0, 0);
-        DragOffsetXPos = 0;
+        prevMouseXPos = DragOffsetXPos = 0;
         OnStartDrag = false;
         ResetCharPos();
+
+        GameBehav.Player.ActiveCharacter[1].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[1].Character.Idle_Up_Anim);
+        GameBehav.Player.ActiveCharacter[0].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[0].Character.Idle_Up_Anim);
+        GameBehav.Player.ActiveCharacter[2].CharDisplay.SetCurrAnim(GameBehav.Player.ActiveCharacter[2].Character.Idle_Up_Anim);
+        GameBehav.Player.BackCharacter.CharDisplay.SetCurrAnim(GameBehav.Player.BackCharacter.Character.Idle_Up_Anim);
     }
 
     private Vector3 GetMousePos()

@@ -21,20 +21,13 @@ public class CharacterDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CurrAnim = new List<Sprite>();
         if (CharBehav.PlayerBehav == CharBehav.GameBehav.Player)
         {
-            for (int i = 0; i < CharBehav.Character.Idle_Up_Anim.Length; i++)
-            {
-                CurrAnim.Add(CharBehav.Character.Idle_Up_Anim[i]);
-            }
+            SetCurrAnim(CharBehav.Character.Idle_Up_Anim);
         }
         else
         {
-            for (int i = 0; i < CharBehav.Character.Idle_Down_Anim.Length; i++)
-            {
-                CurrAnim.Add(CharBehav.Character.Idle_Down_Anim[i]);
-            }
+            SetCurrAnim(CharBehav.Character.Idle_Down_Anim);
         }
     }
 
@@ -65,5 +58,25 @@ public class CharacterDisplay : MonoBehaviour
     {
         CharUI.SetActive(!Active);
         IsPlayer = Active;
+    }
+
+    public void SetCurrAnim(Sprite[] NewAnim)
+    {
+        if (CurrAnim != null)
+        {
+            for (int i = 0; i <= NewAnim.Length; i++)
+            {
+                if (i == NewAnim.Length) { return; }
+                if (NewAnim[i] != CurrAnim[i]) { break; }
+            }
+        }
+
+        List<Sprite> _CurrAnim = new List<Sprite>();
+        for (int i = 0; i < NewAnim.Length; i++)
+        {
+            _CurrAnim.Add(NewAnim[i]);
+        }
+        CurrAnim = _CurrAnim;
+        CurrFrame = 0;
     }
 }
