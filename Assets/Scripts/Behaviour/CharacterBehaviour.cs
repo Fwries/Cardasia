@@ -41,12 +41,11 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public bool Burn;
     public bool Trip;
 
+    public bool IsEnemy;
+
     void Awake()
     {
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
-        PlayerBehav = GameBehav.Player;
-
-        if (PlayerBehav == GameBehav.Player) { CharDisplay.SetActive(true); }
 
         Health = MaxHealth = Character.Health;
         Exp = 0; MaxExp = 100;
@@ -69,7 +68,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (IsDead) { return; }
         if (Health <= 0) 
         {
-            this.gameObject.GetComponent<Image>().sprite = Character.Dead_Sprite[Random.Range(0, Character.Dead_Sprite.Length)];
             IsDead = true; 
         }
         if (Exp >= MaxExp)
@@ -81,15 +79,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
             Both = MaxBoth = Character.MaxBoth;
             Stamina = MaxStamina = Character.MaxStamina;
             Mana = MaxMana = Character.MaxMana;
-        }
-
-        if (Input.GetKeyDown("r"))
-        {
-            Shuffle();
-        }
-        if (Input.GetKeyDown("t"))
-        {
-            Draw(1);
         }
     }
 
@@ -150,6 +139,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void OnPointerDown(PointerEventData eventData)
     {
         if (IsDead) { return; }
+        if (IsEnemy) { return; }
         GameBehav.Select(this);
     }
 

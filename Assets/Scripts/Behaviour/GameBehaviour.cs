@@ -17,6 +17,19 @@ public class GameBehaviour : MonoBehaviour
 
     [HideInInspector] public CharacterBehaviour Selected;
 
+    void Awake()
+    {
+        for (int i = 0; i < Player.Character.Count; i++)
+        {
+            Player.Character[i].PlayerBehav = Player;
+        }
+        for (int i = 0; i < Opponent.Character.Count; i++)
+        {
+            Opponent.Character[i].PlayerBehav = Opponent;
+            Opponent.Character[i].IsEnemy = true;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +40,8 @@ public class GameBehaviour : MonoBehaviour
         }
         for (int i = 0; i < Opponent.Character.Count; i++)
         {
-            Player.Character[i].Draw(3);
+            Opponent.Character[i].HandObject = HandObjects[i+4];
+            Opponent.Character[i].Draw(3);
         }
 
         Select(Player.Character[0]);
@@ -136,11 +150,11 @@ public class GameBehaviour : MonoBehaviour
         {
             if (Selected != Player.Character[i])
             {
-                Player.Character[i].HandObject.SetActive(false);
+                Player.Character[i].HandObject.transform.position = new Vector3(960, -265, 0);
             }
             else
             {
-                Player.Character[i].HandObject.SetActive(true);
+                Player.Character[i].HandObject.transform.position = new Vector3(960, 135, 0);
             }
         }
     }

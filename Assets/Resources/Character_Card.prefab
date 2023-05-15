@@ -297,12 +297,14 @@ MonoBehaviour:
   Mana: 0
   ShockMana: 0000000000
   IsActive: 0
+  IsDead: 0
   LeftMost: 0
   HandObject: {fileID: 0}
   Freeze: 0
   Shock: 0
   Burn: 0
   Trip: 0
+  IsEnemy: 0
 --- !u!1 &6074611329162754776
 GameObject:
   m_ObjectHideFlags: 0

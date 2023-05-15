@@ -13,6 +13,7 @@ public class CharacterDisplay : MonoBehaviour
     public Slider HealthSlider;
 
     private bool IsPlayer;
+    private bool IsDead;
 
     private List<Sprite> CurrAnim;
     private int CurrFrame;
@@ -21,20 +22,21 @@ public class CharacterDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CharBehav.PlayerBehav == CharBehav.GameBehav.Player)
+        if (!CharBehav.IsEnemy)
         {
             SetCurrAnim(CharBehav.Character.Idle_Up_Anim);
         }
         else
         {
             SetCurrAnim(CharBehav.Character.Idle_Down_Anim);
+            CharUI.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CharBehav.IsDead) { return; }
+        if (IsDead) { return; }
 
         AnimTime += Time.deltaTime;
         if (AnimTime >= 0.12f)
@@ -52,12 +54,17 @@ public class CharacterDisplay : MonoBehaviour
         HealthText.text = CharBehav.Health + " / " + CharBehav.MaxHealth;
         HealthSlider.maxValue = CharBehav.MaxHealth;
         HealthSlider.value = CharBehav.Health;
+
+        if (CharBehav.Health <= 0)
+        {
+            this.gameObject.GetComponent<Image>().sprite = CharBehav.Character.Dead_Sprite[Random.Range(0, CharBehav.Character.Dead_Sprite.Length)];
+            IsDead = true;
+        }
     }
 
     public void SetActive(bool Active)
     {
         CharUI.SetActive(!Active);
-        IsPlayer = Active;
     }
 
     public void SetCurrAnim(Sprite[] NewAnim)
