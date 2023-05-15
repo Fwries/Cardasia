@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+      objectReference: {fileID: -1429512720, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 15
@@ -651,7 +651,7 @@ PrefabInstance:
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+      objectReference: {fileID: -1751211224, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 15
@@ -1407,8 +1407,8 @@ MonoBehaviour:
   CentrePos: {x: 960, y: 790}
   LeftPos: {x: 610, y: 815}
   RightPos: {x: 1310, y: 815}
-  LeftBackPos: {x: 760, y: 942.5}
-  RightBackPos: {x: 1160, y: 942.5}
+  LeftBackPos: {x: 760, y: 1042.5}
+  RightBackPos: {x: 1160, y: 1042.5}
   m_Speed: 0
   DragAmt: 0
   DragOffsetXPos: 0
@@ -1884,6 +1884,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   BackCharacter: {fileID: 0}
+  CardPlayed: 0
 --- !u!114 &1312719080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1906,6 +1907,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   BackCharacter: {fileID: 0}
+  CardPlayed: 0
 --- !u!114 &1312719081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2977,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+      objectReference: {fileID: -1751211224, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 15
@@ -3179,7 +3181,7 @@ PrefabInstance:
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+      objectReference: {fileID: 49918177, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Level
       value: 15

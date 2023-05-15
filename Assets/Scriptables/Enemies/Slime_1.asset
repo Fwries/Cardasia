@@ -21,37 +21,38 @@ MonoBehaviour:
   MaxMana: 0
   CharacterClass: 0
   CharacterSubClass: 0
+  DefaultDeck: {fileID: 0}
   Idle_Down_Anim:
-  - {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 1115834107, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 412123640, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 49918177, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1429512720, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1751211224, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Idle_Up_Anim:
-  - {fileID: -1325414616, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 313007138, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -1784807448, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1236164060, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1251349864, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 895972940, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Idle_Left_Anim:
-  - {fileID: 1890115096, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -568092571, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 1230992084, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1747177068, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1359025894, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 656871387, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Idle_Right_Anim:
-  - {fileID: -52001277, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -123845257, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 345077703, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1170702406, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 915332518, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1000409999, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Walk_Down_Anim:
-  - {fileID: -1826944272, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 1115834107, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 412123640, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 49918177, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1429512720, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1751211224, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Walk_Up_Anim:
-  - {fileID: -1325414616, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 313007138, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -1784807448, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1236164060, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1251349864, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 895972940, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Walk_Left_Anim:
-  - {fileID: 1890115096, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -568092571, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 1230992084, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1747177068, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1359025894, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 656871387, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Walk_Right_Anim:
-  - {fileID: -52001277, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: -123845257, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
-  - {fileID: 345077703, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 1170702406, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 915332518, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: -1000409999, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Dead_Sprite:
-  - {fileID: 232082956, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  - {fileID: 2004656353, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}

@@ -84,6 +84,6 @@ public class CharacterDisplay : MonoBehaviour
             _CurrAnim.Add(NewAnim[i]);
         }
         CurrAnim = _CurrAnim;
-        CurrFrame = 0;
+        CurrFrame = Random.Range(0, NewAnim.Length);
     }
 }
