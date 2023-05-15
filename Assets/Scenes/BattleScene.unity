@@ -1402,11 +1402,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameBehav: {fileID: 1312719081}
+  PlayerBehav: {fileID: 1312719079}
+  IsEnemy: 0
   CentrePos: {x: 960, y: 790}
   LeftPos: {x: 610, y: 815}
   RightPos: {x: 1310, y: 815}
-  LeftBackPos: {x: -640, y: 142.5}
-  RightBackPos: {x: 1160, y: 142.5}
+  LeftBackPos: {x: 760, y: 942.5}
+  RightBackPos: {x: 1160, y: 942.5}
   m_Speed: 0
   DragAmt: 0
   DragOffsetXPos: 0
@@ -2363,6 +2365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameBehav: {fileID: 1312719081}
+  PlayerBehav: {fileID: 1312719080}
+  IsEnemy: 0
   CentrePos: {x: 960, y: 415}
   LeftPos: {x: 660, y: 390}
   RightPos: {x: 1260, y: 390}
