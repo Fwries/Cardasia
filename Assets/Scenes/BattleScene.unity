@@ -212,11 +212,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
@@ -320,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611330254903481, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
@@ -642,11 +642,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
@@ -750,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611330254903481, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
@@ -1407,8 +1407,8 @@ MonoBehaviour:
   CentrePos: {x: 960, y: 790}
   LeftPos: {x: 610, y: 815}
   RightPos: {x: 1310, y: 815}
-  LeftBackPos: {x: 760, y: 1042.5}
-  RightBackPos: {x: 1160, y: 1042.5}
+  LeftBackPos: {x: 960, y: 1042.5}
+  RightBackPos: {x: 960, y: 1042.5}
   m_Speed: 0
   DragAmt: 0
   DragOffsetXPos: 0
@@ -2970,11 +2970,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
@@ -3058,7 +3058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913119, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913119, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3078,7 +3078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611330254903481, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
@@ -3172,11 +3172,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329018373332, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913104, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Sprite
@@ -3280,7 +3280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611330254903481, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
