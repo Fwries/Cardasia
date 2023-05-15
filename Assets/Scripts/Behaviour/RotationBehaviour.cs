@@ -30,6 +30,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     void Update()
     {
         if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+        if (GameBehav.Player.BackCharacter == null) { return; }
+        if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         if (DragOffsetXPos < 0)
         {
@@ -44,25 +46,13 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
             GameBehav.Player.BackCharacter.transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
 
-            if (DragOffsetXPos <= -1f)
+            if (DragOffsetXPos <= -1)
             {
-                CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
-                Temp0 = GameBehav.Player.ActiveCharacter[0];
-                Temp1 = GameBehav.Player.ActiveCharacter[1];
-                Temp2 = GameBehav.Player.ActiveCharacter[2];
-                Temp3 = GameBehav.Player.BackCharacter;
-
-                GameBehav.Player.ActiveCharacter[0] = Temp1;
-                GameBehav.Player.ActiveCharacter[1] = Temp2;
-                GameBehav.Player.ActiveCharacter[2] = Temp3;
-                GameBehav.Player.BackCharacter = Temp0;
-
                 DragOffsetXPos = 0;
                 StartPos = GetMousePos();
                 OnStartDrag = true;
 
-                GameBehav.Player.UpdateActive();
-                ResetCharPos();
+                Shift(false);
             }
         }
         if (DragOffsetXPos > 0)
@@ -78,25 +68,59 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
             GameBehav.Player.BackCharacter.transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
 
-            if (DragOffsetXPos >= 1f)
+            if (DragOffsetXPos >= 1)
             {
-                CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
-                Temp0 = GameBehav.Player.ActiveCharacter[0];
-                Temp1 = GameBehav.Player.ActiveCharacter[1];
-                Temp2 = GameBehav.Player.ActiveCharacter[2];
-                Temp3 = GameBehav.Player.BackCharacter;
-
-                GameBehav.Player.ActiveCharacter[0] = Temp3;
-                GameBehav.Player.ActiveCharacter[1] = Temp0;
-                GameBehav.Player.ActiveCharacter[2] = Temp1;
-                GameBehav.Player.BackCharacter = Temp2;
-
                 DragOffsetXPos = 0;
                 StartPos = GetMousePos();
                 OnStartDrag = true;
 
-                GameBehav.Player.UpdateActive();
-                ResetCharPos();
+                Shift(true);
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (GameBehav.Player.ActiveCharacter[i].IsDead == true)
+            {
+                if (i == 0)
+                {
+                    CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+                    Temp0 = GameBehav.Player.ActiveCharacter[0];
+                    Temp1 = GameBehav.Player.ActiveCharacter[1];
+                    Temp2 = GameBehav.Player.ActiveCharacter[2];
+                    Temp3 = GameBehav.Player.BackCharacter;
+
+                    GameBehav.Player.ActiveCharacter[0] = Temp1;
+                    GameBehav.Player.ActiveCharacter[1] = Temp2;
+                    GameBehav.Player.ActiveCharacter[2] = Temp3;
+                    GameBehav.Player.BackCharacter = Temp0;
+
+                    GameBehav.Player.UpdateActive();
+                    ResetCharPos();
+                }
+                else if (i == 1)
+                {
+                    if (GameBehav.Player.ActiveCharacter[0].IsDead == true || GameBehav.Player.ActiveCharacter[2].IsDead == true) { return; }
+
+                    Shift(true);
+                    Shift(true);
+                }
+                else if (i == 2)
+                {
+                    CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+                    Temp0 = GameBehav.Player.ActiveCharacter[0];
+                    Temp1 = GameBehav.Player.ActiveCharacter[1];
+                    Temp2 = GameBehav.Player.ActiveCharacter[2];
+                    Temp3 = GameBehav.Player.BackCharacter;
+
+                    GameBehav.Player.ActiveCharacter[0] = Temp3;
+                    GameBehav.Player.ActiveCharacter[1] = Temp0;
+                    GameBehav.Player.ActiveCharacter[2] = Temp1;
+                    GameBehav.Player.BackCharacter = Temp2;
+
+                    GameBehav.Player.UpdateActive();
+                    ResetCharPos();
+                }
             }
         }
     }
@@ -104,6 +128,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+        if (GameBehav.Player.BackCharacter == null) { return; }
+        if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         StartPos = GetMousePos();
         OnStartDrag = true;
@@ -112,6 +138,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public void OnDrag(PointerEventData eventData)
     {
         if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+        if (GameBehav.Player.BackCharacter == null) { return; }
+        if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         DragOffsetXPos = GetMousePos().x - StartPos.x;
     }
@@ -119,6 +147,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public void OnEndDrag(PointerEventData eventData)
     {
         if (GameBehav.CurrentPlayerTurn != GameBehav.Player) { return; }
+        if (GameBehav.Player.BackCharacter == null) { return; }
+        if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
 
         StartPos = new Vector3(0, 0, 0);
         DragOffsetXPos = 0;
@@ -158,5 +188,41 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         Vector2 C = B - A;
         C.Normalize();
         return C;
+    }
+
+    public void Shift(bool right)
+    {
+        if (GameBehav.Player.BackCharacter == null) { return; }
+        if (GameBehav.Player.BackCharacter.IsDead == true) { return; }
+
+        if (right)
+        {
+            CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+            Temp0 = GameBehav.Player.ActiveCharacter[0];
+            Temp1 = GameBehav.Player.ActiveCharacter[1];
+            Temp2 = GameBehav.Player.ActiveCharacter[2];
+            Temp3 = GameBehav.Player.BackCharacter;
+
+            GameBehav.Player.ActiveCharacter[0] = Temp3;
+            GameBehav.Player.ActiveCharacter[1] = Temp0;
+            GameBehav.Player.ActiveCharacter[2] = Temp1;
+            GameBehav.Player.BackCharacter = Temp2;
+        }
+        else
+        {
+            CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
+            Temp0 = GameBehav.Player.ActiveCharacter[0];
+            Temp1 = GameBehav.Player.ActiveCharacter[1];
+            Temp2 = GameBehav.Player.ActiveCharacter[2];
+            Temp3 = GameBehav.Player.BackCharacter;
+
+            GameBehav.Player.ActiveCharacter[0] = Temp1;
+            GameBehav.Player.ActiveCharacter[1] = Temp2;
+            GameBehav.Player.ActiveCharacter[2] = Temp3;
+            GameBehav.Player.BackCharacter = Temp0;
+        }
+
+        GameBehav.Player.UpdateActive();
+        ResetCharPos();
     }
 }
