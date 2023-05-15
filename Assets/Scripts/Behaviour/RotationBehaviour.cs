@@ -15,7 +15,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public Vector2 LeftBackPos;
     public Vector2 RightBackPos;
 
-    public int m_Speed;
+    public float m_Speed;
+    public float DragAmt;
 
     private bool OnStartDrag;
     private Vector3 StartPos;
@@ -48,7 +49,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
             GameBehav.Player.BackCharacter.transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
 
-            if (DragOffsetXPos <= -1)
+            if (DragOffsetXPos <= -DragAmt)
             {
                 DragOffsetXPos = 0;
                 StartPos = GetMousePos();
@@ -70,7 +71,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             GameBehav.Player.ActiveCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
             GameBehav.Player.BackCharacter.transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
 
-            if (DragOffsetXPos >= 1)
+            if (DragOffsetXPos >= DragAmt)
             {
                 DragOffsetXPos = 0;
                 StartPos = GetMousePos();

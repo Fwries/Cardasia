@@ -72,6 +72,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
             this.gameObject.GetComponent<Image>().sprite = Character.Dead_Sprite[Random.Range(0, Character.Dead_Sprite.Length)];
             IsDead = true; 
         }
+        if (Exp >= MaxExp)
+        {
+            Exp -= MaxExp;
+            Level++;
+
+            Health = MaxHealth = Character.Health;
+            Both = MaxBoth = Character.MaxBoth;
+            Stamina = MaxStamina = Character.MaxStamina;
+            Mana = MaxMana = Character.MaxMana;
+        }
 
         if (Input.GetKeyDown("r"))
         {
