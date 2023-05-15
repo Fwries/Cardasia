@@ -140,6 +140,7 @@ public class GameBehaviour : MonoBehaviour
                     CurrentPlayerTurn.Character[i].Draw(1);
                 }
             }
+            CurrentPlayerTurn.CardPlayed = false;
         }
     }
 

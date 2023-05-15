@@ -85,6 +85,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         }
 
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
+        if (PlayerBehav.CardPlayed) { return; }
 
         if (DragOffsetXPos < 0)
         {
@@ -138,6 +139,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
         if (PlayerBehav.BackCharacter == null) { return; }
         if (PlayerBehav.BackCharacter.IsDead == true) { return; }
+        if (PlayerBehav.CardPlayed) { return; }
 
         StartPos = GetMousePos();
         OnStartDrag = true;
@@ -149,6 +151,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
         if (PlayerBehav.BackCharacter == null) { return; }
         if (PlayerBehav.BackCharacter.IsDead == true) { return; }
+        if (PlayerBehav.CardPlayed) { return; }
 
         DragOffsetXPos = GetMousePos().x - StartPos.x;
 
@@ -176,6 +179,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
         if (PlayerBehav.BackCharacter == null) { return; }
         if (PlayerBehav.BackCharacter.IsDead == true) { return; }
+        if (PlayerBehav.CardPlayed) { return; }
 
         StartPos = new Vector3(0, 0, 0);
         prevMouseXPos = DragOffsetXPos = 0;
@@ -255,6 +259,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         }
 
         PlayerBehav.UpdateActive();
+        GameBehav.Select(PlayerBehav.ActiveCharacter[1]);
         ResetCharPos();
     }
 }

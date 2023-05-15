@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
     public CharacterBehaviour[] ActiveCharacter = { null, null, null};
     public CharacterBehaviour BackCharacter;
 
+    [HideInInspector] public bool CardPlayed;
+
     // Start is called before the first frame update
     void Start()
     {

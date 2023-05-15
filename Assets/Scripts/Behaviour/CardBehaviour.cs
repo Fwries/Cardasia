@@ -30,5 +30,7 @@ public class CardBehaviour : MonoBehaviour
                 target.Health -= 70;
                 break;
         }
+
+        CharacterBehav.PlayerBehav.CardPlayed = true;
     }
 }
