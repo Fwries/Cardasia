@@ -259,7 +259,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         }
 
         PlayerBehav.UpdateActive();
-        GameBehav.Select(PlayerBehav.ActiveCharacter[1]);
+        if (PlayerBehav == GameBehav.Player) { GameBehav.Select(PlayerBehav.ActiveCharacter[1]); }
         ResetCharPos();
     }
 }

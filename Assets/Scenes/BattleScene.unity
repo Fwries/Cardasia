@@ -1885,6 +1885,7 @@ MonoBehaviour:
   - {fileID: 0}
   BackCharacter: {fileID: 0}
   CardPlayed: 0
+  IsAI: 1
 --- !u!114 &1312719080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1908,6 +1909,7 @@ MonoBehaviour:
   - {fileID: 0}
   BackCharacter: {fileID: 0}
   CardPlayed: 0
+  IsAI: 0
 --- !u!114 &1312719081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,7 +1935,7 @@ MonoBehaviour:
   - {fileID: 979490752}
   - {fileID: 294960576}
   - {fileID: 1998060360}
-  EnemyAI: 0
+  EnemyAI: 1
   TurnNo: 0
   Selected: {fileID: 1016123898}
 --- !u!114 &1312719082

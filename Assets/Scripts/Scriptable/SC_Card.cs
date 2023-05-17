@@ -28,6 +28,17 @@ public class SC_Card : ScriptableObject
     };
     public Rariety CardRariety;
 
+    public bool DoesTarget;
+    public enum Target
+    {
+        None,
+        Enemy = 1,
+        Ally = 2,
+        Centre = 3,
+        RandomEnemy = 4
+    };
+    public Target CardTarget;
+
     public List<string> CardClass;
     public string CardTrait;
     public string CardSkill;

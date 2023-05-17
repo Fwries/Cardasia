@@ -9,6 +9,7 @@ public class PlayerBehaviour : MonoBehaviour
     public CharacterBehaviour BackCharacter;
 
     [HideInInspector] public bool CardPlayed;
+    public bool IsAI;
 
     // Start is called before the first frame update
     void Start()
@@ -60,5 +61,41 @@ public class PlayerBehaviour : MonoBehaviour
                 }
             }
         }
+    }
+
+    public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)
+    {
+        if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
+        {
+            int LowestHealthChar = 0, LowestChar = -1;
+            for (int i = 0; i < 3; i++)
+            {
+                if (Opponent.ActiveCharacter[i] != null && ((LowestHealthChar == 0 && Opponent.ActiveCharacter[i].Health > 0) ||
+                    (Opponent.ActiveCharacter[i].Health < LowestHealthChar && Opponent.ActiveCharacter[i].Health > 0)))
+                {
+                    LowestHealthChar = Opponent.ActiveCharacter[i].Health;
+                    LowestChar = i;
+                }
+            }
+            if (LowestChar == -1) { return null; }
+            return Opponent.ActiveCharacter[LowestChar];
+        }
+        else if (TargetType == 2 /*Card.Currentcard.Target.Ally*/)
+        {
+
+        }
+        else if (TargetType == 3 /*Card.Currentcard.Target.Centre*/)
+        {
+
+        }
+        else if (TargetType == 4 /*Card.Currentcard.Target.RandomEnemy*/)
+        {
+            while (true)
+            {
+                CharacterBehaviour Target = Opponent.ActiveCharacter[Random.Range(0, 3)];
+                if (Target != null) { return Target; }
+            }
+        }
+        return null;
     }
 }

@@ -151,57 +151,86 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
         CharacterBehaviour Character = Card.CharacterBehav;
 
-        if (Card.CardCost <= Character.Both + Character.Stamina + Character.Mana)
-        {
-            if (Card.Currentcard.CardType == SC_Card.Type.Stamina)
-            {
-                if (Card.CardCost <= Character.Stamina)
-                {
-                    Character.Stamina -= Card.CardCost;
-                }
-                else if (Card.CardCost <= Character.Stamina + Character.Both)
-                {
-                    int LeftOverCost = Card.CardCost - Character.Stamina;
-                    Character.Stamina = 0;
-                    Character.Both -= LeftOverCost;
-                }
-                else { return; }
-            }
-            else if (Card.Currentcard.CardType == SC_Card.Type.Mana)
-            {
-                if (Card.CardCost <= Character.Mana)
-                {
-                    Character.Mana -= Card.CardCost;
-                }
-                else if (Card.CardCost <= Character.Mana + Character.Both)
-                {
-                    int LeftOverCost = Card.CardCost - Character.Mana;
-                    Character.Mana = 0;
-                    Character.Both -= LeftOverCost;
-                }
-                else { return; }
-            }
-            else if (Card.Currentcard.CardType == SC_Card.Type.Both)
-            {
-                if (Card.CardCost <= Character.Mana)
-                {
-                    Character.Mana -= Card.CardCost;
-                }
-                else if (Card.CardCost <= Character.Mana + Character.Stamina)
-                {
-                    int LeftOverCost = Card.CardCost - Character.Mana;
-                    Character.Mana = 0;
-                    Character.Stamina -= LeftOverCost;
-                }
-                else { return; }
-            }
-        }
-        else { return; }
+        if (!Character.CanBePlayed(Card, true)) { return; }
 
         eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
         Character.HandCards.Remove(eventData.pointerDrag);
 
         Character.AdjustHand();
         Destroy(eventData.pointerDrag);
+    }
+
+    public bool CanBePlayed(CardBehaviour Card, bool deduct)
+    {
+        if (Card.CardCost <= Both + Stamina + Mana)
+        {
+            if (Card.Currentcard.CardType == SC_Card.Type.Stamina)
+            {
+                if (Card.CardCost <= Stamina)
+                {
+                    if (deduct) 
+                    {
+                        Stamina -= Card.CardCost;
+                    }
+                    return true;
+                }
+                else if (Card.CardCost <= Stamina + Both)
+                {
+                    if (deduct)
+                    {
+                        int LeftOverCost = Card.CardCost - Stamina;
+                        Stamina = 0;
+                        Both -= LeftOverCost;
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+            else if (Card.Currentcard.CardType == SC_Card.Type.Mana)
+            {
+                if (Card.CardCost <= Mana)
+                {
+                    if (deduct)
+                    {
+                        Mana -= Card.CardCost;
+                    }
+                    return true;
+                }
+                else if (Card.CardCost <= Mana + Both)
+                {
+                    if (deduct)
+                    {
+                        int LeftOverCost = Card.CardCost - Mana;
+                        Mana = 0;
+                        Both -= LeftOverCost;
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+            else if (Card.Currentcard.CardType == SC_Card.Type.Both)
+            {
+                if (Card.CardCost <= Mana)
+                {
+                    if (deduct)
+                    {
+                        Mana -= Card.CardCost;
+                    }
+                    return true;
+                }
+                else if (Card.CardCost <= Mana + Stamina)
+                {
+                    if (deduct)
+                    {
+                        int LeftOverCost = Card.CardCost - Mana;
+                        Mana = 0;
+                        Stamina -= LeftOverCost;
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+        }
+        return false;
     }
 }

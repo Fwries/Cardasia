@@ -17,6 +17,8 @@ MonoBehaviour:
   CardIdx: HB
   CardType: 1
   CardRariety: 0
+  DoesTarget: 1
+  CardTarget: 1
   CardClass: []
   CardTrait: 
   CardSkill: 70 DMG. If the enemy has BLK, High Crit Chance.

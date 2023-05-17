@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Slime_1
   m_EditorClassIdentifier: 
   CardName: Slime
-  Health: 100
+  Health: 60
   Strength: 0
   Armour: 0
-  MaxBoth: 0
+  MaxBoth: 2
   MaxStamina: 0
   MaxMana: 0
   CharacterClass: 0
