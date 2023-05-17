@@ -54,37 +54,38 @@ public class GameBehaviour : MonoBehaviour
         if (!EnemyAI || CurrentPlayerTurn != Opponent) { return; }
         for (int CharIdx = 0; CharIdx < Opponent.ActiveCharacter.Length; CharIdx++)
         {
-            for (int CardCostIdx = Opponent.ActiveCharacter[CharIdx].Both + Opponent.ActiveCharacter[CharIdx].Stamina + Opponent.ActiveCharacter[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
+            if (Opponent.ActiveCharacter[CharIdx].Health > 0)
             {
-                for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
+                for (int CardCostIdx = Opponent.ActiveCharacter[CharIdx].Both + Opponent.ActiveCharacter[CharIdx].Stamina + Opponent.ActiveCharacter[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
                 {
-                    CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
-                    if (Card.CardCost != CardCostIdx) { break; }
-
-                    CharacterBehaviour Target = null;
-                    if (Card.Currentcard.DoesTarget)
+                    for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
                     {
-                        Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
-                    }
-                    
-                    if (Opponent.ActiveCharacter[CharIdx].CanBePlayed(Card, true))
-                    {
-                        if (Target != null)
+                        CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
+                        if (Card.CardCost == CardCostIdx)
                         {
-                            Card.Play(Target);
-                            Opponent.ActiveCharacter[CharIdx].HandCards.Remove(Card.gameObject);
+                            CharacterBehaviour Target = null;
+                            if (Card.Currentcard.DoesTarget)
+                            {
+                                Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
+                            }
 
-                            Opponent.ActiveCharacter[CharIdx].AdjustHand();
-                            Destroy(Card.gameObject);
-                        }
-                        else if (!Card.Currentcard.DoesTarget)
-                        {
+                            if (Opponent.ActiveCharacter[CharIdx].CanBePlayed(Card, true))
+                            {
+                                if (Target != null)
+                                {
+                                    Card.Play(Target);
+                                    Card.PlayAnim();
+                                }
+                                else if (!Card.Currentcard.DoesTarget)
+                                {
 
+                                }
+                            }
                         }
                     }
                 }
+                EndTurn();
             }
-            EndTurn();
         }
     }
 

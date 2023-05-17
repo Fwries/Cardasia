@@ -33,4 +33,13 @@ public class CardBehaviour : MonoBehaviour
 
         CharacterBehav.PlayerBehav.CardPlayed = true;
     }
+
+    public IEnumerator PlayAnim()
+    {
+        CharacterBehav.HandCards.Remove(this.gameObject);
+
+        CharacterBehav.AdjustHand();
+        Destroy(this);
+        yield return null;
+    }
 }
