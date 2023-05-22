@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterBehav: {fileID: 0}
-  Currentcard: {fileID: 0}
+  Currentcard: {fileID: 11400000, guid: 4e7650aefd0e1984f98dc5ed3e5b5459, type: 2}
   CardCost: 0
   Frozen: 0
 --- !u!1 &7186671713392610930

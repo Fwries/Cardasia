@@ -110,7 +110,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
                 GameObject Card = Instantiate(Resources.Load("Card", typeof(GameObject))) as GameObject;
                 Card.transform.SetParent(HandObject.transform);
-                Card.GetComponent<CardDisplay>().Currentcard = Deck[index2];
+                Card.GetComponent<CardBehaviour>().Currentcard = Card.GetComponent<CardDisplay>().Currentcard = Deck[index2];
                 Card.GetComponent<CardBehaviour>().CharacterBehav = this;
 
                 HandCards.Add(Card);
@@ -138,7 +138,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (IsDead) { return; }
         if (IsEnemy) { return; }
         GameBehav.Select(this);
     }

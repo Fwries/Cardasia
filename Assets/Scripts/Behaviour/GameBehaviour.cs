@@ -13,6 +13,8 @@ public class GameBehaviour : MonoBehaviour
     public List<GameObject> HandObjects;
 
     public bool EnemyAI;
+    public bool EnemyAIThinking;
+    public bool EnemyCardAnim;
     public int TurnNo;
 
     [HideInInspector] public CharacterBehaviour Selected;
@@ -51,41 +53,9 @@ public class GameBehaviour : MonoBehaviour
     void Update()
     {
         // AI Turn
-        if (!EnemyAI || CurrentPlayerTurn != Opponent) { return; }
-        for (int CharIdx = 0; CharIdx < Opponent.ActiveCharacter.Length; CharIdx++)
+        if (EnemyAI && CurrentPlayerTurn == Opponent && !EnemyAIThinking)
         {
-            if (Opponent.ActiveCharacter[CharIdx].Health > 0)
-            {
-                for (int CardCostIdx = Opponent.ActiveCharacter[CharIdx].Both + Opponent.ActiveCharacter[CharIdx].Stamina + Opponent.ActiveCharacter[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
-                {
-                    for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
-                    {
-                        CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
-                        if (Card.CardCost == CardCostIdx)
-                        {
-                            CharacterBehaviour Target = null;
-                            if (Card.Currentcard.DoesTarget)
-                            {
-                                Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
-                            }
-
-                            if (Opponent.ActiveCharacter[CharIdx].CanBePlayed(Card, true))
-                            {
-                                if (Target != null)
-                                {
-                                    Card.Play(Target);
-                                    Card.PlayAnim();
-                                }
-                                else if (!Card.Currentcard.DoesTarget)
-                                {
-
-                                }
-                            }
-                        }
-                    }
-                }
-                EndTurn();
-            }
+            StartCoroutine(EnemyTurnAI());
         }
     }
 
@@ -194,5 +164,46 @@ public class GameBehaviour : MonoBehaviour
                 Player.Character[i].HandObject.transform.position = new Vector3(960, 135, 0);
             }
         }
+    }
+
+    public IEnumerator EnemyTurnAI()
+    {
+        EnemyAIThinking = true;
+        for (int CharIdx = 0; CharIdx < Opponent.ActiveCharacter.Length; CharIdx++)
+        {
+            if (Opponent.ActiveCharacter[CharIdx].Health > 0)
+            {
+                for (int CardCostIdx = Opponent.ActiveCharacter[CharIdx].Both + Opponent.ActiveCharacter[CharIdx].Stamina + Opponent.ActiveCharacter[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
+                {
+                    for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
+                    {
+                        CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
+                        if (Card.CardCost == CardCostIdx)
+                        {
+                            CharacterBehaviour Target = null;
+                            if (Card.Currentcard.DoesTarget)
+                            {
+                                Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
+                            }
+
+                            if (Opponent.ActiveCharacter[CharIdx].CanBePlayed(Card, true))
+                            {
+                                if (Target != null)
+                                {
+                                    StartCoroutine(Card.PlayAnim(this, Target));
+                                    while (EnemyCardAnim) { yield return null; }
+                                }
+                                else if (!Card.Currentcard.DoesTarget)
+                                {
+                                    while (EnemyCardAnim) { yield return null; }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        EndTurn();
+        EnemyAIThinking = false;
     }
 }

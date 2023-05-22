@@ -8,7 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
     public CharacterBehaviour[] ActiveCharacter = { null, null, null};
     public CharacterBehaviour BackCharacter;
 
-    [HideInInspector] public bool CardPlayed;
+    public bool CardPlayed;
     public bool IsAI;
 
     // Start is called before the first frame update
