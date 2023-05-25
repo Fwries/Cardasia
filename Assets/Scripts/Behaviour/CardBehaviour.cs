@@ -28,8 +28,40 @@ public class CardBehaviour : MonoBehaviour
     {
         switch (Currentcard.CardIdx)
         {
-            case "HB":
-                target.Health -= 70;
+            case 1: // Saber Slash
+                target.DealDamage(70, 1);
+                break;
+            case 2: // Cryo Chamber
+                target.Health = target.MaxHealth;
+                target.Freeze = 5;
+                target.Trip = true;
+                break;
+            case 3: // Targeting
+                target.Ward = true;
+                break;
+            case 4: // Extra Time
+                if (target.Stamina < 5) { target.Stamina += 1; }
+                break;
+            case 5: // Backstab
+                target.DealDamage(20, 1);
+                if (CharacterBehav.PlayerBehav.CardPlayed == false) 
+                { 
+                    target.DealDamage(20, 2);
+                    CharacterBehav.Draw(1);
+                }
+                else
+                {
+                    target.DealDamage(20, 1);
+                }
+                break;
+            case 6: // Bayonet
+                target.DealDamage(20, 1);
+                if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
+                break;
+            case 7: // Dagger & Roses
+                target.DealDamage(20, 1);
+                CharacterBehav.Draw(1);
+                target.Trip = true;
                 break;
         }
 

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7517701d73e84fb4eb751da35cd7eaef, type: 3}
-  m_Name: Heavy Blade
+  m_Name: Saber Slash
   m_EditorClassIdentifier: 
-  CardArt: {fileID: 21300000, guid: 7cbd8d26605f79b48a120899f9699001, type: 3}
-  CardName: Heavy Blade
-  CardIdx: HB
+  CardArt: {fileID: 21300000, guid: f85aa3cc04be23342b7c96e26d6e35b7, type: 3}
+  CardName: Saber Slash
+  CardIdx: 1
   CardType: 1
   CardRariety: 0
   DoesTarget: 1
   CardTarget: 1
   CardClass: []
   CardTrait: 
-  CardSkill: 70 DMG. If the enemy has BLK, High Crit Chance.
+  CardSkill: Deal 70 DMG. High Crit Chance.
   CardCost: 2

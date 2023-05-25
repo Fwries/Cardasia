@@ -72,10 +72,13 @@ public class GameBehaviour : MonoBehaviour
                     if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.Character[i].Burn = false; }
                 }
 
-                CurrentPlayerTurn.Character[i].Freeze = 0;
-                for (int freeze = 0; freeze < CurrentPlayerTurn.Character[i].HandCards.Count; freeze++)
+                if (CurrentPlayerTurn.Character[i].Freeze == 0)
                 {
-                    CurrentPlayerTurn.Character[i].HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
+                    for (int freeze = 0; freeze < CurrentPlayerTurn.Character[i].HandCards.Count; freeze++)
+                    {
+                        CurrentPlayerTurn.Character[i].HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
+                        CurrentPlayerTurn.Character[i].HandCards[freeze].GetComponent<CardDisplay>().FrozenDisplay.SetActive(false);
+                    }
                 }
 
                 CurrentPlayerTurn.Character[i].Shock = 0;
@@ -84,6 +87,7 @@ public class GameBehaviour : MonoBehaviour
                     CurrentPlayerTurn.Character[i].ShockMana[shock] = false;
                 }
 
+                CurrentPlayerTurn.Character[i].CritChance = 1;
                 CurrentPlayerTurn.Character[i].Trip = false;
             }
 
@@ -113,9 +117,11 @@ public class GameBehaviour : MonoBehaviour
                     if (CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
                     {
                         CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen = true;
+                        CurrentPlayerTurn.Character[i].HandCards[RandInt].GetComponent<CardDisplay>().FrozenDisplay.SetActive(true);
                         freeze++;
                     }
                 }
+                CurrentPlayerTurn.Character[i].Freeze = 0;
 
                 if (CurrentPlayerTurn.Character[i].Shock > TotalMana) { CurrentPlayerTurn.Character[i].Shock = TotalMana; }
                 while (shock < CurrentPlayerTurn.Character[i].Shock)
@@ -140,6 +146,7 @@ public class GameBehaviour : MonoBehaviour
                 CurrentPlayerTurn.Character[i].Both = TempBoth;
                 CurrentPlayerTurn.Character[i].Stamina = TempStamina;
                 CurrentPlayerTurn.Character[i].Mana = TempMana;
+                CurrentPlayerTurn.Character[i].Ward = false;
 
                 if (CurrentPlayerTurn.Character[i].IsActive)
                 {
@@ -178,7 +185,7 @@ public class GameBehaviour : MonoBehaviour
                     for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
                     {
                         CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
-                        if (Card.CardCost == CardCostIdx)
+                        if (Card.CardCost == CardCostIdx && Card.Frozen == false)
                         {
                             CharacterBehaviour Target = null;
                             if (Card.Currentcard.DoesTarget)

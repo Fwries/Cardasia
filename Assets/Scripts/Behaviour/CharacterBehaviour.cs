@@ -36,10 +36,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     [HideInInspector] public float LeftMost;
     [HideInInspector] public GameObject HandObject;
 
+    public int CritChance = 1;
+
     public int Freeze;
     public int Shock;
     public bool Burn;
     public bool Trip;
+    public bool Ward;
 
     public bool IsEnemy;
 
@@ -146,6 +149,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     {
         if (IsDead) { return; }
         if (eventData.pointerDrag.GetComponent<CardBehaviour>() == null) { return; }
+        if (eventData.pointerDrag.GetComponent<CardBehaviour>().Frozen) { return; }
 
         CardBehaviour Card = eventData.pointerDrag.GetComponent<CardBehaviour>();
         CharacterBehaviour Character = Card.CharacterBehav;
@@ -227,9 +231,42 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                     }
                     return true;
                 }
+                else if (Card.CardCost <= Mana + Stamina + Both)
+                {
+                    if (deduct)
+                    {
+                        int LeftOverCost = Card.CardCost - Mana;
+                        Mana = 0;
+                        LeftOverCost -= Stamina;
+                        Stamina = 0;
+                        Both -= LeftOverCost;
+                    }
+                    return true;
+                }
                 else { return false; }
             }
         }
         return false;
+    }
+
+    public void DealDamage(int DMG, int CritType)
+    {
+        int CritMultiplier = 1;
+        if (CritChance > CritType && CritType != 0) { CritType = CritChance; }
+        switch (CritType)
+        {
+            case 0: // No Crit
+                break;
+            case 1: // Base Crit
+                if (Random.Range(0, 4) == 0) { CritMultiplier = 2; }
+                break;
+            case 2: // High Crit
+                if (Random.Range(0, 2) == 0) { CritMultiplier = 2; }
+                break;
+            case 3: // Gurantee Crit
+                CritMultiplier = 2;
+                break;
+        }
+        Health -= DMG * CritMultiplier;
     }
 }

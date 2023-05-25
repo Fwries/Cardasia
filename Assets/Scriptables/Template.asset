@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5769c35db5ffe9f4f9fdc084c7c52fe4, type: 3}
   m_Name: Template
   m_EditorClassIdentifier: 
-  TypeConsumable: {fileID: 21300000, guid: 1780542bb26bacd4f830d7c75ff047f7, type: 3}
+  TypeGeneric: {fileID: 21300000, guid: 1780542bb26bacd4f830d7c75ff047f7, type: 3}
   TypeStamina: {fileID: 21300000, guid: b614f75bf38496445aafe37648f044ec, type: 3}
   TypeMana: {fileID: 21300000, guid: 67bdb7c4ece3f2345bf5aea74ceefb0a, type: 3}
   TypeBoth: {fileID: 21300000, guid: 0e5a2a8ed1a368c4aab81911d6622335, type: 3}
-  Frozen: {fileID: 0}

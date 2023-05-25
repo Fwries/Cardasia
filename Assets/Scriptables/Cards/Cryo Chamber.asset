@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7517701d73e84fb4eb751da35cd7eaef, type: 3}
+  m_Name: Cryo Chamber
+  m_EditorClassIdentifier: 
+  CardArt: {fileID: 21300000, guid: 41bd1e8911cf5834685336e909553fc3, type: 3}
+  CardName: Cryo Chamber
+  CardIdx: 2
+  CardType: 3
+  CardRariety: 0
+  DoesTarget: 1
+  CardTarget: 2
+  CardClass: []
+  CardTrait: 
+  CardSkill: Restore a Character Health to the max. Inflict Trip and Frost 5.
+  CardCost: 3

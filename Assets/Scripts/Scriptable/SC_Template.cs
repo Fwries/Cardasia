@@ -9,6 +9,4 @@ public class SC_Template : ScriptableObject
     public Sprite TypeStamina;
     public Sprite TypeMana;
     public Sprite TypeBoth;
-
-    public Sprite Frozen;
 }

@@ -14,6 +14,8 @@ public class CardDisplay : MonoBehaviour
     public GameObject CostIcon;
     public GameObject CostText;
 
+    public GameObject FrozenDisplay;
+
     public CardBehaviour cardBehav;
     [HideInInspector] public int PositionIndex;
 
@@ -46,7 +48,7 @@ public class CardDisplay : MonoBehaviour
                     CostIcon.SetActive(true);
                     break;
                 case SC_Card.Type.Both:
-                    CostIcon.GetComponent<Image>().sprite = Template.TypeBoth;
+                    CostIcon.GetComponent<Image>().sprite = Template.TypeGeneric;
                     CostIcon.SetActive(true);
                     break;
             }

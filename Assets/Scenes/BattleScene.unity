@@ -3924,6 +3924,10 @@ PrefabInstance:
       propertyPath: Level
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
+      propertyPath: scDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: fd9bc42d9f8c9aa44a8132c8062054a5, type: 2}
     - target: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Name
       value: Character_Card
