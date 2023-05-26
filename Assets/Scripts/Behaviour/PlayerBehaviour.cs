@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
     public CharacterBehaviour[] ActiveCharacter = { null, null, null};
     public CharacterBehaviour BackCharacter;
 
+    public bool LoseATurn;
+
     public bool CardPlayed;
     public bool IsAI;
 

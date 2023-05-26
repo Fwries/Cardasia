@@ -20,6 +20,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public int Health;
     [HideInInspector] public int MaxExp;
     public int Exp;
+    [HideInInspector] public int MaxBullet;
+    public int Bullet;
 
     [HideInInspector] public int MaxBoth;
     [HideInInspector] public int MaxStamina;
@@ -29,7 +31,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public int Stamina;
     public int Mana;
 
-    public bool[] ShockMana = { false, false, false, false, false };
+    [HideInInspector] public bool[] ShockMana = { false, false, false, false, false };
 
     [HideInInspector] public bool IsActive;
     [HideInInspector] public bool IsDead;
@@ -125,6 +127,19 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 Debug.Log("Deckout");
             }
         }
+        AdjustHand();
+    }
+
+    public void AddCard(SC_Card SCCard)
+    {
+        if (Trip) { return; }
+
+        GameObject Card = Instantiate(Resources.Load("Card", typeof(GameObject))) as GameObject;
+        Card.transform.SetParent(HandObject.transform);
+        Card.GetComponent<CardBehaviour>().Currentcard = Card.GetComponent<CardDisplay>().Currentcard = SCCard;
+        Card.GetComponent<CardBehaviour>().CharacterBehav = this;
+
+        HandCards.Add(Card);
         AdjustHand();
     }
 
@@ -249,7 +264,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         return false;
     }
 
-    public void DealDamage(int DMG, int CritType)
+    public void DealDamage(int DMG, int CritType, CharacterBehaviour Target)
     {
         int CritMultiplier = 1;
         if (CritChance > CritType && CritType != 0) { CritType = CritChance; }
@@ -267,6 +282,103 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 CritMultiplier = 2;
                 break;
         }
-        Health -= DMG * CritMultiplier;
+        Target.DealtDamage(DMG * CritMultiplier);
+    }
+
+    public void DealtDamage(int DMG)
+    {
+        if (IsDead) { return; }
+        Health -= DMG;
+    }
+
+    public void RestoreHealth(int HealthRestored)
+    {
+        if (IsDead) { return; }
+
+        if (HealthRestored + Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += HealthRestored;
+        }
+    }
+    
+    public void FullRestore()
+    {
+        if (IsDead) { return; }
+        Health = MaxHealth;
+    }
+
+    public void GainMana(string ManaType, int Amt)
+    {
+        for (int i = 0; i < Amt; i++)
+        {
+            if (Both + Stamina + Mana < 5)
+            {
+                switch (ManaType)
+                {
+                    case "Consumable":
+                        break;
+                    case "Stamina":
+                        Stamina += 1;
+                        break;
+                    case "Mana":
+                        Mana += 1;
+                        break;
+                    case "Both":
+                        Both += 1;
+                        break;
+                }
+            }
+        }
+    }
+
+    public void Reload(int Amt)
+    {
+        if (Amt + Bullet > MaxBullet)
+        {
+            Bullet = MaxBullet;
+        }
+        else
+        {
+            Bullet += Amt;
+        }
+    }
+
+    public void ClearStatus(string Status)
+    {
+        string[] StatusType = { "Freeze", "Shock", "Burn", "Trip" };
+
+        if (Status == "Random")
+        {
+            Status = StatusType[Random.Range(0, 4)];
+        }
+
+        switch (Status)
+        {
+            case "Freeze":
+                Freeze = 0;
+                for (int freeze = 0; freeze < HandCards.Count; freeze++)
+                {
+                    HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
+                    HandCards[freeze].GetComponent<CardDisplay>().FrozenDisplay.SetActive(false);
+                }
+                break;
+            case "Shock":
+                Shock = 0;
+                for (int shock = 0; shock < ShockMana.Length; shock++)
+                {
+                    ShockMana[shock] = false;
+                }
+                break;
+            case "Burn":
+                Burn = false;
+                break;
+            case "Trip":
+                Trip = false;
+                break;
+        }
     }
 }

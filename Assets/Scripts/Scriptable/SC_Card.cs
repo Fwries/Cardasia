@@ -7,7 +7,6 @@ public class SC_Card : ScriptableObject
 {
     public Sprite CardArt;
     public string CardName;
-    public int CardIdx;
 
     public enum Type
     {

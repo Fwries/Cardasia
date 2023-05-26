@@ -15,6 +15,8 @@ public class SC_Character : ScriptableObject
     public int MaxStamina;
     public int MaxMana;
 
+    public int MaxBullet;
+
     public enum Class
     {
         None,

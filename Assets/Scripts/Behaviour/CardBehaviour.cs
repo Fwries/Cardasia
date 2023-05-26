@@ -26,46 +26,141 @@ public class CardBehaviour : MonoBehaviour
 
     public void Play(CharacterBehaviour target)
     {
-        switch (Currentcard.CardIdx)
+        GameBehaviour GameBehav = target.GameBehav;
+        CharacterBehav.PlayerBehav.CardPlayed = true;
+
+        switch (Currentcard.CardName)
         {
-            case 1: // Saber Slash
-                target.DealDamage(70, 1);
-                break;
-            case 2: // Cryo Chamber
-                target.Health = target.MaxHealth;
-                target.Freeze = 5;
-                target.Trip = true;
-                break;
-            case 3: // Targeting
-                target.Ward = true;
-                break;
-            case 4: // Extra Time
-                if (target.Stamina < 5) { target.Stamina += 1; }
-                break;
-            case 5: // Backstab
-                target.DealDamage(20, 1);
-                if (CharacterBehav.PlayerBehav.CardPlayed == false) 
-                { 
-                    target.DealDamage(20, 2);
+            // Card Skills
+
+            case "Backstab":
+                if (CharacterBehav.PlayerBehav.CardPlayed == false)
+                {
+                    CharacterBehav.DealDamage(20, 2, target);
                     CharacterBehav.Draw(1);
                 }
                 else
                 {
-                    target.DealDamage(20, 1);
+                    CharacterBehav.DealDamage(20, 1, target);
                 }
-                break;
-            case 6: // Bayonet
-                target.DealDamage(20, 1);
+                return;
+            case "Bayonet":
+                CharacterBehav.DealDamage(20, 1, target);
                 if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
-                break;
-            case 7: // Dagger & Roses
-                target.DealDamage(20, 1);
+                return;
+            case "Campfire":
+                for (int i = 0; i < 3; i++)
+                {
+                    CharacterBehav.PlayerBehav.ActiveCharacter[i].FullRestore();
+                }
+                CharacterBehav.PlayerBehav.LoseATurn = true;
+                GameBehav.EndTurn();
+                return;
+            case "Cryo Chamber":
+                target.FullRestore();
+                target.Freeze = 5;
+                target.Trip = true;
+                return;
+            case "Daggers & Roses":
+                CharacterBehav.DealDamage(20, 1, target);
                 CharacterBehav.Draw(1);
                 target.Trip = true;
-                break;
+                return;
+            case "Drill":
+                target.Health -= 70;
+                return;
+            case "Extra Time":
+                CharacterBehav.GainMana("Stamina", 1);
+                return;
+            case "Fairy Wand":
+                CharacterBehav.AddCard(GameBehav.RandomCardPool.Deck[Random.Range(0, GameBehav.RandomCardPool.Deck.Count)]);
+                return;
+            case "Guns & Roses":
+                if (CharacterBehav.Bullet < 1) { return; }
+                CharacterBehav.Bullet--;
+                CharacterBehav.DealDamage(70, 1, target);
+                target.Trip = true;
+                return;
+            case "Nuclear Bomb":
+                for (int i = 0; i < 3; i++)
+                {
+                    GameBehav.Player.ActiveCharacter[i].DealtDamage(999);
+                    GameBehav.Opponent.ActiveCharacter[i].DealtDamage(999);
+                }
+                return;
+            case "Overdrive":
+                CharacterBehav.GainMana("Both", 3);
+                return;
+            case "Punch":
+                CharacterBehav.DealDamage(20, 1, target);
+                return;
+            case "Barrel Reload": // Reload Gun Barrel
+                CharacterBehav.Reload(6);
+                return;
+            case "Rose":
+                target.Trip = true;
+                return;
+            case "Run":
+                CharacterBehav.Draw(1);
+                if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
+                return;
+            case "Saber Slash":
+                CharacterBehav.DealDamage(70, 2, target);
+                return;
+            case "Sprint":
+                CharacterBehav.Draw(2);
+                if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
+                return;
+            case "Targeting":
+                target.Ward = true;
+                return;
+
+            // Consumable Cards
+            
+            case "Bullets":
+                CharacterBehav.Reload(3);
+                return;
+            case "Health Capsule":
+                target.RestoreHealth(100);
+                return;
+            case "Heavy Bullets":
+                CharacterBehav.Reload(3);
+                CharacterBehav.CritChance = 2;
+                return;
+            case "Medicines":
+                target.RestoreHealth(50);
+                target.Burn = false;
+                target.Trip = false;
+                return;
+            case "Miracle Medicine":
+                target.RestoreHealth(300);
+                target.ClearStatus("Freeze");
+                target.ClearStatus("Shock");
+                target.Burn = false;
+                target.Trip = false;
+                return;
+            case "Overdose":
+                target.RestoreHealth(-20);
+                target.ClearStatus("Random");
+                target.ClearStatus("Random");
+                target.ClearStatus("Random");
+                return;
+            case "Pill":
+                target.ClearStatus("Random");
+                return;
+            case "Stun Grenade":
+                target.Shock += 2;
+                return;
+            case "Supersonic Bullet":
+                CharacterBehav.Reload(1);
+                CharacterBehav.Draw(1);
+                return;
+            case "Syringe":
+                target.RestoreHealth(70);
+                return;
         }
 
-        CharacterBehav.PlayerBehav.CardPlayed = true;
+        Debug.Log(Currentcard.CardName + " does not exist");
     }
 
     public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)

@@ -11,6 +11,7 @@ public class GameBehaviour : MonoBehaviour
 
     public GameDisplay GameDis;
     public List<GameObject> HandObjects;
+    public SC_Deck RandomCardPool;
 
     public bool EnemyAI;
     public bool EnemyAIThinking;
@@ -94,13 +95,27 @@ public class GameBehaviour : MonoBehaviour
             TurnNo++;
             if (CurrentPlayerTurn == Player)
             {
-                GameDis.ButtonPrint.text = "Opponent's Turn";
-                CurrentPlayerTurn = Opponent;
+                if (CurrentPlayerTurn.LoseATurn)
+                {
+                    CurrentPlayerTurn.LoseATurn = false;
+                }
+                else
+                {
+                    GameDis.ButtonPrint.text = "Opponent's Turn";
+                    CurrentPlayerTurn = Opponent;
+                }
             }
             else if (CurrentPlayerTurn == Opponent)
             {
-                GameDis.ButtonPrint.text = "End Turn";
-                CurrentPlayerTurn = Player;
+                if (CurrentPlayerTurn.LoseATurn)
+                {
+                    CurrentPlayerTurn.LoseATurn = false;
+                }
+                else 
+                {
+                    GameDis.ButtonPrint.text = "End Turn";
+                    CurrentPlayerTurn = Player;
+                }
             }
 
             // Start of Turn Effects
