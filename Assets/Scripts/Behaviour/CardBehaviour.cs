@@ -116,12 +116,24 @@ public class CardBehaviour : MonoBehaviour
                 return;
 
             // Consumable Cards
-            
+
+            case "Bullet":
+                CharacterBehav.Reload(1);
+                return;
             case "Bullets":
                 CharacterBehav.Reload(3);
                 return;
+            case "Flash Grenade":
+                for (int i = 0; i < 3; i++)
+                {
+                    GameBehav.Opponent.ActiveCharacter[i].Shock += 1;
+                }
+                return;
             case "Health Capsule":
-                target.RestoreHealth(100);
+                target.RestoreHealth(150);
+                return;
+            case "Health Potion": // Heart Bottle
+                target.RestoreHealth(70);
                 return;
             case "Heavy Bullets":
                 CharacterBehav.Reload(3);

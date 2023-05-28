@@ -20,8 +20,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public int Health;
     [HideInInspector] public int MaxExp;
     public int Exp;
-    [HideInInspector] public int MaxBullet;
-    public int Bullet;
 
     [HideInInspector] public int MaxBoth;
     [HideInInspector] public int MaxStamina;
@@ -30,6 +28,11 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public int Both;
     public int Stamina;
     public int Mana;
+
+    public int DEF;
+    public int ATK;
+    [HideInInspector] public int MaxBullet;
+    public int Bullet;
 
     [HideInInspector] public bool[] ShockMana = { false, false, false, false, false };
 
@@ -59,6 +62,10 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
 
+        DEF = Character.Defence;
+        ATK = Character.Attack;
+        MaxBullet = Character.MaxBullet;
+
         Deck = new List<SC_Card>();
         for (int i = 0; i < scDeck.Deck.Count; i++)
         {
@@ -83,7 +90,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
             Health = MaxHealth = Character.Health;
             Both = MaxBoth = Character.MaxBoth;
             Stamina = MaxStamina = Character.MaxStamina;
-            Mana = MaxMana = Character.MaxMana;
         }
     }
 

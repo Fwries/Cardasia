@@ -8,8 +8,8 @@ public class SC_Character : ScriptableObject
     public string CardName;
 
     public int Health;
-    public int Strength;
-    public int Armour;
+    public int Defence;
+    public int Attack;
 
     public int MaxBoth;
     public int MaxStamina;

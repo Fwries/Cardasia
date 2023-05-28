@@ -11,6 +11,8 @@ public class GameBehaviour : MonoBehaviour
 
     public GameDisplay GameDis;
     public List<GameObject> HandObjects;
+    public GameObject DeadHandObj;
+
     public SC_Deck RandomCardPool;
 
     public bool EnemyAI;
@@ -184,6 +186,7 @@ public class GameBehaviour : MonoBehaviour
             else
             {
                 Player.Character[i].HandObject.transform.position = new Vector3(960, 135, 0);
+                DeadHandObj.SetActive(Player.Character[i].IsDead);
             }
         }
     }

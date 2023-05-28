@@ -16,6 +16,8 @@ public class GameDisplay : MonoBehaviour
     public Text EXPText;
     public Slider EXPSlider;
 
+    public Text CharacterStats;
+
     public List<GameObject> ManaIcon;
     private int Pointer;
 
@@ -39,6 +41,15 @@ public class GameDisplay : MonoBehaviour
         EXPText.text = GameBehav.Selected.Exp + " / " + GameBehav.Selected.MaxExp;
         EXPSlider.maxValue = GameBehav.Selected.MaxExp;
         EXPSlider.value = GameBehav.Selected.Exp;
+
+        CharacterStats.text = "HP: " + GameBehav.Selected.Health + "\n" +
+                        "DEF: " + GameBehav.Selected.DEF + "\n" +
+                        "ATK: " + GameBehav.Selected.ATK + "\n";
+
+        if (GameBehav.Selected.MaxBullet > 0)
+        {
+            CharacterStats.text += "BLT: (" + GameBehav.Selected.Bullet + "/" + GameBehav.Selected.MaxBullet + ")";
+        }
 
         Pointer = 0;
         for (int i = 0; i < GameBehav.Selected.Both; i++)
