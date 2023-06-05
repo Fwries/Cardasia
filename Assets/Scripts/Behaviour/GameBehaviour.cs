@@ -60,6 +60,19 @@ public class GameBehaviour : MonoBehaviour
         {
             StartCoroutine(EnemyTurnAI());
         }
+        //int AmtCheck = 0;
+        //for (int i = 0; i < Player.Character.Count; i++)
+        //{
+        //    if (Player.Character[i].IsDead) { AmtCheck++; }
+        //}
+        //if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+
+        //AmtCheck = 0;
+        //for (int i = 0; i < Opponent.Character.Count; i++)
+        //{
+        //    if (Player.Character[i].IsDead) { AmtCheck++; }
+        //}
+        //if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
     }
 
     public void EndTurn()

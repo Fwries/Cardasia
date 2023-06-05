@@ -227,6 +227,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
+      propertyPath: scDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d2bf211c2e13394b9df006ba6c66501, type: 2}
+    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Character
       value: 
       objectReference: {fileID: 11400000, guid: e4a82c76bcb916647bf3457974816504, type: 2}
@@ -733,6 +737,10 @@ PrefabInstance:
       propertyPath: Level
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
+      propertyPath: scDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d2bf211c2e13394b9df006ba6c66501, type: 2}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Character
       value: 
@@ -3413,6 +3421,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
+      propertyPath: scDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d2bf211c2e13394b9df006ba6c66501, type: 2}
+    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Character
       value: 
       objectReference: {fileID: 11400000, guid: e4a82c76bcb916647bf3457974816504, type: 2}
@@ -3614,6 +3626,10 @@ PrefabInstance:
       propertyPath: Level
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
+      propertyPath: scDeck
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d2bf211c2e13394b9df006ba6c66501, type: 2}
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: Character
       value: 
@@ -4351,7 +4367,7 @@ PrefabInstance:
     - target: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: scDeck
       value: 
-      objectReference: {fileID: 11400000, guid: fd9bc42d9f8c9aa44a8132c8062054a5, type: 2}
+      objectReference: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
     - target: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_Name
       value: Character_Card

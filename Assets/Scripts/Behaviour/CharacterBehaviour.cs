@@ -186,6 +186,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public bool CanBePlayed(CardBehaviour Card, bool deduct)
     {
+        if (Card.Currentcard.CardType == SC_Card.Type.Consumable)
+            return true;
         if (Card.CardCost <= Both + Stamina + Mana)
         {
             if (Card.Currentcard.CardType == SC_Card.Type.Stamina)

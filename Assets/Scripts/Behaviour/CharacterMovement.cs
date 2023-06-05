@@ -35,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
         {
             if (CurrSc < EventSc.GetLength(0) && !IsSc) 
             { 
-                Command(EventSc[CurrSc]); 
+                Command(EventSc[CurrSc]);
             }
             else if (CurrSc == EventSc.GetLength(0)) 
             { 
@@ -170,6 +170,15 @@ public class CharacterMovement : MonoBehaviour
                 else if (strg[4] == 'D') { StartCoroutine(MovePlayer(Vector3.down, true)); }
                 else if (strg[4] == 'L') { StartCoroutine(MovePlayer(Vector3.left, true)); }
                 else if (strg[4] == 'R') { StartCoroutine(MovePlayer(Vector3.right, true)); }
+            }
+            else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
+            {
+                int Rand = UnityEngine.Random.Range(0, 100);
+                if (Rand <= 15)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+                }
+                CurrSc++;
             }
         }
     }

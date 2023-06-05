@@ -167,8 +167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef924e63359d784f8fc6a4b3a7e4a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 0}
-  Tileset: []
+  TilePrefab: {fileID: 656934673714413507, guid: 08d22fb4fedc45f4d98830880f663c8e, type: 3}
+  Tileset:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: b38e499aef3adf948acf0b2fcdff6b50, type: 2}
+  - {fileID: 11400000, guid: cef4840f644c54c4b96fcb3ea0c951a1, type: 2}
+  - {fileID: 11400000, guid: 9bbb897def3b1314c8f7bc10b74d15c7, type: 2}
+  - {fileID: 11400000, guid: dd50eabbe257c1341b8f1ad5b20c8e68, type: 2}
+  - {fileID: 11400000, guid: 7696f6bebc387544b889b8ed5eb72ff6, type: 2}
   SpawnX: 0
   SpawnY: 0
 --- !u!1 &582808928
@@ -321,11 +327,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0
+  far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -335,7 +341,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
