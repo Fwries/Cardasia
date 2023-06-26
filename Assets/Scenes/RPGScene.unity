@@ -169,14 +169,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 656934673714413507, guid: 08d22fb4fedc45f4d98830880f663c8e, type: 3}
   Tileset:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 474af750a79c6f3499b5a51cb5f51ee3, type: 2}
   - {fileID: 11400000, guid: b38e499aef3adf948acf0b2fcdff6b50, type: 2}
-  - {fileID: 11400000, guid: cef4840f644c54c4b96fcb3ea0c951a1, type: 2}
   - {fileID: 11400000, guid: 9bbb897def3b1314c8f7bc10b74d15c7, type: 2}
+  - {fileID: 11400000, guid: 2beeca80e7070f74a9ac713001c45ea2, type: 2}
+  - {fileID: 11400000, guid: 4f3cbf678192b8b419607f2d140a5ef6, type: 2}
+  - {fileID: 11400000, guid: 56f1ff9da012ee94a94918a8e3a5ced8, type: 2}
   - {fileID: 11400000, guid: dd50eabbe257c1341b8f1ad5b20c8e68, type: 2}
   - {fileID: 11400000, guid: 7696f6bebc387544b889b8ed5eb72ff6, type: 2}
-  SpawnX: 0
-  SpawnY: 0
+  - {fileID: 11400000, guid: cef4840f644c54c4b96fcb3ea0c951a1, type: 2}
+  SpawnX: 10
+  SpawnY: 10
 --- !u!1 &261340200
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,11 +500,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
+  near clip plane: 0.01
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

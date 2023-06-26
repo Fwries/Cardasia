@@ -240,16 +240,19 @@ public class CharacterMovement : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
         {
-            while (TransitionMaterial.GetFloat("_Fade") < 1)
+            while (TransitionMaterial.GetFloat("_Fade") <= 0.97f)
             {
                 TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") + (Time.deltaTime * 3.5f));
                 yield return null;
             }
-            while (TransitionMaterial.GetFloat("_Fade") > 0)
+            TransitionMaterial.SetFloat("_Fade", 1f);
+
+            while (TransitionMaterial.GetFloat("_Fade") >= 0.01f)
             {
                 TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") - (Time.deltaTime * 3.5f));
                 yield return null;
             }
+            TransitionMaterial.SetFloat("_Fade", 0f);
         }
 
         TransitionMaterial.SetColor("_Color", Color.black);

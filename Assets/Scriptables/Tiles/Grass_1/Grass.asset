@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
-  m_Name: Tall Grass
+  m_Name: Grass
   m_EditorClassIdentifier: 
-  TileImage: {fileID: 1487755758, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  TileTopImage: {fileID: 472253717, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  TileImage: {fileID: 1302899931, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  TileTopImage: {fileID: 0}
   Solid: 0
-  AbovePlayer: 1
+  AbovePlayer: 0
   Interactable: 0
   InteractScript: []
-  Event: 1
-  EventScript:
-  - /Grass
+  Event: 0
+  EventScript: []
