@@ -261,6 +261,7 @@ public class CharacterMovement : MonoBehaviour
             TransitionMaterial.SetFloat("_Cutoff", TransitionMaterial.GetFloat("_Cutoff") + (Time.deltaTime * 0.5f));
             yield return null;
         }
+        TransitionMaterial.SetFloat("_Cutoff", 1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
     }
 }

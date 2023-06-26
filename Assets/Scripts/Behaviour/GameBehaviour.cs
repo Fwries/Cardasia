@@ -20,6 +20,9 @@ public class GameBehaviour : MonoBehaviour
     public bool EnemyCardAnim;
     public int TurnNo;
 
+    public GameObject TopObj;
+    public GameObject BottomObj;
+
     [HideInInspector] public CharacterBehaviour Selected;
 
     void Awake()
@@ -38,6 +41,8 @@ public class GameBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Transition());
+
         for (int i = 0; i < Player.Character.Count; i++)
         {
             Player.Character[i].HandObject = HandObjects[i];
@@ -243,5 +248,27 @@ public class GameBehaviour : MonoBehaviour
         }
         EndTurn();
         EnemyAIThinking = false;
+    }
+
+    public IEnumerator Transition()
+    {
+        while (true)
+        {
+            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y >= -740)
+            {
+                TopObj.transform.position = new Vector3(TopObj.transform.position.x, 1350, TopObj.transform.position.z);
+                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, -740, BottomObj.transform.position.z);
+                break;
+            }
+            if (TopObj.transform.position.y < 1350)
+            {
+                TopObj.transform.position = new Vector3(TopObj.transform.position.x, TopObj.transform.position.y + (Time.deltaTime * 225), TopObj.transform.position.z);
+            }
+            if (BottomObj.transform.position.y > -740)
+            {
+                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, BottomObj.transform.position.y - (Time.deltaTime * 225), BottomObj.transform.position.z);
+            }
+            yield return null;
+        }
     }
 }
