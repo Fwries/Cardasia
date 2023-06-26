@@ -20,5 +20,7 @@ MonoBehaviour:
   InteractScript: []
   Event: 1
   EventScript:
+  - /Flash in
   - /Tp 9 4
+  - /Flash out
   - /Mv D

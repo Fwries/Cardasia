@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Camera Cam;
     [SerializeField] private MapBehaviour Map;
     [SerializeField] private SpriteRenderer CharacterRenderer;
+    [SerializeField] private Material TransitionMaterial;
     public SC_Character Character;
 
     private bool isMoving;
@@ -26,6 +27,8 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         TeleportPlayer(Map.SpawnX, Map.SpawnY);
+        TransitionMaterial.SetFloat("_Cutoff", 0f);
+        TransitionMaterial.SetFloat("_Fade", 0f);
     }
 
     // Update is called once per frame
@@ -176,10 +179,88 @@ public class CharacterMovement : MonoBehaviour
                 int Rand = UnityEngine.Random.Range(0, 100);
                 if (Rand <= 15)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+                    StartCoroutine(Battle());
                 }
-                CurrSc++;
+                else
+                {
+                    CurrSc++;
+                }
+            }
+            else if (strg[1] == 'F' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 'h')
+            {
+                IsSc = true;
+
+                if (strg[7] == 'i' && strg[8] == 'n')
+                {
+                    StartCoroutine(Flash(true));
+                }
+                else if (strg[7] == 'o' && strg[8] == 'u' && strg[9] == 't')
+                {
+                    StartCoroutine(Flash(false));
+                }
             }
         }
+    }
+
+    private IEnumerator Flash(bool flashin)
+    {
+        TransitionMaterial.SetColor("_Color", Color.black);
+        TransitionMaterial.SetFloat("_Cutoff", 1f);
+
+        if (flashin)
+        {
+            TransitionMaterial.SetFloat("_Fade", 0f);
+            while (TransitionMaterial.GetFloat("_Fade") < 1)
+            {
+                TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") + (Time.deltaTime * 3.5f));
+                yield return null;
+            }
+            CurrSc++; IsSc = false;
+        }
+        else
+        {
+            TransitionMaterial.SetFloat("_Fade", 1f);
+            while (TransitionMaterial.GetFloat("_Fade") > 0)
+            {
+                TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") - (Time.deltaTime * 3.5f));
+                yield return null;
+            }
+            TransitionMaterial.SetFloat("_Cutoff", 0f);
+            CurrSc++; IsSc = false;
+        }
+    }
+
+    private IEnumerator Battle()
+    {
+        isMoving = true;
+
+        TransitionMaterial.SetColor("_Color", Color.white);
+        TransitionMaterial.SetFloat("_Cutoff", 1f);
+        TransitionMaterial.SetFloat("_Fade", 0f);
+
+        for (int i = 0; i < 2; i++)
+        {
+            while (TransitionMaterial.GetFloat("_Fade") < 1)
+            {
+                TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") + (Time.deltaTime * 3.5f));
+                yield return null;
+            }
+            while (TransitionMaterial.GetFloat("_Fade") > 0)
+            {
+                TransitionMaterial.SetFloat("_Fade", TransitionMaterial.GetFloat("_Fade") - (Time.deltaTime * 3.5f));
+                yield return null;
+            }
+        }
+
+        TransitionMaterial.SetColor("_Color", Color.black);
+        TransitionMaterial.SetFloat("_Cutoff", 0f);
+        TransitionMaterial.SetFloat("_Fade", 1f);
+
+        while (TransitionMaterial.GetFloat("_Cutoff") < 1)
+        {
+            TransitionMaterial.SetFloat("_Cutoff", TransitionMaterial.GetFloat("_Cutoff") + (Time.deltaTime * 0.5f));
+            yield return null;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
     }
 }

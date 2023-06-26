@@ -520,7 +520,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225053041
 GameObject:
@@ -1212,6 +1212,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1254,7 +1255,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 540
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1281,10 +1282,24 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1395106979}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f91d742f3be083418c26878ab8255c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionMaterial: {fileID: 2100000, guid: 8e59cc93589929b468b68f2497cc4907, type: 2}
 --- !u!1 &605965327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2217,7 @@ MonoBehaviour:
   CurrentPlayerTurn: {fileID: 1312719080}
   Player: {fileID: 1312719080}
   Opponent: {fileID: 1312719079}
+  TransitionMaterial: {fileID: 2100000, guid: 8e59cc93589929b468b68f2497cc4907, type: 2}
   GameDis: {fileID: 1312719082}
   HandObjects:
   - {fileID: 622830623}
@@ -2304,7 +2320,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1395106978
 Canvas:
   m_ObjectHideFlags: 0
@@ -2314,8 +2330,8 @@ Canvas:
   m_GameObject: {fileID: 1395106975}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 2
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2334,8 +2350,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395106975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 478997149}
@@ -2343,14 +2359,14 @@ RectTransform:
   - {fileID: 1610229806}
   - {fileID: 2094817863}
   - {fileID: 1312719078}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1436289093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,11 +2821,11 @@ MonoBehaviour:
   GameBehav: {fileID: 1312719081}
   PlayerBehav: {fileID: 1312719080}
   IsEnemy: 0
-  CentrePos: {x: 960, y: 415}
-  LeftPos: {x: 660, y: 390}
-  RightPos: {x: 1260, y: 390}
-  LeftBackPos: {x: 760, y: 102.5}
-  RightBackPos: {x: 1160, y: 102.5}
+  CentrePos: {x: 0, y: -100}
+  LeftPos: {x: -300, y: -150}
+  RightPos: {x: 300, y: -150}
+  LeftBackPos: {x: -200, y: -377.5}
+  RightBackPos: {x: 200, y: -377.5}
   m_Speed: 255
   DragAmt: 1.1
   DragOffsetXPos: 0
@@ -4442,7 +4458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913119, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 6074611329161913119, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
