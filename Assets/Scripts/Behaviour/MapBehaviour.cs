@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class MapBehaviour : MonoBehaviour
 {
     public GameObject TilePrefab;
-    public SC_Tile[] Tileset;
+    public SC_Map SCMap;
 
-    public int SpawnX, SpawnY;
+    [HideInInspector] public SC_Tile[] Tileset;
+    [HideInInspector] private int[,] Map;
+    [HideInInspector] public int SpawnX = 8, SpawnY = 6;
+
+    private GameObject MapObj;
 
     [HideInInspector] public int[,] TileLayer;
     
@@ -31,30 +36,18 @@ public class MapBehaviour : MonoBehaviour
 
     public void ChangeMap()
     {
-        int[,] NewMap = {
-            { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-            { 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 2},
-            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2},
-            { 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 2},
-            { 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 2},
-            { 1, 1, 1, 0, 0, 1, 3, 1, 5, 1, 4, 1, 0, 0, 0, 0, 1, 2},
-            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2},
-            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-            { 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 2},
-            { 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 2},
-            { 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2},
-            { 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 2},
-            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2},
-        };
+        Tileset = SCMap.Tileset;
+        SpawnX = SCMap.SpawnX;
+        SpawnY = SCMap.SpawnY;
+        ReadCSVMap(SCMap.CSVFileName);
+
+        TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];
         
-        TileLayer = new int[NewMap.GetLength(0), NewMap.GetLength(1)];
-        
-        for (int y = 0; y < NewMap.GetLength(0); y++)
+        for (int y = 0; y < Map.GetLength(0); y++)
         {
-            for (int x = 0; x < NewMap.GetLength(1); x++)
+            for (int x = 0; x < Map.GetLength(1); x++)
             {
-                TileLayer[NewMap.GetLength(0) -1 -y, x] = NewMap[y, x];
+                TileLayer[Map.GetLength(0) -1 -y, x] = Map[y, x];
             }
         }
 
@@ -77,6 +70,12 @@ public class MapBehaviour : MonoBehaviour
 
     void SpawnMap()
     {
+        if (MapObj != null)
+        {
+            Destroy(MapObj);
+        }
+        MapObj = Instantiate(SCMap.MapPrefab, this.transform);
+
         for (int y = 0; y < TileLayer.GetLength(0); y++)
         {
             for (int x = 0; x < TileLayer.GetLength(1); x++)
@@ -87,7 +86,7 @@ public class MapBehaviour : MonoBehaviour
                     {
                         GameObject TempTile = Instantiate(TilePrefab, new Vector3(x, y, 0), Quaternion.identity);
                         TempTile.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileImage;
-                        TempTile.transform.SetParent(this.transform);
+                        TempTile.transform.SetParent(MapObj.transform);
                         TempTile.name = x + "x" + y + "y" + "Bottom";
                     }
 
@@ -98,7 +97,7 @@ public class MapBehaviour : MonoBehaviour
 
                         GameObject TempTileTop = Instantiate(TilePrefab, new Vector3(x, y, z), Quaternion.identity);
                         TempTileTop.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileTopImage[0];
-                        TempTileTop.transform.SetParent(this.transform);
+                        TempTileTop.transform.SetParent(MapObj.transform);
                         TempTileTop.name = x + "x" + y + "y" + "Top";
 
                         if (Tileset[TileLayer[y, x]].IsAnim)
@@ -108,6 +107,44 @@ public class MapBehaviour : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+
+    void ReadCSVMap(string CSVName)
+    {
+        string line;
+        string CSVLocation = "Assets/Scriptables/Maps/CSV/" + CSVName + ".csv";
+        StreamReader strReader = new StreamReader(CSVLocation);
+        List<string> fileLines = new List<string>();
+        using (strReader)
+        {
+            do
+            {
+                line = strReader.ReadLine();
+                if (line != null)
+                {
+                    fileLines.Add(line);
+                }
+            }
+            while (line != null);
+            strReader.Close();
+        }
+
+        int Width = 0;
+
+        for (int y = 0; y < fileLines.Count; y++)
+        {
+            string[] tileRowIds = fileLines[y].Split(',');
+            if (Width == 0)
+            {
+                Width = tileRowIds.Length;
+                Map = new int[fileLines.Count, Width];
+            }
+
+            for (int x = 0; x < Width; x++)
+            {
+                Map[y, x] = int.Parse(tileRowIds[x]);
             }
         }
     }
