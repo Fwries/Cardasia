@@ -27,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TeleportPlayer(Map.SpawnX, Map.SpawnY);
+        TeleportPlayer(8, 6);
         CurrDirection = Vector3.down;
         TransitionMaterial.SetFloat("_Cutoff", 0f);
         TransitionMaterial.SetFloat("_Fade", 0f);
