@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 startPos, targetPos;
     private float MoveTime = 0.25f;
 
+    private Vector3 CurrDirection;
     private Sprite[] CurrAnim;
     private int CurrFrame;
     private float AnimTime = 1;
@@ -27,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         TeleportPlayer(Map.SpawnX, Map.SpawnY);
+        CurrDirection = Vector3.down;
         TransitionMaterial.SetFloat("_Cutoff", 0f);
         TransitionMaterial.SetFloat("_Fade", 0f);
     }
@@ -48,17 +50,20 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.W) && !isMoving)
+            if (Input.GetKey(KeyCode.W) && !isMoving && EventSc == null)
                 StartCoroutine(MovePlayer(Vector3.up, false));
 
-            if (Input.GetKey(KeyCode.A) && !isMoving)
+            if (Input.GetKey(KeyCode.A) && !isMoving && EventSc == null)
                 StartCoroutine(MovePlayer(Vector3.left, false));
 
-            if (Input.GetKey(KeyCode.S) && !isMoving)
+            if (Input.GetKey(KeyCode.S) && !isMoving && EventSc == null)
                 StartCoroutine(MovePlayer(Vector3.down, false));
 
-            if (Input.GetKey(KeyCode.D) && !isMoving)
+            if (Input.GetKey(KeyCode.D) && !isMoving && EventSc == null)
                 StartCoroutine(MovePlayer(Vector3.right, false));
+
+            if (Input.GetKey(KeyCode.Space) && !isMoving)
+                Interact();
         }
 
         AnimTime += Time.deltaTime;
@@ -71,6 +76,8 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void Continue() { IsSc = false; CurrSc++; }
+
     private void TeleportPlayer(int X, int Y)
     {
         transform.position = new Vector3(X, Y, -1);
@@ -82,11 +89,21 @@ public class CharacterMovement : MonoBehaviour
     {
         startPos = transform.position;
         targetPos = startPos + direction;
+        CurrDirection = direction;
 
         if (targetPos.x > -1 && targetPos.x < Map.SolidTileMap.GetLength(1) &&
             targetPos.y > -1 && targetPos.y < Map.SolidTileMap.GetLength(0))
         {
-            if (Map.SolidTileMap[(int)targetPos.y, (int)targetPos.x] == false)
+            if (Map.SolidEventTileMap[(int)targetPos.y, (int)targetPos.x] == true && !IsComand)
+            {
+                if (direction == Vector3.up) { CurrAnim = Character.Idle_Up_Anim; }
+                else if (direction == Vector3.left) { CurrAnim = Character.Idle_Left_Anim; }
+                else if (direction == Vector3.down) { CurrAnim = Character.Idle_Down_Anim; }
+                else if (direction == Vector3.right) { CurrAnim = Character.Idle_Right_Anim; }
+
+                EventSc = Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].Script;
+            }
+            else if (Map.SolidTileMap[(int)targetPos.y, (int)targetPos.x] == false)
             {
                 isMoving = true;
                 float elapsedTime = 0;
@@ -117,7 +134,7 @@ public class CharacterMovement : MonoBehaviour
                 if (IsComand) { IsSc = false; CurrSc++; }
                 else if (Map.EventTileMap[(int)targetPos.y, (int)targetPos.x] == true)
                 {
-                    EventSc = Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].EventScript;
+                    EventSc = Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].Script;
                 }
             }
             else
@@ -137,66 +154,125 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    private void Interact()
+    {
+
+    }
+
     private void Command(string strg)
     {
         //Debug.Log(strg);
         
-        if (strg[0] == '/')
-        {
-            if (strg[1] == 'T' && strg[2] == 'p')
-            {
-                bool XIsFound = false;
-                string sX = "", sY = "";
-                IsSc = true;
+        if (strg[0] != '/') { return; }
+        IsSc = true;
 
-                for (int i = 4; i <= strg.Length; i++)
+        if (strg[1] == 'T' && strg[2] == 'p')
+        {
+            bool XIsFound = false;
+            string sX = "", sY = "";
+
+            for (int i = 4; i <= strg.Length; i++)
+            {
+                if (i == strg.Length && XIsFound)
                 {
-                    if (i == strg.Length && XIsFound) 
-                    { 
-                        TeleportPlayer(Convert.ToInt32(sX), Convert.ToInt32(sY)); 
-                        IsSc = false; 
-                        CurrSc++; 
-                        return; 
+                    TeleportPlayer(Convert.ToInt32(sX), Convert.ToInt32(sY));
+                    IsSc = false;
+                    CurrSc++;
+                    return;
+                }
+
+                if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                else if (!XIsFound) { XIsFound = true; i++; }
+
+                if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+            }
+        }
+        else if (strg[1] == 'M' && strg[2] == 'v' && !isMoving)
+        {
+            if (strg[4] == 'U') { StartCoroutine(MovePlayer(Vector3.up, true)); }
+            else if (strg[4] == 'D') { StartCoroutine(MovePlayer(Vector3.down, true)); }
+            else if (strg[4] == 'L') { StartCoroutine(MovePlayer(Vector3.left, true)); }
+            else if (strg[4] == 'R') { StartCoroutine(MovePlayer(Vector3.right, true)); }
+        }
+        else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
+        {
+            int Rand = UnityEngine.Random.Range(0, 100);
+            if (Rand <= 15)
+            {
+                StartCoroutine(Battle());
+            }
+            else
+            {
+                IsSc = false; CurrSc++;
+            }
+        }
+        else if (strg[1] == 'F' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 'h')
+        {
+            if (strg[7] == 'i' && strg[8] == 'n')
+            {
+                StartCoroutine(Flash(true));
+            }
+            else if (strg[7] == 'o' && strg[8] == 'u' && strg[9] == 't')
+            {
+                StartCoroutine(Flash(false));
+            }
+        }
+
+        else if (strg[1] == 'O' && strg[2] == 'b' && strg[3] == 'j')
+        {
+            bool XIsFound = false;
+            string sX = "", sY = "";
+
+            if (strg[5] == 'A' && strg[6] == 'n' && strg[7] == 'i' && strg[8] == 'm')
+            {
+                if (strg[9] == 'S' && strg[10] == 'e' && strg[11] == 't')
+                {
+                    bool FirstOrLast = true;
+
+                    if (strg[13] == 'S' && strg[14] == 'r' && strg[15] == 't')
+                    {
+                        FirstOrLast = true;
+                    }
+                    else if (strg[13] == 'E' && strg[14] == 'n' && strg[15] == 'd')
+                    {
+                        FirstOrLast = false;
+                    }
+                    else
+                    {
+                        Debug.Log("/Obj Anim Error");
+                        return;
                     }
 
-                    if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
-                    else if (!XIsFound) { XIsFound = true; i++; }
+                    for (int i = 17; i <= strg.Length; i++)
+                    {
+                        if (i == strg.Length && XIsFound)
+                        {
+                            GameObject.Find(sX + "x" + sY + "y" + "Top").GetComponent<TileAnim>().SetCurrFrame(FirstOrLast);
+                            IsSc = false; CurrSc++;
+                            return;
+                        }
 
-                    if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
-                }
-            }
-            else if (strg[1] == 'M' && strg[2] == 'v' && !isMoving)
-            {
-                IsSc = true;
+                        if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                        else if (!XIsFound) { XIsFound = true; i++; }
 
-                if (strg[4] == 'U') { StartCoroutine(MovePlayer(Vector3.up, true)); }
-                else if (strg[4] == 'D') { StartCoroutine(MovePlayer(Vector3.down, true)); }
-                else if (strg[4] == 'L') { StartCoroutine(MovePlayer(Vector3.left, true)); }
-                else if (strg[4] == 'R') { StartCoroutine(MovePlayer(Vector3.right, true)); }
-            }
-            else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
-            {
-                int Rand = UnityEngine.Random.Range(0, 100);
-                if (Rand <= 15)
-                {
-                    StartCoroutine(Battle());
+                        if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+                    }
                 }
                 else
                 {
-                    CurrSc++;
-                }
-            }
-            else if (strg[1] == 'F' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 'h')
-            {
-                IsSc = true;
+                    for (int i = 10; i <= strg.Length; i++)
+                    {
+                        if (i == strg.Length && XIsFound)
+                        {
+                            GameObject.Find(sX + "x" + sY + "y" + "Top").GetComponent<TileAnim>().Anim = true;
+                            return;
+                        }
 
-                if (strg[7] == 'i' && strg[8] == 'n')
-                {
-                    StartCoroutine(Flash(true));
-                }
-                else if (strg[7] == 'o' && strg[8] == 'u' && strg[9] == 't')
-                {
-                    StartCoroutine(Flash(false));
+                        if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                        else if (!XIsFound) { XIsFound = true; i++; }
+
+                        if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+                    }
                 }
             }
         }

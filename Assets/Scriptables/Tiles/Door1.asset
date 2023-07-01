@@ -13,14 +13,25 @@ MonoBehaviour:
   m_Name: Door1
   m_EditorClassIdentifier: 
   TileImage: {fileID: 1419074444, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  TileTopImage: {fileID: -1480853892, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  TileTopImage:
+  - {fileID: -1480853892, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 1801844600, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: -1114438543, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 908933753, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
   Solid: 0
   AbovePlayer: 0
   Interactable: 0
-  InteractScript: []
-  Event: 1
-  EventScript:
+  Event: 0
+  SolidEvent: 1
+  Script:
+  - /Obj Anim 6 7
+  - /Mv U
   - /Flash in
+  - /Obj AnimSet Srt 6 7
   - /Tp 10 7
+  - /Obj AnimSet End 10 7
   - /Flash out
   - /Mv D
+  - /Obj Anim 10 7
+  IsAnim: 1
+  ConstantAnim: 0

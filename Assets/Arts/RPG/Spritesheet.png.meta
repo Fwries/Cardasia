@@ -36,9 +36,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -68,7 +68,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -8687,7 +8687,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Spritesheet_132: -782640797
-      Spritesheet_199: -1840541750
+      Spritesheet_76: -644696279
       Spritesheet_232: 494421881
       Spritesheet_98: -1850281022
       Spritesheet_356: -2094784541
@@ -8736,8 +8736,8 @@ TextureImporter:
       Spritesheet_177: -455591372
       Spritesheet_236: 936015480
       Spritesheet_354: 516185273
-      Spritesheet_302: -540497394
       Spritesheet_99: 467217554
+      Spritesheet_302: -540497394
       Spritesheet_352: 1040669806
       Spritesheet_222: -168590213
       Spritesheet_251: 2025025751
@@ -9092,7 +9092,7 @@ TextureImporter:
       Spritesheet_27: -1346400485
       Spritesheet_248: -1394819796
       Spritesheet_145: 523026371
-      Spritesheet_76: -644696279
+      Spritesheet_199: -1840541750
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

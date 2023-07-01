@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Character
   Health: 200
-  Strength: 0
-  Armour: 0
+  Defence: 0
+  Attack: 0
   MaxBoth: 3
   MaxStamina: 0
   MaxMana: 0
+  MaxBullet: 0
   CharacterClass: 0
   CharacterSubClass: 0
   DefaultDeck: {fileID: 0}
@@ -45,28 +46,28 @@ MonoBehaviour:
   Walk_Down_Anim:
   - {fileID: 1149227512, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1149227512, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
-  - {fileID: -1792844185, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
+  - {fileID: -1700634816, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1353562508, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1353562508, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -1700634816, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   Walk_Up_Anim:
   - {fileID: 1165916445, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1165916445, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
-  - {fileID: -561833022, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
+  - {fileID: -1886593299, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1586172882, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 1586172882, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -1886593299, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   Walk_Left_Anim:
   - {fileID: 2106652037, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 2106652037, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
-  - {fileID: 98207120, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
+  - {fileID: -452873943, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -228235886, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -228235886, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -452873943, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   Walk_Right_Anim:
   - {fileID: 459226926, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 459226926, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
-  - {fileID: -1131098835, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
+  - {fileID: -376257238, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -403922182, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -403922182, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -376257238, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}

@@ -6,13 +6,16 @@ using UnityEngine;
 public class SC_Tile : ScriptableObject
 {
     public Sprite TileImage;
-    public Sprite TileTopImage;
+    public Sprite[] TileTopImage;
     
     public bool Solid;
     public bool AbovePlayer;
 
     public bool Interactable;
-    public string[] InteractScript;
     public bool Event;
-    public string[] EventScript;
+    public bool SolidEvent;
+    public string[] Script;
+
+    public bool IsAnim;
+    public bool ConstantAnim;
 }
