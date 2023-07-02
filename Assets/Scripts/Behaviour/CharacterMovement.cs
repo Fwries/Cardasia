@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D) && !isMoving && EventSc == null)
                 StartCoroutine(MovePlayer(Vector3.right, false));
 
-            if (Input.GetKey(KeyCode.Space) && !isMoving)
+            if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null)
                 Interact();
         }
 
@@ -156,7 +156,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void Interact()
     {
+        targetPos = transform.position + CurrDirection;
 
+        if (targetPos.x > -1 && targetPos.x < Map.InteractableTileMap.GetLength(1) &&
+            targetPos.y > -1 && targetPos.y < Map.InteractableTileMap.GetLength(0))
+        {
+
+        }
     }
 
     private void Command(string strg)
@@ -193,6 +199,14 @@ public class CharacterMovement : MonoBehaviour
             else if (strg[4] == 'D') { StartCoroutine(MovePlayer(Vector3.down, true)); }
             else if (strg[4] == 'L') { StartCoroutine(MovePlayer(Vector3.left, true)); }
             else if (strg[4] == 'R') { StartCoroutine(MovePlayer(Vector3.right, true)); }
+        }
+        else if (strg[1] == 'F' && strg[2] == 'c')
+        {
+            if (strg[4] == 'U') { CurrAnim = Character.Idle_Up_Anim; }
+            else if (strg[4] == 'D') { CurrAnim = Character.Idle_Down_Anim; }
+            else if (strg[4] == 'L') { CurrAnim = Character.Idle_Left_Anim; }
+            else if (strg[4] == 'R') { CurrAnim = Character.Idle_Right_Anim; }
+            IsSc = false; CurrSc++;
         }
         else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
         {
@@ -273,6 +287,22 @@ public class CharacterMovement : MonoBehaviour
 
                         if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
                     }
+                }
+            }
+            else if (strg[5] == 'C' && strg[6] == 'h' && strg[7] == 'a' && strg[8] == 'n' && strg[9] == 'g' && strg[10] == 'e' && strg[11] == 'M' && strg[12] == 'a' && strg[13] == 'p')
+            {
+                string TileNo = "";
+
+                for (int i = 15; i <= strg.Length; i++)
+                {
+                    if (i == strg.Length)
+                    {
+                        Map.ChangeMap(Convert.ToInt32(TileNo));
+                        IsSc = false;
+                        CurrSc++;
+                        return;
+                    }
+                    else if (strg[i] != ' ') { TileNo += strg[i]; }
                 }
             }
         }

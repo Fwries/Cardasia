@@ -24,8 +24,7 @@ public class MapBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeMap();
-        SpawnMap();
+        ChangeMap(SCMap);
     }
 
     // Update is called once per frame
@@ -34,12 +33,18 @@ public class MapBehaviour : MonoBehaviour
         
     }
 
-    public void ChangeMap()
+    public void ChangeMap(int TilesetTileNo)
     {
-        Tileset = SCMap.Tileset;
-        SpawnX = SCMap.SpawnX;
-        SpawnY = SCMap.SpawnY;
-        ReadCSVMap(SCMap.CSVFileName);
+        ChangeMap(Tileset[TilesetTileNo].ChangeMap);
+    }
+
+    public void ChangeMap(SC_Map _SCMap)
+    {
+        SCMap = _SCMap;
+        Tileset = _SCMap.Tileset;
+        SpawnX = _SCMap.SpawnX;
+        SpawnY = _SCMap.SpawnY;
+        ReadCSVMap(_SCMap.CSVFileName);
 
         TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];
         
@@ -66,6 +71,8 @@ public class MapBehaviour : MonoBehaviour
                 SolidEventTileMap[y, x] = Tileset[TileLayer[y, x]].SolidEvent;
             }
         }
+
+        SpawnMap();
     }
 
     void SpawnMap()
@@ -84,7 +91,7 @@ public class MapBehaviour : MonoBehaviour
                 {
                     if (Tileset[TileLayer[y, x]].TileImage != null)
                     {
-                        GameObject TempTile = Instantiate(TilePrefab, new Vector3(x, y, 0), Quaternion.identity);
+                        GameObject TempTile = Instantiate(TilePrefab, new Vector3(x, y, -0.01f), Quaternion.identity);
                         TempTile.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileImage;
                         TempTile.transform.SetParent(MapObj.transform);
                         TempTile.name = x + "x" + y + "y" + "Bottom";

@@ -18,4 +18,6 @@ public class SC_Tile : ScriptableObject
 
     public bool IsAnim;
     public bool ConstantAnim;
+
+    public SC_Map ChangeMap;
 }
