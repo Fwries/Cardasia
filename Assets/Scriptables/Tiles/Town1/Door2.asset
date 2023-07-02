@@ -30,8 +30,10 @@ MonoBehaviour:
   - /Obj AnimSet Srt 10 7
   - /Tp 6 7
   - /Obj AnimSet End 6 7
+  - /Fc D
   - /Flash out
   - /Mv D
   - /Obj Anim 6 7
   IsAnim: 1
   ConstantAnim: 0
+  ChangeMap: {fileID: 0}

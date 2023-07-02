@@ -17,28 +17,6 @@ public class SC_Character : ScriptableObject
 
     public int MaxBullet;
 
-    public enum Class
-    {
-        None,
-        Fighter,
-        Rogue,
-        Mage,
-        Archer,
-        Backpack,
-    };
-    public Class CharacterClass;
-
-    public enum SubClass
-    {
-        None,
-        Fighter,
-        Rogue,
-        Mage,
-        Archer,
-        Backpack,
-    };
-    public SubClass CharacterSubClass;
-
     public SC_Deck DefaultDeck;
 
     public Sprite[] Idle_Down_Anim;

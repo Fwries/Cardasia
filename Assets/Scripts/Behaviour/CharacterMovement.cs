@@ -11,6 +11,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Material TransitionMaterial;
     public SC_Character Character;
 
+    [SerializeField] private GameObject PartyUI;
+
     private bool isMoving;
     private Vector3 startPos, targetPos;
     private float MoveTime = 0.25f;
@@ -23,11 +25,13 @@ public class CharacterMovement : MonoBehaviour
     private string[] EventSc;
     private int CurrSc;
     private bool IsSc;
+    private bool UI;
 
     // Start is called before the first frame update
     void Start()
     {
         TeleportPlayer(8, 6);
+        CurrAnim = Character.Idle_Down_Anim;
         CurrDirection = Vector3.down;
         TransitionMaterial.SetFloat("_Cutoff", 0f);
         TransitionMaterial.SetFloat("_Fade", 0f);
@@ -50,20 +54,26 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.W) && !isMoving && EventSc == null)
+            if (Input.GetKey(KeyCode.W) && !isMoving && EventSc == null && !UI)
                 StartCoroutine(MovePlayer(Vector3.up, false));
 
-            if (Input.GetKey(KeyCode.A) && !isMoving && EventSc == null)
+            if (Input.GetKey(KeyCode.A) && !isMoving && EventSc == null && !UI)
                 StartCoroutine(MovePlayer(Vector3.left, false));
 
-            if (Input.GetKey(KeyCode.S) && !isMoving && EventSc == null)
+            if (Input.GetKey(KeyCode.S) && !isMoving && EventSc == null && !UI)
                 StartCoroutine(MovePlayer(Vector3.down, false));
 
-            if (Input.GetKey(KeyCode.D) && !isMoving && EventSc == null)
+            if (Input.GetKey(KeyCode.D) && !isMoving && EventSc == null && !UI)
                 StartCoroutine(MovePlayer(Vector3.right, false));
 
-            if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null)
+            if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null && !UI)
                 Interact();
+
+            if (Input.GetKeyDown(KeyCode.X) && !isMoving && EventSc == null)
+            {
+                UI = !UI; 
+                PartyUI.SetActive(!PartyUI.activeSelf);
+            }
         }
 
         AnimTime += Time.deltaTime;
@@ -82,7 +92,6 @@ public class CharacterMovement : MonoBehaviour
     {
         transform.position = new Vector3(X, Y, -1);
         Cam.transform.position = new Vector3(transform.position.x, transform.position.y, Cam.transform.position.z);
-        CurrAnim = Character.Idle_Down_Anim;
     }
 
     private IEnumerator MovePlayer(Vector3 direction, bool IsComand)
