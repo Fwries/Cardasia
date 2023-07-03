@@ -5,6 +5,7 @@ using System.IO;
 
 public class MapBehaviour : MonoBehaviour
 {
+    [SerializeField] private save SaveData;
     public GameObject TilePrefab;
     public SC_Map SCMap;
 
@@ -24,7 +25,7 @@ public class MapBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeMap(SCMap);
+
     }
 
     // Update is called once per frame
@@ -40,10 +41,8 @@ public class MapBehaviour : MonoBehaviour
 
     public void ChangeMap(SC_Map _SCMap)
     {
-        SCMap = _SCMap;
+        SaveData.Map = SCMap = _SCMap;
         Tileset = _SCMap.Tileset;
-        SpawnX = _SCMap.SpawnX;
-        SpawnY = _SCMap.SpawnY;
         ReadCSVMap(_SCMap.CSVFileName);
 
         TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];

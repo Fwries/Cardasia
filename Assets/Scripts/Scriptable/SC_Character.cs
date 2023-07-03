@@ -5,29 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Character", menuName = "Cardasia/Character")]
 public class SC_Character : ScriptableObject
 {
-    public string CardName;
+    [SerializeField] public string CardName;
 
-    public int Health;
-    public int Defence;
-    public int Attack;
+    [SerializeField] public int Health;
+    [SerializeField] public int Defence;
+    [SerializeField] public int Attack;
 
-    public int MaxBoth;
-    public int MaxStamina;
-    public int MaxMana;
+    [SerializeField] public int MaxBoth;
+    [SerializeField] public int MaxStamina;
+    [SerializeField] public int MaxMana;
 
-    public int MaxBullet;
+    [SerializeField] public int MaxBullet;
 
-    public SC_Deck DefaultDeck;
+    [SerializeField] public SC_Deck DefaultDeck;
 
-    public Sprite[] Idle_Down_Anim;
-    public Sprite[] Idle_Up_Anim;
-    public Sprite[] Idle_Left_Anim;
-    public Sprite[] Idle_Right_Anim;
+    [SerializeField] public Sprite[] Idle_Down_Anim;
+    [SerializeField] public Sprite[] Idle_Up_Anim;
+    [SerializeField] public Sprite[] Idle_Left_Anim;
+    [SerializeField] public Sprite[] Idle_Right_Anim;
 
-    public Sprite[] Walk_Down_Anim;
-    public Sprite[] Walk_Up_Anim;
-    public Sprite[] Walk_Left_Anim;
-    public Sprite[] Walk_Right_Anim;
+    [SerializeField] public Sprite[] Walk_Down_Anim;
+    [SerializeField] public Sprite[] Walk_Up_Anim;
+    [SerializeField] public Sprite[] Walk_Left_Anim;
+    [SerializeField] public Sprite[] Walk_Right_Anim;
 
-    public Sprite[] Dead_Sprite;
+    [SerializeField] public Sprite[] Dead_Sprite;
 }

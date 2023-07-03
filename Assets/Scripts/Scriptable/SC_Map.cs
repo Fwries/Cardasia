@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Map", menuName = "Cardasia/Map")]
 public class SC_Map : ScriptableObject
 {
-    public GameObject MapPrefab;
-    public string CSVFileName;
-    public SC_Tile[] Tileset;
-    public int SpawnX, SpawnY;
+    [SerializeField] public GameObject MapPrefab;
+    [SerializeField] public string CSVFileName;
+    [SerializeField] public SC_Tile[] Tileset;
 }

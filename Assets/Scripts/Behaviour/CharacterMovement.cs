@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private Camera Cam;
+    [SerializeField] private save SaveData;
     [SerializeField] private MapBehaviour Map;
     [SerializeField] private SpriteRenderer CharacterRenderer;
     [SerializeField] private Material TransitionMaterial;
@@ -18,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
     private float MoveTime = 0.25f;
 
     private Vector3 CurrDirection;
-    private Sprite[] CurrAnim;
+    [HideInInspector] public Sprite[] CurrAnim;
     private int CurrFrame;
     private float AnimTime = 1;
 
@@ -30,7 +31,6 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TeleportPlayer(8, 6);
         CurrAnim = Character.Idle_Down_Anim;
         CurrDirection = Vector3.down;
         TransitionMaterial.SetFloat("_Cutoff", 0f);
@@ -74,6 +74,16 @@ public class CharacterMovement : MonoBehaviour
                 UI = !UI; 
                 PartyUI.SetActive(!PartyUI.activeSelf);
             }
+
+            if (Input.GetKeyDown(KeyCode.Z) && !isMoving && EventSc == null)
+            {
+                SaveData.SaveFile();
+            }
+
+            if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
+            {
+                SaveData.CreateCharacterData(Character, 1);
+            }
         }
 
         AnimTime += Time.deltaTime;
@@ -88,10 +98,13 @@ public class CharacterMovement : MonoBehaviour
 
     public void Continue() { IsSc = false; CurrSc++; }
 
-    private void TeleportPlayer(int X, int Y)
+    public void TeleportPlayer(int X, int Y)
     {
         transform.position = new Vector3(X, Y, -1);
         Cam.transform.position = new Vector3(transform.position.x, transform.position.y, Cam.transform.position.z);
+
+        SaveData.xPos = X;
+        SaveData.yPos = Y;
     }
 
     private IEnumerator MovePlayer(Vector3 direction, bool IsComand)
@@ -132,6 +145,9 @@ public class CharacterMovement : MonoBehaviour
 
                 transform.position = targetPos;
                 Cam.transform.position = new Vector3(transform.position.x, transform.position.y, Cam.transform.position.z);
+
+                SaveData.xPos = (int)targetPos.x;
+                SaveData.yPos = (int)targetPos.y;
 
                 if (direction == Vector3.up) { CurrAnim = Character.Idle_Up_Anim; }
                 else if (direction == Vector3.left) { CurrAnim = Character.Idle_Left_Anim; }
