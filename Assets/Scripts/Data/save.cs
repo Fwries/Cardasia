@@ -68,6 +68,7 @@ public class save : MonoBehaviour
 		JsonUtility.FromJsonOverwrite(data.MapJson, Map);
 		xPos = data.x;
 		yPos = data.y;
+
 		PartyCharacterData = data.PartyCharacterData;
 
 		CharacterMovement CharMovement = GetComponent<CharacterMovement>();
@@ -81,7 +82,12 @@ public class save : MonoBehaviour
 
 	public void CreateCharacterData(SC_Character _Character, int _Level)
     {
+		CharacterData[] temp = PartyCharacterData;
 		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
+		for (int i = 0; i < temp.Length; i++)
+        {
+			PartyCharacterData[i] = temp[i];
+        }
 		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level);
 	}
 }

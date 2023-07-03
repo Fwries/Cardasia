@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
     private float MoveTime = 0.25f;
 
     private Vector3 CurrDirection;
-    [HideInInspector] public Sprite[] CurrAnim;
+    public Sprite[] CurrAnim;
     private int CurrFrame;
     private float AnimTime = 1;
 
