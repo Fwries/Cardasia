@@ -34,6 +34,12 @@ public class save : MonoBehaviour
 		if (File.Exists(destination)) file = File.OpenWrite(destination);
 		else file = File.Create(destination);
 
+		CharacterMovement CharMovement = GetComponent<CharacterMovement>();
+		if (CharMovement != null)
+        {
+			PartyCharacterData[0].SetCurrAnim(CharMovement.Character, CharMovement.CurrAnim);
+		}
+
 		GameData data = new GameData(nameStr, Map, xPos, yPos, PartyCharacterData);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);

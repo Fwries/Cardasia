@@ -5,6 +5,7 @@ using UnityEngine;
 public class PartyUIBehaviour : MonoBehaviour
 {
     public PartyCharacterBehaviour PartyCharacter;
+    public save saveFile;
 
     // Start is called before the first frame update
     void Start()

@@ -27,8 +27,48 @@ public class CharacterData
 		Exp = _Exp;
 		Bullet = _Bullet;
 
+		SetCurrAnim(_Character, _CurrAnim);
+	}
+
+	public SC_Character GetCharacter()
+    {
+		SC_Character scCharacter = ScriptableObject.CreateInstance<SC_Character>();
+		JsonUtility.FromJsonOverwrite(CharJson, scCharacter);
+		return scCharacter;
+	}
+
+	public Sprite[] GetCurrAnim()
+    {
+		switch (CurrAnim)
+		{
+			case 0:
+				return GetCharacter().Idle_Down_Anim;
+			case 1:
+				return GetCharacter().Idle_Up_Anim;
+			case 2:
+				return GetCharacter().Idle_Left_Anim;
+			case 3:
+				return GetCharacter().Idle_Right_Anim;
+
+			case 4:
+				return GetCharacter().Walk_Down_Anim;
+			case 5:
+				return GetCharacter().Walk_Up_Anim;
+			case 6:
+				return GetCharacter().Walk_Left_Anim;
+			case 7:
+				return GetCharacter().Walk_Right_Anim;
+
+			case 8:
+				return GetCharacter().Dead_Sprite;
+		}
+		return null;
+	}
+
+	public void SetCurrAnim(SC_Character _Character, Sprite[] _CurrAnim)
+    {
 		if (_Character.Idle_Down_Anim == _CurrAnim)
-        {
+		{
 			CurrAnim = 0;
 		}
 		else if (_Character.Idle_Up_Anim == _CurrAnim)
@@ -65,40 +105,5 @@ public class CharacterData
 		{
 			CurrAnim = 8;
 		}
-	}
-
-	public SC_Character GetCharacter()
-    {
-		SC_Character scCharacter = ScriptableObject.CreateInstance<SC_Character>();
-		JsonUtility.FromJsonOverwrite(CharJson, scCharacter);
-		return scCharacter;
-	}
-
-	public Sprite[] GetCurrAnim()
-    {
-		switch (CurrAnim)
-		{
-			case 0:
-				return GetCharacter().Idle_Down_Anim;
-			case 1:
-				return GetCharacter().Idle_Up_Anim;
-			case 2:
-				return GetCharacter().Idle_Left_Anim;
-			case 3:
-				return GetCharacter().Idle_Right_Anim;
-
-			case 4:
-				return GetCharacter().Walk_Down_Anim;
-			case 5:
-				return GetCharacter().Walk_Up_Anim;
-			case 6:
-				return GetCharacter().Walk_Left_Anim;
-			case 7:
-				return GetCharacter().Walk_Right_Anim;
-
-			case 8:
-				return GetCharacter().Dead_Sprite;
-		}
-		return null;
 	}
 }

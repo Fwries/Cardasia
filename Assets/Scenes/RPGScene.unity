@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PartyCharacter: {fileID: 456375199}
+  saveFile: {fileID: 0}
 --- !u!1 &225363210
 GameObject:
   m_ObjectHideFlags: 0
