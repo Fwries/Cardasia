@@ -18,7 +18,8 @@ public class save : MonoBehaviour
 	void Start()
 	{
 		if (SaveStart) 
-		{ 
+		{
+			CreateCharacterData(GetComponent<CharacterMovement>().Character, 1);
 			SaveFile();
 		}
 
@@ -34,7 +35,7 @@ public class save : MonoBehaviour
 		else file = File.Create(destination);
 
 		CharacterMovement CharMovement = GetComponent<CharacterMovement>();
-		if (CharMovement != null)
+		if (CharMovement != null && PartyCharacterData.Length > 0)
         {
 			PartyCharacterData[0].SetCurrAnim(CharMovement.Character, CharMovement.CurrAnim);
 		}
@@ -76,7 +77,10 @@ public class save : MonoBehaviour
         {
 			CharMovement.TeleportPlayer(xPos, yPos);
 			GameObject.Find("Map").GetComponent<MapBehaviour>().ChangeMap(Map);
-			CharMovement.CurrAnim = PartyCharacterData[0].GetCurrAnim();
+			if (PartyCharacterData.Length > 0)
+            {
+				CharMovement.CurrAnim = PartyCharacterData[0].GetCurrAnim();
+			}
 		}
 	}
 
