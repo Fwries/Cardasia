@@ -27,6 +27,7 @@ public class save : MonoBehaviour
 
 	public void SaveFile()
 	{
+		Debug.Log("Saving");
 		string destination = Application.persistentDataPath + "/save.dat";
 		FileStream file;
 
