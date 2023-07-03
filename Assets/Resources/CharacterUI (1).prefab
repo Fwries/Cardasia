@@ -91,6 +91,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
+  CharData:
+    CharJson: 
+    Health: 0
+    Level: 0
+    Exp: 0
+    Bullet: 0
+    CurrAnim: 0
+  CharUI: {fileID: 1653147576670109054}
+  DisplayCharacterText: {fileID: 8633247128852414788}
+  HealthText: {fileID: 8633247128574482067}
+  HealthSlider: {fileID: 8633247128563371965}
 --- !u!1 &8633247127619826928
 GameObject:
   m_ObjectHideFlags: 0

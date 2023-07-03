@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class UICharacterDisplay : MonoBehaviour
 {
     public SC_Character Character;
+    public CharacterData CharData;
+
+    public GameObject CharUI;
+    public Text DisplayCharacterText;
+    public Text HealthText;
+    public Slider HealthSlider;
 
     private List<Sprite> CurrAnim;
     private int CurrFrame;
@@ -20,6 +26,12 @@ public class UICharacterDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DisplayCharacterText.text = "Lv. " + CharData.Level + " " + Character.CardName;
+
+        HealthText.text = CharData.Health + " / " + Character.Health;
+        HealthSlider.maxValue = Character.Health;
+        HealthSlider.value = CharData.Health;
+
         AnimTime += Time.deltaTime;
         if (AnimTime >= 0.12f)
         {
