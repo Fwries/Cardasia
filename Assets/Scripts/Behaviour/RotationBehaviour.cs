@@ -92,8 +92,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
                 OnStartDrag = false;
             }
 
-            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, RightBackPos) * -DragOffsetXPos * m_Speed;
@@ -115,8 +115,8 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
                 OnStartDrag = false;
             }
 
-            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, LeftBackPos) * DragOffsetXPos * m_Speed;
             PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
@@ -152,16 +152,16 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
         if (prevMouseXPos > GetMousePos().x)
         {
-            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
             PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
+            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
             PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
             PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
             PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Right_Anim);
         }
         else if (prevMouseXPos < GetMousePos().x)
         {
-            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
             PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
+            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
             PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Down_Anim);
             PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Left_Anim);
             PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Up_Anim);
@@ -181,11 +181,10 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         OnStartDrag = false;
         ResetCharPos();
 
-        PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Idle_Up_Anim);
-        PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Idle_Up_Anim);
-        PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Idle_Up_Anim);
-        PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Idle_Up_Anim);
-        PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Idle_Up_Anim);
+        for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
+        {
+            PlayerBehav.CharacterTape[i].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[i].Character.Idle_Up_Anim);
+        }
     }
 
     private Vector3 GetMousePos()
@@ -197,25 +196,26 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     public void ResetCharPos()
     {
-        if (PlayerBehav.CharacterTape[1] != null)
+        for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
         {
-            PlayerBehav.CharacterTape[1].transform.position = CentrePos;
-        }
-        if (PlayerBehav.CharacterTape[0] != null)
-        {
-            PlayerBehav.CharacterTape[0].transform.position = LeftPos;
-        }
-        if (PlayerBehav.CharacterTape[2] != null)
-        {
-            PlayerBehav.CharacterTape[2].transform.position = RightPos;
-        }
-        if (PlayerBehav.CharacterTape[3] != null)
-        {
-            PlayerBehav.CharacterTape[3].transform.position = RightBackPos;
-        }
-        if (PlayerBehav.CharacterTape[4] != null)
-        {
-            PlayerBehav.CharacterTape[4].transform.position = LeftBackPos;
+            switch (i)
+            {
+                case 0:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos;
+                    break;
+                case 1:
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos;
+                    break;
+                case 2:
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos;
+                    break;
+                case 3:
+                    PlayerBehav.CharacterTape[3].transform.position = RightBackPos;
+                    break;
+                case 4:
+                    PlayerBehav.CharacterTape[4].transform.position = LeftBackPos;
+                    break;
+            }
         }
     }
 
@@ -228,28 +228,35 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     public void Shift(bool right)
     {
-        CharacterBehaviour Temp0, Temp1, Temp2, Temp3, Temp4;
-        Temp0 = PlayerBehav.CharacterTape[0];
-        Temp1 = PlayerBehav.CharacterTape[1];
-        Temp2 = PlayerBehav.CharacterTape[2];
-        Temp3 = PlayerBehav.CharacterTape[3];
-        Temp4 = PlayerBehav.CharacterTape[4];
+        CharacterBehaviour[] TempTape = PlayerBehav.CharacterTape;
 
         if (right)
         {
-            PlayerBehav.CharacterTape[0] = Temp4;
-            PlayerBehav.CharacterTape[1] = Temp0;
-            PlayerBehav.CharacterTape[2] = Temp1;
-            PlayerBehav.CharacterTape[3] = Temp2;
-            PlayerBehav.CharacterTape[4] = Temp3;
+            for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
+            {
+                if (i - 1 >= 0)
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[i - 1];
+                }
+                else
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[PlayerBehav.CharacterTape.Length - 1];
+                }
+            }
         }
         else
         {
-            PlayerBehav.CharacterTape[0] = Temp1;
-            PlayerBehav.CharacterTape[1] = Temp2;
-            PlayerBehav.CharacterTape[2] = Temp3;
-            PlayerBehav.CharacterTape[3] = Temp4;
-            PlayerBehav.CharacterTape[4] = Temp0;
+            for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
+            {
+                if (i + 1 < PlayerBehav.CharacterTape.Length)
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[i + 1];
+                }
+                else
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[0];
+                }
+            }
         }
 
         PlayerBehav.UpdateActive();
