@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public List<CharacterBehaviour> Character;
-    public CharacterBehaviour[] ActiveCharacter = { null, null, null};
-    public CharacterBehaviour[] BackCharacter = { null, null};
+    public CharacterBehaviour[] CharacterTape;
 
     public bool LoseATurn;
 
@@ -16,33 +15,10 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch (Character.Count)
+        CharacterTape = new CharacterBehaviour[Character.Count];
+        for (int i = 0; i < Character.Count; i++)
         {
-            case 1:
-                ActiveCharacter[1] = Character[0];
-                break;
-            case 2:
-                ActiveCharacter[0] = Character[1];
-                ActiveCharacter[1] = Character[0];
-                break;
-            case 3:
-                ActiveCharacter[2] = Character[2];
-                ActiveCharacter[0] = Character[1];
-                ActiveCharacter[1] = Character[0];
-                break;
-            case 4:
-                BackCharacter[0] = Character[3];
-                ActiveCharacter[2] = Character[2];
-                ActiveCharacter[0] = Character[1];
-                ActiveCharacter[1] = Character[0];
-                break;
-            case 5:
-                BackCharacter[0] = Character[3];
-                BackCharacter[1] = Character[4];
-                ActiveCharacter[2] = Character[2];
-                ActiveCharacter[0] = Character[1];
-                ActiveCharacter[1] = Character[0];
-                break;
+            CharacterTape[i] = Character[i];
         }
         UpdateActive();
     }
@@ -55,21 +31,21 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void UpdateActive()
     {
-        for (int iC = 0; iC < Character.Count; iC++)
-        {
-            for (int iA = 0; iA < ActiveCharacter.Length; iA++)
-            {
-                if (Character[iC] == ActiveCharacter[iA])
-                {
-                    Character[iC].IsActive = true;
-                    break;
-                }
-                else
-                {
-                    Character[iC].IsActive = false;
-                }
-            }
-        }
+        //for (int iC = 0; iC < Character.Count; iC++)
+        //{
+        //    for (int iA = 0; iA < ActiveCharacter.Length; iA++)
+        //    {
+        //        if (Character[iC] == ActiveCharacter[iA])
+        //        {
+        //            Character[iC].IsActive = true;
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            Character[iC].IsActive = false;
+        //        }
+        //    }
+        //}
     }
 
     public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)
@@ -79,15 +55,15 @@ public class PlayerBehaviour : MonoBehaviour
             int LowestHealthChar = 0, LowestChar = -1;
             for (int i = 0; i < 3; i++)
             {
-                if (Opponent.ActiveCharacter[i] != null && ((LowestHealthChar == 0 && Opponent.ActiveCharacter[i].Health > 0) ||
-                    (Opponent.ActiveCharacter[i].Health < LowestHealthChar && Opponent.ActiveCharacter[i].Health > 0)))
+                if (Opponent.CharacterTape[i] != null && ((LowestHealthChar == 0 && Opponent.CharacterTape[i].Health > 0) ||
+                    (Opponent.CharacterTape[i].Health < LowestHealthChar && Opponent.CharacterTape[i].Health > 0)))
                 {
-                    LowestHealthChar = Opponent.ActiveCharacter[i].Health;
+                    LowestHealthChar = Opponent.CharacterTape[i].Health;
                     LowestChar = i;
                 }
             }
             if (LowestChar == -1) { return null; }
-            return Opponent.ActiveCharacter[LowestChar];
+            return Opponent.CharacterTape[LowestChar];
         }
         else if (TargetType == 2 /*Card.Currentcard.Target.Ally*/)
         {
@@ -101,7 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             while (true)
             {
-                CharacterBehaviour Target = Opponent.ActiveCharacter[Random.Range(0, 3)];
+                CharacterBehaviour Target = Opponent.CharacterTape[Random.Range(0, 3)];
                 if (Target != null) { return Target; }
             }
         }

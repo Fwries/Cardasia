@@ -213,15 +213,15 @@ public class GameBehaviour : MonoBehaviour
     public IEnumerator EnemyTurnAI()
     {
         EnemyAIThinking = true;
-        for (int CharIdx = 0; CharIdx < Opponent.ActiveCharacter.Length; CharIdx++)
+        for (int CharIdx = 0; CharIdx < 3; CharIdx++)
         {
-            if (Opponent.ActiveCharacter[CharIdx].Health > 0)
+            if (Opponent.CharacterTape[CharIdx].Health > 0)
             {
-                for (int CardCostIdx = Opponent.ActiveCharacter[CharIdx].Both + Opponent.ActiveCharacter[CharIdx].Stamina + Opponent.ActiveCharacter[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
+                for (int CardCostIdx = Opponent.CharacterTape[CharIdx].Both + Opponent.CharacterTape[CharIdx].Stamina + Opponent.CharacterTape[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
                 {
-                    for (int CardIdx = 0; CardIdx < Opponent.ActiveCharacter[CharIdx].HandCards.Count; CardIdx++)
+                    for (int CardIdx = 0; CardIdx < Opponent.CharacterTape[CharIdx].HandCards.Count; CardIdx++)
                     {
-                        CardBehaviour Card = Opponent.ActiveCharacter[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
+                        CardBehaviour Card = Opponent.CharacterTape[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
                         if (Card.CardCost == CardCostIdx && Card.Frozen == false)
                         {
                             CharacterBehaviour Target = null;
@@ -230,7 +230,7 @@ public class GameBehaviour : MonoBehaviour
                                 Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
                             }
 
-                            if (Opponent.ActiveCharacter[CharIdx].CanBePlayed(Card, true))
+                            if (Opponent.CharacterTape[CharIdx].CanBePlayed(Card, true))
                             {
                                 if (Target != null)
                                 {

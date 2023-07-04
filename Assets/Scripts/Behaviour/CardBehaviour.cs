@@ -51,7 +51,7 @@ public class CardBehaviour : MonoBehaviour
             case "Campfire":
                 for (int i = 0; i < 3; i++)
                 {
-                    CharacterBehav.PlayerBehav.ActiveCharacter[i].FullRestore();
+                    CharacterBehav.PlayerBehav.CharacterTape[i].FullRestore();
                 }
                 CharacterBehav.PlayerBehav.LoseATurn = true;
                 GameBehav.EndTurn();
@@ -84,8 +84,8 @@ public class CardBehaviour : MonoBehaviour
             case "Nuclear Bomb":
                 for (int i = 0; i < 3; i++)
                 {
-                    GameBehav.Player.ActiveCharacter[i].DealtDamage(999);
-                    GameBehav.Opponent.ActiveCharacter[i].DealtDamage(999);
+                    GameBehav.Player.CharacterTape[i].DealtDamage(999);
+                    GameBehav.Opponent.CharacterTape[i].DealtDamage(999);
                 }
                 return;
             case "Overdrive":
@@ -126,7 +126,7 @@ public class CardBehaviour : MonoBehaviour
             case "Flash Grenade":
                 for (int i = 0; i < 3; i++)
                 {
-                    GameBehav.Opponent.ActiveCharacter[i].Shock += 1;
+                    GameBehav.Opponent.CharacterTape[i].Shock += 1;
                 }
                 return;
             case "Health Capsule":
