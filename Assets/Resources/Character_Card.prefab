@@ -169,7 +169,6 @@ GameObject:
   - component: {fileID: 6074611329161913104}
   - component: {fileID: 6074611329161913107}
   - component: {fileID: 5768452077056654766}
-  - component: {fileID: 6074611329161913106}
   m_Layer: 5
   m_Name: Character_Card
   m_TagString: Untagged
@@ -260,51 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7366ac2c25fd08d4787253d8427aa4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharBehav: {fileID: 6074611329161913106}
+  CharBehav: {fileID: 0}
   CharUI: {fileID: 6074611330254903481}
   DisplayCharacterText: {fileID: 6074611328888089869}
   HealthText: {fileID: 6074611329162754778}
   HealthSlider: {fileID: 6074611329169531892}
---- !u!114 &6074611329161913106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6074611329161913118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e69484e15157d54fb8af437aff76c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Character: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
-  GameBehav: {fileID: 0}
-  PlayerBehav: {fileID: 0}
-  CharDisplay: {fileID: 5768452077056654766}
-  HandCards: []
-  scDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
-  Deck: []
-  Level: 1
-  MaxHealth: 0
-  Health: 100
-  MaxExp: 0
-  Exp: 0
-  MaxBoth: 0
-  MaxStamina: 0
-  MaxMana: 0
-  Both: 0
-  Stamina: 0
-  Mana: 0
-  ShockMana: 0000000000
-  IsActive: 0
-  IsDead: 0
-  LeftMost: 0
-  HandObject: {fileID: 0}
-  Freeze: 0
-  Shock: 0
-  Burn: 0
-  Trip: 0
-  IsEnemy: 0
 --- !u!1 &6074611329162754776
 GameObject:
   m_ObjectHideFlags: 0

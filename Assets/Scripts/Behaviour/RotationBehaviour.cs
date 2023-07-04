@@ -35,68 +35,47 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     // Update is called once per frame
     void Update()
     {
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    if (PlayerBehav.CharacterTape[i].IsDead == true)
-        //    {
-        //        if (i == 0)
-        //        {
-        //            CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
-        //            Temp0 = PlayerBehav.CharacterTape[0];
-        //            Temp1 = PlayerBehav.CharacterTape[1];
-        //            Temp2 = PlayerBehav.CharacterTape[2];
-        //            Temp3 = PlayerBehav.CharacterTape;
-
-        //            PlayerBehav.CharacterTape[0] = Temp1;
-        //            PlayerBehav.CharacterTape[1] = Temp2;
-        //            PlayerBehav.CharacterTape[2] = Temp3;
-        //            PlayerBehav.CharacterTape = Temp0;
-
-        //            PlayerBehav.UpdateActive();
-        //            ResetCharPos();
-        //        }
-        //        else if (i == 1)
-        //        {
-        //            if (PlayerBehav.CharacterTape[0].IsDead == true || PlayerBehav.CharacterTape[2].IsDead == true) { return; }
-
-        //            Shift(true);
-        //            Shift(true);
-        //        }
-        //        else if (i == 2)
-        //        {
-        //            CharacterBehaviour Temp0, Temp1, Temp2, Temp3;
-        //            Temp0 = PlayerBehav.CharacterTape[0];
-        //            Temp1 = PlayerBehav.CharacterTape[1];
-        //            Temp2 = PlayerBehav.CharacterTape[2];
-        //            Temp3 = PlayerBehav.CharacterTape;
-
-        //            PlayerBehav.CharacterTape[0] = Temp3;
-        //            PlayerBehav.CharacterTape[1] = Temp0;
-        //            PlayerBehav.CharacterTape[2] = Temp1;
-        //            PlayerBehav.CharacterTape = Temp2;
-
-        //            PlayerBehav.UpdateActive();
-        //            ResetCharPos();
-        //        }
-        //    }
-        //}
-
+        if (IsEnemy) { return; }
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
+        if (PlayerBehav.CharacterTape.Length == 1) { return; }
         if (PlayerBehav.CardPlayed) { return; }
 
         if (DragOffsetXPos < 0)
         {
             if (OnStartDrag == true)
             {
-                //PlayerBehav.CharacterTape.transform.position = RightBackPos;
+                if (PlayerBehav.CharacterTape.Length == 3)
+                {
+                    PlayerBehav.CharacterTape[PlayerBehav.CharacterTape.Length - 1].transform.position = RightBackPos;
+                }
                 OnStartDrag = false;
             }
 
-            PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, RightBackPos) * -DragOffsetXPos * m_Speed;
+            switch (PlayerBehav.CharacterTape.Length)
+            {
+                case 2:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    break;
+                case 3:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+                    break;
+                case 4:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
+                    break;
+                case 5:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, RightBackPos) * -DragOffsetXPos * m_Speed;
+                    break;
+            }
 
             if (DragOffsetXPos <= -DragAmt)
             {
@@ -111,15 +90,38 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         {
             if (OnStartDrag == true)
             {
-                //PlayerBehav.CharacterTape.transform.position = LeftBackPos;
+                if (PlayerBehav.CharacterTape.Length < 5)
+                {
+                    PlayerBehav.CharacterTape[PlayerBehav.CharacterTape.Length - 1].transform.position = LeftBackPos;
+                }
                 OnStartDrag = false;
             }
 
-            PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, LeftBackPos) * DragOffsetXPos * m_Speed;
-            PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
+            switch (PlayerBehav.CharacterTape.Length)
+            {
+                case 2:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    break;
+                case 3:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+                    break;
+                case 4:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[3].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
+                    break;
+                case 5:
+                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, LeftBackPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
+                    break;
+            }
 
             if (DragOffsetXPos >= DragAmt)
             {
@@ -146,25 +148,66 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     {
         if (IsEnemy) { return; }
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
+        if (PlayerBehav.CharacterTape.Length == 1) { return; }
         if (PlayerBehav.CardPlayed) { return; }
 
         DragOffsetXPos = GetMousePos().x - StartPos.x;
 
         if (prevMouseXPos > GetMousePos().x)
         {
-            PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
-            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
-            PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
-            PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
-            PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Right_Anim);
+            switch (PlayerBehav.CharacterTape.Length)
+            {
+                case 2:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    break;
+                case 3:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
+                    break;
+                case 4:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
+                    break;
+                case 5:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
+                    PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Right_Anim);
+                    break;
+            }
         }
         else if (prevMouseXPos < GetMousePos().x)
         {
-            PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
-            PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
-            PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Down_Anim);
-            PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Left_Anim);
-            PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Up_Anim);
+            switch (PlayerBehav.CharacterTape.Length)
+            {
+                case 2:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
+                    break;
+                case 3:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Down_Anim);
+                    break;
+                case 4:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
+                    break;
+                case 5:
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Right_Anim);
+                    PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Down_Anim);
+                    PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Up_Anim);
+                    break;
+            }
         }
 
         prevMouseXPos = GetMousePos().x;
@@ -174,6 +217,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     {
         if (IsEnemy) { return; }
         if (GameBehav.CurrentPlayerTurn != PlayerBehav) { return; }
+        if (PlayerBehav.CharacterTape.Length == 1) { return; }
         if (PlayerBehav.CardPlayed) { return; }
 
         StartPos = new Vector3(0, 0, 0);
@@ -229,6 +273,7 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public void Shift(bool right)
     {
         CharacterBehaviour[] TempTape = PlayerBehav.CharacterTape;
+        PlayerBehav.CharacterTape = new CharacterBehaviour[PlayerBehav.CharacterTape.Length];
 
         if (right)
         {

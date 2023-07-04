@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public List<CharacterBehaviour> Character;
+    public GameObject[] CharObj;
     public CharacterBehaviour[] CharacterTape;
 
     public bool LoseATurn;
@@ -15,12 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CharacterTape = new CharacterBehaviour[Character.Count];
-        for (int i = 0; i < Character.Count; i++)
-        {
-            CharacterTape[i] = Character[i];
-        }
-        UpdateActive();
+
     }
 
     // Update is called once per frame

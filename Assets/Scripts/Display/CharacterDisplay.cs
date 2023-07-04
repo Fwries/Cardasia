@@ -22,21 +22,14 @@ public class CharacterDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!CharBehav.IsEnemy)
-        {
-            SetCurrAnim(CharBehav.Character.Idle_Up_Anim);
-        }
-        else
-        {
-            SetCurrAnim(CharBehav.Character.Idle_Down_Anim);
-            CharUI.SetActive(true);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (IsDead) { return; }
+        if (CurrAnim == null) { return; }
 
         AnimTime += Time.deltaTime;
         if (AnimTime >= 0.12f)
@@ -85,5 +78,20 @@ public class CharacterDisplay : MonoBehaviour
         }
         CurrAnim = _CurrAnim;
         CurrFrame = Random.Range(0, NewAnim.Length);
+    }
+
+    public void SetBehaviour(CharacterBehaviour _CharBehav)
+    {
+        CharBehav = _CharBehav;
+
+        if (!CharBehav.IsEnemy)
+        {
+            SetCurrAnim(CharBehav.Character.Idle_Up_Anim);
+        }
+        else
+        {
+            SetCurrAnim(CharBehav.Character.Idle_Down_Anim);
+            CharUI.SetActive(true);
+        }
     }
 }

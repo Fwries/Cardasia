@@ -15,11 +15,13 @@ public class save : MonoBehaviour
 	
 	public CharacterData[] PartyCharacterData;
 
+	public SC_Character TempChar;
+
 	void Start()
 	{
 		if (SaveStart) 
 		{
-			CreateCharacterData(GetComponent<CharacterMovement>().Character, 5);
+			CreateCharacterData(TempChar, 5);
 			SaveFile();
 		}
 

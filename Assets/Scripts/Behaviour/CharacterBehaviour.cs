@@ -9,7 +9,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public SC_Character Character;
     [HideInInspector] public GameBehaviour GameBehav;
     [HideInInspector] public PlayerBehaviour PlayerBehav;
-    public CharacterDisplay CharDisplay;
+    [HideInInspector] public CharacterDisplay CharDisplay;
 
     public List<GameObject> HandCards;
     public SC_Deck scDeck;
@@ -17,7 +17,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public int Level = 1;
     [HideInInspector] public int MaxHealth;
-    public int Health;
+    public int Health = 1;
     [HideInInspector] public int MaxExp;
     public int Exp;
 
@@ -51,12 +51,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public bool IsEnemy;
 
-    void Awake()
+    public void Init(CharacterData CharData)
     {
-        GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
+        Character = CharData.GetCharacter();
 
-        Health = MaxHealth = Character.Health;
-        Exp = 0; MaxExp = 100;
+        Level = CharData.Level;
+
+        MaxHealth = Character.Health;
+        Health = CharData.Health;
+        
+        Exp = CharData.Exp; MaxExp = 100;
 
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
@@ -64,14 +68,44 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         DEF = Character.Defence;
         ATK = Character.Attack;
+        Bullet = CharData.Bullet;
         MaxBullet = Character.MaxBullet;
 
-        Deck = new List<SC_Card>();
-        for (int i = 0; i < scDeck.Deck.Count; i++)
-        {
-            Deck.Add(scDeck.Deck[i]);
-        }
-        Shuffle();
+        //Deck = new List<SC_Card>();
+        //for (int i = 0; i < scDeck.Deck.Count; i++)
+        //{
+        //    Deck.Add(scDeck.Deck[i]);
+        //}
+        //Shuffle();
+    }
+
+    public void Init(SC_Character _Character)
+    {
+        Character = _Character;
+
+        Health = MaxHealth = Character.Health;
+        Exp = 0; MaxExp = 100;
+        
+        Both = MaxBoth = Character.MaxBoth;
+        Stamina = MaxStamina = Character.MaxStamina;
+        Mana = MaxMana = Character.MaxMana;
+        
+        DEF = Character.Defence;
+        ATK = Character.Attack;
+        MaxBullet = Character.MaxBullet;
+        
+        //Deck = new List<SC_Card>();
+        //for (int i = 0; i < scDeck.Deck.Count; i++)
+        //{
+        //    Deck.Add(scDeck.Deck[i]);
+        //}
+        //Shuffle();
+    }
+
+    void Awake()
+    {
+        GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
+        CharDisplay = GetComponent<CharacterDisplay>();
     }
 
     // Update is called once per frame

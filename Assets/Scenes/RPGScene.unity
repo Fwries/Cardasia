@@ -693,6 +693,7 @@ MonoBehaviour:
   xPos: 8
   yPos: 6
   PartyCharacterData: []
+  TempChar: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
 --- !u!1001 &683270663
 PrefabInstance:
   m_ObjectHideFlags: 0
