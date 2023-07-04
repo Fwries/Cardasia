@@ -8,6 +8,7 @@ public class GameBehaviour : MonoBehaviour
     public PlayerBehaviour CurrentPlayerTurn;
     public PlayerBehaviour Player;
     public PlayerBehaviour Opponent;
+    public save SaveFile;
 
     public GameDisplay GameDis;
     public List<GameObject> HandObjects;
@@ -27,11 +28,11 @@ public class GameBehaviour : MonoBehaviour
 
     void Awake()
     {
-        for (int i = 0; i < Player.Character.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             Player.Character[i].PlayerBehav = Player;
         }
-        for (int i = 0; i < Opponent.Character.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             Opponent.Character[i].PlayerBehav = Opponent;
             Opponent.Character[i].IsEnemy = true;

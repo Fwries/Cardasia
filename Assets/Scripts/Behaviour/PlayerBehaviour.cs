@@ -6,7 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public List<CharacterBehaviour> Character;
     public CharacterBehaviour[] ActiveCharacter = { null, null, null};
-    public CharacterBehaviour BackCharacter;
+    public CharacterBehaviour[] BackCharacter = { null, null};
 
     public bool LoseATurn;
 
@@ -31,7 +31,14 @@ public class PlayerBehaviour : MonoBehaviour
                 ActiveCharacter[1] = Character[0];
                 break;
             case 4:
-                BackCharacter = Character[3];
+                BackCharacter[0] = Character[3];
+                ActiveCharacter[2] = Character[2];
+                ActiveCharacter[0] = Character[1];
+                ActiveCharacter[1] = Character[0];
+                break;
+            case 5:
+                BackCharacter[0] = Character[3];
+                BackCharacter[1] = Character[4];
                 ActiveCharacter[2] = Character[2];
                 ActiveCharacter[0] = Character[1];
                 ActiveCharacter[1] = Character[0];

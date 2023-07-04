@@ -19,7 +19,7 @@ public class save : MonoBehaviour
 	{
 		if (SaveStart) 
 		{
-			CreateCharacterData(GetComponent<CharacterMovement>().Character, 1);
+			CreateCharacterData(GetComponent<CharacterMovement>().Character, 5);
 			SaveFile();
 		}
 
