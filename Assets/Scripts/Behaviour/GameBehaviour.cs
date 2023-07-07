@@ -36,13 +36,14 @@ public class GameBehaviour : MonoBehaviour
             if (i < SaveFile.PartyCharacterData.Length)
             {
                 Player.CharacterTape[i] = Player.CharObj[i].AddComponent<CharacterBehaviour>();
+                Player.CharacterTape[i].HandObject = HandObjects[i];
                 Player.CharacterTape[i].Init(SaveFile.PartyCharacterData[i]);
                 Player.CharacterTape[i].PlayerBehav = Player;
                 Player.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Player.CharacterTape[i]);
             }
             else
             {
-                Player.CharacterTape[i].gameObject.SetActive(false);
+                Player.CharObj[i].gameObject.SetActive(false);
             }
         }
         Player.UpdateActive();
@@ -53,14 +54,15 @@ public class GameBehaviour : MonoBehaviour
             if (i < 5)
             {
                 Opponent.CharacterTape[i] = Opponent.CharObj[i].AddComponent<CharacterBehaviour>();
+                Opponent.CharacterTape[i].HandObject = HandObjects[i + 5];
                 Opponent.CharacterTape[i].Init(SaveFile.TempChar);
                 Opponent.CharacterTape[i].PlayerBehav = Opponent;
-                Opponent.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Opponent.CharacterTape[i]);
                 Opponent.CharacterTape[i].IsEnemy = true;
+                Opponent.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Opponent.CharacterTape[i]);
             }
             else
             {
-                Opponent.CharacterTape[i].gameObject.SetActive(false);
+                Opponent.CharObj[i].gameObject.SetActive(false);
             }
         }
     }
@@ -72,12 +74,10 @@ public class GameBehaviour : MonoBehaviour
 
         for (int i = 0; i < Player.CharacterTape.Length; i++)
         {
-            Player.CharacterTape[i].HandObject = HandObjects[i];
             Player.CharacterTape[i].Draw(3);
         }
         for (int i = 0; i < Opponent.CharacterTape.Length; i++)
         {
-            Opponent.CharacterTape[i].HandObject = HandObjects[i+4];
             Opponent.CharacterTape[i].Draw(3);
         }
 

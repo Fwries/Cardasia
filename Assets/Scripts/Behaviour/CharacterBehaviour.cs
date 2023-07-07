@@ -71,12 +71,14 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Bullet = CharData.Bullet;
         MaxBullet = Character.MaxBullet;
 
-        //Deck = new List<SC_Card>();
-        //for (int i = 0; i < scDeck.Deck.Count; i++)
-        //{
-        //    Deck.Add(scDeck.Deck[i]);
-        //}
-        //Shuffle();
+        scDeck = Character.DefaultDeck;
+
+        Deck = new List<SC_Card>();
+        for (int i = 0; i < scDeck.Deck.Count; i++)
+        {
+            Deck.Add(scDeck.Deck[i]);
+        }
+        Shuffle();
     }
 
     public void Init(SC_Character _Character)
@@ -93,13 +95,15 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         DEF = Character.Defence;
         ATK = Character.Attack;
         MaxBullet = Character.MaxBullet;
-        
-        //Deck = new List<SC_Card>();
-        //for (int i = 0; i < scDeck.Deck.Count; i++)
-        //{
-        //    Deck.Add(scDeck.Deck[i]);
-        //}
-        //Shuffle();
+
+        scDeck = Character.DefaultDeck;
+
+        Deck = new List<SC_Card>();
+        for (int i = 0; i < scDeck.Deck.Count; i++)
+        {
+            Deck.Add(scDeck.Deck[i]);
+        }
+        Shuffle();
     }
 
     void Awake()
@@ -148,7 +152,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (Trip) { return; }
         for (int index1 = 0; index1 < DrawNum; index1++)
         {
-            if (HandCards.Count == 5) { return; }
+            if (HandCards == null || HandCards.Count == 5) { return; }
             if (Deck.Count > 0)
             {
                 int index2 = Deck.Count - 1;

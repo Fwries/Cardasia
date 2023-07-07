@@ -20,9 +20,7 @@ MonoBehaviour:
   MaxStamina: 0
   MaxMana: 0
   MaxBullet: 0
-  CharacterClass: 0
-  CharacterSubClass: 0
-  DefaultDeck: {fileID: 0}
+  DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
   Idle_Down_Anim:
   - {fileID: -1792844185, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -1792844185, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}

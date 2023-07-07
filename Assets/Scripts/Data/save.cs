@@ -21,7 +21,7 @@ public class save : MonoBehaviour
 	{
 		if (SaveStart) 
 		{
-			CreateCharacterData(TempChar, 5);
+			CreateNewCharacterData(TempChar, 5);
 			SaveFile();
 		}
 
@@ -95,5 +95,27 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = temp[i];
         }
 		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level);
+	}
+
+	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim)
+	{
+		CharacterData[] temp = PartyCharacterData;
+		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
+		for (int i = 0; i < temp.Length; i++)
+		{
+			PartyCharacterData[i] = temp[i];
+		}
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim);
+	}
+	public void CreateNewCharacterData(SC_Character _Character, int _Level)
+	{
+		CharacterData[] temp = PartyCharacterData;
+		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
+		for (int i = 0; i < temp.Length; i++)
+		{
+			PartyCharacterData[i] = temp[i];
+		}
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level);
+		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health;
 	}
 }

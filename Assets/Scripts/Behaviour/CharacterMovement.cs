@@ -82,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
             {
-                SaveData.CreateCharacterData(Character, 1);
+                SaveData.CreateNewCharacterData(Character, 1);
             }
         }
 

@@ -348,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &100946285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1916,17 +1916,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6074611329161913119, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
   m_PrefabInstance: {fileID: 6074611328433173224}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1016123898 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6074611329161913106, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
-  m_PrefabInstance: {fileID: 6074611328433173224}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996133588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e69484e15157d54fb8af437aff76c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1049676389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2336,7 @@ MonoBehaviour:
   TurnNo: 0
   TopObj: {fileID: 1445088768}
   BottomObj: {fileID: 975943653}
-  Selected: {fileID: 1016123898}
+  Selected: {fileID: 0}
 --- !u!114 &1312719082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,7 +2376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d932e98cdfd338439b2740cea8ae553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveStart: 1
+  SaveStart: 0
   nameStr: 
   Map: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
   xPos: 8
