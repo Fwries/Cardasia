@@ -5,7 +5,11 @@ using UnityEngine;
 public class PartyCharacterBehaviour : MonoBehaviour
 {
     public save saveFile;
+    public RotationBehaviourUI RotationUI;
+
     public UICharacterDisplay[] UICharacter;
+    public UICharacterDisplay[] RotationCharacter;
+    public UICharacterDisplay[] CharacterTape;
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +20,13 @@ public class PartyCharacterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void Init()
     {
+        CharacterTape = new UICharacterDisplay[saveFile.PartyCharacterData.Length];
+
         for (int i = 0; i <= saveFile.PartyCharacterData.Length; i++)
         {
             if (i == saveFile.PartyCharacterData.Length)
@@ -29,18 +35,29 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 {
                     UICharacter[i2].CharUI.SetActive(false);
                     UICharacter[i2].CharData = null;
+                    
+                    RotationCharacter[i2].CharUI.SetActive(false);
+                    RotationCharacter[i2].CharData = null;
                 }
             }
             else if (saveFile.PartyCharacterData[i] != null)
             {
                 UICharacter[i].CharUI.SetActive(true);
                 UICharacter[i].CharData = saveFile.PartyCharacterData[i];
+                
+                CharacterTape[i] = UICharacter[i];
+                RotationCharacter[i].CharData = saveFile.PartyCharacterData[i];
             }
             else
             {
                 UICharacter[i].CharUI.SetActive(false);
                 UICharacter[i].CharData = null;
+                
+                RotationCharacter[i].CharUI.SetActive(false);
+                RotationCharacter[i].CharData = null;
             }
         }
+
+        RotationUI.Init();
     }
 }
