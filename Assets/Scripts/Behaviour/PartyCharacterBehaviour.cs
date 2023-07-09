@@ -20,6 +20,9 @@ public class PartyCharacterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool HasChanged = false;
+        if (CharacterTape.Length < saveFile.PartyCharacterData.Length || CharacterTape.Length > saveFile.PartyCharacterData.Length) { HasChanged = true; }
+
         CharacterTape = new UICharacterDisplay[saveFile.PartyCharacterData.Length];
 
         for (int i = 0; i <= saveFile.PartyCharacterData.Length; i++)
@@ -52,6 +55,11 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 RotationCharacter[i].CharUI.SetActive(false);
                 RotationCharacter[i].CharData = null;
             }
+        }
+
+        if (HasChanged)
+        {
+            RotationUI.Init();
         }
     }
 
