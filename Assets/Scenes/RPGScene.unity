@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d932e98cdfd338439b2740cea8ae553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveStart: 1
+  SaveStart: 0
   nameStr: 
   Map: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
   xPos: 8
@@ -2640,11 +2640,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PartyBehav: {fileID: 153818853}
-  CentrePos: {x: 311.99, y: 362.99}
-  LeftPos: {x: 191.11, y: 314.99}
-  RightPos: {x: 431.99, y: 314.99}
-  LeftBackPos: {x: 236.99, y: 194.99}
-  RightBackPos: {x: 386.99, y: 194.99}
+  Character: {fileID: 582808928}
+  CentrePos: {x: 303.99, y: 357.99}
+  LeftPos: {x: 183.11, y: 309.99}
+  RightPos: {x: 423.99, y: 309.99}
+  LeftBackPos: {x: 228.99, y: 189.99}
+  RightBackPos: {x: 378.99, y: 189.99}
+  TempCentrePos: {x: 0, y: 0}
+  TempLeftPos: {x: 0, y: 0}
+  TempRightPos: {x: 0, y: 0}
+  TempLeftBackPos: {x: 0, y: 0}
+  TempRightBackPos: {x: 0, y: 0}
   m_Speed: 140
   DragAmt: 0.9
   DragOffsetXPos: 0
