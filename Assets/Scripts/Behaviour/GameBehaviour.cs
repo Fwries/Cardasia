@@ -281,17 +281,17 @@ public class GameBehaviour : MonoBehaviour
     {
         while (true)
         {
-            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y >= -740)
+            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y >= -270)
             {
                 TopObj.transform.position = new Vector3(TopObj.transform.position.x, 1350, TopObj.transform.position.z);
-                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, -740, BottomObj.transform.position.z);
+                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, -270, BottomObj.transform.position.z);
                 break;
             }
             if (TopObj.transform.position.y < 1350)
             {
                 TopObj.transform.position = new Vector3(TopObj.transform.position.x, TopObj.transform.position.y + (Time.deltaTime * 225), TopObj.transform.position.z);
             }
-            if (BottomObj.transform.position.y > -740)
+            if (BottomObj.transform.position.y > -270)
             {
                 BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, BottomObj.transform.position.y - (Time.deltaTime * 225), BottomObj.transform.position.z);
             }
