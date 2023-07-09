@@ -13,6 +13,8 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
     public Vector2 LeftPos;
     public Vector2 RightPos;
 
+    private Vector2 CharacterPos;
+
     public Vector2 LeftBackPos;
     public Vector2 RightBackPos;
 
@@ -39,6 +41,15 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     public void Init()
     {
+        CharacterPos = new Vector2(Character.transform.position.x, Character.transform.position.y);
+
+        TempCentrePos = CentrePos + CharacterPos;
+        TempLeftPos = LeftPos + CharacterPos;
+        TempRightPos = RightPos + CharacterPos;
+
+        TempLeftBackPos = LeftBackPos + CharacterPos;
+        TempRightBackPos = RightBackPos + CharacterPos;
+
         ResetCharPos();
 
         for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
@@ -51,16 +62,6 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
     void Update()
     {
         if (PartyBehav.CharacterTape.Length == 1) { return; }
-
-        Vector2 CharacterPos = new Vector2(Character.transform.position.x, Character.transform.position.y);
-
-        TempCentrePos = CentrePos + CharacterPos;
-        TempLeftPos = LeftPos + CharacterPos;
-        TempRightPos = RightPos + CharacterPos;
-
-        TempLeftBackPos = LeftBackPos + CharacterPos;
-        TempRightBackPos = RightBackPos + CharacterPos;
-
 
         if (DragOffsetXPos < 0)
         {
@@ -290,37 +291,58 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     public void Shift(bool right)
     {
-        //CharacterBehaviour[] TempTape = PartyBehav.RotationCharacter;
-        //PartyBehav.RotationCharacter = new CharacterBehaviour[PartyBehav.CharacterTape.Length];
+        UICharacterDisplay[] TempTape = PartyBehav.CharacterTape;
+        PartyBehav.CharacterTape = new UICharacterDisplay[PartyBehav.CharacterTape.Length];
 
-        //if (right)
-        //{
-        //    for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
-        //    {
-        //        if (i - 1 >= 0)
-        //        {
-        //            PartyBehav.RotationCharacter[i] = TempTape[i - 1];
-        //        }
-        //        else
-        //        {
-        //            PartyBehav.RotationCharacter[i] = TempTape[PartyBehav.CharacterTape.Length - 1];
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
-        //    {
-        //        if (i + 1 < PartyBehav.CharacterTape.Length)
-        //        {
-        //            PartyBehav.RotationCharacter[i] = TempTape[i + 1];
-        //        }
-        //        else
-        //        {
-        //            PartyBehav.RotationCharacter[i] = TempTape[0];
-        //        }
-        //    }
-        //}
-        //ResetCharPos();
+        UICharacterDisplay[] UITempTape = PartyBehav.UICharacter;
+        PartyBehav.UICharacter = new UICharacterDisplay[5];
+
+        UICharacterDisplay[] RotTempTape = PartyBehav.RotationCharacter;
+        PartyBehav.RotationCharacter = new UICharacterDisplay[5];
+
+        if (right)
+        {
+            for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
+            {
+                if (i - 1 >= 0)
+                {
+                    PartyBehav.CharacterTape[i] = TempTape[i - 1];
+                    PartyBehav.UICharacter[i] = UITempTape[i - 1];
+                    PartyBehav.RotationCharacter[i] = RotTempTape[i - 1];
+                }
+                else
+                {
+                    PartyBehav.CharacterTape[i] = TempTape[PartyBehav.CharacterTape.Length - 1];
+                    PartyBehav.UICharacter[i] = UITempTape[PartyBehav.CharacterTape.Length - 1];
+                    PartyBehav.RotationCharacter[i] = RotTempTape[PartyBehav.CharacterTape.Length - 1];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
+            {
+                if (i + 1 < PartyBehav.CharacterTape.Length)
+                {
+                    PartyBehav.CharacterTape[i] = TempTape[i + 1];
+                    PartyBehav.UICharacter[i] = UITempTape[i + 1];
+                    PartyBehav.RotationCharacter[i] = RotTempTape[i + 1];
+                }
+                else
+                {
+                    PartyBehav.CharacterTape[i] = TempTape[0];
+                    PartyBehav.UICharacter[i] = UITempTape[0];
+                    PartyBehav.RotationCharacter[i] = RotTempTape[0];
+                }
+            }
+        }
+
+        for (int i = PartyBehav.CharacterTape.Length; i < 5; i++)
+        {
+            PartyBehav.UICharacter[i] = UITempTape[i];
+            PartyBehav.RotationCharacter[i] = RotTempTape[i];
+        }
+
+        ResetCharPos();
     }
 }
