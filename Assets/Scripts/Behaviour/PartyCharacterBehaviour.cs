@@ -20,7 +20,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
     void Start()
     {
         Init();
-        SetCurrentDeck();
+        SetCurrentDeck(0);
     }
 
     // Update is called once per frame
@@ -108,11 +108,16 @@ public class PartyCharacterBehaviour : MonoBehaviour
         RotationUI.Init();
     }
 
-    void SetCurrentDeck()
+    public void SetCurrentDeck(int Number)
     {
-        if (scDeck != saveFile.PartyCharacterData[0].GetDeck()) 
+        foreach (Transform child in DeckContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (scDeck != saveFile.PartyCharacterData[Number].GetDeck()) 
         { 
-            scDeck = saveFile.PartyCharacterData[0].GetDeck();
+            scDeck = saveFile.PartyCharacterData[Number].GetDeck();
 
             for (int i = 0; i < scDeck.Deck.Count; i++)
             {

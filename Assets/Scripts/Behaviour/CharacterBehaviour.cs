@@ -110,6 +110,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     {
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
         CharDisplay = GetComponent<CharacterDisplay>();
+        HandCards = new List<GameObject>();
     }
 
     // Update is called once per frame

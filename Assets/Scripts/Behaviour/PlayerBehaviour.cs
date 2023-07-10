@@ -47,8 +47,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
         {
-            int LowestHealthChar = 0, LowestChar = -1;
-            for (int i = 0; i < 3; i++)
+            int LowestHealthChar = 0, LowestChar = -1, ActiveCharacter = 3;
+            if (ActiveCharacter > Opponent.CharacterTape.Length) { ActiveCharacter = Opponent.CharacterTape.Length; }
+
+            for (int i = 0; i < ActiveCharacter; i++)
             {
                 if (Opponent.CharacterTape[i] != null && ((LowestHealthChar == 0 && Opponent.CharacterTape[i].Health > 0) ||
                     (Opponent.CharacterTape[i].Health < LowestHealthChar && Opponent.CharacterTape[i].Health > 0)))
