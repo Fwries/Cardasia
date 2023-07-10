@@ -20,6 +20,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         cam = Camera.main;
         canvasGroup = GetComponent<CanvasGroup>();
         Cardbehav = this.GetComponent<CardBehaviour>();
+        
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
     }
 

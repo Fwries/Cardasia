@@ -11,10 +11,16 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public UICharacterDisplay[] RotationCharacter;
     public UICharacterDisplay[] CharacterTape;
 
+    public GameObject DeckContent;
+    public GameObject InventoryContent;
+
+    public SC_Deck scDeck;
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
+        SetCurrentDeck();
     }
 
     // Update is called once per frame
@@ -100,5 +106,20 @@ public class PartyCharacterBehaviour : MonoBehaviour
         }
 
         RotationUI.Init();
+    }
+
+    void SetCurrentDeck()
+    {
+        if (scDeck != saveFile.PartyCharacterData[0].GetDeck()) 
+        { 
+            scDeck = saveFile.PartyCharacterData[0].GetDeck();
+
+            for (int i = 0; i < scDeck.Deck.Count; i++)
+            {
+                GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+                Card.transform.SetParent(DeckContent.transform);
+                Card.GetComponent<CardDisplay>().Currentcard = scDeck.Deck[i];
+            }
+        }
     }
 }

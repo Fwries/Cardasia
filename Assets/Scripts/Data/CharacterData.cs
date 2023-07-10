@@ -11,12 +11,14 @@ public class CharacterData
 	public int Exp;
 	public int Bullet;
 
+	public string DeckJson;
 	public int CurrAnim;
 
 	public CharacterData(SC_Character _Character, int _Level)
     {
 		CharJson = JsonUtility.ToJson(_Character);
 		Level = _Level;
+		DeckJson = JsonUtility.ToJson(_Character.DefaultDeck);
 	}
 
 	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim)
@@ -26,6 +28,8 @@ public class CharacterData
 		Level = _Level;
 		Exp = _Exp;
 		Bullet = _Bullet;
+		
+		DeckJson = JsonUtility.ToJson(_Character.DefaultDeck);
 
 		SetCurrAnim(_Character, _CurrAnim);
 	}
@@ -35,6 +39,13 @@ public class CharacterData
 		SC_Character scCharacter = ScriptableObject.CreateInstance<SC_Character>();
 		JsonUtility.FromJsonOverwrite(CharJson, scCharacter);
 		return scCharacter;
+	}
+
+	public SC_Deck GetDeck()
+    {
+		SC_Deck scDeck = ScriptableObject.CreateInstance<SC_Deck>();
+		JsonUtility.FromJsonOverwrite(DeckJson, scDeck);
+		return scDeck;
 	}
 
 	public Sprite[] GetCurrAnim()

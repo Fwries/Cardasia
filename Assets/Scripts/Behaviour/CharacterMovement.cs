@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Material TransitionMaterial;
     public SC_Character Character;
 
-    [SerializeField] private GameObject PartyUI;
+    [SerializeField] private GameObject[] MenuUI;
 
     private bool isMoving;
     private Vector3 startPos, targetPos;
@@ -71,8 +71,13 @@ public class CharacterMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X) && !isMoving && EventSc == null)
             {
-                UI = !UI; 
-                PartyUI.SetActive(!PartyUI.activeSelf);
+                UI = !UI;
+                MenuUI[0].SetActive(!MenuUI[0].activeSelf);
+                
+                if (!MenuUI[0].activeSelf)
+                {
+                    CloseMenu();
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Z) && !isMoving && EventSc == null)
@@ -97,6 +102,15 @@ public class CharacterMovement : MonoBehaviour
     }
 
     public void Continue() { IsSc = false; CurrSc++; }
+
+    public void CloseMenu()
+    {
+        UI = false;
+        for (int i = 0; i < MenuUI.Length; i++)
+        {
+            MenuUI[i].SetActive(false);
+        }
+    }
 
     public void TeleportPlayer(int X, int Y)
     {
