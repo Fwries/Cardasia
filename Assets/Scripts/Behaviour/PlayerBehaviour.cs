@@ -26,21 +26,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void UpdateActive()
     {
-        //for (int iC = 0; iC < Character.Count; iC++)
-        //{
-        //    for (int iA = 0; iA < ActiveCharacter.Length; iA++)
-        //    {
-        //        if (Character[iC] == ActiveCharacter[iA])
-        //        {
-        //            Character[iC].IsActive = true;
-        //            break;
-        //        }
-        //        else
-        //        {
-        //            Character[iC].IsActive = false;
-        //        }
-        //    }
-        //}
+        for (int i = 0; i < CharacterTape.Length; i++)
+        {
+            if (i < 3)
+            {
+                CharacterTape[i].IsActive = true;
+            }
+            else
+            {
+                CharacterTape[i].IsActive = false;
+            }
+        }
     }
 
     public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)

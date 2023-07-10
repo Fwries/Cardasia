@@ -92,19 +92,20 @@ public class GameBehaviour : MonoBehaviour
         {
             StartCoroutine(EnemyTurnAI());
         }
+
         int AmtCheck = 0;
         for (int i = 0; i < Player.CharacterTape.Length; i++)
         {
             if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
         }
-        if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        if (AmtCheck == Player.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
 
         AmtCheck = 0;
         for (int i = 0; i < Opponent.CharacterTape.Length; i++)
         {
-            if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
+            if (Opponent.CharacterTape[i].IsDead) { AmtCheck++; }
         }
-        if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        if (AmtCheck == Opponent.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
     }
 
     public void EndTurn()
@@ -260,11 +261,12 @@ public class GameBehaviour : MonoBehaviour
                             {
                                 if (Target != null)
                                 {
-                                    StartCoroutine(Card.PlayAnim(this, Target));
+                                    StartCoroutine(Card.PlayAnim(this, Opponent.CharacterTape[CharIdx], Target));
                                     while (EnemyCardAnim) { yield return null; }
                                 }
                                 else if (!Card.Currentcard.DoesTarget)
                                 {
+                                    StartCoroutine(Card.PlayAnim(this, Opponent.CharacterTape[CharIdx], null));
                                     while (EnemyCardAnim) { yield return null; }
                                 }
                             }

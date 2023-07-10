@@ -216,7 +216,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         if (!Character.CanBePlayed(Card, true)) { return; }
 
-        eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
+        eventData.pointerDrag.GetComponent<CardBehaviour>().Play(Character, this);
         Character.HandCards.Remove(eventData.pointerDrag);
 
         Character.AdjustHand();

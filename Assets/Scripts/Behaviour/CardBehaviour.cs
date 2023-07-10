@@ -24,9 +24,9 @@ public class CardBehaviour : MonoBehaviour
 
     }
 
-    public void Play(CharacterBehaviour target)
+    public void Play(CharacterBehaviour owner, CharacterBehaviour target)
     {
-        GameBehaviour GameBehav = target.GameBehav;
+        GameBehaviour GameBehav = owner.GameBehav;
         CharacterBehav.PlayerBehav.CardPlayed = true;
 
         switch (Currentcard.CardName)
@@ -161,7 +161,7 @@ public class CardBehaviour : MonoBehaviour
                 target.ClearStatus("Random");
                 return;
             case "Stun Grenade":
-                target.Shock += 2;
+                //target.Shock += 2;
                 return;
             case "Supersonic Bullet":
                 CharacterBehav.Reload(1);
@@ -175,19 +175,22 @@ public class CardBehaviour : MonoBehaviour
         Debug.Log(Currentcard.CardName + " does not exist");
     }
 
-    public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)
+    public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Owner, CharacterBehaviour Target)
     {
-        Vector2 StartPos = CharacterBehav.gameObject.transform.position;
-        Game.EnemyCardAnim = true;
-        float dt = 0;
-        while (dt < 0.5f)
+        if (Target != null)
         {
-            this.gameObject.transform.position = StartPos + DistNormalize(StartPos, Target.gameObject.transform.position) * m_Speed * Vector2.Distance(StartPos, Target.gameObject.transform.position) * dt;
-            dt += Time.deltaTime;
-            yield return null;
+            Vector2 StartPos = CharacterBehav.gameObject.transform.position;
+            Game.EnemyCardAnim = true;
+            float dt = 0;
+            while (dt < 0.5f)
+            {
+                this.gameObject.transform.position = StartPos + DistNormalize(StartPos, Target.gameObject.transform.position) * m_Speed * Vector2.Distance(StartPos, Target.gameObject.transform.position) * dt;
+                dt += Time.deltaTime;
+                yield return null;
+            }
         }
         
-        Play(Target);
+        Play(Owner, Target);
         CharacterBehav.HandCards.Remove(this.gameObject);
         CharacterBehav.AdjustHand();
         Destroy(this.gameObject);
