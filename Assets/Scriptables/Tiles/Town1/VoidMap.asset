@@ -22,7 +22,7 @@ MonoBehaviour:
   Script:
   - /Flash in
   - /Obj ChangeMap 6
-  - /Tp 3 1
+  - /Tp X 1
   - /Flash out
   IsAnim: 0
   ConstantAnim: 0

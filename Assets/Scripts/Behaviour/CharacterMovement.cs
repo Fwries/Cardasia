@@ -220,7 +220,27 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (i == strg.Length && XIsFound)
                 {
-                    TeleportPlayer(Convert.ToInt32(sX), Convert.ToInt32(sY));
+                    int x, y;
+                    
+                    if (sX == "X")
+                    {
+                        x = (int)transform.position.x;
+                    }
+                    else
+                    {
+                        x = Convert.ToInt32(sX);
+                    }
+
+                    if (sY == "Y")
+                    {
+                        y = (int)transform.position.y;
+                    }
+                    else
+                    {
+                        y = Convert.ToInt32(sY);
+                    }
+
+                    TeleportPlayer(x, y);
                     IsSc = false;
                     CurrSc++;
                     return;
