@@ -46,8 +46,6 @@ public class save : MonoBehaviour
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
-		
-		Debug.Log("Saved");
 	}
 
 	public void LoadFile()

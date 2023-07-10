@@ -24,3 +24,4 @@ MonoBehaviour:
   - /Grass
   IsAnim: 0
   ConstantAnim: 0
+  ChangeMap: {fileID: 0}

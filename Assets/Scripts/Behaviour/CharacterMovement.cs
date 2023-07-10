@@ -80,11 +80,6 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Z) && !isMoving && EventSc == null)
-            {
-                SaveData.SaveFile();
-            }
-
             if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
             {
                 SaveData.CreateNewCharacterData(Character, 1);

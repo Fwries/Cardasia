@@ -92,19 +92,19 @@ public class GameBehaviour : MonoBehaviour
         {
             StartCoroutine(EnemyTurnAI());
         }
-        //int AmtCheck = 0;
-        //for (int i = 0; i < Player.CharacterTape.Length; i++)
-        //{
-        //    if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
-        //}
-        //if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        int AmtCheck = 0;
+        for (int i = 0; i < Player.CharacterTape.Length; i++)
+        {
+            if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
+        }
+        if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
 
-        //AmtCheck = 0;
-        //for (int i = 0; i < Opponent.CharacterTape.Length; i++)
-        //{
-        //    if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
-        //}
-        //if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        AmtCheck = 0;
+        for (int i = 0; i < Opponent.CharacterTape.Length; i++)
+        {
+            if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
+        }
+        if (AmtCheck == 4) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
     }
 
     public void EndTurn()
