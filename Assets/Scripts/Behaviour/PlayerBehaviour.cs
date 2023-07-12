@@ -89,4 +89,16 @@ public class PlayerBehaviour : MonoBehaviour
         }
         return GetTarget(1, Opponent);
     }
+
+    public CharacterBehaviour GetOrigCharacterTape(int i)
+    {
+        for (int j = 0; j < CharacterTape.Length; j++)
+        {
+            if (CharacterTape[j].OrigPos == i)
+            {
+                return CharacterTape[j];
+            }
+        }
+        return null;
+    }
 }

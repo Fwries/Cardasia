@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0288e08510bae6440ba8b26ebf961a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFile: {fileID: 582808932}
+  SaveData: {fileID: 0}
   RotationUI: {fileID: 2024134581}
   UICharacter:
   - {fileID: 1147453514}
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef924e63359d784f8fc6a4b3a7e4a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveData: {fileID: 582808932}
+  SaveData: {fileID: 0}
   TilePrefab: {fileID: 656934673714413507, guid: 08d22fb4fedc45f4d98830880f663c8e, type: 3}
   SCMap: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
   Tileset: []
@@ -1175,7 +1175,6 @@ GameObject:
   - component: {fileID: 582808930}
   - component: {fileID: 582808929}
   - component: {fileID: 582808931}
-  - component: {fileID: 582808932}
   m_Layer: 0
   m_Name: Character_RPG
   m_TagString: Untagged
@@ -1263,7 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 1691599141}
-  SaveData: {fileID: 582808932}
+  SaveData: {fileID: 0}
   Map: {fileID: 225363212}
   DialogueBehav: {fileID: 1381464476}
   CharacterRenderer: {fileID: 582808929}
@@ -1273,25 +1272,6 @@ MonoBehaviour:
   - {fileID: 1718951705}
   - {fileID: 153818849}
   CurrAnim: []
---- !u!114 &582808932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582808928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d932e98cdfd338439b2740cea8ae553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SaveStart: 1
-  nameStr: 
-  Map: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
-  xPos: 8
-  yPos: 6
-  PartyCharacterData: []
-  TempChar: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
 --- !u!1 &610405394
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,16 +4084,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 582808932}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: save, Assembly-CSharp
         m_MethodName: SaveFile
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: save
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1980911631

@@ -5,7 +5,7 @@ using System.IO;
 
 public class MapBehaviour : MonoBehaviour
 {
-    [SerializeField] private save SaveData;
+    public save SaveData;
     public GameObject TilePrefab;
     public SC_Map SCMap;
 

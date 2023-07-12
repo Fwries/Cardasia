@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private Camera Cam;
-    [SerializeField] private save SaveData;
+    public save SaveData;
     [SerializeField] private MapBehaviour Map;
     [SerializeField] private DialogueBehaviour DialogueBehav;
     [SerializeField] private SpriteRenderer CharacterRenderer;
@@ -291,6 +291,7 @@ public class CharacterMovement : MonoBehaviour
             int Rand = UnityEngine.Random.Range(0, 100);
             if (Rand <= 15)
             {
+                SaveData.SaveFile("battle");
                 StartCoroutine(Battle());
             }
             else
@@ -449,7 +450,7 @@ public class CharacterMovement : MonoBehaviour
             yield return null;
         }
         TransitionMaterial.SetFloat("_Cutoff", 1f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+        SaveData.ChangeScene("BattleScene", "battle");
     }
 
     private IEnumerator Delayfor(float DelayTime)

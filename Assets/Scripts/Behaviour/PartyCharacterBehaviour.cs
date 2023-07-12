@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartyCharacterBehaviour : MonoBehaviour
 {
-    public save saveFile;
+    public save SaveData;
     public RotationBehaviourUI RotationUI;
 
     public UICharacterDisplay[] UICharacter;
@@ -19,6 +19,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveData = GameObject.Find("Save").GetComponent<save>();
         Init();
         SetCurrentDeck(0);
     }
@@ -27,13 +28,13 @@ public class PartyCharacterBehaviour : MonoBehaviour
     void Update()
     {
         bool HasChanged = false;
-        if (CharacterTape.Length < saveFile.PartyCharacterData.Length || CharacterTape.Length > saveFile.PartyCharacterData.Length) { HasChanged = true; }
+        if (CharacterTape.Length < SaveData.PartyCharacterData.Length || CharacterTape.Length > SaveData.PartyCharacterData.Length) { HasChanged = true; }
 
-        CharacterTape = new UICharacterDisplay[saveFile.PartyCharacterData.Length];
+        CharacterTape = new UICharacterDisplay[SaveData.PartyCharacterData.Length];
 
-        for (int i = 0; i <= saveFile.PartyCharacterData.Length; i++)
+        for (int i = 0; i <= SaveData.PartyCharacterData.Length; i++)
         {
-            if (i == saveFile.PartyCharacterData.Length)
+            if (i == SaveData.PartyCharacterData.Length)
             {
                 for (int i2 = i; i2 < 5; i2++)
                 {
@@ -44,14 +45,14 @@ public class PartyCharacterBehaviour : MonoBehaviour
                     RotationCharacter[i2].CharData = null;
                 }
             }
-            else if (saveFile.PartyCharacterData[i] != null)
+            else if (SaveData.PartyCharacterData[i] != null)
             {
                 UICharacter[i].CharUI.SetActive(true);
-                UICharacter[i].CharData = saveFile.PartyCharacterData[i];
+                UICharacter[i].CharData = SaveData.PartyCharacterData[i];
 
                 CharacterTape[i] = UICharacter[i];
                 RotationCharacter[i].CharUI.SetActive(true);
-                RotationCharacter[i].CharData = saveFile.PartyCharacterData[i];
+                RotationCharacter[i].CharData = SaveData.PartyCharacterData[i];
             }
             else
             {
@@ -71,11 +72,11 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
     void Init()
     {
-        CharacterTape = new UICharacterDisplay[saveFile.PartyCharacterData.Length];
+        CharacterTape = new UICharacterDisplay[SaveData.PartyCharacterData.Length];
 
-        for (int i = 0; i <= saveFile.PartyCharacterData.Length; i++)
+        for (int i = 0; i <= SaveData.PartyCharacterData.Length; i++)
         {
-            if (i == saveFile.PartyCharacterData.Length)
+            if (i == SaveData.PartyCharacterData.Length)
             {
                 for (int i2 = i; i2 < 5; i2++)
                 {
@@ -86,14 +87,14 @@ public class PartyCharacterBehaviour : MonoBehaviour
                     RotationCharacter[i2].CharData = null;
                 }
             }
-            else if (saveFile.PartyCharacterData[i] != null)
+            else if (SaveData.PartyCharacterData[i] != null)
             {
                 UICharacter[i].CharUI.SetActive(true);
-                UICharacter[i].CharData = saveFile.PartyCharacterData[i];
+                UICharacter[i].CharData = SaveData.PartyCharacterData[i];
 
                 CharacterTape[i] = UICharacter[i];
                 RotationCharacter[i].CharUI.SetActive(true);
-                RotationCharacter[i].CharData = saveFile.PartyCharacterData[i];
+                RotationCharacter[i].CharData = SaveData.PartyCharacterData[i];
             }
             else
             {
@@ -115,9 +116,9 @@ public class PartyCharacterBehaviour : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (scDeck != saveFile.PartyCharacterData[Number].GetDeck()) 
+        if (scDeck != SaveData.PartyCharacterData[Number].GetDeck()) 
         { 
-            scDeck = saveFile.PartyCharacterData[Number].GetDeck();
+            scDeck = SaveData.PartyCharacterData[Number].GetDeck();
 
             for (int i = 0; i < scDeck.Deck.Count; i++)
             {

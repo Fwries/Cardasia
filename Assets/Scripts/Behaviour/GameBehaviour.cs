@@ -8,7 +8,7 @@ public class GameBehaviour : MonoBehaviour
     public PlayerBehaviour CurrentPlayerTurn;
     public PlayerBehaviour Player;
     public PlayerBehaviour Opponent;
-    public save SaveFile;
+    public save SaveData;
 
     public GameDisplay GameDis;
     public List<GameObject> HandObjects;
@@ -30,16 +30,16 @@ public class GameBehaviour : MonoBehaviour
 
     void Awake()
     {
-        SaveFile.LoadFile();
+        SaveData = GameObject.Find("Save").GetComponent<save>();
 
-        Player.CharacterTape = new CharacterBehaviour[SaveFile.PartyCharacterData.Length];
+        Player.CharacterTape = new CharacterBehaviour[SaveData.PartyCharacterData.Length];
         for (int i = 0; i < 5; i++)
         {
-            if (i < SaveFile.PartyCharacterData.Length)
+            if (i < SaveData.PartyCharacterData.Length)
             {
                 Player.CharacterTape[i] = Player.CharObj[i].AddComponent<CharacterBehaviour>();
                 Player.CharacterTape[i].HandObject = HandObjects[i];
-                Player.CharacterTape[i].Init(SaveFile.PartyCharacterData[i]);
+                Player.CharacterTape[i].Init(SaveData.PartyCharacterData[i]);
                 Player.CharacterTape[i].PlayerBehav = Player;
                 Player.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Player.CharacterTape[i]);
             }
@@ -57,7 +57,7 @@ public class GameBehaviour : MonoBehaviour
             {
                 Opponent.CharacterTape[i] = Opponent.CharObj[i].AddComponent<CharacterBehaviour>();
                 Opponent.CharacterTape[i].HandObject = HandObjects[i + 5];
-                Opponent.CharacterTape[i].Init(SaveFile.TempChar);
+                Opponent.CharacterTape[i].Init(SaveData.TempChar);
                 Opponent.CharacterTape[i].PlayerBehav = Opponent;
                 Opponent.CharacterTape[i].IsEnemy = true;
                 Opponent.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Opponent.CharacterTape[i]);
@@ -307,7 +307,11 @@ public class GameBehaviour : MonoBehaviour
         if (AmtCheck == Player.CharacterTape.Length) 
         {
             Debug.Log("Player Died");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene");
+
+            SaveData.BattleUpdate(this);
+            SaveData.SaveFile("battle");
+            SaveData.ChangeScene("RPGScene", "battle");
+
             return true;
         }
 
@@ -319,7 +323,11 @@ public class GameBehaviour : MonoBehaviour
         if (AmtCheck == Opponent.CharacterTape.Length) 
         {
             Debug.Log("You Win");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene");
+
+            SaveData.BattleUpdate(this);
+            SaveData.SaveFile("battle");
+            SaveData.ChangeScene("RPGScene", "battle");
+
             return true;
         }
         return false;

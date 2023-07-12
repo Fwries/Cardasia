@@ -50,10 +50,14 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public bool Ward;
 
     public bool IsEnemy;
+    public int OrigPos;
+    public int CurrAnim;
 
     public void Init(CharacterData CharData)
     {
         Character = CharData.GetCharacter();
+        OrigPos = CharData.OrigPos;
+        CurrAnim = CharData.CurrAnim;
 
         Level = CharData.Level;
 
@@ -84,6 +88,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void Init(SC_Character _Character)
     {
         Character = _Character;
+        OrigPos = -1;
+        CurrAnim = 0;
 
         Health = MaxHealth = Character.Health;
         Exp = 0; MaxExp = 100;
