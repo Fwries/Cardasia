@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Camera Cam;
     [SerializeField] private save SaveData;
     [SerializeField] private MapBehaviour Map;
+    [SerializeField] private DialogueBehaviour DialogueBehav;
     [SerializeField] private SpriteRenderer CharacterRenderer;
     [SerializeField] private Material TransitionMaterial;
     public SC_Character Character;
@@ -27,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private int CurrSc;
     private bool IsSc;
     private bool UI;
+    private bool Delay;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,7 @@ public class CharacterMovement : MonoBehaviour
             else if (CurrSc == EventSc.GetLength(0)) 
             { 
                 EventSc = null; 
-                CurrSc = 0; 
+                CurrSc = 0;
             }
         }
         else
@@ -66,7 +68,7 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D) && !isMoving && EventSc == null && !UI)
                 StartCoroutine(MovePlayer(Vector3.right, false));
 
-            if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null && !UI)
+            if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null && !UI && !Delay)
                 Interact();
 
             if (Input.GetKeyDown(KeyCode.X) && !isMoving && EventSc == null)
@@ -195,7 +197,7 @@ public class CharacterMovement : MonoBehaviour
         if (targetPos.x > -1 && targetPos.x < Map.InteractableTileMap.GetLength(1) &&
             targetPos.y > -1 && targetPos.y < Map.InteractableTileMap.GetLength(0))
         {
-
+            EventSc = Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].Script;
         }
     }
 
@@ -253,6 +255,28 @@ public class CharacterMovement : MonoBehaviour
             else if (strg[4] == 'D') { StartCoroutine(MovePlayer(Vector3.down, true)); }
             else if (strg[4] == 'L') { StartCoroutine(MovePlayer(Vector3.left, true)); }
             else if (strg[4] == 'R') { StartCoroutine(MovePlayer(Vector3.right, true)); }
+        }
+        else if (strg[1] == 'D' && strg[2] == 'L')
+        {
+            if (strg[3] == 'E' && strg[4] == 'n' && strg[5] == 'd')
+            {
+                DialogueBehav.Reset();
+                StartCoroutine(Delayfor(0.25f));
+                DialogueBehav.gameObject.SetActive(false);
+                IsSc = false; CurrSc++;
+            }
+            else
+            {
+                if (!DialogueBehav.gameObject.activeSelf) { DialogueBehav.gameObject.SetActive(true); }
+
+                string Dialogue = "";
+                for (int i = 4; i < strg.Length; i++)
+                {
+                    Dialogue += strg[i];
+                }
+                DialogueBehav.DialogueString = Dialogue;
+                StartCoroutine(DialogueBehav.StartDialogue());
+            }
         }
         else if (strg[1] == 'F' && strg[2] == 'c')
         {
@@ -426,5 +450,21 @@ public class CharacterMovement : MonoBehaviour
         }
         TransitionMaterial.SetFloat("_Cutoff", 1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+    }
+
+    private IEnumerator Delayfor(float DelayTime)
+    {
+        float elapsedTime = 0;
+        Delay = true;
+        while (true)
+        {
+            if (elapsedTime >= DelayTime)
+            {
+                Delay = false;
+                elapsedTime = 0;
+                break;
+            }
+            else { elapsedTime += Time.deltaTime; yield return null; }
+        }
     }
 }

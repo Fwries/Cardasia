@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
-  m_Name: Tall Grass
+  m_Name: Sign
   m_EditorClassIdentifier: 
   TileImage: {fileID: 0}
   TileTopImage:
-  - {fileID: 948165513, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  Solid: 0
+  - {fileID: -1714554307, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  Solid: 1
   AbovePlayer: 0
-  Interactable: 0
+  Interactable: 1
   Event: 1
   SolidEvent: 0
   Script:
-  - /Grass
+  - '/DL Faries: Hi there.'
+  - '/DL Faries: Go and have a nice day ^_^.'
+  - /DLEnd
   IsAnim: 0
   ConstantAnim: 0
   ChangeMap: {fileID: 0}

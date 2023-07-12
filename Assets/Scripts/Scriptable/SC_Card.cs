@@ -38,7 +38,6 @@ public class SC_Card : ScriptableObject
     };
     public Target CardTarget;
 
-    public List<string> CardClass;
     public string CardTrait;
     public string CardSkill;
     public int CardCost;

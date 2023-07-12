@@ -16,7 +16,7 @@ MonoBehaviour:
   CardName: Rose
   CardType: 3
   CardRariety: 0
-  DoesTarget: 0
+  DoesTarget: 1
   CardTarget: 1
   CardClass: []
   CardTrait: 

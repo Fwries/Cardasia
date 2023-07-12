@@ -65,6 +65,7 @@ public class GameBehaviour : MonoBehaviour
                 Opponent.CharObj[i].gameObject.SetActive(false);
             }
         }
+        Opponent.UpdateActive();
     }
 
     // Start is called before the first frame update
@@ -93,19 +94,19 @@ public class GameBehaviour : MonoBehaviour
             StartCoroutine(EnemyTurnAI());
         }
 
-        int AmtCheck = 0;
-        for (int i = 0; i < Player.CharacterTape.Length; i++)
-        {
-            if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
-        }
-        if (AmtCheck == Player.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        //int AmtCheck = 0;
+        //for (int i = 0; i < Player.CharacterTape.Length; i++)
+        //{
+        //    if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
+        //}
+        //if (AmtCheck == Player.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
 
-        AmtCheck = 0;
-        for (int i = 0; i < Opponent.CharacterTape.Length; i++)
-        {
-            if (Opponent.CharacterTape[i].IsDead) { AmtCheck++; }
-        }
-        if (AmtCheck == Opponent.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
+        //AmtCheck = 0;
+        //for (int i = 0; i < Opponent.CharacterTape.Length; i++)
+        //{
+        //    if (Opponent.CharacterTape[i].IsDead) { AmtCheck++; }
+        //}
+        //if (AmtCheck == Opponent.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
     }
 
     public void EndTurn()
@@ -190,9 +191,9 @@ public class GameBehaviour : MonoBehaviour
                 while (shock < CurrentPlayerTurn.CharacterTape[i].Shock)
                 {
                     int RandInt = Random.Range(0, TotalMana);
-                    if (CurrentPlayerTurn.CharacterTape[i].ShockMana[TotalMana] == false)
+                    if (CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] == false)
                     {
-                        CurrentPlayerTurn.CharacterTape[i].ShockMana[TotalMana] = true;
+                        CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] = true;
                         shock++;
                     }
                 }
@@ -251,24 +252,12 @@ public class GameBehaviour : MonoBehaviour
                         CardBehaviour Card = Opponent.CharacterTape[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
                         if (Card.CardCost == CardCostIdx && Card.Frozen == false)
                         {
-                            CharacterBehaviour Target = null;
-                            if (Card.Currentcard.DoesTarget)
-                            {
-                                Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
-                            }
+                            CharacterBehaviour Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player); ;
 
                             if (Opponent.CharacterTape[CharIdx].CanBePlayed(Card, true))
                             {
-                                if (Target != null)
-                                {
-                                    StartCoroutine(Card.PlayAnim(this, Opponent.CharacterTape[CharIdx], Target));
-                                    while (EnemyCardAnim) { yield return null; }
-                                }
-                                else if (!Card.Currentcard.DoesTarget)
-                                {
-                                    StartCoroutine(Card.PlayAnim(this, Opponent.CharacterTape[CharIdx], null));
-                                    while (EnemyCardAnim) { yield return null; }
-                                }
+                                StartCoroutine(Card.PlayAnim(this, Target));
+                                while (EnemyCardAnim) {yield return null; }
                             }
                         }
                     }

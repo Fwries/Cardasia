@@ -24,10 +24,18 @@ public class CardBehaviour : MonoBehaviour
 
     }
 
-    public void Play(CharacterBehaviour owner, CharacterBehaviour target)
+    public void Play(CharacterBehaviour target)
     {
-        GameBehaviour GameBehav = owner.GameBehav;
+        Debug.Log(Currentcard.CardName);
+
+        GameBehaviour GameBehav = CharacterBehav.GameBehav;
         CharacterBehav.PlayerBehav.CardPlayed = true;
+
+        int MaxActive = 3;
+        if (target.PlayerBehav.CharacterTape.Length < 3)
+        {
+            MaxActive = target.PlayerBehav.CharacterTape.Length;
+        }
 
         switch (Currentcard.CardName)
         {
@@ -49,7 +57,7 @@ public class CardBehaviour : MonoBehaviour
                 if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
                 return;
             case "Campfire":
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < MaxActive; i++)
                 {
                     CharacterBehav.PlayerBehav.CharacterTape[i].FullRestore();
                 }
@@ -84,8 +92,14 @@ public class CardBehaviour : MonoBehaviour
             case "Nuclear Bomb":
                 for (int i = 0; i < 3; i++)
                 {
-                    GameBehav.Player.CharacterTape[i].DealtDamage(999);
-                    GameBehav.Opponent.CharacterTape[i].DealtDamage(999);
+                    if (i < GameBehav.Player.CharacterTape.Length)
+                    {
+                        GameBehav.Player.CharacterTape[i].DealtDamage(999);
+                    }
+                    if (i < GameBehav.Opponent.CharacterTape.Length)
+                    {
+                        GameBehav.Opponent.CharacterTape[i].DealtDamage(999);
+                    }
                 }
                 return;
             case "Overdrive":
@@ -124,7 +138,7 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.Reload(3);
                 return;
             case "Flash Grenade":
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < MaxActive; i++)
                 {
                     GameBehav.Opponent.CharacterTape[i].Shock += 1;
                 }
@@ -161,7 +175,7 @@ public class CardBehaviour : MonoBehaviour
                 target.ClearStatus("Random");
                 return;
             case "Stun Grenade":
-                //target.Shock += 2;
+                target.Shock = 2;
                 return;
             case "Supersonic Bullet":
                 CharacterBehav.Reload(1);
@@ -175,12 +189,12 @@ public class CardBehaviour : MonoBehaviour
         Debug.Log(Currentcard.CardName + " does not exist");
     }
 
-    public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Owner, CharacterBehaviour Target)
+    public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)
     {
+        Game.EnemyCardAnim = true;
         if (Target != null)
         {
             Vector2 StartPos = CharacterBehav.gameObject.transform.position;
-            Game.EnemyCardAnim = true;
             float dt = 0;
             while (dt < 0.5f)
             {
@@ -190,7 +204,7 @@ public class CardBehaviour : MonoBehaviour
             }
         }
         
-        Play(Owner, Target);
+        Play(Target);
         CharacterBehav.HandCards.Remove(this.gameObject);
         CharacterBehav.AdjustHand();
         Destroy(this.gameObject);

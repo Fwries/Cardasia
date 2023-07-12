@@ -22,5 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7696f6bebc387544b889b8ed5eb72ff6, type: 2}
   - {fileID: 11400000, guid: b9bec6a530ff0624faffe4dc7b5daf66, type: 2}
   - {fileID: 11400000, guid: 1a3900c50e8414a468d3e2edd3ad26f7, type: 2}
-  SpawnX: 8
-  SpawnY: 6
+  - {fileID: 11400000, guid: f0d2e80d7a2fb9847bfbadeebd41aefa, type: 2}

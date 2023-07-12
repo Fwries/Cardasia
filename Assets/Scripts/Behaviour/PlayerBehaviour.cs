@@ -41,10 +41,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)
     {
+        int ActiveCharacter = 3;
+        if (ActiveCharacter > Opponent.CharacterTape.Length) { ActiveCharacter = Opponent.CharacterTape.Length; }
+
         if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
         {
-            int LowestHealthChar = 0, LowestChar = -1, ActiveCharacter = 3;
-            if (ActiveCharacter > Opponent.CharacterTape.Length) { ActiveCharacter = Opponent.CharacterTape.Length; }
+            int LowestHealthChar = 0, LowestChar = -1;
 
             for (int i = 0; i < ActiveCharacter; i++)
             {
@@ -60,7 +62,19 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (TargetType == 2 /*Card.Currentcard.Target.Ally*/)
         {
+            int LowestHealthChar = 0, LowestChar = -1;
 
+            for (int i = 0; i < ActiveCharacter; i++)
+            {
+                if (CharacterTape[i] != null && ((LowestHealthChar == 0 && CharacterTape[i].Health > 0) ||
+                    (CharacterTape[i].Health < LowestHealthChar && CharacterTape[i].Health > 0)))
+                {
+                    LowestHealthChar = CharacterTape[i].Health;
+                    LowestChar = i;
+                }
+            }
+            if (LowestChar == -1) { return null; }
+            return CharacterTape[LowestChar];
         }
         else if (TargetType == 3 /*Card.Currentcard.Target.Centre*/)
         {
@@ -68,12 +82,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (TargetType == 4 /*Card.Currentcard.Target.RandomEnemy*/)
         {
-            while (true)
-            {
-                CharacterBehaviour Target = Opponent.CharacterTape[Random.Range(0, 3)];
-                if (Target != null) { return Target; }
-            }
+            return Opponent.CharacterTape[Random.Range(0, ActiveCharacter)];
         }
-        return null;
+        return GetTarget(1, Opponent);
     }
 }
