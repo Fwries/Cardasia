@@ -26,6 +26,8 @@ public class GameBehaviour : MonoBehaviour
 
     [HideInInspector] public CharacterBehaviour Selected;
 
+    public bool Trans;
+
     void Awake()
     {
         SaveFile.LoadFile();
@@ -93,131 +95,120 @@ public class GameBehaviour : MonoBehaviour
         {
             StartCoroutine(EnemyTurnAI());
         }
-
-        //int AmtCheck = 0;
-        //for (int i = 0; i < Player.CharacterTape.Length; i++)
-        //{
-        //    if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
-        //}
-        //if (AmtCheck == Player.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
-
-        //AmtCheck = 0;
-        //for (int i = 0; i < Opponent.CharacterTape.Length; i++)
-        //{
-        //    if (Opponent.CharacterTape[i].IsDead) { AmtCheck++; }
-        //}
-        //if (AmtCheck == Opponent.CharacterTape.Length) { UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene"); }
     }
 
-    public void EndTurn()
+    public void EndTurn(bool IsAi)
     {
-        if (/*Condition to check whether its current player turn*/ true)
+        if (((!IsAi && CurrentPlayerTurn == Player) || (IsAi && CurrentPlayerTurn == Opponent)) && !Trans)
         {
-            // End of Turn Effects
-            for (int i = 0; i < CurrentPlayerTurn.CharacterTape.Length; i++)
+            if (!CheckGameOver())
             {
-                if (CurrentPlayerTurn.CharacterTape[i].Burn)
+                // End of Turn Effects
+                for (int i = 0; i < CurrentPlayerTurn.CharacterTape.Length; i++)
                 {
-                    CurrentPlayerTurn.CharacterTape[i].Health -= (CurrentPlayerTurn.CharacterTape[i].MaxHealth / 16);
-                    if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.CharacterTape[i].Burn = false; }
+                    if (CurrentPlayerTurn.CharacterTape[i].Burn)
+                    {
+                        CurrentPlayerTurn.CharacterTape[i].Health -= (CurrentPlayerTurn.CharacterTape[i].MaxHealth / 16);
+                        if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.CharacterTape[i].Burn = false; }
+                    }
+
+                    if (CurrentPlayerTurn.CharacterTape[i].Freeze == 0)
+                    {
+                        for (int freeze = 0; freeze < CurrentPlayerTurn.CharacterTape[i].HandCards.Count; freeze++)
+                        {
+                            CurrentPlayerTurn.CharacterTape[i].HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
+                            CurrentPlayerTurn.CharacterTape[i].HandCards[freeze].GetComponent<CardDisplay>().FrozenDisplay.SetActive(false);
+                        }
+                    }
+
+                    CurrentPlayerTurn.CharacterTape[i].Shock = 0;
+                    for (int shock = 0; shock < CurrentPlayerTurn.CharacterTape[i].ShockMana.Length; shock++)
+                    {
+                        CurrentPlayerTurn.CharacterTape[i].ShockMana[shock] = false;
+                    }
+
+                    CurrentPlayerTurn.CharacterTape[i].CritChance = 1;
+                    CurrentPlayerTurn.CharacterTape[i].Trip = false;
                 }
 
-                if (CurrentPlayerTurn.CharacterTape[i].Freeze == 0)
+                TurnNo++;
+                if (CurrentPlayerTurn == Player)
                 {
-                    for (int freeze = 0; freeze < CurrentPlayerTurn.CharacterTape[i].HandCards.Count; freeze++)
+                    if (CurrentPlayerTurn.LoseATurn)
                     {
-                        CurrentPlayerTurn.CharacterTape[i].HandCards[freeze].GetComponent<CardBehaviour>().Frozen = false;
-                        CurrentPlayerTurn.CharacterTape[i].HandCards[freeze].GetComponent<CardDisplay>().FrozenDisplay.SetActive(false);
+                        CurrentPlayerTurn.LoseATurn = false;
+                    }
+                    else
+                    {
+                        GameDis.ButtonPrint.text = "Opponent's Turn";
+                        CurrentPlayerTurn = Opponent;
+                    }
+                }
+                else if (CurrentPlayerTurn == Opponent)
+                {
+                    if (CurrentPlayerTurn.LoseATurn)
+                    {
+                        CurrentPlayerTurn.LoseATurn = false;
+                    }
+                    else
+                    {
+                        GameDis.ButtonPrint.text = "End Turn";
+                        CurrentPlayerTurn = Player;
                     }
                 }
 
-                CurrentPlayerTurn.CharacterTape[i].Shock = 0;
-                for (int shock = 0; shock < CurrentPlayerTurn.CharacterTape[i].ShockMana.Length; shock++)
+                // Start of Turn Effects
+                for (int i = 0; i < CurrentPlayerTurn.CharacterTape.Length; i++)
                 {
-                    CurrentPlayerTurn.CharacterTape[i].ShockMana[shock] = false;
-                }
+                    int freeze = 0, shock = 0;
+                    int TotalMana = CurrentPlayerTurn.CharacterTape[i].MaxBoth + CurrentPlayerTurn.CharacterTape[i].MaxStamina + CurrentPlayerTurn.CharacterTape[i].MaxMana;
+                    int TempBoth = CurrentPlayerTurn.CharacterTape[i].MaxBoth, TempStamina = CurrentPlayerTurn.CharacterTape[i].MaxStamina, TempMana = CurrentPlayerTurn.CharacterTape[i].MaxMana;
 
-                CurrentPlayerTurn.CharacterTape[i].CritChance = 1;
-                CurrentPlayerTurn.CharacterTape[i].Trip = false;
-            }
-
-            TurnNo++;
-            if (CurrentPlayerTurn == Player)
-            {
-                if (CurrentPlayerTurn.LoseATurn)
-                {
-                    CurrentPlayerTurn.LoseATurn = false;
-                }
-                else
-                {
-                    GameDis.ButtonPrint.text = "Opponent's Turn";
-                    CurrentPlayerTurn = Opponent;
-                }
-            }
-            else if (CurrentPlayerTurn == Opponent)
-            {
-                if (CurrentPlayerTurn.LoseATurn)
-                {
-                    CurrentPlayerTurn.LoseATurn = false;
-                }
-                else 
-                {
-                    GameDis.ButtonPrint.text = "End Turn";
-                    CurrentPlayerTurn = Player;
-                }
-            }
-
-            // Start of Turn Effects
-            for (int i = 0; i < CurrentPlayerTurn.CharacterTape.Length; i++)
-            {
-                int freeze = 0, shock = 0;
-                int TotalMana = CurrentPlayerTurn.CharacterTape[i].MaxBoth + CurrentPlayerTurn.CharacterTape[i].MaxStamina + CurrentPlayerTurn.CharacterTape[i].MaxMana;
-                int TempBoth = CurrentPlayerTurn.CharacterTape[i].MaxBoth, TempStamina = CurrentPlayerTurn.CharacterTape[i].MaxStamina, TempMana = CurrentPlayerTurn.CharacterTape[i].MaxMana;
-
-                if (CurrentPlayerTurn.CharacterTape[i].Freeze > CurrentPlayerTurn.CharacterTape[i].HandCards.Count) { CurrentPlayerTurn.CharacterTape[i].Freeze = CurrentPlayerTurn.CharacterTape[i].HandCards.Count; }
-                while (freeze < CurrentPlayerTurn.CharacterTape[i].Freeze)
-                {
-                    int RandInt = Random.Range(0, CurrentPlayerTurn.CharacterTape[i].HandCards.Count);
-                    if (CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
+                    if (CurrentPlayerTurn.CharacterTape[i].Freeze > CurrentPlayerTurn.CharacterTape[i].HandCards.Count) { CurrentPlayerTurn.CharacterTape[i].Freeze = CurrentPlayerTurn.CharacterTape[i].HandCards.Count; }
+                    while (freeze < CurrentPlayerTurn.CharacterTape[i].Freeze)
                     {
-                        CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen = true;
-                        CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardDisplay>().FrozenDisplay.SetActive(true);
-                        freeze++;
+                        int RandInt = Random.Range(0, CurrentPlayerTurn.CharacterTape[i].HandCards.Count);
+                        if (CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
+                        {
+                            CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen = true;
+                            CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardDisplay>().FrozenDisplay.SetActive(true);
+                            freeze++;
+                        }
+                    }
+                    CurrentPlayerTurn.CharacterTape[i].Freeze = 0;
+
+                    if (CurrentPlayerTurn.CharacterTape[i].Shock > TotalMana) { CurrentPlayerTurn.CharacterTape[i].Shock = TotalMana; }
+                    while (shock < CurrentPlayerTurn.CharacterTape[i].Shock)
+                    {
+                        int RandInt = Random.Range(0, TotalMana);
+                        if (CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] == false)
+                        {
+                            CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] = true;
+                            shock++;
+                        }
+                    }
+                    for (shock = 0; shock < 5; shock++)
+                    {
+                        if (CurrentPlayerTurn.CharacterTape[i].ShockMana[shock] == true)
+                        {
+                            if (shock < CurrentPlayerTurn.CharacterTape[i].MaxBoth) { TempBoth--; }
+                            else if (shock < CurrentPlayerTurn.CharacterTape[i].MaxBoth + CurrentPlayerTurn.CharacterTape[i].MaxStamina) { TempStamina--; }
+                            else { TempMana--; }
+                        }
+                    }
+
+                    CurrentPlayerTurn.CharacterTape[i].Both = TempBoth;
+                    CurrentPlayerTurn.CharacterTape[i].Stamina = TempStamina;
+                    CurrentPlayerTurn.CharacterTape[i].Mana = TempMana;
+                    CurrentPlayerTurn.CharacterTape[i].Ward = false;
+
+                    if (CurrentPlayerTurn.CharacterTape[i].IsActive)
+                    {
+                        CurrentPlayerTurn.CharacterTape[i].Draw(1);
                     }
                 }
-                CurrentPlayerTurn.CharacterTape[i].Freeze = 0;
-
-                if (CurrentPlayerTurn.CharacterTape[i].Shock > TotalMana) { CurrentPlayerTurn.CharacterTape[i].Shock = TotalMana; }
-                while (shock < CurrentPlayerTurn.CharacterTape[i].Shock)
-                {
-                    int RandInt = Random.Range(0, TotalMana);
-                    if (CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] == false)
-                    {
-                        CurrentPlayerTurn.CharacterTape[i].ShockMana[RandInt] = true;
-                        shock++;
-                    }
-                }
-                for (shock = 0; shock < 5; shock++)
-                {
-                    if (CurrentPlayerTurn.CharacterTape[i].ShockMana[shock] == true)
-                    {
-                        if (shock < CurrentPlayerTurn.CharacterTape[i].MaxBoth) { TempBoth--; }
-                        else if (shock < CurrentPlayerTurn.CharacterTape[i].MaxBoth + CurrentPlayerTurn.CharacterTape[i].MaxStamina) { TempStamina--; }
-                        else { TempMana--; }
-                    }
-                }
-
-                CurrentPlayerTurn.CharacterTape[i].Both = TempBoth;
-                CurrentPlayerTurn.CharacterTape[i].Stamina = TempStamina;
-                CurrentPlayerTurn.CharacterTape[i].Mana = TempMana;
-                CurrentPlayerTurn.CharacterTape[i].Ward = false;
-
-                if (CurrentPlayerTurn.CharacterTape[i].IsActive)
-                {
-                    CurrentPlayerTurn.CharacterTape[i].Draw(1);
-                }
+                CurrentPlayerTurn.CardPlayed = false;
             }
-            CurrentPlayerTurn.CardPlayed = false;
         }
     }
 
@@ -241,6 +232,8 @@ public class GameBehaviour : MonoBehaviour
     public IEnumerator EnemyTurnAI()
     {
         EnemyAIThinking = true;
+
+        bool shouldBreak = false;
         for (int CharIdx = 0; CharIdx < 3; CharIdx++)
         {
             if (Opponent.CharacterTape[CharIdx].Health > 0)
@@ -252,27 +245,40 @@ public class GameBehaviour : MonoBehaviour
                         CardBehaviour Card = Opponent.CharacterTape[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
                         if (Card.CardCost == CardCostIdx && Card.Frozen == false)
                         {
-                            CharacterBehaviour Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player); ;
+                            CharacterBehaviour Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
+                            if (Target == null)
+                            {
+                                shouldBreak = true;
+                                break;
+                            }
 
                             if (Opponent.CharacterTape[CharIdx].CanBePlayed(Card, true))
                             {
                                 StartCoroutine(Card.PlayAnim(this, Target));
-                                while (EnemyCardAnim) {yield return null; }
+                                while (EnemyCardAnim)
+                                {
+                                    yield return null;
+                                }
                             }
                         }
                     }
+                    if (shouldBreak)
+                        break;
                 }
             }
+            if (shouldBreak)
+                break;
         }
-        EndTurn();
+        EndTurn(true);
         EnemyAIThinking = false;
     }
 
     public IEnumerator Transition()
     {
+        Trans = true;
         while (true)
         {
-            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y >= -270)
+            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y <= -270)
             {
                 TopObj.transform.position = new Vector3(TopObj.transform.position.x, 1350, TopObj.transform.position.z);
                 BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, -270, BottomObj.transform.position.z);
@@ -288,5 +294,34 @@ public class GameBehaviour : MonoBehaviour
             }
             yield return null;
         }
+        Trans = false;
+    }
+
+    public bool CheckGameOver()
+    {
+        int AmtCheck = 0;
+        for (int i = 0; i < Player.CharacterTape.Length; i++)
+        {
+            if (Player.CharacterTape[i].IsDead) { AmtCheck++; }
+        }
+        if (AmtCheck == Player.CharacterTape.Length) 
+        {
+            Debug.Log("Player Died");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene");
+            return true;
+        }
+
+        AmtCheck = 0;
+        for (int i = 0; i < Opponent.CharacterTape.Length; i++)
+        {
+            if (Opponent.CharacterTape[i].IsDead) { AmtCheck++; }
+        }
+        if (AmtCheck == Opponent.CharacterTape.Length) 
+        {
+            Debug.Log("You Win");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("RPGScene");
+            return true;
+        }
+        return false;
     }
 }

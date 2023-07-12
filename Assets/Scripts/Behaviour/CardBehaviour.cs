@@ -26,7 +26,8 @@ public class CardBehaviour : MonoBehaviour
 
     public void Play(CharacterBehaviour target)
     {
-        Debug.Log(Currentcard.CardName);
+        //Debug.Log(Currentcard.CardName);
+        if (target == null) { return; }
 
         GameBehaviour GameBehav = CharacterBehav.GameBehav;
         CharacterBehav.PlayerBehav.CardPlayed = true;
@@ -62,7 +63,7 @@ public class CardBehaviour : MonoBehaviour
                     CharacterBehav.PlayerBehav.CharacterTape[i].FullRestore();
                 }
                 CharacterBehav.PlayerBehav.LoseATurn = true;
-                GameBehav.EndTurn();
+                GameBehav.EndTurn(CharacterBehav.IsEnemy);
                 return;
             case "Cryo Chamber":
                 target.FullRestore();

@@ -41,8 +41,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)
     {
+        //Debug.Log(TargetType);
+
         int ActiveCharacter = 3;
         if (ActiveCharacter > Opponent.CharacterTape.Length) { ActiveCharacter = Opponent.CharacterTape.Length; }
+        if (ActiveCharacter == 0) { return null; }
 
         if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
         {
