@@ -39,9 +39,16 @@ public class CardBehaviour : MonoBehaviour
             MaxActive = target.PlayerBehav.CharacterTape.Length;
         }
 
-        if (!IsGenerated)
+        if (!IsGenerated && Currentcard.CardType == 0)
         {
-            //CharacterBehav
+            for (int i = 0; i < CharacterBehav.ItemDeck.Count; i++)
+            {
+                if (Currentcard.CardName == CharacterBehav.ItemDeck[i].CardName)
+                {
+                    CharacterBehav.ItemDeck.RemoveAt(i);
+                    break;
+                }
+            }
         }
 
         switch (Currentcard.CardName)
