@@ -13,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public List<GameObject> HandCards;
     public SC_Deck scDeck;
+    public List<SC_Card> ItemDeck;
     public List<SC_Card> Deck;
 
     public int Level = 1;
@@ -76,11 +77,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         MaxBullet = Character.MaxBullet;
 
         scDeck = Character.DefaultDeck;
+        ItemDeck = CharData.ItemGetList();
 
         Deck = new List<SC_Card>();
         for (int i = 0; i < scDeck.Deck.Count; i++)
         {
             Deck.Add(scDeck.Deck[i]);
+        }
+        for (int i = 0; i < ItemDeck.Count; i++)
+        {
+            Deck.Add(ItemDeck[i]);
         }
         Shuffle();
     }

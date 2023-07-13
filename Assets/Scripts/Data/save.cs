@@ -16,6 +16,7 @@ public class save : MonoBehaviour
 	public CharacterData[] PartyCharacterData;
 
 	public SC_Character TempChar;
+	public List<SC_Card> TempItemDeck;
 
 	private bool DebugMode;
 
@@ -96,10 +97,10 @@ public class save : MonoBehaviour
         {
 			PartyCharacterData[i] = temp[i];
         }
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, TempItemDeck);
 	}
 
-	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim)
+	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
 		CharacterData[] temp = PartyCharacterData;
 		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
@@ -107,17 +108,19 @@ public class save : MonoBehaviour
 		{
 			PartyCharacterData[i] = temp[i];
 		}
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, PartyCharacterData.Length - 1);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, PartyCharacterData.Length - 1, ItemDeck);
 	}
 	public void CreateNewCharacterData(SC_Character _Character, int _Level)
 	{
 		CharacterData[] temp = PartyCharacterData;
 		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
+		
 		for (int i = 0; i < temp.Length; i++)
 		{
 			PartyCharacterData[i] = temp[i];
 		}
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1);
+
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, TempItemDeck);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health;
 	}
 

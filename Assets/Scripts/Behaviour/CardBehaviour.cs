@@ -7,6 +7,7 @@ public class CardBehaviour : MonoBehaviour
     public CharacterBehaviour CharacterBehav;
     public SC_Card Currentcard;
 
+    public bool IsGenerated;
     public int CardCost;
     public bool Frozen;
 
@@ -36,6 +37,11 @@ public class CardBehaviour : MonoBehaviour
         if (target.PlayerBehav.CharacterTape.Length < 3)
         {
             MaxActive = target.PlayerBehav.CharacterTape.Length;
+        }
+
+        if (!IsGenerated)
+        {
+            //CharacterBehav
         }
 
         switch (Currentcard.CardName)

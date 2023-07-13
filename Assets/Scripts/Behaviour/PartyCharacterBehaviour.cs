@@ -15,6 +15,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public GameObject InventoryContent;
 
     public SC_Deck scDeck;
+    public SC_Deck ItemDeck;
 
     // Start is called before the first frame update
     void Start()
@@ -119,12 +120,19 @@ public class PartyCharacterBehaviour : MonoBehaviour
         if (scDeck != SaveData.PartyCharacterData[Number].GetDeck()) 
         { 
             scDeck = SaveData.PartyCharacterData[Number].GetDeck();
+            ItemDeck = SaveData.PartyCharacterData[Number].ItemGetDeck();
 
             for (int i = 0; i < scDeck.Deck.Count; i++)
             {
                 GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
                 Card.transform.SetParent(DeckContent.transform);
                 Card.GetComponent<CardDisplay>().Currentcard = scDeck.Deck[i];
+            }
+            for (int i = 0; i < ItemDeck.Deck.Count; i++)
+            {
+                GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+                Card.transform.SetParent(DeckContent.transform);
+                Card.GetComponent<CardDisplay>().Currentcard = ItemDeck.Deck[i];
             }
         }
     }
