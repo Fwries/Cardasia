@@ -55,10 +55,7 @@ public class CharacterData
 		Bullet = CharacterBehav.Bullet;
 
 		DeckJson = JsonUtility.ToJson(CharacterBehav.scDeck);
-
-		SC_Deck ItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
-		ItemDeck.Deck = CharacterBehav.ItemDeck;
-		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
+		ItemSetDeck(CharacterBehav.ItemDeck);
 
 		CurrAnim = CharacterBehav.CurrAnim;
 	}
@@ -76,6 +73,7 @@ public class CharacterData
 		JsonUtility.FromJsonOverwrite(DeckJson, scDeck);
 		return scDeck;
 	}
+	
 	public SC_Deck ItemGetDeck()
 	{
 		SC_Deck scItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
@@ -93,6 +91,12 @@ public class CharacterData
 			ItemDeck.Add(scItemDeck.Deck[i]);
 		}
 		return ItemDeck;
+	}
+	public void ItemSetDeck(List<SC_Card> _ItemDeck)
+    {
+		SC_Deck ItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
+		ItemDeck.Deck = _ItemDeck;
+		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 	}
 
 	public Sprite[] GetCurrAnim()
