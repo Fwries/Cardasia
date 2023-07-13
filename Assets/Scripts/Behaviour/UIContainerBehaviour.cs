@@ -45,7 +45,7 @@ public class UIContainerBehaviour : MonoBehaviour, IEventSystemHandler, IDropHan
     {
         DragDropUI DragDropBehav = eventData.pointerDrag.GetComponent<DragDropUI>();
         if (DragDropBehav == null) { return; }
-        if (!DragDropBehav.Consumable) { return; }
+        if (eventData.pointerDrag.GetComponent<CardDisplay>().Currentcard.CardType != 0) { return; }
 
         //Debug.Log("Dropped");
 

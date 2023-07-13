@@ -19,8 +19,6 @@ public class CardDisplay : MonoBehaviour
     public CardBehaviour cardBehav;
     [HideInInspector] public int PositionIndex;
 
-    public DragDropUI DragDrop;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,22 +41,18 @@ public class CardDisplay : MonoBehaviour
             {
                 case SC_Card.Type.Consumable:
                     CostIcon.SetActive(false);
-                    DragDrop.Consumable = true;
                     break;
                 case SC_Card.Type.Stamina:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeStamina;
                     CostIcon.SetActive(true);
-                    DragDrop.Consumable = false;
                     break;
                 case SC_Card.Type.Mana:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeMana;
                     CostIcon.SetActive(true);
-                    DragDrop.Consumable = false;
                     break;
                 case SC_Card.Type.Both:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeGeneric;
                     CostIcon.SetActive(true);
-                    DragDrop.Consumable = false;
                     break;
             }
 

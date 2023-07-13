@@ -7,8 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class save : MonoBehaviour
 {
-	public bool SaveStart;
-
 	public string nameStr;
 	public SC_Map Map;
 	public int xPos, yPos;
@@ -23,15 +21,6 @@ public class save : MonoBehaviour
 
 	void Awake()
     {
-		if (SaveStart)
-		{
-			CreateNewCharacterData(TempChar, 5);
-			Inventory = TempItemDeck;
-			SaveFile("save");
-			SaveFile("battle");
-			SaveStart = false;
-		}
-
 		DontDestroyOnLoad(this.gameObject);
 	}
 
@@ -132,6 +121,14 @@ public class save : MonoBehaviour
     {
 		ChangeScene("RPGScene", save);
 	}
+	public void NewGame(string save)
+	{
+		CreateNewCharacterData(TempChar, 5);
+		Inventory = TempItemDeck;
+		SaveFile("save");
+		SaveFile("battle");
+		ChangeScene("RPGScene", save);
+	}
 	public void ChangeScene(string SceneName, string save)
     {
 		UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
@@ -170,6 +167,7 @@ public class save : MonoBehaviour
 					CharMove.CurrAnim = PartyCharacterData[0].GetCurrAnim();
 				}
 				break;
+
 			}
 			else { yield return null; }
 		}

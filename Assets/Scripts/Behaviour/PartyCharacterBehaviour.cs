@@ -152,4 +152,29 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
         InventoryContainer.AddCards(SaveData.Inventory);
     }
+
+    //public void Sort()
+    //{
+    //    SC_Card temp = null;
+
+    //    for (int i = 0; i < Inventory.Count; i++)
+    //    {
+    //        for (int j = 0; j < Inventory.Count - 1; j++)
+    //        {
+    //            if (Inventory.CardName[j] > Inventory.CardName[j + 1])
+    //            {
+    //                temp = Inventory[j + 1];
+    //                Inventory[j + 1] = Inventory[j];
+    //                Inventory[j] = temp;
+    //            }
+    //        }
+    //    }
+    //}
+
+    public void SaveAll()
+    {
+        if (!gameObject.activeSelf) { return; }
+        SaveData.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
+        SaveData.Inventory = InventoryContainer.CardContainer;
+    }
 }

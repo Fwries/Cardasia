@@ -12,7 +12,6 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
     public GameObject EmptyCard;
 
     [HideInInspector] public bool IsDragging;
-    [HideInInspector] public bool Consumable;
     public CardDisplay cardDisplay;
     public UIContainerBehaviour currContainer;
 
@@ -51,7 +50,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!Consumable) { return; }
+        if (cardDisplay.Currentcard.CardType != 0) { return; }
 
         EmptyCard.transform.SetParent(transform.parent);
         transform.SetParent(PartyUI.transform);
@@ -62,21 +61,21 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 
     public void OnInitializePotentialDrag(PointerEventData eventData)
     {
-        if (!Consumable) { return; }
+        if (cardDisplay.Currentcard.CardType != 0) { return; }
 
         eventData.useDragThreshold = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!Consumable) { return; }
+        if (cardDisplay.Currentcard.CardType != 0) { return; }
 
         transform.position = Input.mousePosition - GetMousePos();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!Consumable) { return; }
+        if (cardDisplay.Currentcard.CardType != 0) { return; }
 
         transform.SetParent(EmptyCard.transform.parent);
         EmptyCard.transform.SetParent(transform);

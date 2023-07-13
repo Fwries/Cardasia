@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private DialogueBehaviour DialogueBehav;
     [SerializeField] private SpriteRenderer CharacterRenderer;
     [SerializeField] private Material TransitionMaterial;
+    [SerializeField] private PartyCharacterBehaviour PartyUIBehav;
     public SC_Character Character;
 
     [SerializeField] private GameObject[] MenuUI;
@@ -103,6 +104,7 @@ public class CharacterMovement : MonoBehaviour
     public void CloseMenu()
     {
         UI = false;
+        PartyUIBehav.SaveAll();
         for (int i = 0; i < MenuUI.Length; i++)
         {
             MenuUI[i].SetActive(false);
