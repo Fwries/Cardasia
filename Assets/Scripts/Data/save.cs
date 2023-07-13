@@ -14,6 +14,7 @@ public class save : MonoBehaviour
 	public int xPos, yPos;
 	
 	public CharacterData[] PartyCharacterData;
+	public List<SC_Card> Inventory;
 
 	public SC_Character TempChar;
 	public List<SC_Card> TempItemDeck;
@@ -25,6 +26,7 @@ public class save : MonoBehaviour
 		if (SaveStart)
 		{
 			CreateNewCharacterData(TempChar, 5);
+			Inventory = TempItemDeck;
 			SaveFile("save");
 			SaveFile("battle");
 			SaveStart = false;
@@ -53,7 +55,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData(nameStr, Map, xPos, yPos, PartyCharacterData);
+		GameData data = new GameData(nameStr, Map, xPos, yPos, PartyCharacterData, Inventory);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
@@ -85,6 +87,8 @@ public class save : MonoBehaviour
 
 		PartyCharacterData = new CharacterData[data.PartyCharacterData.Length];
 		PartyCharacterData = data.PartyCharacterData;
+
+		Inventory = data.GetInventory();
 
 		if (DebugMode) { Debug.Log("Loaded " + SaveFileName); }
 	}

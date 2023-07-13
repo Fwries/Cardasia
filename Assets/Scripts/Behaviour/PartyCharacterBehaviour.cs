@@ -16,6 +16,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
     public SC_Deck scDeck;
     public SC_Deck ItemDeck;
+    public List<SC_Card> Inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
         SaveData = GameObject.Find("Save").GetComponent<save>();
         Init();
         SetCurrentDeck(0);
+        UpdateInventory();
     }
 
     // Update is called once per frame
@@ -106,6 +108,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 RotationCharacter[i].CharData = null;
             }
         }
+        Inventory = SaveData.Inventory;
 
         RotationUI.Init();
     }
@@ -117,23 +120,35 @@ public class PartyCharacterBehaviour : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (scDeck != SaveData.PartyCharacterData[Number].GetDeck()) 
-        { 
-            scDeck = SaveData.PartyCharacterData[Number].GetDeck();
-            ItemDeck = SaveData.PartyCharacterData[Number].ItemGetDeck();
+        scDeck = SaveData.PartyCharacterData[Number].GetDeck();
+        ItemDeck = SaveData.PartyCharacterData[Number].ItemGetDeck();
 
-            for (int i = 0; i < scDeck.Deck.Count; i++)
-            {
-                GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
-                Card.transform.SetParent(DeckContent.transform);
-                Card.GetComponent<CardDisplay>().Currentcard = scDeck.Deck[i];
-            }
-            for (int i = 0; i < ItemDeck.Deck.Count; i++)
-            {
-                GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
-                Card.transform.SetParent(DeckContent.transform);
-                Card.GetComponent<CardDisplay>().Currentcard = ItemDeck.Deck[i];
-            }
+        for (int i = 0; i < scDeck.Deck.Count; i++)
+        {
+            GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+            Card.transform.SetParent(DeckContent.transform);
+            Card.GetComponent<CardDisplay>().Currentcard = scDeck.Deck[i];
+        }
+        for (int i = 0; i < ItemDeck.Deck.Count; i++)
+        {
+            GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+            Card.transform.SetParent(DeckContent.transform);
+            Card.GetComponent<CardDisplay>().Currentcard = ItemDeck.Deck[i];
+        }
+    }
+
+    public void UpdateInventory()
+    {
+        foreach (Transform child in InventoryContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < Inventory.Count; i++)
+        {
+            GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+            Card.transform.SetParent(InventoryContent.transform);
+            Card.GetComponent<CardDisplay>().Currentcard = Inventory[i];
         }
     }
 }
