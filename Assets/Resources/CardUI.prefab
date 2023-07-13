@@ -439,6 +439,8 @@ MonoBehaviour:
   EmptyCard: {fileID: 933408087287530675}
   IsDragging: 0
   Consumable: 0
+  cardDisplay: {fileID: 1971947153503861957}
+  currContainer: {fileID: 0}
 --- !u!1 &7061245047556500519
 GameObject:
   m_ObjectHideFlags: 0

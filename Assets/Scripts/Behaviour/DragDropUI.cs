@@ -13,6 +13,8 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 
     [HideInInspector] public bool IsDragging;
     [HideInInspector] public bool Consumable;
+    public CardDisplay cardDisplay;
+    public UIContainerBehaviour currContainer;
 
     void Awake()
     {
@@ -31,6 +33,20 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
     void Update()
     {
         //if (!Consumable) { canvasGroup.blocksRaycasts = false; }
+    }
+
+    public void RemoveFromDeck()
+    {
+        for (int i = 0; i < currContainer.CardContainer.Count; i++)
+        {
+            if (currContainer.CardContainer[i] == cardDisplay.Currentcard)
+            {
+                currContainer.CardContainer.RemoveAt(i);
+                break;
+            }    
+        }
+        Destroy(EmptyCard);
+        Destroy(gameObject);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
