@@ -468,4 +468,19 @@ public class CharacterMovement : MonoBehaviour
             else { elapsedTime += Time.deltaTime; yield return null; }
         }
     }
+
+    public void SaveFile(string SaveFileName)
+    {
+        Debug.Log("Saved");
+        SaveData.SaveFile(SaveFileName);
+    }
+
+    public void ChangeScene(string SceneName)
+    {
+        if (SceneName == "MenuScene")
+        {
+            Destroy(SaveData.gameObject);
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
+    }
 }

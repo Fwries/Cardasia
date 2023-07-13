@@ -17,6 +17,8 @@ public class save : MonoBehaviour
 
 	public SC_Character TempChar;
 
+	private bool DebugMode;
+
 	void Awake()
     {
 		if (SaveStart)
@@ -43,10 +45,11 @@ public class save : MonoBehaviour
 		if (File.Exists(destination)) file = File.OpenWrite(destination);
 		else file = File.Create(destination);
 
-		CharacterMovement CharMovement = GetComponent<CharacterMovement>();
-		if (CharMovement != null && PartyCharacterData.Length > 0)
-        {
-			PartyCharacterData[0].SetCurrAnim(CharMovement.Character, CharMovement.CurrAnim);
+		GameObject RPGChar = GameObject.Find("Character_RPG");
+		if (RPGChar != null && PartyCharacterData.Length > 0)
+		{
+			CharacterMovement CharMove = RPGChar.GetComponent<CharacterMovement>();
+			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
 		GameData data = new GameData(nameStr, Map, xPos, yPos, PartyCharacterData);
@@ -54,7 +57,7 @@ public class save : MonoBehaviour
 		bf.Serialize(file, data);
 		file.Close();
 
-		//Debug.Log("Saved " + SaveFileName);
+		if (DebugMode) { Debug.Log("Saved " + SaveFileName); }
 	}
 
 	public void LoadFile(string SaveFileName)
@@ -82,7 +85,7 @@ public class save : MonoBehaviour
 		PartyCharacterData = new CharacterData[data.PartyCharacterData.Length];
 		PartyCharacterData = data.PartyCharacterData;
 
-		//Debug.Log("Loaded " + SaveFileName);
+		if (DebugMode) { Debug.Log("Loaded " + SaveFileName); }
 	}
 
 	public void CreateCharacterData(SC_Character _Character, int _Level)
