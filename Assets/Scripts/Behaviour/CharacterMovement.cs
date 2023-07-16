@@ -91,6 +91,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     CloseMenu();
                 }
+                AudioManager.Instance.PlaySFX("Menu");
             }
 
             if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
@@ -250,8 +251,7 @@ public class CharacterMovement : MonoBehaviour
                     }
 
                     TeleportPlayer(x, y);
-                    IsSc = false;
-                    CurrSc++;
+                    IsSc = false; CurrSc++;
                     return;
                 }
 
@@ -406,6 +406,7 @@ public class CharacterMovement : MonoBehaviour
                 Audio += strg[i];
             }
             AudioManager.Instance.PlaySFX(Audio);
+            IsSc = false; CurrSc++;
         }
     }
 
@@ -501,5 +502,10 @@ public class CharacterMovement : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
         AudioManager.Instance.musicSource.Stop();
+    }
+
+    public void PlaySFX(string SoundName)
+    {
+        AudioManager.Instance.PlaySFX(SoundName);
     }
 }

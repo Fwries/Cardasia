@@ -263,6 +263,9 @@ public class GameBehaviour : MonoBehaviour
 
     public IEnumerator Transition()
     {
+        TopObj.SetActive(true);
+        BottomObj.SetActive(true);
+
         Trans = true;
         while (true)
         {

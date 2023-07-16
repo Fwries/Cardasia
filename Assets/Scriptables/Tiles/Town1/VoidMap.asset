@@ -20,6 +20,7 @@ MonoBehaviour:
   Event: 0
   SolidEvent: 1
   Script:
+  - /PlaySound ScreenTransition
   - /Flash in
   - /Obj ChangeMap 6
   - /Tp X 1

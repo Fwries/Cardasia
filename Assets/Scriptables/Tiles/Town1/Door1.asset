@@ -24,6 +24,7 @@ MonoBehaviour:
   Event: 0
   SolidEvent: 1
   Script:
+  - /PlaySound DoorOpen
   - /Obj Anim 6 7
   - /Mv U
   - /Flash in
@@ -34,6 +35,7 @@ MonoBehaviour:
   - /Flash out
   - /Mv D
   - /Obj Anim 10 7
+  - /PlaySound DoorClose
   IsAnim: 1
   ConstantAnim: 0
   ChangeMap: {fileID: 0}

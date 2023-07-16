@@ -56,5 +56,7 @@ public class UIContainerBehaviour : MonoBehaviour, IEventSystemHandler, IDropHan
         CardContainer.Add(Card.GetComponent<CardDisplay>().Currentcard);
 
         eventData.pointerDrag.GetComponent<DragDropUI>().RemoveFromDeck();
+
+        AudioManager.Instance.PlaySFX("Text");
     }
 }

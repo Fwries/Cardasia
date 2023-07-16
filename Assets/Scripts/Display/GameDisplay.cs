@@ -7,6 +7,12 @@ public class GameDisplay : MonoBehaviour
 {
     public GameBehaviour GameBehav;
 
+    public GameObject CardDisplay;
+    public CardDisplay CardUI;
+    public Text CardName;
+    public Text CardTrait;
+    public Text CardSkill;
+
     public SC_Template Template;
     public Text ButtonPrint;
     public Text DisplayCharacterText;
@@ -78,5 +84,19 @@ public class GameDisplay : MonoBehaviour
             ManaIcon[Pointer].SetActive(false);
             Pointer++;
         }
+    }
+
+    public void SetCardDisplay(SC_Card CurrCard)
+    {
+        if (!CardDisplay.activeSelf)
+        {
+            CardDisplay.SetActive(true);
+        }
+
+        CardUI.Currentcard = CurrCard;
+
+        CardName.text = CurrCard.CardName;
+        CardTrait.text = CurrCard.CardTrait;
+        CardSkill.text = CurrCard.CardSkill;
     }
 }

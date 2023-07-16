@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 public class save : MonoBehaviour
 {
 	public static save Instance;
+	private bool DebugMode;
 
 	public string nameStr;
 	public SC_Map Map;
@@ -19,7 +21,10 @@ public class save : MonoBehaviour
 	public SC_Character TempChar;
 	public List<SC_Card> TempItemDeck;
 
-	private bool DebugMode;
+	public bool MusicMute;
+	public bool SFXMute;
+	public float MusicVolume;
+	public float SFXVolume;
 
 	void Awake()
     {
@@ -36,7 +41,8 @@ public class save : MonoBehaviour
 
 	void Start()
 	{
-
+		LoadFile("save");
+		LoadSettings();
 	}
 
 	public void SaveFile(string SaveFileName)
@@ -70,7 +76,14 @@ public class save : MonoBehaviour
 		if (File.Exists(destination)) file = File.OpenRead(destination);
 		else
 		{
-			Debug.LogError("File not found");
+			Debug.Log("File not found");
+			
+			GameObject ContinueButton = GameObject.Find("Continue");
+			if (ContinueButton != null)
+            {
+				ContinueButton.GetComponent<Button>().interactable = false;
+			}
+			
 			return;
 		}
 
@@ -92,6 +105,43 @@ public class save : MonoBehaviour
 		if (DebugMode) { Debug.Log("Loaded " + SaveFileName); }
 	}
 
+	public void SaveSettings()
+    {
+		string destination = Application.persistentDataPath + "/Settings.dat";
+		FileStream file;
+
+		if (File.Exists(destination)) file = File.OpenWrite(destination);
+		else file = File.Create(destination);
+
+		SettingsData data = new SettingsData(AudioManager.Instance.musicSource.mute, AudioManager.Instance.sfxSource.mute,
+											AudioManager.Instance.musicSource.volume, AudioManager.Instance.sfxSource.volume);
+        BinaryFormatter bf = new BinaryFormatter();
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+	public void LoadSettings()
+    {
+		string destination = Application.persistentDataPath + "/Settings.dat";
+		FileStream file;
+
+		if (File.Exists(destination)) file = File.OpenRead(destination);
+		else
+		{
+			Debug.Log("File not found");
+			return;
+		}
+
+        BinaryFormatter bf = new BinaryFormatter();
+        SettingsData data = (SettingsData)bf.Deserialize(file);
+        file.Close();
+
+        AudioManager.Instance.musicSource.mute = data.MusicMute;
+        AudioManager.Instance.sfxSource.mute = data.SFXMute;
+        AudioManager.Instance.musicSource.volume = data.MusicVolume;
+        AudioManager.Instance.sfxSource.volume = data.SFXVolume;
+    }
+
 	public void CreateCharacterData(SC_Character _Character, int _Level)
     {
 		CharacterData[] temp = PartyCharacterData;
@@ -102,7 +152,6 @@ public class save : MonoBehaviour
         }
 		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, TempItemDeck);
 	}
-
 	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
 		CharacterData[] temp = PartyCharacterData;

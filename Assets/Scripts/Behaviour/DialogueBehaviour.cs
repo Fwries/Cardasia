@@ -46,14 +46,16 @@ public class DialogueBehaviour : MonoBehaviour
                 DialogueText.text = StartDialogueString;
                 elapsedTime = 0;
                 stringPos++;
+                AudioManager.Instance.PlaySFX("Text");
             }
             else { elapsedTime += Time.deltaTime; yield return null; }
         }
-
+        
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.Space) && !Delay)
             {
+                AudioManager.Instance.PlaySFX("draw");
                 break;
             }
             else { yield return null; }

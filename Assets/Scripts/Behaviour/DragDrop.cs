@@ -13,6 +13,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
     [HideInInspector] public bool IsDragging;
 
     private GameBehaviour GameBehav;
+    private GameDisplay DisplayBehav;
     private CardBehaviour Cardbehav;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         Cardbehav = this.GetComponent<CardBehaviour>();
         
         GameBehav = GameObject.Find("Stats").GetComponent<GameBehaviour>();
+        DisplayBehav = GameObject.Find("Stats").GetComponent<GameDisplay>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -62,6 +64,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        DisplayBehav.SetCardDisplay(Cardbehav.Currentcard);
         //Display.GetComponent<CardDisplay>().Currentcard = this.GetComponent<CardDisplay>().Currentcard;
         //Display.GetComponent<CardDisplay>().cardBehav = this.GetComponent<CardDisplay>().cardBehav;
     }

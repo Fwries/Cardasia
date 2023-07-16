@@ -216,6 +216,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        GameBehav.GameDis.CardDisplay.SetActive(false);
         if (IsEnemy) { return; }
         GameBehav.Select(this);
     }
@@ -231,7 +232,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         if (!Character.CanBePlayed(Card, true)) { return; }
 
-        AudioManager.Instance.PlaySFX("playcard");
         eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
         Character.HandCards.Remove(eventData.pointerDrag);
 
