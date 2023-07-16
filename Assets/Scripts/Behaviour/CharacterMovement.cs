@@ -305,6 +305,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 save.Instance.SaveFile("battle");
                 StartCoroutine(Battle());
+                AudioManager.Instance.PlayMusic("Danger");
             }
             else
             {

@@ -70,18 +70,8 @@ public class GameBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Transition());
-
-        for (int i = 0; i < Player.CharacterTape.Length; i++)
-        {
-            Player.CharacterTape[i].Draw(3);
-        }
-        for (int i = 0; i < Opponent.CharacterTape.Length; i++)
-        {
-            Opponent.CharacterTape[i].Draw(3);
-        }
-
         Select(Player.CharacterTape[0]);
+        StartCoroutine(Transition());
     }
 
     // Update is called once per frame
@@ -98,6 +88,7 @@ public class GameBehaviour : MonoBehaviour
     {
         if (((!IsAi && CurrentPlayerTurn == Player) || (IsAi && CurrentPlayerTurn == Opponent)) && !Trans)
         {
+            AudioManager.Instance.PlaySFX("Passturn");
             if (!CheckGameOver())
             {
                 // End of Turn Effects
@@ -291,6 +282,16 @@ public class GameBehaviour : MonoBehaviour
             }
             yield return null;
         }
+        
+        for (int i = 0; i < Player.CharacterTape.Length; i++)
+        {
+            Player.CharacterTape[i].Draw(3);
+        }
+        for (int i = 0; i < Opponent.CharacterTape.Length; i++)
+        {
+            Opponent.CharacterTape[i].Draw(3);
+        }
+
         Trans = false;
     }
 

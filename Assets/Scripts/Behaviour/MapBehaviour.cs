@@ -114,6 +114,8 @@ public class MapBehaviour : MonoBehaviour
                 }
             }
         }
+
+        AudioManager.Instance.PlayMusic(SCMap.MusicTheme);
     }
 
     void ReadCSVMap(string CSVName)

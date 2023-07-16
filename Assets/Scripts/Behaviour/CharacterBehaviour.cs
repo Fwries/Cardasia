@@ -146,6 +146,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void Shuffle()
     {
+        //AudioManager.Instance.PlaySFX("shuffle");
         for (int i = 0; i < Deck.Count; ++i)
         {
             int Rand = Random.Range(i, Deck.Count);
@@ -175,6 +176,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 Card.GetComponent<CardBehaviour>().Currentcard = Card.GetComponent<CardDisplay>().Currentcard = Deck[index2];
                 Card.GetComponent<CardBehaviour>().CharacterBehav = this;
 
+                AudioManager.Instance.PlaySFX("draw");
                 HandCards.Add(Card);
                 AdjustHand();
                 Deck.RemoveAt(index2);
@@ -191,6 +193,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     {
         if (Trip) { return; }
 
+        AudioManager.Instance.PlaySFX("draw");
         GameObject Card = Instantiate(Resources.Load("Card", typeof(GameObject))) as GameObject;
         Card.transform.SetParent(HandObject.transform);
         Card.GetComponent<CardBehaviour>().Currentcard = Card.GetComponent<CardDisplay>().Currentcard = SCCard;
@@ -228,6 +231,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         if (!Character.CanBePlayed(Card, true)) { return; }
 
+        AudioManager.Instance.PlaySFX("playcard");
         eventData.pointerDrag.GetComponent<CardBehaviour>().Play(this);
         Character.HandCards.Remove(eventData.pointerDrag);
 

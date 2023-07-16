@@ -17,6 +17,7 @@ public class GameDisplay : MonoBehaviour
     public Slider EXPSlider;
 
     public Text CharacterStats;
+    public Text CharacterDeckCount;
 
     public List<GameObject> ManaIcon;
     private int Pointer;
@@ -45,6 +46,8 @@ public class GameDisplay : MonoBehaviour
         CharacterStats.text = "HP: " + GameBehav.Selected.Health + "\n" +
                         "DEF: " + GameBehav.Selected.DEF + "\n" +
                         "ATK: " + GameBehav.Selected.ATK + "\n";
+
+        CharacterDeckCount.text = "" + GameBehav.Selected.Deck.Count;
 
         if (GameBehav.Selected.MaxBullet > 0)
         {

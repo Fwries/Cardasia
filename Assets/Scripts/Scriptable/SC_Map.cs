@@ -7,5 +7,6 @@ public class SC_Map : ScriptableObject
 {
     [SerializeField] public GameObject MapPrefab;
     [SerializeField] public string CSVFileName;
+    [SerializeField] public string MusicTheme;
     [SerializeField] public SC_Tile[] Tileset;
 }
