@@ -36,13 +36,15 @@ public class save : MonoBehaviour
 		else
 		{
 			Destroy(gameObject);
+			return;
 		}
-	}
+        //LoadFile("save");
+        LoadSettings();
+    }
 
 	void Start()
 	{
-		LoadFile("save");
-		LoadSettings();
+
 	}
 
 	public void SaveFile(string SaveFileName)
@@ -128,7 +130,8 @@ public class save : MonoBehaviour
 		if (File.Exists(destination)) file = File.OpenRead(destination);
 		else
 		{
-			Debug.Log("File not found");
+			SaveSettings();
+			LoadSettings();
 			return;
 		}
 

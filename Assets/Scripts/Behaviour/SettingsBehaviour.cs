@@ -78,5 +78,6 @@ public class SettingsBehaviour : MonoBehaviour
     public void SaveSettings()
     {
         save.Instance.SaveSettings();
+        Debug.Log("Saved");
     }
 }

@@ -56,3 +56,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 732e5acb300247f4ca7bc4bb4359d20d, type: 2}
   - {fileID: 11400000, guid: f0a910aff24b11d48bbc6212d2c73ebe, type: 2}
   - {fileID: 11400000, guid: d13631aa13e5c7c419af206fa6d55258, type: 2}
+  MusicMute: 0
+  SFXMute: 0
+  MusicVolume: 1
+  SFXVolume: 1
