@@ -7,6 +7,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class save : MonoBehaviour
 {
+	public static save Instance;
+
 	public string nameStr;
 	public SC_Map Map;
 	public int xPos, yPos;
@@ -21,7 +23,15 @@ public class save : MonoBehaviour
 
 	void Awake()
     {
-		DontDestroyOnLoad(this.gameObject);
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	void Start()
@@ -117,26 +127,10 @@ public class save : MonoBehaviour
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health;
 	}
 
-	public void Start(string save)
-    {
-		ChangeScene("RPGScene", save);
-	}
-	public void NewGame(string save)
-	{
-		CreateNewCharacterData(TempChar, 5);
-		Inventory = TempItemDeck;
-		SaveFile("save");
-		SaveFile("battle");
-		ChangeScene("RPGScene", save);
-	}
 	public void ChangeScene(string SceneName, string save)
     {
 		UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
 		LoadFile(save);
-		if (SceneName == "RPGScene")
-        {
-			StartCoroutine(LoadingRPGChar());
-		}
 	}
 
 	public void BattleUpdate(GameBehaviour GameBehav)
@@ -147,29 +141,4 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = new CharacterData(GameBehav.Player.GetOrigCharacterTape(i), i);
 		}
 	}
-	private IEnumerator LoadingRPGChar()
-    {
-		while (true)
-        {
-			GameObject RPGChar = GameObject.Find("Character_RPG");
-			if (RPGChar != null)
-			{
-				CharacterMovement CharMove = RPGChar.GetComponent<CharacterMovement>();
-				CharMove.SaveData = this;
-				CharMove.TeleportPlayer(xPos, yPos);
-
-				MapBehaviour MapBehav = GameObject.Find("Map").GetComponent<MapBehaviour>();
-				MapBehav.SaveData = this;
-				MapBehav.ChangeMap(Map);
-
-				if (PartyCharacterData.Length > 0)
-				{
-					CharMove.CurrAnim = PartyCharacterData[0].GetCurrAnim();
-				}
-				break;
-
-			}
-			else { yield return null; }
-		}
-    }
 }

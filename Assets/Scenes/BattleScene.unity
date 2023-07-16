@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &1998561
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491380, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718796076541491383, guid: c29d28034b3e3da469d0994c46505493, type: 3}
+      propertyPath: m_Name
+      value: Save
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c29d28034b3e3da469d0994c46505493, type: 3}
 --- !u!1 &79011755
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,13 +239,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -588,7 +645,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1890,13 +1947,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2314,7 +2371,6 @@ MonoBehaviour:
   CurrentPlayerTurn: {fileID: 1312719080}
   Player: {fileID: 1312719080}
   Opponent: {fileID: 1312719079}
-  SaveFile: {fileID: 0}
   GameDis: {fileID: 1312719082}
   HandObjects:
   - {fileID: 622830623}
@@ -2904,7 +2960,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -3048,6 +3104,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6074611329161913118, guid: f8f6c70dd2d884749897fecf844dbd59, type: 3}
   m_PrefabInstance: {fileID: 85864476}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1632994664
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 724204031898434508, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 724204031898434510, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a39fa08c4ba4aa47afebf6ff9cd9e28, type: 3}
 --- !u!1 &1659734833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,13 +3220,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3678,7 +3791,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -4359,7 +4472,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -4832,6 +4945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBehav: {fileID: 0}
   Currentcard: {fileID: 11400000, guid: 4e7650aefd0e1984f98dc5ed3e5b5459, type: 2}
+  IsGenerated: 0
   CardCost: 0
   Frozen: 0
   m_Speed: 1.7

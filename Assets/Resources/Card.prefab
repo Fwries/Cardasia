@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBehav: {fileID: 0}
   Currentcard: {fileID: 11400000, guid: 4e7650aefd0e1984f98dc5ed3e5b5459, type: 2}
+  IsGenerated: 0
   CardCost: 0
   Frozen: 0
   m_Speed: 1.7
@@ -528,7 +529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1, y: -4.5}
   m_SizeDelta: {x: 112.5, y: 112.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7186671713476721920
@@ -560,7 +561,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 1

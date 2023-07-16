@@ -92,12 +92,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
   CharData:
+    OrigPos: 0
     CharJson: 
     Health: 0
     Level: 0
     Exp: 0
     Bullet: 0
     DeckJson: 
+    ItemDeckJson: 
     CurrAnim: 0
   CharUI: {fileID: 1653147576670109054}
   DisplayCharacterText: {fileID: 8633247128852414788}
@@ -253,13 +255,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -501,7 +503,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -581,13 +583,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 57595ddf961995f4ebb5ad1de2c6612d, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

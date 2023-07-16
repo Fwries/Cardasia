@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PartyCharacterBehaviour : MonoBehaviour
 {
-    public save SaveData;
     public RotationBehaviourUI RotationUI;
 
     public UICharacterDisplay[] UICharacter;
@@ -25,7 +24,6 @@ public class PartyCharacterBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SaveData = GameObject.Find("Save").GetComponent<save>();
         Init();
     }
 
@@ -33,13 +31,13 @@ public class PartyCharacterBehaviour : MonoBehaviour
     void Update()
     {
         bool HasChanged = false;
-        if (CharacterTape.Length < SaveData.PartyCharacterData.Length || CharacterTape.Length > SaveData.PartyCharacterData.Length) { HasChanged = true; }
+        if (CharacterTape.Length < save.Instance.PartyCharacterData.Length || CharacterTape.Length > save.Instance.PartyCharacterData.Length) { HasChanged = true; }
 
-        CharacterTape = new UICharacterDisplay[SaveData.PartyCharacterData.Length];
+        CharacterTape = new UICharacterDisplay[save.Instance.PartyCharacterData.Length];
 
-        for (int i = 0; i <= SaveData.PartyCharacterData.Length; i++)
+        for (int i = 0; i <= save.Instance.PartyCharacterData.Length; i++)
         {
-            if (i == SaveData.PartyCharacterData.Length)
+            if (i == save.Instance.PartyCharacterData.Length)
             {
                 for (int i2 = i; i2 < 5; i2++)
                 {
@@ -50,14 +48,14 @@ public class PartyCharacterBehaviour : MonoBehaviour
                     RotationCharacter[i2].CharData = null;
                 }
             }
-            else if (SaveData.PartyCharacterData[i] != null)
+            else if (save.Instance.PartyCharacterData[i] != null)
             {
                 UICharacter[i].CharUI.SetActive(true);
-                UICharacter[i].CharData = SaveData.PartyCharacterData[i];
+                UICharacter[i].CharData = save.Instance.PartyCharacterData[i];
 
                 CharacterTape[i] = UICharacter[i];
                 RotationCharacter[i].CharUI.SetActive(true);
-                RotationCharacter[i].CharData = SaveData.PartyCharacterData[i];
+                RotationCharacter[i].CharData = save.Instance.PartyCharacterData[i];
             }
             else
             {
@@ -77,11 +75,11 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
     void Init()
     {
-        CharacterTape = new UICharacterDisplay[SaveData.PartyCharacterData.Length];
+        CharacterTape = new UICharacterDisplay[save.Instance.PartyCharacterData.Length];
 
-        for (int i = 0; i <= SaveData.PartyCharacterData.Length; i++)
+        for (int i = 0; i <= save.Instance.PartyCharacterData.Length; i++)
         {
-            if (i == SaveData.PartyCharacterData.Length)
+            if (i == save.Instance.PartyCharacterData.Length)
             {
                 for (int i2 = i; i2 < 5; i2++)
                 {
@@ -92,14 +90,14 @@ public class PartyCharacterBehaviour : MonoBehaviour
                     RotationCharacter[i2].CharData = null;
                 }
             }
-            else if (SaveData.PartyCharacterData[i] != null)
+            else if (save.Instance.PartyCharacterData[i] != null)
             {
                 UICharacter[i].CharUI.SetActive(true);
-                UICharacter[i].CharData = SaveData.PartyCharacterData[i];
+                UICharacter[i].CharData = save.Instance.PartyCharacterData[i];
 
                 CharacterTape[i] = UICharacter[i];
                 RotationCharacter[i].CharUI.SetActive(true);
-                RotationCharacter[i].CharData = SaveData.PartyCharacterData[i];
+                RotationCharacter[i].CharData = save.Instance.PartyCharacterData[i];
             }
             else
             {
@@ -110,7 +108,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 RotationCharacter[i].CharData = null;
             }
         }
-        Inventory = SaveData.Inventory;
+        Inventory = save.Instance.Inventory;
 
         RotationUI.Init();
         SetCurrentDeck(0);
@@ -122,13 +120,13 @@ public class PartyCharacterBehaviour : MonoBehaviour
     {
         if (HasInit)
         {
-            SaveData.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
+            save.Instance.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
             DeckContainer.DestroyAllCards();
         }
 
         CurrCharacter = pos;
-        scDeck = SaveData.PartyCharacterData[pos].GetDeck();
-        ItemDeck = SaveData.PartyCharacterData[pos].ItemGetDeck();
+        scDeck = save.Instance.PartyCharacterData[pos].GetDeck();
+        ItemDeck = save.Instance.PartyCharacterData[pos].ItemGetDeck();
 
         for (int i = 0; i < scDeck.Deck.Count; i++)
         {
@@ -146,11 +144,11 @@ public class PartyCharacterBehaviour : MonoBehaviour
     {
         if (HasInit)
         {
-            SaveData.Inventory = InventoryContainer.CardContainer;
+            save.Instance.Inventory = InventoryContainer.CardContainer;
             InventoryContainer.DestroyAllCards();
         }
 
-        InventoryContainer.AddCards(SaveData.Inventory);
+        InventoryContainer.AddCards(save.Instance.Inventory);
     }
 
     //public void Sort()
@@ -174,7 +172,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public void SaveAll()
     {
         if (!gameObject.activeSelf) { return; }
-        SaveData.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
-        SaveData.Inventory = InventoryContainer.CardContainer;
+        save.Instance.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
+        save.Instance.Inventory = InventoryContainer.CardContainer;
     }
 }

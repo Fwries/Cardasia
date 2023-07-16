@@ -8,7 +8,6 @@ public class GameBehaviour : MonoBehaviour
     public PlayerBehaviour CurrentPlayerTurn;
     public PlayerBehaviour Player;
     public PlayerBehaviour Opponent;
-    public save SaveData;
 
     public GameDisplay GameDis;
     public List<GameObject> HandObjects;
@@ -30,16 +29,14 @@ public class GameBehaviour : MonoBehaviour
 
     void Awake()
     {
-        SaveData = GameObject.Find("Save").GetComponent<save>();
-
-        Player.CharacterTape = new CharacterBehaviour[SaveData.PartyCharacterData.Length];
+        Player.CharacterTape = new CharacterBehaviour[save.Instance.PartyCharacterData.Length];
         for (int i = 0; i < 5; i++)
         {
-            if (i < SaveData.PartyCharacterData.Length)
+            if (i < save.Instance.PartyCharacterData.Length)
             {
                 Player.CharacterTape[i] = Player.CharObj[i].AddComponent<CharacterBehaviour>();
                 Player.CharacterTape[i].HandObject = HandObjects[i];
-                Player.CharacterTape[i].Init(SaveData.PartyCharacterData[i]);
+                Player.CharacterTape[i].Init(save.Instance.PartyCharacterData[i]);
                 Player.CharacterTape[i].PlayerBehav = Player;
                 Player.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Player.CharacterTape[i]);
             }
@@ -57,7 +54,7 @@ public class GameBehaviour : MonoBehaviour
             {
                 Opponent.CharacterTape[i] = Opponent.CharObj[i].AddComponent<CharacterBehaviour>();
                 Opponent.CharacterTape[i].HandObject = HandObjects[i + 5];
-                Opponent.CharacterTape[i].Init(SaveData.TempChar);
+                Opponent.CharacterTape[i].Init(save.Instance.TempChar);
                 Opponent.CharacterTape[i].PlayerBehav = Opponent;
                 Opponent.CharacterTape[i].IsEnemy = true;
                 Opponent.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Opponent.CharacterTape[i]);
@@ -308,9 +305,9 @@ public class GameBehaviour : MonoBehaviour
         {
             Debug.Log("Player Died");
 
-            SaveData.BattleUpdate(this);
-            SaveData.SaveFile("battle");
-            SaveData.ChangeScene("RPGScene", "battle");
+            save.Instance.BattleUpdate(this);
+            save.Instance.SaveFile("battle");
+            save.Instance.ChangeScene("RPGScene", "battle");
 
             return true;
         }
@@ -324,9 +321,9 @@ public class GameBehaviour : MonoBehaviour
         {
             Debug.Log("You Win");
 
-            SaveData.BattleUpdate(this);
-            SaveData.SaveFile("battle");
-            SaveData.ChangeScene("RPGScene", "battle");
+            save.Instance.BattleUpdate(this);
+            save.Instance.SaveFile("battle");
+            save.Instance.ChangeScene("RPGScene", "battle");
 
             return true;
         }

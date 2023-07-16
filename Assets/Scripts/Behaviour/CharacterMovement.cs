@@ -6,7 +6,6 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private Camera Cam;
-    public save SaveData;
     [SerializeField] private MapBehaviour Map;
     [SerializeField] private DialogueBehaviour DialogueBehav;
     [SerializeField] private SpriteRenderer CharacterRenderer;
@@ -34,8 +33,19 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CurrAnim = Character.Idle_Down_Anim;
-        CurrDirection = Vector3.down;
+        Map.ChangeMap(save.Instance.Map);
+        TeleportPlayer(save.Instance.xPos, save.Instance.yPos);
+
+        if (save.Instance.PartyCharacterData.Length > 0)
+        {
+            CurrAnim = save.Instance.PartyCharacterData[0].GetCurrAnim();
+        }
+        else
+        {
+            CurrAnim = Character.Idle_Down_Anim;
+            CurrDirection = Vector3.down;
+        }
+
         TransitionMaterial.SetFloat("_Cutoff", 0f);
         TransitionMaterial.SetFloat("_Fade", 0f);
     }
@@ -85,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
             {
-                SaveData.CreateNewCharacterData(Character, 1);
+                save.Instance.CreateNewCharacterData(Character, 1);
             }
         }
 
@@ -116,8 +126,8 @@ public class CharacterMovement : MonoBehaviour
         transform.position = new Vector3(X, Y, -1);
         Cam.transform.position = new Vector3(transform.position.x, transform.position.y, Cam.transform.position.z);
 
-        SaveData.xPos = X;
-        SaveData.yPos = Y;
+        save.Instance.xPos = X;
+        save.Instance.yPos = Y;
     }
 
     private IEnumerator MovePlayer(Vector3 direction, bool IsComand)
@@ -159,8 +169,8 @@ public class CharacterMovement : MonoBehaviour
                 transform.position = targetPos;
                 Cam.transform.position = new Vector3(transform.position.x, transform.position.y, Cam.transform.position.z);
 
-                SaveData.xPos = (int)targetPos.x;
-                SaveData.yPos = (int)targetPos.y;
+                save.Instance.xPos = (int)targetPos.x;
+                save.Instance.yPos = (int)targetPos.y;
 
                 if (direction == Vector3.up) { CurrAnim = Character.Idle_Up_Anim; }
                 else if (direction == Vector3.left) { CurrAnim = Character.Idle_Left_Anim; }
@@ -293,7 +303,7 @@ public class CharacterMovement : MonoBehaviour
             int Rand = UnityEngine.Random.Range(0, 100);
             if (Rand <= 15)
             {
-                SaveData.SaveFile("battle");
+                save.Instance.SaveFile("battle");
                 StartCoroutine(Battle());
             }
             else
@@ -387,6 +397,15 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
         }
+        else if (strg[1] == 'P' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 'y' && strg[5] == 'S' && strg[6] == 'o' && strg[7] == 'u' && strg[8] == 'n' && strg[9] == 'd')
+        {
+            string Audio = "";
+            for (int i = 11; i < strg.Length; i++)
+            {
+                Audio += strg[i];
+            }
+            AudioManager.Instance.PlaySFX(Audio);
+        }
     }
 
     private IEnumerator Flash(bool flashin)
@@ -452,7 +471,7 @@ public class CharacterMovement : MonoBehaviour
             yield return null;
         }
         TransitionMaterial.SetFloat("_Cutoff", 1f);
-        SaveData.ChangeScene("BattleScene", "battle");
+        save.Instance.ChangeScene("BattleScene", "battle");
     }
 
     private IEnumerator Delayfor(float DelayTime)
@@ -474,15 +493,12 @@ public class CharacterMovement : MonoBehaviour
     public void SaveFile(string SaveFileName)
     {
         Debug.Log("Saved");
-        SaveData.SaveFile(SaveFileName);
+        save.Instance.SaveFile(SaveFileName);
     }
 
     public void ChangeScene(string SceneName)
     {
-        if (SceneName == "MenuScene")
-        {
-            Destroy(SaveData.gameObject);
-        }
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
+        AudioManager.Instance.musicSource.Stop();
     }
 }

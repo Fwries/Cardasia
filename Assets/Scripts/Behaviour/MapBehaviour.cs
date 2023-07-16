@@ -5,7 +5,6 @@ using System.IO;
 
 public class MapBehaviour : MonoBehaviour
 {
-    public save SaveData;
     public GameObject TilePrefab;
     public SC_Map SCMap;
 
@@ -41,7 +40,7 @@ public class MapBehaviour : MonoBehaviour
 
     public void ChangeMap(SC_Map _SCMap)
     {
-        SaveData.Map = SCMap = _SCMap;
+        save.Instance.Map = SCMap = _SCMap;
         Tileset = _SCMap.Tileset;
         ReadCSVMap(_SCMap.CSVFileName);
 
