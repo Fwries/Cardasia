@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime_1
   m_EditorClassIdentifier: 
   CardName: Slime
-  Health: 60
+  Health: 40
   Defence: 0
   Attack: 0
   MaxBoth: 2

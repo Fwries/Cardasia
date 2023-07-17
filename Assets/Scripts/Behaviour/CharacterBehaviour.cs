@@ -54,6 +54,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public int OrigPos;
     public int CurrAnim;
 
+    public float duration = 0.2f;
+    public int strength;
+
     public void Init(CharacterData CharData)
     {
         Character = CharData.GetCharacter();
@@ -62,7 +65,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         Level = CharData.Level;
 
-        MaxHealth = Character.Health;
+        MaxHealth = Character.Health + 20 * Level;
         Health = CharData.Health;
         
         Exp = CharData.Exp; MaxExp = 100;
@@ -71,8 +74,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
 
-        DEF = Character.Defence;
-        ATK = Character.Attack;
+        DEF = Character.Defence + 10 * Level;
+        ATK = Character.Attack + 10 * Level;
         Bullet = CharData.Bullet;
         MaxBullet = Character.MaxBullet;
 
@@ -91,21 +94,22 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Shuffle();
     }
 
-    public void Init(SC_Character _Character)
+    public void Init(SC_Character _Character, int _Level)
     {
         Character = _Character;
         OrigPos = -1;
         CurrAnim = 0;
 
-        Health = MaxHealth = Character.Health;
+        Level = _Level;
+        Health = MaxHealth = Character.Health + 20 * Level;
         Exp = 0; MaxExp = 100;
-        
+
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
-        
-        DEF = Character.Defence;
-        ATK = Character.Attack;
+
+        DEF = Character.Defence + 10 * Level;
+        ATK = Character.Attack + 10 * Level;
         MaxBullet = Character.MaxBullet;
 
         scDeck = Character.DefaultDeck;
@@ -132,17 +136,22 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (Health <= 0) 
         {
             IsDead = true;
-            PlayerBehav.RotationBehav.UpdateDeadCharacters();
-            gameObject.SetActive(false);
+
+            if (IsEnemy)
+            {
+                Exp = 30;
+                StartCoroutine(GameBehav.GiveEXP(GameBehav.Player, this));
+            }
+            else
+            {
+                PlayerBehav.RotationBehav.UpdateDeadCharacters();
+                gameObject.SetActive(false);
+            }
         }
         if (Exp >= MaxExp)
         {
             Exp -= MaxExp;
-            Level++;
-
-            Health = MaxHealth = Character.Health;
-            Both = MaxBoth = Character.MaxBoth;
-            Stamina = MaxStamina = Character.MaxStamina;
+            LevelUp();
         }
     }
 
@@ -347,13 +356,58 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 CritMultiplier = 2;
                 break;
         }
-        Target.DealtDamage(DMG * CritMultiplier);
+        Target.DealtDamage(((DMG + ATK) * CritMultiplier) - Target.DEF);
     }
 
     public void DealtDamage(int DMG)
     {
-        if (IsDead) { return; }
-        Health -= DMG;
+        if (DMG < 0) { DMG = 0; }
+        Shake(DMG);
+    }
+
+    public void Shake(int _strength)
+    {
+        GameBehav.Delay = true;
+        strength = _strength * 10;
+        StartCoroutine(Shaking(_strength));
+    }
+
+    private IEnumerator Shaking(int DMG)
+    {
+        Vector3 StartPos = this.transform.position;
+        Vector3 ShakePos;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            ShakePos = Random.insideUnitSphere * strength / 100;
+            transform.position += ShakePos;
+            yield return null;
+        }
+
+        transform.position = StartPos;
+        StartCoroutine(HealthDecreasePerFrame(DMG));
+    }
+
+    public IEnumerator HealthDecreasePerFrame(int DMG)
+    {
+        GameBehav.Delay = true;
+
+        int i = 0;
+        float elapsedTime = 0;
+        float Speed = 1f / DMG;
+
+        while (i < DMG)
+        {
+            if (elapsedTime >= Speed)
+            {
+                Health--; i++;
+                elapsedTime = 0;
+            }
+            else { elapsedTime += Time.deltaTime; yield return null; }
+        }
+        GameBehav.Delay = false;
     }
 
     public void RestoreHealth(int HealthRestored)
@@ -445,5 +499,14 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 Trip = false;
                 break;
         }
+    }
+
+    public void LevelUp()
+    {
+        Level++;
+
+        Health = MaxHealth = Character.Health + 20 * Level;
+        Both = MaxBoth = Character.MaxBoth;
+        Stamina = MaxStamina = Character.MaxStamina;
     }
 }

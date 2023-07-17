@@ -26,11 +26,11 @@ public class SettingsBehaviour : MonoBehaviour
 
         if (AudioManager.Instance.sfxSource.mute)
         {
-            SFXImg.sprite = SFXOn;
+            SFXImg.sprite = SFXOff;
         }
         else
         {
-            SFXImg.sprite = SFXOff;
+            SFXImg.sprite = SFXOn;
         }
 
         _musicSlider.value = AudioManager.Instance.musicSource.volume;
@@ -57,11 +57,11 @@ public class SettingsBehaviour : MonoBehaviour
 
         if (AudioManager.Instance.sfxSource.mute)
         {
-            SFXImg.sprite = SFXOn;
+            SFXImg.sprite = SFXOff;
         }
         else
         {
-            SFXImg.sprite = SFXOff;
+            SFXImg.sprite = SFXOn;
         }
     }
 

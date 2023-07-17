@@ -21,7 +21,8 @@ public class CharacterData
 		OrigPos = _OrigPos;
 		CharJson = JsonUtility.ToJson(_Character);
 		Level = _Level;
-		
+		Health = _Character.Health;
+
 		DeckJson = JsonUtility.ToJson(_Character.DefaultDeck);
 
 		SC_Deck ItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
@@ -49,8 +50,8 @@ public class CharacterData
 		OrigPos = _OrigPos;
 		CharJson = JsonUtility.ToJson(CharacterBehav.Character);
 
-		Health = CharacterBehav.Health;
 		Level = CharacterBehav.Level;
+		Health = CharacterBehav.Health;
 		Exp = CharacterBehav.Exp;
 		Bullet = CharacterBehav.Bullet;
 

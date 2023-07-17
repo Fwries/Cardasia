@@ -41,7 +41,7 @@ public class save : MonoBehaviour
 			return;
 		}
         //LoadFile("save");
-        LoadSettings();
+        //LoadSettings();
     }
 
 	void Start()
@@ -178,7 +178,7 @@ public class save : MonoBehaviour
 		}
 
 		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
-		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health;
+		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health + 20 * _Level;
 	}
 
 	public void ChangeScene(string SceneName, string save)

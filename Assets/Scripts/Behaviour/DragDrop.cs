@@ -56,6 +56,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         if (Cardbehav.Frozen) { return; }
         if (Cardbehav.CharacterBehav.Health <= 0) { return; }
 
+        AudioManager.Instance.PlaySFX("error");
+
         transform.position = new Vector3((Cardbehav.CharacterBehav.HandCards.Count - 1) * -100 + Cardbehav.CharacterBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 200,
                 Cardbehav.CharacterBehav.HandObject.transform.position.y, 0.0f);
         canvasGroup.blocksRaycasts = true;
@@ -65,8 +67,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         DisplayBehav.SetCardDisplay(Cardbehav.Currentcard);
-        //Display.GetComponent<CardDisplay>().Currentcard = this.GetComponent<CardDisplay>().Currentcard;
-        //Display.GetComponent<CardDisplay>().cardBehav = this.GetComponent<CardDisplay>().cardBehav;
     }
 
     private Vector3 GetMousePos()

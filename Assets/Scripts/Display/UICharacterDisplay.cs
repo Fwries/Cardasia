@@ -28,8 +28,8 @@ public class UICharacterDisplay : MonoBehaviour
     {
         DisplayCharacterText.text = "Lv. " + CharData.Level + " " + Character.CardName;
 
-        HealthText.text = CharData.Health + " / " + Character.Health;
-        HealthSlider.maxValue = Character.Health;
+        HealthText.text = CharData.Health + " / " + (Character.Health + 20 * CharData.Level);
+        HealthSlider.maxValue = Character.Health + 20 * CharData.Level;
         HealthSlider.value = CharData.Health;
 
         AnimTime += Time.deltaTime;

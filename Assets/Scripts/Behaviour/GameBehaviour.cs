@@ -25,7 +25,9 @@ public class GameBehaviour : MonoBehaviour
 
     [HideInInspector] public CharacterBehaviour Selected;
 
+    public ScreenShake ShakeScreen;
     public bool Trans;
+    public bool Delay;
 
     void Awake()
     {
@@ -47,9 +49,7 @@ public class GameBehaviour : MonoBehaviour
         }
         Player.UpdateActive();
 
-        int RandAmt = UnityEngine.Random.Range(save.Instance.EnemyList.MinSpawn, save.Instance.EnemyList.MaxSpawn);
-        Opponent.CharacterTape = new CharacterBehaviour[RandAmt];
-
+        int RandAmt = UnityEngine.Random.Range(save.Instance.EnemyList.MinSpawn, save.Instance.EnemyList.MaxSpawn + 1);
         Opponent.CharacterTape = new CharacterBehaviour[RandAmt];
         for (int i = 0; i < 5; i++)
         {
@@ -58,13 +58,13 @@ public class GameBehaviour : MonoBehaviour
                 Opponent.CharacterTape[i] = Opponent.CharObj[i].AddComponent<CharacterBehaviour>();
                 Opponent.CharacterTape[i].HandObject = HandObjects[i + 5];
 
-                int RandChance = UnityEngine.Random.Range(0, 100);
-                SC_Character EnemySpawn = null;
+                int RandChance = UnityEngine.Random.Range(1, 101);
+                SC_EnemyList.Enemy EnemySpawn = null;
                 for (int j = 0; j < save.Instance.EnemyList.EnemyList.Length; j++)
                 {
                     if (save.Instance.EnemyList.EnemyList[j].SpawnChance >= RandChance)
                     {
-                        EnemySpawn = save.Instance.EnemyList.EnemyList[j].scEnemy;
+                        EnemySpawn = save.Instance.EnemyList.EnemyList[j];
                         break;
                     }
                     else
@@ -73,7 +73,7 @@ public class GameBehaviour : MonoBehaviour
                     }
                 }
 
-                Opponent.CharacterTape[i].Init(save.Instance.EnemyList.EnemyList[0].scEnemy);
+                Opponent.CharacterTape[i].Init(EnemySpawn.scEnemy, UnityEngine.Random.Range(EnemySpawn.MinLevel, EnemySpawn.MaxLevel + 1));
                 
                 Opponent.CharacterTape[i].PlayerBehav = Opponent;
                 Opponent.CharacterTape[i].IsEnemy = true;
@@ -263,7 +263,7 @@ public class GameBehaviour : MonoBehaviour
                             if (Opponent.CharacterTape[CharIdx].CanBePlayed(Card, true))
                             {
                                 StartCoroutine(Card.PlayAnim(this, Target));
-                                while (EnemyCardAnim)
+                                while (EnemyCardAnim || Delay)
                                 {
                                     yield return null;
                                 }
@@ -276,6 +276,10 @@ public class GameBehaviour : MonoBehaviour
             }
             if (shouldBreak)
                 break;
+        }
+        while (Delay)
+        {
+            yield return null;
         }
         EndTurn(true);
         EnemyAIThinking = false;
@@ -342,5 +346,48 @@ public class GameBehaviour : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public IEnumerator GiveEXP(PlayerBehaviour player, CharacterBehaviour CharacterBehav)
+    {
+        Delay = true;
+
+        int i = 0, EXP = (CharacterBehav.Exp) / player.CharacterTape.Length;
+        float elapsedTime = 0;
+        float Speed = 1f / EXP;
+
+        for (int j = 0; j < player.CharacterTape.Length; j++)
+        {
+            if (j < 3)
+            {
+                while (i < EXP)
+                {
+                    if (elapsedTime >= Speed)
+                    {
+                        player.CharacterTape[j].Exp++; i++;
+                        elapsedTime = 0;
+                        if (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
+                        {
+                            player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
+                            player.CharacterTape[j].LevelUp();
+                        }
+                    }
+                    else { elapsedTime += Time.deltaTime; yield return null; }
+                }
+            }
+            else
+            {
+                player.CharacterTape[j].Exp += EXP;
+                while (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
+                {
+                    player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
+                    player.CharacterTape[j].LevelUp();
+                    yield return null;
+                }
+            }
+        }
+        Delay = false;
+        Opponent.RotationBehav.UpdateDeadCharacters();
+        CharacterBehav.gameObject.SetActive(false);
     }
 }
