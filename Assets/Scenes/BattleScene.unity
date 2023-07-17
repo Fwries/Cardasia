@@ -2581,6 +2581,7 @@ MonoBehaviour:
   - {fileID: 133911143}
   - {fileID: 790457035}
   CharacterTape: []
+  RotationBehav: {fileID: 820155034}
   LoseATurn: 0
   CardPlayed: 0
   IsAI: 1
@@ -2603,6 +2604,7 @@ MonoBehaviour:
   - {fileID: 1822985508}
   - {fileID: 1890367235}
   CharacterTape: []
+  RotationBehav: {fileID: 1610229807}
   LoseATurn: 0
   CardPlayed: 0
   IsAI: 0

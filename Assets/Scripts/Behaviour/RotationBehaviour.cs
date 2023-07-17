@@ -238,6 +238,35 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         return worldPoint;
     }
 
+    public void UpdateDeadCharacters()
+    {
+        for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
+        {
+            if (PlayerBehav.CharacterTape[i].IsDead == true)
+            {
+                CharacterBehaviour[] Temp = new CharacterBehaviour[PlayerBehav.CharacterTape.Length - 1];
+                int k = 0;
+                for (int j = 0; j < PlayerBehav.CharacterTape.Length; j++)
+                {
+                    if (j != i)
+                    {
+                        Temp[k] = PlayerBehav.CharacterTape[j];
+                        k++;
+                    }
+                }
+
+                PlayerBehav.CharacterTape = Temp;
+            }
+        }
+
+        if (PlayerBehav.CharacterTape.Length == 0)
+        {
+            GameBehav.CheckGameOver();
+            return;
+        }
+        ResetCharPos();
+    }
+
     public void ResetCharPos()
     {
         for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)

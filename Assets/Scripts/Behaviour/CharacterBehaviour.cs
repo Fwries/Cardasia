@@ -131,7 +131,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (IsDead) { return; }
         if (Health <= 0) 
         {
-            IsDead = true; 
+            IsDead = true;
+            PlayerBehav.RotationBehav.UpdateDeadCharacters();
+            gameObject.SetActive(false);
         }
         if (Exp >= MaxExp)
         {

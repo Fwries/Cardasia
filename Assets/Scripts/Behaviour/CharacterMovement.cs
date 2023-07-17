@@ -473,6 +473,7 @@ public class CharacterMovement : MonoBehaviour
             yield return null;
         }
         TransitionMaterial.SetFloat("_Cutoff", 1f);
+        save.Instance.EnemyList = Map.Tileset[Map.TileLayer[(int)transform.position.y, (int)transform.position.x]].EnemyList;
         save.Instance.ChangeScene("BattleScene", "battle");
     }
 

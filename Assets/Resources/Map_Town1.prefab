@@ -6980,7 +6980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5415036476215619360}
   m_Layer: 0
-  m_Name: Town1
+  m_Name: Map_Town1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

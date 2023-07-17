@@ -21,6 +21,8 @@ public class save : MonoBehaviour
 	public SC_Character TempChar;
 	public List<SC_Card> TempItemDeck;
 
+	public SC_EnemyList EnemyList;
+
 	public bool MusicMute;
 	public bool SFXMute;
 	public float MusicVolume;
@@ -153,7 +155,7 @@ public class save : MonoBehaviour
         {
 			PartyCharacterData[i] = temp[i];
         }
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, TempItemDeck);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
 	}
 	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
@@ -175,7 +177,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = temp[i];
 		}
 
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, TempItemDeck);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health;
 	}
 

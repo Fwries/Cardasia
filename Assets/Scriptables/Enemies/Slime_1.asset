@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Slime
   Health: 60
-  Strength: 0
-  Armour: 0
+  Defence: 0
+  Attack: 0
   MaxBoth: 2
   MaxStamina: 0
   MaxMana: 0
-  CharacterClass: 0
-  CharacterSubClass: 0
-  DefaultDeck: {fileID: 0}
+  MaxBullet: 0
+  DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
   Idle_Down_Anim:
   - {fileID: 49918177, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   - {fileID: -1429512720, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}

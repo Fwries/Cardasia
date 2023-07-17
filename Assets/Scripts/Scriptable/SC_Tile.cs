@@ -20,4 +20,5 @@ public class SC_Tile : ScriptableObject
     public bool ConstantAnim;
 
     public SC_Map ChangeMap;
+    public SC_EnemyList EnemyList;
 }

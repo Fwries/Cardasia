@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public GameObject[] CharObj;
     public CharacterBehaviour[] CharacterTape;
+    public RotationBehaviour RotationBehav;
 
     public bool LoseATurn;
 
