@@ -65,7 +65,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData(nameStr, Map, xPos, yPos, PartyCharacterData, Inventory);
+		GameData data = new GameData("Saved", Map, xPos, yPos, PartyCharacterData, Inventory);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
@@ -81,14 +81,7 @@ public class save : MonoBehaviour
 		if (File.Exists(destination)) file = File.OpenRead(destination);
 		else
 		{
-			Debug.Log("File not found");
-			
-			GameObject ContinueButton = GameObject.Find("Continue");
-			if (ContinueButton != null)
-            {
-				ContinueButton.GetComponent<Button>().interactable = false;
-			}
-			
+			Debug.Log("File not found");			
 			return;
 		}
 
@@ -99,6 +92,7 @@ public class save : MonoBehaviour
 		nameStr = data.name;
 		Map = ScriptableObject.CreateInstance<SC_Map>();
 		JsonUtility.FromJsonOverwrite(data.MapJson, Map);
+
 		xPos = data.x;
 		yPos = data.y;
 
@@ -108,6 +102,29 @@ public class save : MonoBehaviour
 		Inventory = data.GetInventory();
 
 		if (DebugMode) { Debug.Log("Loaded " + SaveFileName); }
+	}
+
+	public bool CheckFileExist(string SaveFileName)
+    {
+		string destination = Application.persistentDataPath + "/" + SaveFileName + ".dat";
+		FileStream file;
+
+		if (File.Exists(destination)) file = File.OpenRead(destination);
+		else
+		{
+			Debug.Log("File not found");
+			return false;
+		}
+
+		BinaryFormatter bf = new BinaryFormatter();
+		GameData data = (GameData)bf.Deserialize(file);
+		file.Close();
+
+		if (data.name == "")
+        {
+			return false;
+        }
+		return true;
 	}
 
 	public void SaveSettings()
