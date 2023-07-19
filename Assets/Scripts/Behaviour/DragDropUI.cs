@@ -51,7 +51,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
         EmptyCard.transform.SetParent(transform.parent);
         transform.SetParent(PartyUI.transform);
 
-        //canvasGroup.blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
         IsDragging = true;
     }
 

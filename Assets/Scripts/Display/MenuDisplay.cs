@@ -28,7 +28,7 @@ public class MenuDisplay : MonoBehaviour
     {
         Destroy(save.Instance.gameObject);
         save.Instance = null;
-        Instantiate(Resources.Load("Save"));
+        Instantiate(Resources.Load("Singleton_Save"));
 
         save.Instance.CreateNewCharacterData(save.Instance.TempChar, 5);
         save.Instance.Inventory = save.Instance.TempItemDeck;
