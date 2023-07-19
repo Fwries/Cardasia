@@ -314,8 +314,13 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
         {
-            int Rand = UnityEngine.Random.Range(0, 100);
-            if (Rand <= 15)
+            string Chance = "";
+            for (int i = 7; i < strg.Length; i++)
+            {
+                Chance += strg[i];
+            }
+
+            if (UnityEngine.Random.Range(0, 100) >= Convert.ToInt32(Chance))
             {
                 save.Instance.SaveFile("battle");
                 StartCoroutine(Battle());

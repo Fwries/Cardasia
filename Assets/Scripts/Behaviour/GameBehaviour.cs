@@ -122,8 +122,8 @@ public class GameBehaviour : MonoBehaviour
 
     public void EndTurn(bool IsAi)
     {
-        if (GameOver) { return; }
-        if (((!IsAi && CurrentPlayerTurn == Player) || (IsAi && CurrentPlayerTurn == Opponent)) && !Trans)
+        if (GameOver || Delay || Trans) { return; }
+        if ((!IsAi && CurrentPlayerTurn == Player) || (IsAi && CurrentPlayerTurn == Opponent))
         {
             AudioManager.Instance.PlaySFX("Passturn");
             // End of Turn Effects

@@ -21,7 +21,7 @@ MonoBehaviour:
   Event: 1
   SolidEvent: 0
   Script:
-  - /Grass
+  - /Grass 15
   IsAnim: 0
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
