@@ -11,6 +11,9 @@ public class SettingsBehaviour : MonoBehaviour
     public Sprite MusicOn, MusicOff;
     public Sprite SFXOn, SFXOff;
 
+    public float PrevmusicSlider, PrevsfxSlider;
+    public bool musicMute, sfxMute;
+
     void Start()
     {
         save.Instance.LoadSettings();
@@ -33,8 +36,10 @@ public class SettingsBehaviour : MonoBehaviour
             SFXImg.sprite = SFXOn;
         }
 
-        _musicSlider.value = AudioManager.Instance.musicSource.volume;
-        _sfxSlider.value = AudioManager.Instance.sfxSource.volume;
+        _musicSlider.value = PrevmusicSlider = AudioManager.Instance.musicSource.volume;
+        _sfxSlider.value = PrevsfxSlider = AudioManager.Instance.sfxSource.volume;
+        musicMute = AudioManager.Instance.musicSource.mute;
+        sfxMute = AudioManager.Instance.sfxSource.mute;
     }
 
     public void ToggleMusic()
@@ -78,6 +83,45 @@ public class SettingsBehaviour : MonoBehaviour
     public void SaveSettings()
     {
         save.Instance.SaveSettings();
+        PrevmusicSlider = AudioManager.Instance.musicSource.volume;
+        PrevsfxSlider = AudioManager.Instance.sfxSource.volume;
+        musicMute = AudioManager.Instance.musicSource.mute;
+        sfxMute = AudioManager.Instance.sfxSource.mute;
+
         Debug.Log("Saved");
+    }
+
+    public void ResetSettings()
+    {
+        if (!gameObject.activeSelf) { return; }
+
+        _musicSlider.value = PrevmusicSlider;
+        _sfxSlider.value = PrevsfxSlider;
+
+        if (musicMute != AudioManager.Instance.musicSource.mute)
+        {
+            ToggleMusic();
+        }
+        if (sfxMute)
+        {
+            MusicImg.sprite = MusicOff;
+        }
+        else
+        {
+            MusicImg.sprite = MusicOn;
+        }
+
+        if (musicMute != AudioManager.Instance.sfxSource.mute)
+        {
+            ToggleSFX();
+        }
+        if (sfxMute)
+        {
+            SFXImg.sprite = SFXOff;
+        }
+        else
+        {
+            SFXImg.sprite = SFXOn;
+        }
     }
 }

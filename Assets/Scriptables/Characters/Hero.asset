@@ -16,9 +16,9 @@ MonoBehaviour:
   Health: 100
   Defence: 10
   Attack: 10
-  MaxBoth: 1
-  MaxStamina: 1
-  MaxMana: 1
+  MaxBoth: 3
+  MaxStamina: 0
+  MaxMana: 0
   MaxBullet: 0
   DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
   Idle_Down_Anim:
@@ -72,3 +72,4 @@ MonoBehaviour:
   Dead_Sprite:
   - {fileID: -237869538, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}
   - {fileID: 1104713928, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}
+  EXPGain: 0

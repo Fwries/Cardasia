@@ -93,7 +93,7 @@ public class CardBehaviour : MonoBehaviour
                 target.Health -= 70;
                 break;
             case "Extra Time":
-                CharacterBehav.GainMana("Stamina", 1);
+                target.GainMana("Stamina", 1);
                 break;
             case "Fairy Wand":
                 CharacterBehav.AddCard(GameBehav.RandomCardPool.Deck[Random.Range(0, GameBehav.RandomCardPool.Deck.Count)]);

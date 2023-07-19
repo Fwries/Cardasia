@@ -354,12 +354,15 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 break;
             case 1: // Base Crit
                 if (Random.Range(0, 4) == 0) { CritMultiplier = 2; }
+                AudioManager.Instance.PlaySFX("Impact");
                 break;
             case 2: // High Crit
                 if (Random.Range(0, 2) == 0) { CritMultiplier = 2; }
+                AudioManager.Instance.PlaySFX("Crit");
                 break;
             case 3: // Gurantee Crit
                 CritMultiplier = 2;
+                AudioManager.Instance.PlaySFX("Crit");
                 break;
         }
 

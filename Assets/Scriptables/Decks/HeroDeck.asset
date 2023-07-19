@@ -10,17 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63974e74eed33d54995a0419fbc1d5bc, type: 3}
-  m_Name: Sample Deck
+  m_Name: HeroDeck
   m_EditorClassIdentifier: 
   Deck:
-  - {fileID: 11400000, guid: 5034dc3203d074343b2d87be3b7fc029, type: 2}
-  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
-  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
-  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
-  - {fileID: 11400000, guid: c1233dcf86bc4af42ba1b97c8e6b8fa9, type: 2}
   - {fileID: 11400000, guid: 9d74cd586d3b8cf4ab74687c4ab1b5d2, type: 2}
   - {fileID: 11400000, guid: 9d74cd586d3b8cf4ab74687c4ab1b5d2, type: 2}
-  - {fileID: 11400000, guid: 46b1a9cf032945644b32dc8974eafd9a, type: 2}
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
   - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}

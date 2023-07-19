@@ -56,7 +56,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IEventSystemHandler,
         if (Cardbehav.Frozen) { return; }
         if (Cardbehav.CharacterBehav.Health <= 0) { return; }
 
-        AudioManager.Instance.PlaySFX("error");
+        AudioManager.Instance.PlaySFX("Error");
 
         transform.position = new Vector3((Cardbehav.CharacterBehav.HandCards.Count - 1) * -100 + Cardbehav.CharacterBehav.HandObject.transform.position.x + gameObject.GetComponent<CardDisplay>().PositionIndex * 200,
                 Cardbehav.CharacterBehav.HandObject.transform.position.y, 0.0f);

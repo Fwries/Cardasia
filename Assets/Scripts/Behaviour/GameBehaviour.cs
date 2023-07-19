@@ -386,7 +386,7 @@ public class GameBehaviour : MonoBehaviour
     {
         Delay = true;
 
-        int EXP = (CharacterBehav.Character.EXPGain * CharacterBehav.Level) / player.CharacterTape.Length;
+        int EXP = (CharacterBehav.Character.EXPGain + 20 * CharacterBehav.Level) / player.CharacterTape.Length;
         float elapsedTime = 0;
         float Speed = 1f / EXP;
 
@@ -443,7 +443,7 @@ public class GameBehaviour : MonoBehaviour
         {
             if (Random.Range(0,4) == 0)
             {
-                return start;
+                return i;
             }
         }
         return end;

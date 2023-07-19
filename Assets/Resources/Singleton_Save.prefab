@@ -60,4 +60,4 @@ MonoBehaviour:
   MusicMute: 0
   SFXMute: 0
   MusicVolume: 1
-  SFXVolume: 1
+  SFXVolume: 0.8
