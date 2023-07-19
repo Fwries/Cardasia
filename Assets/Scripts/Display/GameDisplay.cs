@@ -57,7 +57,11 @@ public class GameDisplay : MonoBehaviour
 
         if (GameBehav.Selected.MaxBullet > 0)
         {
-            CharacterStats.text += "BLT: (" + GameBehav.Selected.Bullet + "/" + GameBehav.Selected.MaxBullet + ")";
+            CharacterStats.text += "BLT: (" + GameBehav.Selected.Bullet + "/" + GameBehav.Selected.MaxBullet + ")" + "\n";
+        }
+        if (GameBehav.Selected.Claw > 0)
+        {
+            CharacterStats.text += "CLAW: " + GameBehav.Selected.Claw + "\n";
         }
 
         Pointer = 0;
@@ -88,6 +92,12 @@ public class GameDisplay : MonoBehaviour
 
     public void SetCardDisplay(SC_Card CurrCard)
     {
+        if (CurrCard == null)
+        {
+            CardDisplay.SetActive(false);
+            return;
+        }
+
         if (!CardDisplay.activeSelf)
         {
             CardDisplay.SetActive(true);

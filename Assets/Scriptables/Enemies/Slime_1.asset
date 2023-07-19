@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime_1
   m_EditorClassIdentifier: 
   CardName: Slime
-  Health: 40
+  Health: 60
   Defence: 0
   Attack: 0
   MaxBoth: 2
@@ -55,3 +55,4 @@ MonoBehaviour:
   - {fileID: -1000409999, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   Dead_Sprite:
   - {fileID: 2004656353, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
+  EXPGain: 30

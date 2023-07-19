@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PartyCharacterBehaviour : MonoBehaviour
 {
@@ -18,6 +20,10 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public List<SC_Card> Inventory;
 
     public int CurrCharacter;
+
+    public GameObject BlackDrop;
+    public CardDisplay Card;
+    public Text CardText;
 
     private bool HasInit;
 
@@ -70,6 +76,18 @@ public class PartyCharacterBehaviour : MonoBehaviour
         if (HasChanged)
         {
             RotationUI.Init();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!IsPointerOverUIElement())
+            {
+                BlackDrop.SetActive(false);
+                if (CharacterTape[CurrCharacter].Weapon == null)
+                {
+                    Card.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
@@ -174,5 +192,41 @@ public class PartyCharacterBehaviour : MonoBehaviour
         if (!gameObject.activeSelf) { return; }
         save.Instance.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
         save.Instance.Inventory = InventoryContainer.CardContainer;
+    }
+
+    private bool IsPointerOverUIElement()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Card");
+
+        foreach (GameObject element in gameObjects)
+        {
+            CanvasGroup canvasGroup = element.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+                continue;
+
+            if (canvasGroup.blocksRaycasts && canvasGroup.interactable && canvasGroup.alpha > 0)
+            {
+                RectTransform rectTransform = element.GetComponent<RectTransform>();
+                Vector3 originalScale = rectTransform.localScale;
+
+                // Temporarily set the scale to 1 for tap detection
+                rectTransform.localScale = Vector3.one;
+
+                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition, eventData.pressEventCamera))
+                {
+                    // Restore the original scale after tap detection
+                    rectTransform.localScale = originalScale;
+                    return true;
+                }
+
+                // Restore the original scale after tap detection
+                rectTransform.localScale = originalScale;
+            }
+        }
+
+        return false;
     }
 }

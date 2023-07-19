@@ -7,6 +7,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 {
     private CanvasGroup canvasGroup;
     private GameObject PartyUI;
+    private PartyCharacterBehaviour PartyBehav;
     private Vector3 dragOffset;
     private Camera cam;
     public GameObject EmptyCard;
@@ -19,6 +20,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
     {
         cam = Camera.main;
         PartyUI = GameObject.Find("PartyUI");
+        PartyBehav = PartyUI.GetComponent<PartyCharacterBehaviour>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -26,12 +28,6 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
     void Start()
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (!Consumable) { canvasGroup.blocksRaycasts = false; }
     }
 
     public void RemoveFromDeck()
@@ -55,7 +51,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
         EmptyCard.transform.SetParent(transform.parent);
         transform.SetParent(PartyUI.transform);
 
-        canvasGroup.blocksRaycasts = false;
+        //canvasGroup.blocksRaycasts = false;
         IsDragging = true;
     }
 
@@ -86,8 +82,18 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //Display.GetComponent<CardDisplay>().Currentcard = this.GetComponent<CardDisplay>().Currentcard;
-        //Display.GetComponent<CardDisplay>().cardBehav = this.GetComponent<CardDisplay>().cardBehav;
+        PartyBehav.Card.Currentcard = GetComponent<CardDisplay>().Currentcard;
+
+        if (!PartyBehav.BlackDrop.activeSelf)
+        {
+            PartyBehav.BlackDrop.SetActive(true);
+        }
+        if (!PartyBehav.Card.gameObject.activeSelf)
+        {
+            PartyBehav.Card.gameObject.SetActive(true);
+        }
+
+        PartyBehav.CardText.text = PartyBehav.Card.Currentcard.CardName + "   " + PartyBehav.Card.Currentcard.CardTrait + "\n" + PartyBehav.Card.Currentcard.CardSkill;
     }
 
     private Vector3 GetMousePos()

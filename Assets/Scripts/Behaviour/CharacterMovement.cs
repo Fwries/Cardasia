@@ -91,7 +91,10 @@ public class CharacterMovement : MonoBehaviour
                 {
                     CloseMenu();
                 }
-                AudioManager.Instance.PlaySFX("Menu");
+                else
+                {
+                    AudioManager.Instance.PlaySFX("MenuIn");
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
@@ -120,6 +123,7 @@ public class CharacterMovement : MonoBehaviour
         {
             MenuUI[i].SetActive(false);
         }
+        AudioManager.Instance.PlaySFX("MenuOut");
     }
 
     public void TeleportPlayer(int X, int Y)

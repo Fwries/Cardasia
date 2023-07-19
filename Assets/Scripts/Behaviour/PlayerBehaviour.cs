@@ -42,8 +42,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     public CharacterBehaviour GetTarget(int TargetType, PlayerBehaviour Opponent)
     {
-        //Debug.Log(TargetType);
-
         int ActiveCharacter = 3;
         if (ActiveCharacter > Opponent.CharacterTape.Length) { ActiveCharacter = Opponent.CharacterTape.Length; }
         if (ActiveCharacter == 0) { return null; }
@@ -88,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             return Opponent.CharacterTape[Random.Range(0, ActiveCharacter)];
         }
-        return GetTarget(1, Opponent);
+        return GetTarget(4, Opponent);
     }
 
     public CharacterBehaviour GetOrigCharacterTape(int i)

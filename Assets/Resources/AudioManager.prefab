@@ -98,8 +98,10 @@ MonoBehaviour:
   - name: Finale
     clip: {fileID: 8300000, guid: a831c001be0c4ce448979e1e5918fcd4, type: 3}
   sfxSounds:
-  - name: Menu
-    clip: {fileID: 8300000, guid: 323dcc20ca20d5f48baf60308f14ac16, type: 3}
+  - name: MenuIn
+    clip: {fileID: 8300000, guid: 6424df2ee0d939a4a81d7b8e9bcb1644, type: 3}
+  - name: MenuOut
+    clip: {fileID: 8300000, guid: aaf355a4d67aea2479532b62c05ee718, type: 3}
   - name: ScreenTransition
     clip: {fileID: 8300000, guid: 87cd278db13969245902a2e5ccf083b0, type: 3}
   - name: cuckoo

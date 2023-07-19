@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDropHandler
 {
     public SC_Character Character;
+    public SC_Card Weapon;
     [HideInInspector] public GameBehaviour GameBehav;
     [HideInInspector] public PlayerBehaviour PlayerBehav;
     [HideInInspector] public CharacterDisplay CharDisplay;
@@ -49,6 +50,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public bool Burn;
     public bool Trip;
     public bool Ward;
+
+    public int Claw;
 
     public bool IsEnemy;
     public int OrigPos;
@@ -139,7 +142,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
             if (IsEnemy)
             {
-                Exp = 30;
                 StartCoroutine(GameBehav.GiveEXP(GameBehav.Player, this));
             }
             else
@@ -174,7 +176,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void Draw(int DrawNum)
     {
-        if (Trip) { return; }
+        if (Trip) { Popup("Tripped", Color.black); return; }
         for (int index1 = 0; index1 < DrawNum; index1++)
         {
             if (HandCards == null || HandCards.Count == 5) { return; }
@@ -202,8 +204,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void AddCard(SC_Card SCCard)
     {
-        if (Trip) { return; }
-
         AudioManager.Instance.PlaySFX("draw");
         GameObject Card = Instantiate(Resources.Load("Card", typeof(GameObject))) as GameObject;
         Card.transform.SetParent(HandObject.transform);
@@ -338,10 +338,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         return false;
     }
 
-    public void DealDamage(int DMG, int CritType, CharacterBehaviour Target)
+    public void DealDamage(SC_Card Card, int DMG, int CritType, bool Pierce, CharacterBehaviour Target)
     {
-        int CritMultiplier = 1;
+        int CritMultiplier = 1, IsConsumable = 1;
+        int IsPierce = 0, bonus = 0;
+
         if (CritChance > CritType && CritType != 0) { CritType = CritChance; }
+        if (Pierce) { IsPierce = 1; }
+        if (Card.CardTrait == "<Claw>") { bonus += Claw; }
+        if (Card.CardType == SC_Card.Type.Consumable) { IsConsumable = 0; }
+
         switch (CritType)
         {
             case 0: // No Crit
@@ -356,12 +362,29 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 CritMultiplier = 2;
                 break;
         }
-        Target.DealtDamage(((DMG + ATK) * CritMultiplier) - Target.DEF);
+
+        if (Target == null)
+        {
+            Target = PlayerBehav.GetTarget(4, GameBehav.GetOpponent(PlayerBehav));
+        }
+        Target.DealtDamage((DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF, CritMultiplier);
     }
 
     public void DealtDamage(int DMG)
     {
         if (DMG < 0) { DMG = 0; }
+        Popup("" + DMG, Color.red);
+        Shake(DMG);
+    }
+
+    public void DealtDamage(int DMG, int Crit)
+    {
+        Color TextColor = Color.red;
+
+        if (Crit == 2) { TextColor = Color.yellow; }
+        if (DMG < 0) { DMG = 0; TextColor = Color.red; }
+
+        Popup("" + DMG, TextColor);
         Shake(DMG);
     }
 
@@ -508,5 +531,12 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Health = MaxHealth = Character.Health + 20 * Level;
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
+    }
+
+    public void Popup(string text, Color textColor)
+    {
+        GameObject DMGPopup = Instantiate(Resources.Load("DmgPopup"), this.transform.position, Quaternion.identity, this.transform) as GameObject;
+        DamagePopup PopupBehav = DMGPopup.GetComponent<DamagePopup>();
+        PopupBehav.Init(text, textColor);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameBehaviour : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class GameBehaviour : MonoBehaviour
         }
         Player.UpdateActive();
 
-        int RandAmt = UnityEngine.Random.Range(save.Instance.EnemyList.MinSpawn, save.Instance.EnemyList.MaxSpawn + 1);
+        int RandAmt = RandInc(save.Instance.EnemyList.MinSpawn, save.Instance.EnemyList.MaxSpawn);
         Opponent.CharacterTape = new CharacterBehaviour[RandAmt];
         for (int i = 0; i < 5; i++)
         {
@@ -73,7 +74,7 @@ public class GameBehaviour : MonoBehaviour
                     }
                 }
 
-                Opponent.CharacterTape[i].Init(EnemySpawn.scEnemy, UnityEngine.Random.Range(EnemySpawn.MinLevel, EnemySpawn.MaxLevel + 1));
+                Opponent.CharacterTape[i].Init(EnemySpawn.scEnemy, RandInc(EnemySpawn.MinLevel, EnemySpawn.MaxLevel));
                 
                 Opponent.CharacterTape[i].PlayerBehav = Opponent;
                 Opponent.CharacterTape[i].IsEnemy = true;
@@ -102,6 +103,14 @@ public class GameBehaviour : MonoBehaviour
         {
             StartCoroutine(EnemyTurnAI());
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!IsPointerOverUIElement())
+            {
+                GameDis.SetCardDisplay(null);
+            }
+        }
     }
 
     public void EndTurn(bool IsAi)
@@ -114,6 +123,7 @@ public class GameBehaviour : MonoBehaviour
             {
                 if (CurrentPlayerTurn.CharacterTape[i].Burn)
                 {
+                    CurrentPlayerTurn.CharacterTape[i].Popup("Burned", Color.red);
                     CurrentPlayerTurn.CharacterTape[i].Health -= (CurrentPlayerTurn.CharacterTape[i].MaxHealth / 16);
                     if (Random.Range(0, 2) == 0) { CurrentPlayerTurn.CharacterTape[i].Burn = false; }
                 }
@@ -135,6 +145,7 @@ public class GameBehaviour : MonoBehaviour
 
                 CurrentPlayerTurn.CharacterTape[i].CritChance = 1;
                 CurrentPlayerTurn.CharacterTape[i].Trip = false;
+                CurrentPlayerTurn.CharacterTape[i].Claw = 0;
             }
 
             TurnNo++;
@@ -173,6 +184,7 @@ public class GameBehaviour : MonoBehaviour
                 if (CurrentPlayerTurn.CharacterTape[i].Freeze > CurrentPlayerTurn.CharacterTape[i].HandCards.Count) { CurrentPlayerTurn.CharacterTape[i].Freeze = CurrentPlayerTurn.CharacterTape[i].HandCards.Count; }
                 while (freeze < CurrentPlayerTurn.CharacterTape[i].Freeze)
                 {
+                    CurrentPlayerTurn.CharacterTape[i].Popup("Frozen", Color.cyan);
                     int RandInt = Random.Range(0, CurrentPlayerTurn.CharacterTape[i].HandCards.Count);
                     if (CurrentPlayerTurn.CharacterTape[i].HandCards[RandInt].GetComponent<CardBehaviour>().Frozen == false)
                     {
@@ -183,6 +195,7 @@ public class GameBehaviour : MonoBehaviour
                 }
                 CurrentPlayerTurn.CharacterTape[i].Freeze = 0;
 
+                if (CurrentPlayerTurn.CharacterTape[i].Shock > 0) { CurrentPlayerTurn.CharacterTape[i].Popup("Shocked", Color.yellow); }
                 if (CurrentPlayerTurn.CharacterTape[i].Shock > TotalMana) { CurrentPlayerTurn.CharacterTape[i].Shock = TotalMana; }
                 while (shock < CurrentPlayerTurn.CharacterTape[i].Shock)
                 {
@@ -251,7 +264,7 @@ public class GameBehaviour : MonoBehaviour
                     for (int CardIdx = 0; CardIdx < Opponent.CharacterTape[CharIdx].HandCards.Count; CardIdx++)
                     {
                         CardBehaviour Card = Opponent.CharacterTape[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
-                        if (Card.CardCost == CardCostIdx && Card.Frozen == false)
+                        if ((Card.CardCost == CardCostIdx || Card.CardCost == 0) && Card.Frozen == false)
                         {
                             CharacterBehaviour Target = Opponent.GetTarget((int)Card.Currentcard.CardTarget, Player);
                             if (Target == null)
@@ -352,7 +365,7 @@ public class GameBehaviour : MonoBehaviour
     {
         Delay = true;
 
-        int i = 0, EXP = (CharacterBehav.Exp) / player.CharacterTape.Length;
+        int EXP = (CharacterBehav.Character.EXPGain * CharacterBehav.Level) / player.CharacterTape.Length;
         float elapsedTime = 0;
         float Speed = 1f / EXP;
 
@@ -360,16 +373,18 @@ public class GameBehaviour : MonoBehaviour
         {
             if (j < 3)
             {
+                int i = 0;
+                Selected = player.CharacterTape[j];
                 while (i < EXP)
                 {
                     if (elapsedTime >= Speed)
                     {
-                        player.CharacterTape[j].Exp++; i++;
+                        Selected.Exp++; i++;
                         elapsedTime = 0;
-                        if (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
+                        if (Selected.Exp >= Selected.MaxExp)
                         {
-                            player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
-                            player.CharacterTape[j].LevelUp();
+                            Selected.Exp -= Selected.MaxExp;
+                            Selected.LevelUp();
                         }
                     }
                     else { elapsedTime += Time.deltaTime; yield return null; }
@@ -389,5 +404,63 @@ public class GameBehaviour : MonoBehaviour
         Delay = false;
         Opponent.RotationBehav.UpdateDeadCharacters();
         CharacterBehav.gameObject.SetActive(false);
+    }
+
+    public PlayerBehaviour GetOpponent(PlayerBehaviour PlayerBehav)
+    {
+        PlayerBehaviour OppBehav = Opponent;
+        if (PlayerBehav == Opponent)
+        {
+            OppBehav = Player;
+        }
+        return OppBehav;
+    }
+
+    public int RandInc(int start, int end)
+    {
+        for (int i = start; i < end; i++)
+        {
+            if (Random.Range(0,4) == 0)
+            {
+                return start;
+            }
+        }
+        return end;
+    }
+
+    private bool IsPointerOverUIElement()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Card");
+
+        foreach (GameObject element in gameObjects)
+        {
+            CanvasGroup canvasGroup = element.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+                continue;
+
+            if (canvasGroup.blocksRaycasts && canvasGroup.interactable && canvasGroup.alpha > 0)
+            {
+                RectTransform rectTransform = element.GetComponent<RectTransform>();
+                Vector3 originalScale = rectTransform.localScale;
+
+                // Temporarily set the scale to 1 for tap detection
+                rectTransform.localScale = Vector3.one;
+
+                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition, eventData.pressEventCamera))
+                {
+                    // Restore the original scale after tap detection
+                    rectTransform.localScale = originalScale;
+                    return true;
+                }
+
+                // Restore the original scale after tap detection
+                rectTransform.localScale = originalScale;
+            }
+        }
+
+        return false;
     }
 }

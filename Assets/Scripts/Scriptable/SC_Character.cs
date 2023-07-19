@@ -30,4 +30,6 @@ public class SC_Character : ScriptableObject
     [SerializeField] public Sprite[] Walk_Right_Anim;
 
     [SerializeField] public Sprite[] Dead_Sprite;
+
+    [SerializeField] public int EXPGain;
 }

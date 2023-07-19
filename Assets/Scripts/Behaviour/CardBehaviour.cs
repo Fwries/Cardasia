@@ -27,7 +27,6 @@ public class CardBehaviour : MonoBehaviour
 
     public void Play(CharacterBehaviour target)
     {
-        //Debug.Log(Currentcard.CardName);
         if (target == null) { return; }
 
         GameBehaviour GameBehav = CharacterBehav.GameBehav;
@@ -52,21 +51,21 @@ public class CardBehaviour : MonoBehaviour
 
         switch (Currentcard.CardName)
         {
-            // Card Skills
+            #region CardSkills
 
             case "Backstab":
                 if (CharacterBehav.PlayerBehav.CardPlayed == false)
                 {
-                    CharacterBehav.DealDamage(20, 2, target);
+                    CharacterBehav.DealDamage(Currentcard, 20, 2, false, target);
                     CharacterBehav.Draw(1);
                 }
                 else
                 {
-                    CharacterBehav.DealDamage(20, 1, target);
+                    CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
                 }
                 break;
             case "Bayonet":
-                CharacterBehav.DealDamage(20, 1, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
                 if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
                 break;
             case "Campfire":
@@ -82,8 +81,11 @@ public class CardBehaviour : MonoBehaviour
                 target.Freeze = 5;
                 target.Trip = true;
                 break;
+            case "Claw":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                break;
             case "Daggers & Roses":
-                CharacterBehav.DealDamage(20, 1, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
                 CharacterBehav.Draw(1);
                 target.Trip = true;
                 break;
@@ -99,7 +101,7 @@ public class CardBehaviour : MonoBehaviour
             case "Guns & Roses":
                 if (CharacterBehav.Bullet < 1) { break; }
                 CharacterBehav.Bullet--;
-                CharacterBehav.DealDamage(70, 1, target);
+                CharacterBehav.DealDamage(Currentcard, 70, 1, false, target);
                 target.Trip = true;
                 break;
             case "Nuclear Bomb":
@@ -119,7 +121,7 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.GainMana("Both", 3);
                 break;
             case "Punch":
-                CharacterBehav.DealDamage(20, 1, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
                 break;
             case "Barrel Reload": // Reload Gun Barrel
                 CharacterBehav.Reload(6);
@@ -132,7 +134,7 @@ public class CardBehaviour : MonoBehaviour
                 if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
                 break;
             case "Saber Slash":
-                CharacterBehav.DealDamage(70, 2, target);
+                CharacterBehav.DealDamage(Currentcard, 70, 2, false, target);
                 break;
             case "Sprint":
                 CharacterBehav.Draw(2);
@@ -142,7 +144,9 @@ public class CardBehaviour : MonoBehaviour
                 target.Ward = true;
                 break;
 
-            // Consumable Cards
+            #endregion CardSkills
+
+            #region Consumables
 
             case "Bullet":
                 CharacterBehav.Reload(1);
@@ -188,7 +192,7 @@ public class CardBehaviour : MonoBehaviour
                 target.ClearStatus("Random");
                 break;
             case "Stun Grenade":
-                target.Shock = 2;
+                target.Shock += 2;
                 break;
             case "Supersonic Bullet":
                 CharacterBehav.Reload(1);
@@ -197,27 +201,145 @@ public class CardBehaviour : MonoBehaviour
             case "Syringe":
                 target.RestoreHealth(70);
                 break;
+
+            #endregion Consumables
+
+            #region NOTcoded
+
+            case "Quiver":
+                //CharacterBehav.AddCard();
+                break;
+            case "Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                break;
+            case "Chemical Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                switch (Random.Range(0, 4))
+                {
+                    case 0:
+                        target.Freeze += 1;
+                        break;
+                    case 1:
+                        target.Shock += 1;
+                        break;
+                    case 2:
+                        target.Burn = true;
+                        break;
+                    case 3:
+                        target.Trip = true;
+                        break;
+                }
+                break;
+            case "Charged Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                target.Shock += 1;
+                break;
+            case "Barbed Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                break;
+            case "Interleaved Arrows":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                target.Trip = true;
+                break;
+            case "Frozen Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                target.Freeze += 1;
+                break;
+            case "Spiral Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                target.PlayerBehav.RotationBehav.Shift(true);
+                break;
+            case "Fast Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                CharacterBehav.Draw(2);
+                break;
+            case "Winged Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 2, false, target);
+                CharacterBehav.Draw(2);
+                break;
+            case "Slicing Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, true, target);
+                break;
+            case "Arrow Cluster":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                break;
+            case "Broken Arrow":
+                if (Random.Range(0, 2) == 0)
+                {
+                    CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                }
+                break;
+            case "Branch Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
+                break;
+            case "Crosshair Arrow":
+                CharacterBehav.DealDamage(Currentcard, 20, 2, false, target);
+                break;
+            case "Supersonic Arrow":
+                CharacterBehav.DealDamage(Currentcard, 40, 1, true, target);
+                break;
+
+            #endregion NOTcoded
+
+            #region EnemyExclusive
+
+            case "Fly":
+                CharacterBehav.Draw(2);
+                break;
+            case "Grasping Claws":
+                CharacterBehav.DealDamage(Currentcard, 30, 1, false, target);
+                target.Trip = true;
+                break;
+            case "Midnight Claw":
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length)
+                    {
+                        CharacterBehav.PlayerBehav.CharacterTape[i].Claw += 20;
+                    }
+                }
+                break;
+            case "Sonic Screech":
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < target.PlayerBehav.CharacterTape.Length)
+                    {
+                        target.PlayerBehav.CharacterTape[i].Trip = true;
+                        CharacterBehav.DealDamage(Currentcard, 0, 1, false, target.PlayerBehav.CharacterTape[i]);
+                    }
+                }
+                break;
+
+            #endregion EnemyExclusive
+
+            default:
+                Debug.Log(Currentcard.CardName + " does not exist");
+                break;
         }
         CharacterBehav.PlayerBehav.CardPlayed = true;
-
-        //Debug.Log(Currentcard.CardName + " does not exist");
     }
 
     public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)
     {
         Game.EnemyCardAnim = true;
-        if (Target != null)
+        Game.GameDis.SetCardDisplay(Currentcard);
+
+        Vector2 StartPos = this.gameObject.transform.position = CharacterBehav.gameObject.transform.position;
+        float dt = 0;
+
+        while (dt < 0.5f)
         {
-            Vector2 StartPos = CharacterBehav.gameObject.transform.position;
-            float dt = 0;
-            while (dt < 0.5f)
+            if (Currentcard.DoesTarget)
             {
                 this.gameObject.transform.position = StartPos + DistNormalize(StartPos, Target.gameObject.transform.position) * m_Speed * Vector2.Distance(StartPos, Target.gameObject.transform.position) * dt;
-                dt += Time.deltaTime;
-                yield return null;
             }
+            dt += Time.deltaTime;
+            yield return null;
         }
-        
+
         Play(Target);
         CharacterBehav.HandCards.Remove(this.gameObject);
         CharacterBehav.AdjustHand();

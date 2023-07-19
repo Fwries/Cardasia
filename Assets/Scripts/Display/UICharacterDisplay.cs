@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UICharacterDisplay : MonoBehaviour
 {
     public SC_Character Character;
+    public SC_Card Weapon;
     public CharacterData CharData;
 
     public GameObject CharUI;

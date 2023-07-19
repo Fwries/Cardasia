@@ -12,21 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
   m_Name: Bat_1
   m_EditorClassIdentifier: 
-  CardName: 
-  Health: 0
+  CardName: Bat
+  Health: 20
   Defence: 0
-  Attack: 0
+  Attack: -20
   MaxBoth: 0
-  MaxStamina: 0
+  MaxStamina: 2
   MaxMana: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 0}
-  Idle_Down_Anim: []
-  Idle_Up_Anim: []
-  Idle_Left_Anim: []
-  Idle_Right_Anim: []
-  Walk_Down_Anim: []
-  Walk_Up_Anim: []
-  Walk_Left_Anim: []
-  Walk_Right_Anim: []
-  Dead_Sprite: []
+  DefaultDeck: {fileID: 11400000, guid: 5fc50d47aeeaa4d41b505e2d55db0529, type: 2}
+  Idle_Down_Anim:
+  - {fileID: 1722773597, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 450102683, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -100991851, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 450102683, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Idle_Up_Anim:
+  - {fileID: -299166698, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 899441190, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 237553544, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 899441190, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Idle_Left_Anim:
+  - {fileID: -1851857607, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1729814061, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -1878697721, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1729814061, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Idle_Right_Anim:
+  - {fileID: 1072217095, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1908144993, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -1949135433, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1908144993, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Walk_Down_Anim:
+  - {fileID: 1722773597, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 450102683, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -100991851, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 450102683, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Walk_Up_Anim:
+  - {fileID: -299166698, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 899441190, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 237553544, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 899441190, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Walk_Left_Anim:
+  - {fileID: -1851857607, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1729814061, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -1878697721, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1729814061, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Walk_Right_Anim:
+  - {fileID: 1072217095, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1908144993, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: -1949135433, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  - {fileID: 1908144993, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  Dead_Sprite:
+  - {fileID: -363487520, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
+  EXPGain: 10

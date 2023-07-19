@@ -25,4 +25,4 @@ MonoBehaviour:
   IsAnim: 0
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
-  EnemyList: {fileID: 11400000, guid: 6f8590d85f9e9594e8ad984995b83089, type: 2}
+  EnemyList: {fileID: 11400000, guid: d8e6160dfa52cdf4bbe0b9aa29a8c0eb, type: 2}

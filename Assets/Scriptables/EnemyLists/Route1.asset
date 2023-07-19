@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e0eee0b899dcc40a58ee6345a8e43f, type: 3}
   m_Name: Route1
   m_EditorClassIdentifier: 
-  ListName: 
+  ListName: Route1
   MinSpawn: 1
   MaxSpawn: 2
   EnemyList:
