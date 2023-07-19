@@ -442,18 +442,40 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         if (HealthRestored + Health > MaxHealth)
         {
-            Health = MaxHealth;
+            StartCoroutine(HealthRestoredPerFrame(MaxHealth - Health));
         }
         else
         {
-            Health += HealthRestored;
+            StartCoroutine(HealthRestoredPerFrame(HealthRestored));
         }
     }
-    
+
+    public IEnumerator HealthRestoredPerFrame(int HealthRestored)
+    {
+        GameBehav.Delay = true;
+
+        int i = 0;
+        float elapsedTime = 0;
+        float Speed = 1f / HealthRestored;
+        AudioManager.Instance.PlaySFX("Heal");
+
+        while (i < HealthRestored)
+        {
+            if (elapsedTime >= Speed)
+            {
+                Health++; i++;
+                elapsedTime = 0;
+            }
+            else { elapsedTime += Time.deltaTime; yield return null; }
+        }
+        GameBehav.Delay = false;
+    }
+
+
     public void FullRestore()
     {
         if (IsDead) { return; }
-        Health = MaxHealth;
+        StartCoroutine(HealthRestoredPerFrame(MaxHealth - Health));
     }
 
     public void GainMana(string ManaType, int Amt)
