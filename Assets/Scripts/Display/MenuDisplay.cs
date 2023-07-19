@@ -11,7 +11,7 @@ public class MenuDisplay : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlayMusic("Opening");
-        Continue.interactable = save.Instance.CheckFileExist("save");
+        Continue.interactable = save.Instance.nameStr.Length > 0;
     }
 
     // Update is called once per frame

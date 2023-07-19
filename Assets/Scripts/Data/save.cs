@@ -28,8 +28,6 @@ public class save : MonoBehaviour
 	public float MusicVolume;
 	public float SFXVolume;
 
-	public bool Init;
-
 	void Awake()
     {
 		if (Instance == null)
@@ -109,21 +107,12 @@ public class save : MonoBehaviour
 		string destination = Application.persistentDataPath + "/" + SaveFileName + ".dat";
 		FileStream file;
 
-		if (File.Exists(destination)) file = File.OpenRead(destination);
+		if (File.Exists(destination));
 		else
 		{
 			Debug.Log("File not found");
 			return false;
 		}
-
-		BinaryFormatter bf = new BinaryFormatter();
-		GameData data = (GameData)bf.Deserialize(file);
-		file.Close();
-
-		if (data.name == "")
-        {
-			return false;
-        }
 		return true;
 	}
 

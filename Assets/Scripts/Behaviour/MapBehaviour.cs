@@ -45,7 +45,8 @@ public class MapBehaviour : MonoBehaviour
         ReadCSVMap(_SCMap.CSVFileName);
 
         TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];
-        
+        Debug.Log(Map.GetLength(0) + " " + Map.GetLength(1));
+
         for (int y = 0; y < Map.GetLength(0); y++)
         {
             for (int x = 0; x < Map.GetLength(1); x++)
@@ -154,5 +155,7 @@ public class MapBehaviour : MonoBehaviour
                 Map[y, x] = int.Parse(tileRowIds[x]);
             }
         }
+
+        //Debug.Log(Map.GetLength(0) + " " + Map.GetLength(1));
     }
 }
