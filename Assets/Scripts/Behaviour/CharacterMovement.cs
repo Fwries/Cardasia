@@ -29,23 +29,11 @@ public class CharacterMovement : MonoBehaviour
     private bool IsSc;
     private bool UI;
     private bool Delay;
+    private bool Init;
 
     // Start is called before the first frame update
     void Start()
     {
-        Map.ChangeMap(save.Instance.Map);
-        TeleportPlayer(save.Instance.xPos, save.Instance.yPos);
-
-        if (save.Instance.PartyCharacterData.Length > 0)
-        {
-            CurrAnim = save.Instance.PartyCharacterData[0].GetCurrAnim();
-        }
-        else
-        {
-            CurrAnim = Character.Idle_Down_Anim;
-            CurrDirection = Vector3.down;
-        }
-
         TransitionMaterial.SetFloat("_Cutoff", 0f);
         TransitionMaterial.SetFloat("_Fade", 0f);
     }
@@ -53,6 +41,27 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Init)
+        {
+            if (save.Instance.nameStr.Length > 0)
+            {
+                Map.ChangeMap(save.Instance.Map);
+                TeleportPlayer(save.Instance.xPos, save.Instance.yPos);
+
+                if (save.Instance.PartyCharacterData.Length > 0)
+                {
+                    CurrAnim = save.Instance.PartyCharacterData[0].GetCurrAnim();
+                }
+                else
+                {
+                    CurrAnim = Character.Idle_Down_Anim;
+                    CurrDirection = Vector3.down;
+                }
+                Init = true;
+            }
+            return;
+        }
+
         if (EventSc != null)
         {
             if (CurrSc < EventSc.GetLength(0) && !IsSc) 

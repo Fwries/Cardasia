@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New EnemyList", menuName = "Cardasia/EnemyList")]
 public class SC_EnemyList : ScriptableObject
 {
-    public string ListName;
-    public int MinSpawn, MaxSpawn;
+    [SerializeField] public string ListName;
+    [SerializeField] public int MinSpawn, MaxSpawn;
 
     [System.Serializable]
     public class Enemy

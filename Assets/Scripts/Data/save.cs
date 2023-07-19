@@ -40,10 +40,10 @@ public class save : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-    }
+	}
 
 	void Start()
-	{
+    {
 		LoadFile("save");
 		LoadSettings();
 	}
@@ -107,12 +107,13 @@ public class save : MonoBehaviour
 		string destination = Application.persistentDataPath + "/" + SaveFileName + ".dat";
 		FileStream file;
 
-		if (File.Exists(destination));
+		if (File.Exists(destination)) file = File.OpenWrite(destination);
 		else
 		{
 			Debug.Log("File not found");
 			return false;
 		}
+		file.Close();
 		return true;
 	}
 

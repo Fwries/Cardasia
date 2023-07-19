@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87794bfbebee84542a0bd8a650b0fdc1, type: 3}
   m_Name: Town1
   m_EditorClassIdentifier: 
-  MapPrefab: {fileID: 5415036476215619363, guid: 2f424443cebbb0c448424464eacb2e44, type: 3}
+  MapPrefab: Map_Town1
   CSVFileName: Town1
   MusicTheme: Town
   Tileset:

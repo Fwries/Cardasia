@@ -45,7 +45,6 @@ public class MapBehaviour : MonoBehaviour
         ReadCSVMap(_SCMap.CSVFileName);
 
         TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];
-        Debug.Log(Map.GetLength(0) + " " + Map.GetLength(1));
 
         for (int y = 0; y < Map.GetLength(0); y++)
         {
@@ -80,7 +79,7 @@ public class MapBehaviour : MonoBehaviour
         {
             Destroy(MapObj);
         }
-        MapObj = Instantiate(SCMap.MapPrefab, this.transform);
+        MapObj = Instantiate(Resources.Load(SCMap.MapPrefab, typeof(GameObject)), this.transform) as GameObject;
 
         for (int y = 0; y < TileLayer.GetLength(0); y++)
         {
@@ -122,7 +121,7 @@ public class MapBehaviour : MonoBehaviour
     void ReadCSVMap(string CSVName)
     {
         string line;
-        string CSVLocation = "Assets/Scriptables/Maps/CSV/" + CSVName + ".csv";
+        string CSVLocation = Path.Combine(Application.streamingAssetsPath, "CSV", SCMap.CSVFileName + ".csv");
         StreamReader strReader = new StreamReader(CSVLocation);
         List<string> fileLines = new List<string>();
         using (strReader)
@@ -155,7 +154,5 @@ public class MapBehaviour : MonoBehaviour
                 Map[y, x] = int.Parse(tileRowIds[x]);
             }
         }
-
-        //Debug.Log(Map.GetLength(0) + " " + Map.GetLength(1));
     }
 }

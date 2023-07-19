@@ -11,13 +11,13 @@ public class MenuDisplay : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlayMusic("Opening");
-        Continue.interactable = save.Instance.nameStr.Length > 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Continue.interactable) { return; }
+        Continue.interactable = save.Instance.nameStr.Length > 0;
     }
 
     public void Start(string saveName)
