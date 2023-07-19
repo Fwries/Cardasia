@@ -24,11 +24,16 @@ public class GameBehaviour : MonoBehaviour
     public GameObject TopObj;
     public GameObject BottomObj;
 
+    public GameObject GameOverScrn;
+    public GameObject WinScrn;
+    public GameObject LoseScrn;
+
     [HideInInspector] public CharacterBehaviour Selected;
 
     public ScreenShake ShakeScreen;
     public bool Trans;
     public bool Delay;
+    public bool GameOver;
 
     void Awake()
     {
@@ -98,6 +103,8 @@ public class GameBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameOver) { return; }
+
         // AI Turn
         if (EnemyAI && CurrentPlayerTurn == Opponent && !EnemyAIThinking)
         {
@@ -115,6 +122,7 @@ public class GameBehaviour : MonoBehaviour
 
     public void EndTurn(bool IsAi)
     {
+        if (GameOver) { return; }
         if (((!IsAi && CurrentPlayerTurn == Player) || (IsAi && CurrentPlayerTurn == Opponent)) && !Trans)
         {
             AudioManager.Instance.PlaySFX("Passturn");
@@ -339,26 +347,39 @@ public class GameBehaviour : MonoBehaviour
     {
         if (Player.CharacterTape.Length == 0) 
         {
-            Debug.Log("Player Died");
-
-            save.Instance.BattleUpdate(this);
-            //save.Instance.SaveFile("battle");
-            save.Instance.ChangeScene("RPGScene", "save");
+            AudioManager.Instance.PlayMusic("Game Over");
+            GameOverScrn.SetActive(true);
+            LoseScrn.SetActive(true);
 
             return true;
         }
 
         if (Opponent.CharacterTape.Length == 0) 
         {
-            Debug.Log("You Win");
-
-            save.Instance.BattleUpdate(this);
-            save.Instance.SaveFile("battle");
-            save.Instance.ChangeScene("RPGScene", "battle");
+            AudioManager.Instance.PlayMusic("Victory");
+            GameOverScrn.SetActive(true);
+            WinScrn.SetActive(true);
 
             return true;
         }
         return false;
+    }
+
+    public void ContinueBtn()
+    {
+        save.Instance.BattleUpdate(this);
+        save.Instance.SaveFile("battle");
+        save.Instance.ChangeScene("RPGScene", "battle");
+    }
+
+    public void QuitBtn()
+    {
+        save.Instance.ChangeScene("MenuScene", "save");
+    }
+
+    public void LastSaveBtn()
+    {
+        save.Instance.ChangeScene("RPGScene", "save");
     }
 
     public IEnumerator GiveEXP(PlayerBehaviour player, CharacterBehaviour CharacterBehav)

@@ -28,6 +28,8 @@ public class save : MonoBehaviour
 	public float MusicVolume;
 	public float SFXVolume;
 
+	public bool Init;
+
 	void Awake()
     {
 		if (Instance == null)
@@ -40,13 +42,12 @@ public class save : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-        //LoadFile("save");
-        //LoadSettings();
     }
 
 	void Start()
 	{
-
+		LoadFile("save");
+		LoadSettings();
 	}
 
 	public void SaveFile(string SaveFileName)
