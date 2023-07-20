@@ -351,6 +351,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         switch (CritType)
         {
             case 0: // No Crit
+                AudioManager.Instance.PlaySFX("Impact");
                 break;
             case 1: // Base Crit
                 if (Random.Range(0, 4) == 0) { CritMultiplier = 2; }
@@ -470,7 +471,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         }
         GameBehav.Delay = false;
     }
-
 
     public void FullRestore()
     {

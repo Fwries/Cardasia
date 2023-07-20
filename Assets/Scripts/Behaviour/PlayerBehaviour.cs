@@ -53,7 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
             for (int i = 0; i < ActiveCharacter; i++)
             {
                 if (Opponent.CharacterTape[i] != null && ((LowestHealthChar == 0 && Opponent.CharacterTape[i].Health > 0) ||
-                    (Opponent.CharacterTape[i].Health < LowestHealthChar && Opponent.CharacterTape[i].Health > 0)))
+                    (Opponent.CharacterTape[i].Health < Opponent.CharacterTape[LowestHealthChar].Health && Opponent.CharacterTape[i].Health > 0)))
                 {
                     LowestHealthChar = Opponent.CharacterTape[i].Health;
                     LowestChar = i;
@@ -69,7 +69,7 @@ public class PlayerBehaviour : MonoBehaviour
             for (int i = 0; i < ActiveCharacter; i++)
             {
                 if (CharacterTape[i] != null && ((LowestHealthChar == 0 && CharacterTape[i].Health > 0) ||
-                    (CharacterTape[i].Health < LowestHealthChar && CharacterTape[i].Health > 0)))
+                    (CharacterTape[i].Health < CharacterTape[LowestHealthChar].Health && CharacterTape[i].Health > 0)))
                 {
                     LowestHealthChar = CharacterTape[i].Health;
                     LowestChar = i;

@@ -312,6 +312,11 @@ public class CharacterMovement : MonoBehaviour
             else if (strg[4] == 'R') { CurrAnim = Character.Idle_Right_Anim; }
             IsSc = false; CurrSc++;
         }
+        else if (strg[1] == 'H' && strg[2] == 'e' && strg[3] == 'a' && strg[4] == 'l')
+        {
+            PlaySFX("Heal");
+            StartCoroutine(Heal());
+        }
         else if (strg[1] == 'G' && strg[2] == 'r' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 's')
         {
             string Chance = "";
@@ -494,6 +499,29 @@ public class CharacterMovement : MonoBehaviour
         TransitionMaterial.SetFloat("_Cutoff", 1f);
         save.Instance.EnemyList = Map.Tileset[Map.TileLayer[(int)transform.position.y, (int)transform.position.x]].EnemyList;
         save.Instance.ChangeScene("BattleScene", "battle");
+    }
+
+    private IEnumerator Heal()
+    {
+        for (int i = 0; i < save.Instance.PartyCharacterData.Length; i++)
+        {
+            save.Instance.PartyCharacterData[i].RestoreMaxHealth();
+        }
+        
+        //PartyUIBehav.Init();
+        
+        float elapsedTime = 0;
+        while (true)
+        {
+            if (elapsedTime >= 0.4f)
+            {
+                elapsedTime = 0;
+                break;
+            }
+            else { elapsedTime += Time.deltaTime; yield return null; }
+        }
+
+        IsSc = false; CurrSc++;
     }
 
     private IEnumerator Delayfor(float DelayTime)

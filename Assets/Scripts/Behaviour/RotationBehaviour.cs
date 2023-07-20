@@ -275,6 +275,10 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             {
                 case 0:
                     PlayerBehav.CharacterTape[0].transform.position = LeftPos;
+                    if (PlayerBehav.CharacterTape.Length == 1)
+                    {
+                        PlayerBehav.CharacterTape[0].transform.position = CentrePos;
+                    }
                     break;
                 case 1:
                     PlayerBehav.CharacterTape[1].transform.position = CentrePos;

@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            if (musicSource.clip == s.clip) { return; }
             musicSource.clip = s.clip;
             musicSource.Play();
         }

@@ -91,7 +91,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
         }
     }
 
-    void Init()
+    public void Init()
     {
         CharacterTape = new UICharacterDisplay[save.Instance.PartyCharacterData.Length];
 

@@ -63,7 +63,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData("Saved", Map, xPos, yPos, PartyCharacterData, Inventory);
+		GameData data = new GameData("Saved", Map.MapName, xPos, yPos, PartyCharacterData, Inventory);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
@@ -88,8 +88,7 @@ public class save : MonoBehaviour
 		file.Close();
 
 		nameStr = data.name;
-		Map = ScriptableObject.CreateInstance<SC_Map>();
-		JsonUtility.FromJsonOverwrite(data.MapJson, Map);
+		Map = Resources.Load<SC_Map>("Scriptables/Maps/" + Map.MapName + "/" + Map.MapName);
 
 		xPos = data.x;
 		yPos = data.y;

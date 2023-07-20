@@ -53,6 +53,17 @@ public class CardBehaviour : MonoBehaviour
         {
             #region CardSkills
 
+            case "All For One":
+                int Atk = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length /*&& CharacterBehav != CharacterBehav.PlayerBehav.CharacterTape[i]*/)
+                    {
+                        Atk += CharacterBehav.PlayerBehav.CharacterTape[i].ATK;
+                    }
+                }
+                CharacterBehav.DealDamage(Currentcard, Atk, 1, true, target);
+                break;
             case "Backstab":
                 if (CharacterBehav.PlayerBehav.CardPlayed == false)
                 {
@@ -90,7 +101,7 @@ public class CardBehaviour : MonoBehaviour
                 target.Trip = true;
                 break;
             case "Drill":
-                target.Health -= 70;
+                CharacterBehav.DealDamage(Currentcard, 70, 1, true, target);
                 break;
             case "Extra Time":
                 target.GainMana("Stamina", 1);
@@ -103,6 +114,9 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.Bullet--;
                 CharacterBehav.DealDamage(Currentcard, 70, 1, false, target);
                 target.Trip = true;
+                break;
+            case "Healing":
+                target.RestoreHealth(70);
                 break;
             case "Nuclear Bomb":
                 for (int i = 0; i < 3; i++)
@@ -119,6 +133,9 @@ public class CardBehaviour : MonoBehaviour
                 break;
             case "Overdrive":
                 CharacterBehav.GainMana("Both", 3);
+                break;
+            case "Power Up":
+                CharacterBehav.ATK += 20;
                 break;
             case "Punch":
                 CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
@@ -140,8 +157,15 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.Draw(2);
                 if (CharacterBehav.PlayerBehav.CardPlayed == false) { CharacterBehav.Draw(1); }
                 break;
+            case "Sword Clash":
+                CharacterBehav.DealDamage(Currentcard, CharacterBehav.ATK - target.ATK, 0, true, target);
+                break;
             case "Targeting":
                 target.Ward = true;
+                break;
+            case "Thunder Blade":
+                CharacterBehav.DealDamage(Currentcard, 70, 1, false, target);
+                target.Shock += 1;
                 break;
 
             #endregion CardSkills

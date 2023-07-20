@@ -41,8 +41,8 @@ public class MapBehaviour : MonoBehaviour
     public void ChangeMap(SC_Map _SCMap)
     {
         save.Instance.Map = SCMap = _SCMap;
-        Tileset = _SCMap.Tileset;
-        ReadCSVMap(_SCMap.CSVFileName);
+        Tileset = SCMap.Tileset;
+        ReadCSVMap();
 
         TileLayer = new int[Map.GetLength(0), Map.GetLength(1)];
 
@@ -79,7 +79,7 @@ public class MapBehaviour : MonoBehaviour
         {
             Destroy(MapObj);
         }
-        MapObj = Instantiate(Resources.Load(SCMap.MapPrefab, typeof(GameObject)), this.transform) as GameObject;
+        MapObj = Instantiate(Resources.Load("Scriptables/Maps/" + SCMap.MapName + "/" + SCMap.MapName, typeof(GameObject)), this.transform) as GameObject;
 
         for (int y = 0; y < TileLayer.GetLength(0); y++)
         {
@@ -115,13 +115,13 @@ public class MapBehaviour : MonoBehaviour
             }
         }
 
-        AudioManager.Instance.PlayMusic(SCMap.MusicTheme);
+        if (SCMap.MusicTheme != "") { AudioManager.Instance.PlayMusic(SCMap.MusicTheme); }
     }
 
-    void ReadCSVMap(string CSVName)
+    void ReadCSVMap()
     {
         string line;
-        string CSVLocation = Path.Combine(Application.streamingAssetsPath, "CSV", SCMap.CSVFileName + ".csv");
+        string CSVLocation = Path.Combine(Application.streamingAssetsPath, "CSV", SCMap.MapName + ".csv");
         StreamReader strReader = new StreamReader(CSVLocation);
         List<string> fileLines = new List<string>();
         using (strReader)

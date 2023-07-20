@@ -169,4 +169,20 @@ public class CharacterData
 			CurrAnim = 8;
 		}
 	}
+
+	public void RestoreHealth(int HPRestore)
+    {
+		if (Health + HPRestore < GetCharacter().Health + 20 * Level)
+        {
+			Health += HPRestore;
+		}
+		else
+        {
+			RestoreMaxHealth();
+		}
+    }
+	public void RestoreMaxHealth()
+	{
+		Health = GetCharacter().Health + 20 * Level;
+	}
 }

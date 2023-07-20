@@ -28,12 +28,16 @@ public class MenuDisplay : MonoBehaviour
     {
         Destroy(save.Instance.gameObject);
         save.Instance = null;
-        Instantiate(Resources.Load("Singleton_Save"));
+        Instantiate(Resources.Load("Singleton/Save"));
 
         save.Instance.CreateNewCharacterData(save.Instance.TempChar, 5);
         save.Instance.Inventory = save.Instance.TempItemDeck;
         save.Instance.SaveFile("save");
         save.Instance.SaveFile("battle");
         save.Instance.ChangeScene("RPGScene", saveName);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

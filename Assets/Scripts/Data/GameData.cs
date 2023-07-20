@@ -7,16 +7,16 @@ public class GameData
 {
 	public string name;
 
-	public string MapJson;
+	public string MapName;
 	public int x, y;
 
 	public CharacterData[] PartyCharacterData;
 	public string InventoryJson;
 
-	public GameData(string _name, SC_Map Map, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory)
+	public GameData(string _name, string _MapName, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory)
 	{
 		name = _name;
-		MapJson = JsonUtility.ToJson(Map);
+		MapName = _MapName;
 		x = _x;
 		y = _y;
 
