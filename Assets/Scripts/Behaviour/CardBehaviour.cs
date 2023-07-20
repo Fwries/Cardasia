@@ -340,7 +340,7 @@ public class CardBehaviour : MonoBehaviour
             #endregion EnemyExclusive
 
             default:
-                Debug.Log(Currentcard.CardName + " does not exist");
+                Debug.LogError(Currentcard.CardName + " does not exist");
                 break;
         }
         CharacterBehav.PlayerBehav.CardPlayed = true;

@@ -129,6 +129,8 @@ public class CharacterMovement : MonoBehaviour
     {
         UI = false;
         SettingsBehav.ResetSettings();
+        PartyUIBehav.SaveAll();
+
         for (int i = 0; i < MenuUI.Length; i++)
         {
             MenuUI[i].SetActive(false);
@@ -507,8 +509,6 @@ public class CharacterMovement : MonoBehaviour
         {
             save.Instance.PartyCharacterData[i].RestoreMaxHealth();
         }
-        
-        //PartyUIBehav.Init();
         
         float elapsedTime = 0;
         while (true)
