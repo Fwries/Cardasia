@@ -33,6 +33,10 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public int DEF;
     public int ATK;
+
+    public int DEFModif;
+    public int ATKModif;
+
     [HideInInspector] public int MaxBullet;
     public int Bullet;
 
@@ -196,7 +200,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
             }
             else if (Deck.Count <= 0)
             {
-                Debug.Log("Deckout");
+                AddCard(Resources.Load<SC_Card>("Scriptables/Cards/Skill/Struggle"));
             }
         }
         AdjustHand();
@@ -341,10 +345,11 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void DealDamage(SC_Card Card, int DMG, int CritType, bool Pierce, CharacterBehaviour Target)
     {
         int CritMultiplier = 1, IsConsumable = 1;
-        int IsPierce = 0, bonus = 0;
+        int IsPierce = 1, bonus = 0;
+        GameBehav.Delay = true;
 
         if (CritChance > CritType && CritType != 0) { CritType = CritChance; }
-        if (Pierce) { IsPierce = 1; }
+        if (Pierce) { IsPierce = 0; }
         if (Card.CardTrait == "<Claw>") { bonus += Claw; }
         if (Card.CardType == SC_Card.Type.Consumable) { IsConsumable = 0; }
 
@@ -377,6 +382,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void DealtDamage(int DMG)
     {
         if (DMG < 0) { DMG = 0; }
+        AudioManager.Instance.PlaySFX("Impact");
         Popup("" + DMG, Color.red);
         Shake(DMG);
     }
@@ -439,8 +445,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void RestoreHealth(int HealthRestored)
     {
-        if (IsDead) { return; }
-
         if (HealthRestored + Health > MaxHealth)
         {
             StartCoroutine(HealthRestoredPerFrame(MaxHealth - Health));
@@ -552,8 +556,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void LevelUp()
     {
         Level++;
-
+        AudioManager.Instance.PlaySFX("LevelUp");
+        Popup("Level Up!" + "\n" + "+20 ATK +20 DEF", Color.green);
+        
         Health = MaxHealth = Character.Health + 20 * Level;
+        DEF = Character.Defence + 10 * Level;
+        ATK = Character.Attack + 10 * Level;
+
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
     }

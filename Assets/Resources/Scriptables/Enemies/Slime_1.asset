@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Slime
   Health: 60
   Defence: 0
-  Attack: 0
+  Attack: 10
   MaxBoth: 2
   MaxStamina: 0
   MaxMana: 0

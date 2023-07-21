@@ -57,9 +57,9 @@ public class CardBehaviour : MonoBehaviour
                 int Atk = 0;
                 for (int i = 0; i < 3; i++)
                 {
-                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length /*&& CharacterBehav != CharacterBehav.PlayerBehav.CharacterTape[i]*/)
+                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length && CharacterBehav != CharacterBehav.PlayerBehav.CharacterTape[i])
                     {
-                        Atk += CharacterBehav.PlayerBehav.CharacterTape[i].ATK;
+                        Atk += CharacterBehav.PlayerBehav.CharacterTape[i].ATK + CharacterBehav.PlayerBehav.CharacterTape[i].ATKModif;
                     }
                 }
                 CharacterBehav.DealDamage(Currentcard, Atk, 1, true, target);
@@ -135,7 +135,7 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.GainMana("Both", 3);
                 break;
             case "Power Up":
-                CharacterBehav.ATK += 20;
+                CharacterBehav.ATKModif += 20;
                 break;
             case "Punch":
                 CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
@@ -152,6 +152,11 @@ public class CardBehaviour : MonoBehaviour
                 break;
             case "Saber Slash":
                 CharacterBehav.DealDamage(Currentcard, 70, 2, false, target);
+                break;
+            case "Struggle":
+                CharacterBehav.Stamina = 0;
+                CharacterBehav.DealtDamage(20);
+                CharacterBehav.DealDamage(Currentcard, 20, 0, false, target);
                 break;
             case "Sprint":
                 CharacterBehav.Draw(2);
@@ -310,6 +315,10 @@ public class CardBehaviour : MonoBehaviour
 
             #region EnemyExclusive
 
+            case "Clear Body":
+                CharacterBehav.RestoreHealth(100);
+                CharacterBehav.Draw(1);
+                break;
             case "Fly":
                 CharacterBehav.Draw(2);
                 break;

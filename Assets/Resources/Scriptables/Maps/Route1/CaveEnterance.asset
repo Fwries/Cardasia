@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
-  m_Name: Sign
+  m_Name: CaveEnterance
   m_EditorClassIdentifier: 
-  TileImage: {fileID: 0}
+  TileImage: {fileID: 1419074444, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
   TileTopImage:
-  - {fileID: -1714554307, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  Solid: 1
+  - {fileID: 1251046530, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  Solid: 0
   AbovePlayer: 0
-  Interactable: 1
+  Interactable: 0
   Event: 1
   SolidEvent: 0
   Script:
-  - '/DL Tip: Consumable Cards are Cards without a mana cost and when played, they
-    are removed from the deck.'
-  - '/DL Tip: Consumable Cards are also the only type of cards where you can add
-    or remove from a Character deck.'
-  - /DLEnd
+  - /PlaySound ScreenTransition
+  - /Flash in
+  - /Obj ChangeMap 6
+  - /Tp X 0
+  - /Flash out
+  - /Mv U
   IsAnim: 0
   ConstantAnim: 0
-  ChangeMap: {fileID: 0}
+  ChangeMap: {fileID: 11400000, guid: 98179f97166c6dd43b7c53979a351796, type: 2}
   EnemyList: {fileID: 0}

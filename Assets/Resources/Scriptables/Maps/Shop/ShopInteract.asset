@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
-  m_Name: Nox
+  m_Name: ShopInteract
   m_EditorClassIdentifier: 
   TileImage: {fileID: 0}
   TileTopImage:
-  - {fileID: 2110337436, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
-  - {fileID: 1203222400, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1279329839, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
   Solid: 1
   AbovePlayer: 0
   Interactable: 1
   Event: 0
   SolidEvent: 0
   Script:
-  - '/DL Nox: You seem low levelled to fight someone like me.'
-  - '/DL Nox: Well.'
-  - '/DL Nox: Die.'
+  - '/DL Shopkeeper: Would you like to buy something?'
   - /DLEnd
-  - /Battle 14 5
-  IsAnim: 1
-  ConstantAnim: 1
+  IsAnim: 0
+  ConstantAnim: 0
   ChangeMap: {fileID: 0}
-  EnemyList: {fileID: 11400000, guid: 3389e96016cee7f44b8a5cbcc76b5f30, type: 2}
+  EnemyList: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Bat
   Health: 20
   Defence: 0
-  Attack: -20
+  Attack: 30
   MaxBoth: 0
   MaxStamina: 2
   MaxMana: 0

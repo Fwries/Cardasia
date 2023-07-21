@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Slime1Deck
   m_EditorClassIdentifier: 
   Deck:
-  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
-  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
-  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  - {fileID: 11400000, guid: 2e1bc04a99bd6af42afc8f4ec5b3f9f6, type: 2}
+  - {fileID: 11400000, guid: 2e1bc04a99bd6af42afc8f4ec5b3f9f6, type: 2}
+  - {fileID: 11400000, guid: 2e1bc04a99bd6af42afc8f4ec5b3f9f6, type: 2}
+  - {fileID: 11400000, guid: 2e1bc04a99bd6af42afc8f4ec5b3f9f6, type: 2}
   - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
   - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
   - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}

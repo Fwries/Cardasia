@@ -25,10 +25,10 @@ MonoBehaviour:
   SolidEvent: 1
   Script:
   - /PlaySound ScreenTransition
-  - /Obj Anim 3 0
+  - /Obj Anim 2 0
   - /Mv D
   - /Flash in
-  - /Obj AnimSet Srt 3 0
+  - /Obj AnimSet Srt 2 0
   - /Obj ChangeMap 3
   - /Tp 6 7
   - /Obj AnimSet End 6 7

@@ -48,34 +48,32 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
         {
-            int LowestHealthChar = 0, LowestChar = -1;
+            int LowestHealthChar = Opponent.CharacterTape[0].Health, LowestChar = 0;
 
-            for (int i = 0; i < ActiveCharacter; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if (Opponent.CharacterTape[i] != null && ((LowestHealthChar == 0 && Opponent.CharacterTape[i].Health > 0) ||
-                    (Opponent.CharacterTape[i].Health < Opponent.CharacterTape[LowestHealthChar].Health && Opponent.CharacterTape[i].Health > 0)))
+                if (i >= Opponent.CharacterTape.Length) { break; }
+                if (Opponent.CharacterTape[i].Health < LowestHealthChar && Opponent.CharacterTape[i].Health > 0)
                 {
                     LowestHealthChar = Opponent.CharacterTape[i].Health;
                     LowestChar = i;
                 }
             }
-            if (LowestChar == -1) { return null; }
             return Opponent.CharacterTape[LowestChar];
         }
         else if (TargetType == 2 /*Card.Currentcard.Target.Ally*/)
         {
-            int LowestHealthChar = 0, LowestChar = -1;
+            int LowestHealthChar = CharacterTape[0].Health, LowestChar = 0;
 
-            for (int i = 0; i < ActiveCharacter; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if (CharacterTape[i] != null && ((LowestHealthChar == 0 && CharacterTape[i].Health > 0) ||
-                    (CharacterTape[i].Health < CharacterTape[LowestHealthChar].Health && CharacterTape[i].Health > 0)))
+                if (i >= CharacterTape.Length) { break; }
+                if (CharacterTape[i].Health < LowestHealthChar && CharacterTape[i].Health > 0)
                 {
                     LowestHealthChar = CharacterTape[i].Health;
                     LowestChar = i;
                 }
             }
-            if (LowestChar == -1) { return null; }
             return CharacterTape[LowestChar];
         }
         else if (TargetType == 3 /*Card.Currentcard.Target.Centre*/)

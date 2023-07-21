@@ -49,9 +49,12 @@ public class GameDisplay : MonoBehaviour
         EXPSlider.maxValue = GameBehav.Selected.MaxExp;
         EXPSlider.value = GameBehav.Selected.Exp;
 
-        CharacterStats.text = "HP: " + GameBehav.Selected.Health + "\n" +
-                        "DEF: " + GameBehav.Selected.DEF + "\n" +
-                        "ATK: " + GameBehav.Selected.ATK + "\n";
+        CharacterStats.text = "HP: " + GameBehav.Selected.Health + "\n";
+
+        if (GameBehav.Selected.ATKModif > 0) { CharacterStats.text += "ATK: " + GameBehav.Selected.ATK + " (+" + GameBehav.Selected.ATKModif + ")" + "\n"; }
+        else { CharacterStats.text += "ATK: " + GameBehav.Selected.ATK + "\n"; }
+        if (GameBehav.Selected.DEFModif > 0) { CharacterStats.text += "DEF: " + GameBehav.Selected.DEF + " (+" + GameBehav.Selected.DEFModif + ")" + "\n"; }
+        else { CharacterStats.text += "DEF: " + GameBehav.Selected.DEF + "\n"; }
 
         CharacterDeckCount.text = "" + GameBehav.Selected.Deck.Count;
 

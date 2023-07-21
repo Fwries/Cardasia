@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListName: Cave1
   MinSpawn: 2
-  MaxSpawn: 5
+  MaxSpawn: 3
   EnemyList:
   - name: Bat
     SpawnChance: 100
     MinLevel: 1
-    MaxLevel: 5
+    MaxLevel: 4
     scEnemy: {fileID: 11400000, guid: d4909ef434507e044a930f4f05dc05ab, type: 2}
