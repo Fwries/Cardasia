@@ -327,15 +327,37 @@ public class CharacterMovement : MonoBehaviour
                 Chance += strg[i];
             }
 
-            if (UnityEngine.Random.Range(0, 100) >= Convert.ToInt32(Chance))
+            if (UnityEngine.Random.Range(0, 101) <= Convert.ToInt32(Chance))
             {
-                save.Instance.SaveFile("battle");
-                StartCoroutine(Battle());
+                StartCoroutine(Battle((int)transform.position.x, (int)transform.position.y));
                 AudioManager.Instance.PlayMusic("Danger");
             }
             else
             {
                 IsSc = false; CurrSc++;
+            }
+        }
+        else if (strg[1] == 'B' && strg[2] == 'a' && strg[3] == 't' && strg[4] == 't' && strg[5] == 'l' && strg[6] == 'e')
+        {
+            bool XIsFound = false;
+            string sX = "", sY = "";
+
+            for (int i = 8; i <= strg.Length; i++)
+            {
+                if (i == strg.Length && XIsFound)
+                {
+                    int x = Convert.ToInt32(sX);
+                    int y = Convert.ToInt32(sY);
+
+                    StartCoroutine(Battle(x, y));
+                    AudioManager.Instance.PlayMusic("Danger");
+                    return;
+                }
+
+                if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                else if (!XIsFound) { XIsFound = true; i++; }
+
+                if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
             }
         }
         else if (strg[1] == 'F' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 's' && strg[5] == 'h')
@@ -464,7 +486,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Battle()
+    private IEnumerator Battle(int x, int y)
     {
         isMoving = true;
 
@@ -499,7 +521,9 @@ public class CharacterMovement : MonoBehaviour
             yield return null;
         }
         TransitionMaterial.SetFloat("_Cutoff", 1f);
-        save.Instance.EnemyList = Map.Tileset[Map.TileLayer[(int)transform.position.y, (int)transform.position.x]].EnemyList;
+        save.Instance.EnemyList = Map.Tileset[Map.TileLayer[y, x]].EnemyList;
+        
+        save.Instance.SaveFile("battle");
         save.Instance.ChangeScene("BattleScene", "battle");
     }
 

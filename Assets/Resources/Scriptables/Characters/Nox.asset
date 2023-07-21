@@ -21,12 +21,54 @@ MonoBehaviour:
   MaxMana: 0
   MaxBullet: 0
   DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
-  Idle_Down_Anim: []
-  Idle_Up_Anim: []
-  Idle_Left_Anim: []
-  Idle_Right_Anim: []
-  Walk_Down_Anim: []
-  Walk_Up_Anim: []
-  Walk_Left_Anim: []
-  Walk_Right_Anim: []
-  Dead_Sprite: []
+  Idle_Down_Anim:
+  - {fileID: 2110337436, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 2110337436, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1203222400, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1203222400, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Idle_Up_Anim:
+  - {fileID: 521924810, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 521924810, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -332421101, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -332421101, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Idle_Left_Anim:
+  - {fileID: -1185336746, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1185336746, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1768222456, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1768222456, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Idle_Right_Anim:
+  - {fileID: 1195168967, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1195168967, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -839926461, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -839926461, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Walk_Down_Anim:
+  - {fileID: -1799802419, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1799802419, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1203222400, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1782497181, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1782497181, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1203222400, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Walk_Up_Anim:
+  - {fileID: 1364491370, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1364491370, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 521924810, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -311603588, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -311603588, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 521924810, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Walk_Left_Anim:
+  - {fileID: -1246204581, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1246204581, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1185336746, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 766717907, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 766717907, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -1185336746, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Walk_Right_Anim:
+  - {fileID: 749943440, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 749943440, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 1195168967, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 763053877, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: 763053877, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  - {fileID: -839926461, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  Dead_Sprite:
+  - {fileID: -401716671, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
+  EXPGain: 100

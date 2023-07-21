@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
+  m_Name: Door1
+  m_EditorClassIdentifier: 
+  TileImage: {fileID: 2040976006, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  TileTopImage:
+  - {fileID: -1480853892, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 1801844600, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: -1114438543, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 908933753, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  Solid: 0
+  AbovePlayer: 0
+  Interactable: 0
+  Event: 0
+  SolidEvent: 1
+  Script:
+  - /PlaySound ScreenTransition
+  - /Obj Anim 3 0
+  - /Mv D
+  - /Flash in
+  - /Obj AnimSet Srt 3 0
+  - /Obj ChangeMap 3
+  - /Tp 6 7
+  - /Obj AnimSet End 6 7
+  - /Fc D
+  - /Flash out
+  - /Mv D
+  - /PlaySound ScreenTransition
+  - /Obj Anim 6 7
+  IsAnim: 1
+  ConstantAnim: 0
+  ChangeMap: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
+  EnemyList: {fileID: 0}

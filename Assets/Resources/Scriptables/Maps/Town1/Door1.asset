@@ -29,14 +29,15 @@ MonoBehaviour:
   - /Mv U
   - /Flash in
   - /Obj AnimSet Srt 6 7
-  - /Tp 10 7
-  - /Obj AnimSet End 10 7
-  - /Fc D
+  - /Obj ChangeMap 3
+  - /Tp 3 0
+  - /Obj AnimSet End 3 0
+  - /Fc U
   - /Flash out
-  - /Mv D
+  - /Mv U
   - /PlaySound ScreenTransition
-  - /Obj Anim 10 7
+  - /Obj Anim 3 0
   IsAnim: 1
   ConstantAnim: 0
-  ChangeMap: {fileID: 0}
+  ChangeMap: {fileID: 11400000, guid: 548f6eae49e63c94bb42a3ec90650557, type: 2}
   EnemyList: {fileID: 0}

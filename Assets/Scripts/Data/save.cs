@@ -88,7 +88,7 @@ public class save : MonoBehaviour
 		file.Close();
 
 		nameStr = data.name;
-		Map = Resources.Load<SC_Map>("Scriptables/Maps/" + Map.MapName + "/" + Map.MapName);
+		Map = Resources.Load<SC_Map>("Scriptables/Maps/" + data.MapName + "/" + data.MapName);
 
 		xPos = data.x;
 		yPos = data.y;
