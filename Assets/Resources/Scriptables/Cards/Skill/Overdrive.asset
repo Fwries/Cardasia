@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 0
   DoesTarget: 0
   CardTarget: 0
-  CardClass: []
   CardTrait: 
-  CardSkill: Gain 3 Energy until the end of the turn.
+  CardSkill: Gain 3 Mana until the end of the turn.
   CardCost: 2

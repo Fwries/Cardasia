@@ -18,6 +18,6 @@ MonoBehaviour:
   EnemyList:
   - name: Slime
     SpawnChance: 100
-    MinLevel: 1
-    MaxLevel: 3
+    MinLevel: 3
+    MaxLevel: 5
     scEnemy: {fileID: 11400000, guid: e4a82c76bcb916647bf3457974816504, type: 2}

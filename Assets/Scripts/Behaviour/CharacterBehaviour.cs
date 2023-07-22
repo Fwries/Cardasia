@@ -75,13 +75,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         MaxHealth = Character.Health + 20 * Level;
         Health = CharData.Health;
         
-        Exp = CharData.Exp; MaxExp = 100;
+        Exp = CharData.Exp; MaxExp = 80 + 20 * Level;
 
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
 
-        DEF = Character.Defence + 10 * Level;
+        DEF = Character.Defence + 5 * Level;
         ATK = Character.Attack + 10 * Level;
         Bullet = CharData.Bullet;
         MaxBullet = Character.MaxBullet;
@@ -109,13 +109,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         Level = _Level;
         Health = MaxHealth = Character.Health + 20 * Level;
-        Exp = 0; MaxExp = 100;
+        Exp = 0; MaxExp = MaxExp = 100 + 20 * Level;
 
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
         Mana = MaxMana = Character.MaxMana;
 
-        DEF = Character.Defence + 10 * Level;
+        DEF = Character.Defence + 5 * Level;
         ATK = Character.Attack + 10 * Level;
         MaxBullet = Character.MaxBullet;
 
@@ -145,6 +145,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
             IsDead = true;
             HandObject.SetActive(false);
             GameBehav.Delay = false;
+            GameBehav.Select(GameBehav.Player.CharacterTape[0]);
 
             if (IsEnemy)
             {
@@ -361,7 +362,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 AudioManager.Instance.PlaySFX("Impact");
                 break;
             case 1: // Base Crit
-                if (Random.Range(0, 4) == 0) { CritMultiplier = 2; }
+                if (Random.Range(0, 100) <= 12) { CritMultiplier = 2; }
                 AudioManager.Instance.PlaySFX("Impact");
                 break;
             case 2: // High Crit
@@ -559,14 +560,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     {
         Level++;
         AudioManager.Instance.PlaySFX("LevelUp");
-        Popup("Level Up!" + "\n" + "+20 ATK +20 DEF", Color.green);
+        Popup("Level Up!" + "\n" + "+10 ATK +5 DEF", Color.green);
         
         Health = MaxHealth = Character.Health + 20 * Level;
-        DEF = Character.Defence + 10 * Level;
+        DEF = Character.Defence + 5 * Level;
         ATK = Character.Attack + 10 * Level;
 
         Both = MaxBoth = Character.MaxBoth;
         Stamina = MaxStamina = Character.MaxStamina;
+
+        MaxExp = 80 + 20 * Level;
     }
 
     public void Popup(string text, Color textColor)

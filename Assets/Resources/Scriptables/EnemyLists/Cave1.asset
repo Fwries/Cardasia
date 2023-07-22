@@ -18,6 +18,6 @@ MonoBehaviour:
   EnemyList:
   - name: Bat
     SpawnChance: 100
-    MinLevel: 1
-    MaxLevel: 4
+    MinLevel: 4
+    MaxLevel: 7
     scEnemy: {fileID: 11400000, guid: d4909ef434507e044a930f4f05dc05ab, type: 2}

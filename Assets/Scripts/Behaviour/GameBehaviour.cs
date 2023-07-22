@@ -382,6 +382,17 @@ public class GameBehaviour : MonoBehaviour
         save.Instance.ChangeScene("RPGScene", "save");
     }
 
+    public void Run()
+    {
+        if (GameOver || Delay || Trans) { return; }
+        if (CurrentPlayerTurn == Player)
+        {
+            save.Instance.BattleUpdate(this);
+            save.Instance.SaveFile("battle");
+            save.Instance.ChangeScene("RPGScene", "battle");
+        }
+    }
+
     public IEnumerator GiveEXP(PlayerBehaviour player, CharacterBehaviour CharacterBehav)
     {
         Delay = true;
