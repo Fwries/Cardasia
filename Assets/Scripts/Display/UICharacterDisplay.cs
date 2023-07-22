@@ -18,12 +18,6 @@ public class UICharacterDisplay : MonoBehaviour
     private int CurrFrame;
     private float AnimTime = 1;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetCurrAnim(Character.Idle_Down_Anim);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -33,13 +27,16 @@ public class UICharacterDisplay : MonoBehaviour
         HealthSlider.maxValue = Character.Health + 20 * CharData.Level;
         HealthSlider.value = CharData.Health;
 
-        AnimTime += Time.deltaTime;
-        if (AnimTime >= 0.12f)
+        if (CurrAnim != null)
         {
-            CurrFrame++;
-            if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
-            this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
-            AnimTime = 0;
+            AnimTime += Time.deltaTime;
+            if (AnimTime >= 0.12f)
+            {
+                CurrFrame++;
+                if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
+                this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
+                AnimTime = 0;
+            }
         }
     }
 
@@ -61,5 +58,11 @@ public class UICharacterDisplay : MonoBehaviour
         }
         CurrAnim = _CurrAnim;
         CurrFrame = Random.Range(0, NewAnim.Length);
+    }
+
+    public void SetCharacter()
+    {
+        Character = CharData.GetCharacter();
+        SetCurrAnim(Character.Idle_Down_Anim);
     }
 }

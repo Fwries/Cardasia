@@ -143,6 +143,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (Health <= 0) 
         {
             IsDead = true;
+            HandObject.SetActive(false);
+            GameBehav.Delay = false;
 
             if (IsEnemy)
             {

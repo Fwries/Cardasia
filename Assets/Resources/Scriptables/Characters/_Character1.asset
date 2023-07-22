@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
+  m_Name: _Character1
+  m_EditorClassIdentifier: 
+  CardName: Female
+  Health: 100
+  Defence: 20
+  Attack: 0
+  MaxBoth: 0
+  MaxStamina: 0
+  MaxMana: 3
+  MaxBullet: 0
+  DefaultDeck: {fileID: 11400000, guid: de1dccbf7ea7a4742bf0ff22b99975e5, type: 2}
+  Idle_Down_Anim:
+  - {fileID: 539869626, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 539869626, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1570654070, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1570654070, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Idle_Up_Anim:
+  - {fileID: 956604461, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 956604461, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 742012495, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 742012495, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Idle_Left_Anim:
+  - {fileID: -376117504, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -376117504, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 362012147, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 362012147, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Idle_Right_Anim:
+  - {fileID: -1524629695, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1524629695, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 413393354, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 413393354, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Walk_Down_Anim:
+  - {fileID: -1401581501, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1401581501, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1570654070, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1746862832, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1746862832, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1570654070, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Walk_Up_Anim:
+  - {fileID: -1668101329, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1668101329, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 742012495, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1078663017, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 1078663017, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 742012495, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Walk_Left_Anim:
+  - {fileID: -832718142, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -832718142, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 362012147, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 899965120, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 899965120, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 362012147, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Walk_Right_Anim:
+  - {fileID: -1103937583, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1103937583, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 413393354, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1103937583, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1103937583, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: 413393354, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  Dead_Sprite:
+  - {fileID: 914851526, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  - {fileID: -1871941228, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
+  EXPGain: 0

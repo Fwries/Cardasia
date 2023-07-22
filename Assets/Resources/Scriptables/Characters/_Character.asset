@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
   m_Name: _Character
   m_EditorClassIdentifier: 
-  CardName: Character
-  Health: 200
+  CardName: Male
+  Health: 120
   Defence: 0
-  Attack: 0
-  MaxBoth: 3
-  MaxStamina: 0
+  Attack: 20
+  MaxBoth: 0
+  MaxStamina: 3
   MaxMana: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
+  DefaultDeck: {fileID: 11400000, guid: df5002912cec031498264a4fba35a62e, type: 2}
   Idle_Down_Anim:
   - {fileID: -1792844185, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: -1792844185, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
@@ -72,3 +72,4 @@ MonoBehaviour:
   Dead_Sprite:
   - {fileID: 1727674595, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 624214710, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
+  EXPGain: 0

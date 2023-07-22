@@ -18,7 +18,7 @@ public class save : MonoBehaviour
 	public CharacterData[] PartyCharacterData;
 	public List<SC_Card> Inventory;
 
-	public SC_Character TempChar;
+	public SC_Character[] TempChar;
 	public List<SC_Card> TempItemDeck;
 
 	public SC_EnemyList EnemyList;

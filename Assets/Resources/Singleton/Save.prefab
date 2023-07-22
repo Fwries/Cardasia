@@ -45,17 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameStr: 
-  Map: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
-  xPos: 8
-  yPos: 6
+  Map: {fileID: 11400000, guid: 291b235f1e6aa8d4a83af92e4f5e8644, type: 2}
+  xPos: 1
+  yPos: 4
   PartyCharacterData: []
   Inventory: []
-  TempChar: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
+  TempChar:
+  - {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
+  - {fileID: 11400000, guid: 0811ab70cddbfd846988d8554c6ae7c6, type: 2}
+  - {fileID: 11400000, guid: 88faa17db5dd65f4bb95ee76c50f6e81, type: 2}
   TempItemDeck:
   - {fileID: 11400000, guid: d13631aa13e5c7c419af206fa6d55258, type: 2}
   - {fileID: 11400000, guid: 3a5cde97557d9ed4c8cf124e11966c7e, type: 2}
+  - {fileID: 11400000, guid: 3a5cde97557d9ed4c8cf124e11966c7e, type: 2}
   - {fileID: 11400000, guid: f0a910aff24b11d48bbc6212d2c73ebe, type: 2}
   - {fileID: 11400000, guid: f0a910aff24b11d48bbc6212d2c73ebe, type: 2}
+  - {fileID: 11400000, guid: 732e5acb300247f4ca7bc4bb4359d20d, type: 2}
+  - {fileID: 11400000, guid: 732e5acb300247f4ca7bc4bb4359d20d, type: 2}
+  - {fileID: 11400000, guid: d143d4957d03b2246ac04271b015f054, type: 2}
+  - {fileID: 11400000, guid: d143d4957d03b2246ac04271b015f054, type: 2}
   EnemyList: {fileID: 0}
   MusicMute: 0
   SFXMute: 0

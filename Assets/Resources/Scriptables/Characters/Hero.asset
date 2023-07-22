@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hero
   m_EditorClassIdentifier: 
   CardName: Hero
-  Health: 100
+  Health: 150
   Defence: 10
   Attack: 10
   MaxBoth: 3

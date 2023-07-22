@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 0
   DoesTarget: 1
   CardTarget: 1
-  CardClass: []
   CardTrait: 
-  CardSkill: Deal 20 DMG and Draw a card. Inflict Trip to Target Character.
+  CardSkill: Deal 20 DMG and Draw a card. Inflict Trip.
   CardCost: 1

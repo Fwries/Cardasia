@@ -58,10 +58,12 @@ public class PartyCharacterBehaviour : MonoBehaviour
             {
                 UICharacter[i].CharUI.SetActive(true);
                 UICharacter[i].CharData = save.Instance.PartyCharacterData[i];
+                UICharacter[i].SetCharacter();
 
                 CharacterTape[i] = UICharacter[i];
-                RotationCharacter[i].CharUI.SetActive(true);
                 RotationCharacter[i].CharData = save.Instance.PartyCharacterData[i];
+                RotationCharacter[i].SetCharacter();
+                RotationCharacter[i].CharUI.SetActive(true);
             }
             else
             {

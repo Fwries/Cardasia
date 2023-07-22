@@ -107,10 +107,10 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
-            {
-                save.Instance.CreateNewCharacterData(Character, 1);
-            }
+            //if (Input.GetKeyDown(KeyCode.P) && !isMoving && EventSc == null)
+            //{
+            //    save.Instance.CreateNewCharacterData(Character, 1);
+            //}
         }
 
         AnimTime += Time.deltaTime;
