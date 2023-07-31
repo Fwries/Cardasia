@@ -317,20 +317,23 @@ public class GameBehaviour : MonoBehaviour
         TopObj.SetActive(true);
         BottomObj.SetActive(true);
 
+        float YTopPos = GameObject.Find("Top").transform.position.y;
+        float YBottomPos = GameObject.Find("Bottom").transform.position.y;
+
         Trans = true;
         while (true)
         {
-            if (TopObj.transform.position.y >= 1350 && BottomObj.transform.position.y <= -270)
+            if (TopObj.transform.position.y >= YTopPos && BottomObj.transform.position.y <= YBottomPos)
             {
-                TopObj.transform.position = new Vector3(TopObj.transform.position.x, 1350, TopObj.transform.position.z);
-                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, -270, BottomObj.transform.position.z);
+                TopObj.transform.position = new Vector3(TopObj.transform.position.x, YTopPos, TopObj.transform.position.z);
+                BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, YBottomPos, BottomObj.transform.position.z);
                 break;
             }
-            if (TopObj.transform.position.y < 1350)
+            if (TopObj.transform.position.y < YTopPos)
             {
                 TopObj.transform.position = new Vector3(TopObj.transform.position.x, TopObj.transform.position.y + (Time.deltaTime * 225), TopObj.transform.position.z);
             }
-            if (BottomObj.transform.position.y > -270)
+            if (BottomObj.transform.position.y > YBottomPos)
             {
                 BottomObj.transform.position = new Vector3(BottomObj.transform.position.x, BottomObj.transform.position.y - (Time.deltaTime * 225), BottomObj.transform.position.z);
             }
