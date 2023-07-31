@@ -23,8 +23,15 @@ MonoBehaviour:
   Interactable: 1
   Event: 1
   SolidEvent: 0
-  Script: []
-  IsAnim: 0
+  Script:
+  - /Obj Anim 6 1
+  - /DLOptain 6 1
+  - /DLEnd
+  - /Obj ChangeState 6 1
+  IsAnim: 1
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
   EnemyList: {fileID: 0}
+  ObtainList:
+  - Con Arrow
+  - Con Arrow

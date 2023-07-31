@@ -23,7 +23,7 @@ MonoBehaviour:
   Script:
   - /PlaySound ScreenTransition
   - /Flash in
-  - /Obj ChangeMap 6
+  - /ChangeMap 6
   - /Tp X 0
   - /Flash out
   - /Mv U
@@ -31,3 +31,4 @@ MonoBehaviour:
   ConstantAnim: 0
   ChangeMap: {fileID: 11400000, guid: 98179f97166c6dd43b7c53979a351796, type: 2}
   EnemyList: {fileID: 0}
+  ObtainCard: []

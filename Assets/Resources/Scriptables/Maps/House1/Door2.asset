@@ -29,7 +29,7 @@ MonoBehaviour:
   - /Mv D
   - /Flash in
   - /Obj AnimSet Srt 2 0
-  - /Obj ChangeMap 3
+  - /ChangeMap 3
   - /Tp 10 7
   - /Obj AnimSet End 10 7
   - /Fc D
@@ -41,3 +41,4 @@ MonoBehaviour:
   ConstantAnim: 0
   ChangeMap: {fileID: 11400000, guid: 74c900d6fd3686c47b73caf06d8daf13, type: 2}
   EnemyList: {fileID: 0}
+  ObtainCard: []

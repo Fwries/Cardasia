@@ -7,7 +7,7 @@ public class DialogueBehaviour : MonoBehaviour
 {
     [SerializeField] private Text DialogueText;
     [SerializeField] private CharacterMovement Character;
-    public string DialogueString;
+    public string[] DialogueString;
 
     public float TextTime = 0.05f;
     private bool Delay;
@@ -26,39 +26,42 @@ public class DialogueBehaviour : MonoBehaviour
 
     public IEnumerator StartDialogue()
     {
-        string StartDialogueString = "";
-        int stringPos = 0;
-        float elapsedTime = 0;
+        for (int i = 0; i < DialogueString.Length; i++)
+        {
+            string StartDialogueString = "";
+            int stringPos = 0;
+            float elapsedTime = 0;
 
-        StartCoroutine(Delayfor(0.25f));
-        while (StartDialogueString.Length < DialogueString.Length)
-        {
-            if (Input.GetKey(KeyCode.Space) && !Delay)
+            StartCoroutine(Delayfor(0.25f));
+            while (StartDialogueString.Length < DialogueString[i].Length)
             {
-                StartDialogueString = DialogueString;
-                DialogueText.text = StartDialogueString;
-                StartCoroutine(Delayfor(0.25f));
-                break;
+                if (Input.GetKey(KeyCode.Space) && !Delay)
+                {
+                    StartDialogueString = DialogueString[i];
+                    DialogueText.text = StartDialogueString;
+                    StartCoroutine(Delayfor(0.25f));
+                    break;
+                }
+                if (elapsedTime >= TextTime)
+                {
+                    StartDialogueString += DialogueString[i][stringPos];
+                    DialogueText.text = StartDialogueString;
+                    elapsedTime = 0;
+                    stringPos++;
+                    AudioManager.Instance.PlaySFX("Text");
+                }
+                else { elapsedTime += Time.deltaTime; yield return null; }
             }
-            if (elapsedTime >= TextTime)
+
+            while (true)
             {
-                StartDialogueString += DialogueString[stringPos];
-                DialogueText.text = StartDialogueString;
-                elapsedTime = 0;
-                stringPos++;
-                AudioManager.Instance.PlaySFX("Text");
+                if (Input.GetKeyDown(KeyCode.Space) && !Delay)
+                {
+                    AudioManager.Instance.PlaySFX("draw");
+                    break;
+                }
+                else { yield return null; }
             }
-            else { elapsedTime += Time.deltaTime; yield return null; }
-        }
-        
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && !Delay)
-            {
-                AudioManager.Instance.PlaySFX("draw");
-                break;
-            }
-            else { yield return null; }
         }
 
         Character.Continue();
@@ -66,7 +69,8 @@ public class DialogueBehaviour : MonoBehaviour
 
     public void Reset()
     {
-        DialogueString = "";
+        DialogueString = new string[1];
+        DialogueString[0] = "";
         DialogueText.text = "";
     }
 

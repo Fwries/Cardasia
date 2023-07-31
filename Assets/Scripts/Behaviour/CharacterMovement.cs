@@ -232,8 +232,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void Command(string strg)
     {
-        //Debug.Log(strg);
-        
         if (strg[0] != '/') { return; }
         IsSc = true;
 
@@ -293,6 +291,30 @@ public class CharacterMovement : MonoBehaviour
                 DialogueBehav.gameObject.SetActive(false);
                 IsSc = false; CurrSc++;
             }
+            else if (strg[3] == 'O' && strg[4] == 'p' && strg[5] == 't' && strg[6] == 'a' && strg[7] == 'i' && strg[8] == 'n')
+            {
+                bool XIsFound = false;
+                string sX = "", sY = "";
+
+                for (int i = 10; i <= strg.Length; i++)
+                {
+                    if (i == strg.Length && XIsFound)
+                    {
+                        if (!DialogueBehav.gameObject.activeSelf) { DialogueBehav.gameObject.SetActive(true); }
+
+                        SC_Tile Tile = Map.GetTile(Convert.ToInt32(sX), Convert.ToInt32(sY));
+
+                        DialogueBehav.DialogueString = save.Instance.Obtain(Tile.ObtainList);
+                        StartCoroutine(DialogueBehav.StartDialogue());
+                        return;
+                    }
+
+                    if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                    else if (!XIsFound) { XIsFound = true; i++; }
+
+                    if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+                }
+            }
             else
             {
                 if (!DialogueBehav.gameObject.activeSelf) { DialogueBehav.gameObject.SetActive(true); }
@@ -302,7 +324,8 @@ public class CharacterMovement : MonoBehaviour
                 {
                     Dialogue += strg[i];
                 }
-                DialogueBehav.DialogueString = Dialogue;
+                DialogueBehav.Reset();
+                DialogueBehav.DialogueString[0] = Dialogue;
                 StartCoroutine(DialogueBehav.StartDialogue());
             }
         }
@@ -372,6 +395,23 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+        else if (strg[1] == 'C' && strg[2] == 'h' && strg[3] == 'a' && strg[4] == 'n' && strg[5] == 'g' && strg[6] == 'e' && strg[7] == 'M' && strg[8] == 'a' && strg[9] == 'p')
+        {
+            string TileNo = "";
+
+            for (int i = 11; i <= strg.Length; i++)
+            {
+                if (i == strg.Length)
+                {
+                    Map.ChangeMap(Convert.ToInt32(TileNo));
+                    IsSc = false;
+                    CurrSc++;
+                    return;
+                }
+                else if (strg[i] != ' ') { TileNo += strg[i]; }
+            }
+        }
+
         else if (strg[1] == 'O' && strg[2] == 'b' && strg[3] == 'j')
         {
             bool XIsFound = false;
@@ -401,7 +441,7 @@ public class CharacterMovement : MonoBehaviour
                     {
                         if (i == strg.Length && XIsFound)
                         {
-                            GameObject.Find(sX + "x" + sY + "y" + "Top").GetComponent<TileAnim>().SetCurrFrame(FirstOrLast);
+                            GameObject.Find(sX + "x" + sY + "yTop").GetComponent<TileAnim>().SetCurrFrame(FirstOrLast);
                             IsSc = false; CurrSc++;
                             return;
                         }
@@ -418,7 +458,7 @@ public class CharacterMovement : MonoBehaviour
                     {
                         if (i == strg.Length && XIsFound)
                         {
-                            GameObject.Find(sX + "x" + sY + "y" + "Top").GetComponent<TileAnim>().Anim = true;
+                            GameObject.Find(sX + "x" + sY + "yTop").GetComponent<TileAnim>().Anim = true;
                             return;
                         }
 
@@ -429,20 +469,21 @@ public class CharacterMovement : MonoBehaviour
                     }
                 }
             }
-            else if (strg[5] == 'C' && strg[6] == 'h' && strg[7] == 'a' && strg[8] == 'n' && strg[9] == 'g' && strg[10] == 'e' && strg[11] == 'M' && strg[12] == 'a' && strg[13] == 'p')
+            else if (strg[5] == 'C' && strg[6] == 'h' && strg[7] == 'a' && strg[8] == 'n' && strg[9] == 'g' && strg[10] == 'e' && strg[11] == 'S' && strg[12] == 't' && strg[13] == 'a' && strg[14] == 't' && strg[15] == 'e')
             {
-                string TileNo = "";
-
-                for (int i = 15; i <= strg.Length; i++)
+                for (int i = 17; i <= strg.Length; i++)
                 {
-                    if (i == strg.Length)
+                    if (i == strg.Length && XIsFound)
                     {
-                        Map.ChangeMap(Convert.ToInt32(TileNo));
-                        IsSc = false;
-                        CurrSc++;
+                        Map.ChangeTileState(Convert.ToInt32(sX), Convert.ToInt32(sY));
+                        IsSc = false; CurrSc++;
                         return;
                     }
-                    else if (strg[i] != ' ') { TileNo += strg[i]; }
+
+                    if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                    else if (!XIsFound) { XIsFound = true; i++; }
+
+                    if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
                 }
             }
         }
@@ -456,6 +497,8 @@ public class CharacterMovement : MonoBehaviour
             AudioManager.Instance.PlaySFX(Audio);
             IsSc = false; CurrSc++;
         }
+
+        else { Debug.Log("Command not found: " + strg); IsSc = false; CurrSc++; }
     }
 
     private IEnumerator Flash(bool flashin)

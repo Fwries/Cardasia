@@ -5,20 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Tile", menuName = "Cardasia/Tile")]
 public class SC_Tile : ScriptableObject
 {
-    [SerializeField] public Sprite TileImage;
-    [SerializeField] public Sprite[] TileTopImage;
+    public Sprite TileImage;
+    public Sprite[] TileTopImage;
 
-    [SerializeField] public bool Solid;
-    [SerializeField] public bool AbovePlayer;
+    public bool Solid;
+    public bool AbovePlayer;
 
-    [SerializeField] public bool Interactable;
-    [SerializeField] public bool Event;
-    [SerializeField] public bool SolidEvent;
-    [SerializeField] public string[] Script;
+    public bool Interactable;
+    public bool Event;
+    public bool SolidEvent;
+    public string[] Script;
 
-    [SerializeField] public bool IsAnim;
-    [SerializeField] public bool ConstantAnim;
+    public bool IsAnim;
+    public bool ConstantAnim;
 
-    [SerializeField] public SC_Map ChangeMap;
-    [SerializeField] public SC_EnemyList EnemyList;
+    public SC_Map ChangeMap;
+    public SC_EnemyList EnemyList;
+
+    public string[] ObtainList;
 }

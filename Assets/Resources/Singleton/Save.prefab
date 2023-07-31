@@ -46,9 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractableList:
   - MapName: Town1
-    IsConsumed: 0
-    Index: 8
-    ConsumedIndex: 9
+    Single: 1
+    PosX: 6
+    PosY: 1
+    HasInteracted: 0
+    State1: 8
+    State2: 9
   nameStr: 
   Map: {fileID: 11400000, guid: 291b235f1e6aa8d4a83af92e4f5e8644, type: 2}
   xPos: 1

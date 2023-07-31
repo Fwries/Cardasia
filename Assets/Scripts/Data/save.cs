@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class save : MonoBehaviour
 {
 	public static save Instance;
-	public string version = "0.81";
 	public InteractableData[] InteractableList;
 
 	public string nameStr;
@@ -64,7 +63,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData("Saved", Map.MapName, xPos, yPos, PartyCharacterData, Inventory, InteractableList);
+		GameData data = new GameData("Hero", Map.MapName, xPos, yPos, PartyCharacterData, Inventory, InteractableList);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
@@ -187,6 +186,48 @@ public class save : MonoBehaviour
 		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health + 20 * _Level;
 	}
+
+	public string[] Obtain(string[] Item)
+    {
+		string[] returnString = new string[Item.Length];
+		returnString[0] = "List is Empty";
+
+		for (int index = 0; index < Item.Length; index++)
+        {
+			string ItemName = "";
+			for (int i = 4; i < Item[index].Length; i++)
+			{
+				ItemName += Item[index][i];
+			}
+
+			if (Item[index][0] == 'G' && Item[index][1] == 'l' && Item[index][2] == 'd')
+            {
+
+            }
+			else if (Item[index][0] == 'I' && Item[index][1] == 't' && Item[index][2] == 'm')
+			{
+				//Inventory.Add(Resources.Load<SC_Card>("Scriptables/Cards/Skill/" + ItemName));
+				//returnString[index] = nameStr + " found " + ItemName + "!";
+			}
+			else if (Item[index][0] == 'C' && Item[index][1] == 'o' && Item[index][2] == 'n')
+			{
+				Inventory.Add(Resources.Load<SC_Card>("Scriptables/Cards/Consumable/" + ItemName));
+				returnString[index] = nameStr + " found " + ItemName + "!";
+			}
+			else if (Item[index][0] == 'S' && Item[index][1] == 'k' && Item[index][2] == 'l')
+			{
+				Inventory.Add(Resources.Load<SC_Card>("Scriptables/Cards/Skill/" + ItemName));
+				returnString[index] = nameStr + " found " + ItemName + "!";
+			}
+			else if (Item[index][0] == 'W' && Item[index][1] == 'p' && Item[index][2] == 'm')
+			{
+				//Inventory.Add(Resources.Load<SC_Card>("Scriptables/Cards/Skill/" + ItemName));
+				//returnString[index] = nameStr + " found " + ItemName + "!";
+			}
+		}
+
+		return returnString;
+    }
 
 	public void ChangeScene(string SceneName, string save)
     {

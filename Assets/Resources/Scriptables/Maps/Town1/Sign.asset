@@ -30,3 +30,4 @@ MonoBehaviour:
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
   EnemyList: {fileID: 0}
+  ObtainCard: []

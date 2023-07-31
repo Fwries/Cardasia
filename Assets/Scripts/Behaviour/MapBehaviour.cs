@@ -56,15 +56,22 @@ public class MapBehaviour : MonoBehaviour
 
         for (int i = 0; i < save.Instance.InteractableList.Length; i++)
         {
-            if (save.Instance.InteractableList[i].IsConsumed && save.Instance.InteractableList[i].MapName == SCMap.MapName)
+            if (save.Instance.InteractableList[i].HasInteracted && save.Instance.InteractableList[i].MapName == SCMap.MapName)
             {
-                for (int y = 0; y < Map.GetLength(0); y++)
+                if (save.Instance.InteractableList[i].Single)
                 {
-                    for (int x = 0; x < Map.GetLength(1); x++)
+                    TileLayer[save.Instance.InteractableList[i].PosY, save.Instance.InteractableList[i].PosX] = save.Instance.InteractableList[i].State2;
+                }
+                else
+                {
+                    for (int y = 0; y < Map.GetLength(0); y++)
                     {
-                        if (TileLayer[y, x] == save.Instance.InteractableList[i].Index)
+                        for (int x = 0; x < Map.GetLength(1); x++)
                         {
-                            TileLayer[y, x] = save.Instance.InteractableList[i].ConsumedIndex;
+                            if (TileLayer[y, x] == save.Instance.InteractableList[i].State1)
+                            {
+                                TileLayer[y, x] = save.Instance.InteractableList[i].State2;
+                            }
                         }
                     }
                 }
@@ -88,6 +95,40 @@ public class MapBehaviour : MonoBehaviour
         }
 
         SpawnMap();
+    }
+
+    public void ChangeTileState(int x, int y)
+    {
+        for (int i = 0; i < save.Instance.InteractableList.Length; i++)
+        {
+            if (save.Instance.InteractableList[i].MapName == SCMap.MapName)
+            {
+                if (save.Instance.InteractableList[i].PosX == x && save.Instance.InteractableList[i].PosY == y)
+                {
+                    save.Instance.InteractableList[i].HasInteracted = !save.Instance.InteractableList[i].HasInteracted;
+                    if (save.Instance.InteractableList[i].HasInteracted)
+                    {
+                        TileLayer[y, x] = save.Instance.InteractableList[i].State2;
+                    }
+                    else
+                    {
+                        TileLayer[y, x] = save.Instance.InteractableList[i].State1;
+                    }
+
+                    return;
+                }
+            }
+        }
+    }
+
+    public void ChangeAllTileState(int Index, int ConsumedIndex)
+    {
+
+    }
+
+    public SC_Tile GetTile(int x, int y)
+    {
+        return Tileset[TileLayer[y, x]];
     }
 
     void SpawnMap()

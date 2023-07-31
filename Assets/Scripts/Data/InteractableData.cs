@@ -6,7 +6,15 @@ using UnityEngine;
 public class InteractableData
 {
 	public string MapName;
-	public bool IsConsumed;
-	public int Index;
-	public int ConsumedIndex;
+	public string TileName()
+	{
+		return PosX + "x" + PosY + "yTop";
+	}
+
+	public bool Single;
+	public int PosX, PosY;
+	
+	public bool HasInteracted;
+	public int State1;
+	public int State2;
 }
