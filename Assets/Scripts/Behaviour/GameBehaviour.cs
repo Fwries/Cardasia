@@ -35,8 +35,13 @@ public class GameBehaviour : MonoBehaviour
     public bool Delay;
     public bool GameOver;
 
+    public float CardWidth;
+
     void Awake()
     {
+        CardWidth = GameDis.CardDisplay.GetComponent<RectTransform>().rect.size.x;
+
+        Player.Init();
         Player.CharacterTape = new CharacterBehaviour[save.Instance.PartyCharacterData.Length];
         for (int i = 0; i < 5; i++)
         {
@@ -56,6 +61,7 @@ public class GameBehaviour : MonoBehaviour
         Player.UpdateActive();
 
         int RandAmt = RandInc(save.Instance.EnemyList.MinSpawn, save.Instance.EnemyList.MaxSpawn);
+        Opponent.Init();
         Opponent.CharacterTape = new CharacterBehaviour[RandAmt];
         for (int i = 0; i < 5; i++)
         {
@@ -406,17 +412,16 @@ public class GameBehaviour : MonoBehaviour
             if (j < 3)
             {
                 int i = 0;
-                Selected = player.CharacterTape[j];
                 while (i < EXP)
                 {
                     if (elapsedTime >= Speed)
                     {
-                        Selected.Exp++; i++;
+                        player.CharacterTape[j].Exp++; i++;
                         elapsedTime = 0;
-                        if (Selected.Exp >= Selected.MaxExp)
+                        if (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
                         {
-                            Selected.Exp -= Selected.MaxExp;
-                            Selected.LevelUp();
+                            player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
+                            player.CharacterTape[j].LevelUp();
                         }
                     }
                     else { elapsedTime += Time.deltaTime; yield return null; }

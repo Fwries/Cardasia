@@ -11,12 +11,12 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public PlayerBehaviour PlayerBehav;
     public bool IsEnemy;
 
-    public Vector2 CentrePos;
-    public Vector2 LeftPos;
-    public Vector2 RightPos;
+    [HideInInspector] public Vector2 CentrePos;
+    [HideInInspector] public Vector2 LeftPos;
+    [HideInInspector] public Vector2 RightPos;
 
-    public Vector2 LeftBackPos;
-    public Vector2 RightBackPos;
+    [HideInInspector] public Vector2 LeftBackPos;
+    [HideInInspector] public Vector2 RightBackPos;
 
     public float m_Speed;
     public float DragAmt;

@@ -183,7 +183,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void Draw(int DrawNum)
     {
-        if (Trip) { Popup("Tripped", Color.black); return; }
+        if (Trip) { Popup("Tripped", Color.black); Trip = false; return; }
         for (int index1 = 0; index1 < DrawNum; index1++)
         {
             if (HandCards == null || HandCards.Count == 5) { return; }
@@ -223,11 +223,11 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void AdjustHand()
     {
-        LeftMost = HandObject.transform.position.x + (HandCards.Count - 1) * -100.0f;
+        LeftMost = HandObject.transform.position.x + (HandCards.Count - 1) * -(GameBehav.CardWidth / 4);
         for (int i = 0; i < HandCards.Count; i++)
         {
             if (!HandCards[i].GetComponent<DragDrop>().IsDragging)
-                HandCards[i].transform.position = new Vector3(LeftMost + (i * 200), HandObject.transform.position.y, HandObject.transform.position.z);
+                HandCards[i].transform.position = new Vector3(LeftMost + (i * GameBehav.CardWidth / 2), HandObject.transform.position.y, HandObject.transform.position.z);
             HandCards[i].GetComponent<CardDisplay>().PositionIndex = i;
         }
     }

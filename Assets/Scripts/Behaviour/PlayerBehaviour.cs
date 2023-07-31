@@ -25,6 +25,15 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
 
+    public void Init()
+    {
+        RotationBehav.CentrePos = CharObj[0].transform.position;
+        RotationBehav.LeftPos = CharObj[1].transform.position;
+        RotationBehav.RightPos = CharObj[2].transform.position;
+        RotationBehav.LeftBackPos = CharObj[3].transform.position;
+        RotationBehav.RightBackPos = CharObj[4].transform.position;
+    }
+
     public void UpdateActive()
     {
         for (int i = 0; i < CharacterTape.Length; i++)

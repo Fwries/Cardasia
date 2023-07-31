@@ -9,21 +9,21 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
     public PartyCharacterBehaviour PartyBehav;
     public GameObject Character;
 
-    public Vector2 CentrePos;
-    public Vector2 LeftPos;
-    public Vector2 RightPos;
-
     private Vector2 CharacterPos;
 
-    public Vector2 LeftBackPos;
-    public Vector2 RightBackPos;
+    private Vector2 CentrePos;
+    private Vector2 LeftPos;
+    private Vector2 RightPos;
 
-    public Vector2 TempCentrePos;
-    public Vector2 TempLeftPos;
-    public Vector2 TempRightPos;
+    private Vector2 LeftBackPos;
+    private Vector2 RightBackPos;
 
-    public Vector2 TempLeftBackPos;
-    public Vector2 TempRightBackPos;
+    private Vector2 TempCentrePos;
+    private Vector2 TempLeftPos;
+    private Vector2 TempRightPos;
+
+    private Vector2 TempLeftBackPos;
+    private Vector2 TempRightBackPos;
 
     public float m_Speed;
     public float DragAmt;
@@ -37,6 +37,14 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
     private void Awake()
     {
         cam = Camera.main;
+
+        CharacterPos = new Vector2(Character.transform.position.x, Character.transform.position.y);
+        CentrePos = GameObject.Find("CharacterUI (6)").transform.position;
+        LeftPos = GameObject.Find("CharacterUI (7)").transform.position;
+        RightPos = GameObject.Find("CharacterUI (8)").transform.position;
+
+        LeftBackPos = GameObject.Find("CharacterUI (9)").transform.position;
+        RightBackPos = GameObject.Find("CharacterUI (10)").transform.position;
     }
 
     public void Init()
