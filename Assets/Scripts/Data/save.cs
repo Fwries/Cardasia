@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class save : MonoBehaviour
 {
 	public static save Instance;
-	private bool DebugMode;
+	public string version = "0.81";
+	public InteractableData[] InteractableList;
 
 	public string nameStr;
 	public SC_Map Map;
@@ -63,12 +64,10 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData("Saved", Map.MapName, xPos, yPos, PartyCharacterData, Inventory);
+		GameData data = new GameData("Saved", Map.MapName, xPos, yPos, PartyCharacterData, Inventory, InteractableList);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
-
-		if (DebugMode) { Debug.Log("Saved " + SaveFileName); }
 	}
 
 	public void LoadFile(string SaveFileName)
@@ -96,9 +95,10 @@ public class save : MonoBehaviour
 		PartyCharacterData = new CharacterData[data.PartyCharacterData.Length];
 		PartyCharacterData = data.PartyCharacterData;
 
-		Inventory = data.GetInventory();
+		InteractableList = new InteractableData[data.InteractableList.Length];
+		InteractableList = data.InteractableList;
 
-		if (DebugMode) { Debug.Log("Loaded " + SaveFileName); }
+		Inventory = data.GetInventory();
 	}
 
 	public bool CheckFileExist(string SaveFileName)

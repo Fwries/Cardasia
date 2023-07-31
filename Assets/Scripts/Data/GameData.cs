@@ -11,9 +11,10 @@ public class GameData
 	public int x, y;
 
 	public CharacterData[] PartyCharacterData;
+	public InteractableData[] InteractableList;
 	public string InventoryJson;
 
-	public GameData(string _name, string _MapName, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory)
+	public GameData(string _name, string _MapName, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory, InteractableData[] _InteractableList)
 	{
 		name = _name;
 		MapName = _MapName;
@@ -21,6 +22,7 @@ public class GameData
 		y = _y;
 
 		PartyCharacterData = _PartyCharacterData;
+		InteractableList = _InteractableList;
 
 		SC_Deck scInventory = ScriptableObject.CreateInstance<SC_Deck>();
 		scInventory.Deck = _Inventory;

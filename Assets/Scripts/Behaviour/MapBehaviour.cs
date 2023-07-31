@@ -54,6 +54,23 @@ public class MapBehaviour : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < save.Instance.InteractableList.Length; i++)
+        {
+            if (save.Instance.InteractableList[i].IsConsumed && save.Instance.InteractableList[i].MapName == SCMap.MapName)
+            {
+                for (int y = 0; y < Map.GetLength(0); y++)
+                {
+                    for (int x = 0; x < Map.GetLength(1); x++)
+                    {
+                        if (TileLayer[y, x] == save.Instance.InteractableList[i].Index)
+                        {
+                            TileLayer[y, x] = save.Instance.InteractableList[i].ConsumedIndex;
+                        }
+                    }
+                }
+            }
+        }
+
         SolidTileMap        = new bool[TileLayer.GetLength(0), TileLayer.GetLength(1)];
         InteractableTileMap = new bool[TileLayer.GetLength(0), TileLayer.GetLength(1)];
         EventTileMap        = new bool[TileLayer.GetLength(0), TileLayer.GetLength(1)];

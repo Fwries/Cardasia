@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d932e98cdfd338439b2740cea8ae553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractableList:
+  - MapName: Town1
+    IsConsumed: 0
+    Index: 8
+    ConsumedIndex: 9
   nameStr: 
   Map: {fileID: 11400000, guid: 291b235f1e6aa8d4a83af92e4f5e8644, type: 2}
   xPos: 1
