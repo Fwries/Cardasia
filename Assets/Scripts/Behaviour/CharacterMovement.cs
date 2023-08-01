@@ -18,7 +18,7 @@ public class CharacterMovement : MonoBehaviour
 
     private bool isMoving;
     private Vector3 startPos, targetPos;
-    private float MoveTime = 0.25f;
+    private float MoveTime = 0.22f;
 
     private Vector3 CurrDirection;
     public Sprite[] CurrAnim;

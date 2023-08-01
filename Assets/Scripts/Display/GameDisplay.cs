@@ -39,7 +39,7 @@ public class GameDisplay : MonoBehaviour
     {
         if (GameBehav.Selected == null) { return; }
 
-        DisplayCharacterText.text = "Lv. " + GameBehav.Selected.Level + " " + GameBehav.Selected.Character.CardName;
+        DisplayCharacterText.text = "Lv. " + GameBehav.Selected.Level + " " + GameBehav.Selected.Character.CharName;
 
         HealthText.text = GameBehav.Selected.Health + " / " + GameBehav.Selected.MaxHealth;
         HealthSlider.maxValue = GameBehav.Selected.MaxHealth;

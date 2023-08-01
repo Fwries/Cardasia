@@ -202,8 +202,8 @@ public class save : MonoBehaviour
 
 			if (Item[index][0] == 'G' && Item[index][1] == 'l' && Item[index][2] == 'd')
             {
-
-            }
+				returnString[index] = nameStr + " found " + ItemName + " Gold!";
+			}
 			else if (Item[index][0] == 'I' && Item[index][1] == 't' && Item[index][2] == 'm')
 			{
 				//Inventory.Add(Resources.Load<SC_Card>("Scriptables/Cards/Skill/" + ItemName));

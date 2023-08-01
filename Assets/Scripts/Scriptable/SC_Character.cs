@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Character", menuName = "Cardasia/Character")]
 public class SC_Character : ScriptableObject
 {
-    [SerializeField] public string CardName;
+    [SerializeField] public string CharName;
 
     [SerializeField] public int Health;
     [SerializeField] public int Defence;

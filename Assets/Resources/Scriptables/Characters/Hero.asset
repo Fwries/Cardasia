@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
   m_Name: Hero
   m_EditorClassIdentifier: 
-  CardName: Hero
+  CharName: Hero
   Health: 150
   Defence: 10
   Attack: 10

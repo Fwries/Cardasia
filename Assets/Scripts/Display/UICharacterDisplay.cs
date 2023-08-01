@@ -21,7 +21,7 @@ public class UICharacterDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayCharacterText.text = "Lv. " + CharData.Level + " " + Character.CardName;
+        DisplayCharacterText.text = "Lv. " + CharData.Level + " " + Character.CharName;
 
         HealthText.text = CharData.Health + " / " + (Character.Health + 20 * CharData.Level);
         HealthSlider.maxValue = Character.Health + 20 * CharData.Level;

@@ -42,7 +42,7 @@ public class CharacterDisplay : MonoBehaviour
 
         if (IsPlayer) { return; }
 
-        DisplayCharacterText.text = "Lv. " + CharBehav.Level + " " + CharBehav.Character.CardName;
+        DisplayCharacterText.text = "Lv. " + CharBehav.Level + " " + CharBehav.Character.CharName;
 
         HealthText.text = CharBehav.Health + " / " + CharBehav.MaxHealth;
         HealthSlider.maxValue = CharBehav.MaxHealth;
