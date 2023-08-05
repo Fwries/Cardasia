@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
-  m_Name: _Character
+  m_Name: Sharm
   m_EditorClassIdentifier: 
-  CharName: Male
+  CharName: Sharm
   Health: 120
   Defence: 0
   Attack: 20
@@ -73,3 +73,4 @@ MonoBehaviour:
   - {fileID: 1727674595, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   - {fileID: 624214710, guid: 41962c29b77b7b749bd36399e4ab7b93, type: 3}
   EXPGain: 0
+  GoldGain: 0
