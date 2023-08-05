@@ -24,7 +24,7 @@ public class DialogueBehaviour : MonoBehaviour
 
     }
 
-    public IEnumerator StartDialogue()
+    public IEnumerator StartDialogue(bool IsCollect)
     {
         for (int i = 0; i < DialogueString.Length; i++)
         {
@@ -33,6 +33,8 @@ public class DialogueBehaviour : MonoBehaviour
             float elapsedTime = 0;
 
             StartCoroutine(Delayfor(0.25f));
+            if (IsCollect) { AudioManager.Instance.PlaySFX("Collect"); }
+
             while (StartDialogueString.Length < DialogueString[i].Length)
             {
                 if (Input.GetKey(KeyCode.Space) && !Delay)

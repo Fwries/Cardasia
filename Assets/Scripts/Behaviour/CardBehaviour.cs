@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour
 {
@@ -353,6 +354,7 @@ public class CardBehaviour : MonoBehaviour
                 break;
         }
         CharacterBehav.PlayerBehav.CardPlayed = true;
+        if (CharacterBehav.PlayerBehav == GameBehav.Player) { GameBehav.RunObj.GetComponent<Button>().interactable = false; }
     }
 
     public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)

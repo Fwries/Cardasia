@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63974e74eed33d54995a0419fbc1d5bc, type: 3}
-  m_Name: Bat1Deck
+  m_Name: Bat_Blood
   m_EditorClassIdentifier: 
   Deck:
   - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
@@ -19,8 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
   - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
   - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
-  - {fileID: 11400000, guid: 477f5e71882e48846880b5ed46dd6432, type: 2}
-  - {fileID: 11400000, guid: 477f5e71882e48846880b5ed46dd6432, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
   - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
   - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
   - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}

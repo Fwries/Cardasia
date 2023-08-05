@@ -14,6 +14,8 @@ public class UICharacterDisplay : MonoBehaviour
     public Text HealthText;
     public Slider HealthSlider;
 
+    private bool IsDead;
+
     private List<Sprite> CurrAnim;
     private int CurrFrame;
     private float AnimTime = 1;
@@ -21,23 +23,35 @@ public class UICharacterDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsDead)
+        {
+            if (CurrAnim != null)
+            {
+                AnimTime += Time.deltaTime;
+                if (AnimTime >= 0.12f)
+                {
+                    CurrFrame++;
+                    if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
+                    this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
+                    AnimTime = 0;
+                }
+            }
+        }
+
+        Character = CharData.GetCharacter();
+
         DisplayCharacterText.text = "Lv. " + CharData.Level + " " + Character.CharName;
 
         HealthText.text = CharData.Health + " / " + (Character.Health + 20 * CharData.Level);
         HealthSlider.maxValue = Character.Health + 20 * CharData.Level;
         HealthSlider.value = CharData.Health;
 
-        if (CurrAnim != null)
+        if (CharData.Health <= 0 && !IsDead)
         {
-            AnimTime += Time.deltaTime;
-            if (AnimTime >= 0.12f)
-            {
-                CurrFrame++;
-                if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
-                this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
-                AnimTime = 0;
-            }
+            this.gameObject.GetComponent<Image>().sprite = Character.Dead_Sprite[0];
+            IsDead = true;
         }
+        else if (CharData.Health > 0) { IsDead = false; }
     }
 
     public void SetCurrAnim(Sprite[] NewAnim)

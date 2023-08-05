@@ -14,6 +14,8 @@ public class save : MonoBehaviour
 	public string nameStr;
 	public SC_Map Map;
 	public int xPos, yPos;
+	public int Gold;
+	public bool CantRun;
 	
 	public CharacterData[] PartyCharacterData;
 	public List<SC_Card> Inventory;
@@ -161,7 +163,7 @@ public class save : MonoBehaviour
         {
 			PartyCharacterData[i] = temp[i];
         }
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, null);
 	}
 	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
@@ -171,7 +173,7 @@ public class save : MonoBehaviour
 		{
 			PartyCharacterData[i] = temp[i];
 		}
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, PartyCharacterData.Length - 1, ItemDeck);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, ItemDeck);
 	}
 	public void CreateNewCharacterData(SC_Character _Character, int _Level)
 	{
@@ -183,7 +185,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = temp[i];
 		}
 
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, PartyCharacterData.Length - 1, null);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, null);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health + 20 * _Level;
 	}
 
@@ -237,10 +239,10 @@ public class save : MonoBehaviour
 
 	public void BattleUpdate(GameBehaviour GameBehav)
     {
-		PartyCharacterData = new CharacterData[GameBehav.Player.CharacterTape.Length];
+		PartyCharacterData = new CharacterData[PartyCharacterData.Length];
 		for (int i = 0; i < PartyCharacterData.Length; i++)
         {
-			PartyCharacterData[i] = new CharacterData(GameBehav.Player.GetOrigCharacterTape(i), i);
+			PartyCharacterData[i] = new CharacterData(GameBehav.Player.GetOrigCharacterTape(i));
 		}
 	}
 }

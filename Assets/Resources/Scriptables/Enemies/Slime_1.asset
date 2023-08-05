@@ -56,3 +56,4 @@ MonoBehaviour:
   Dead_Sprite:
   - {fileID: 2004656353, guid: f18e7422331a9f64e9fd9b15b8e4aca7, type: 3}
   EXPGain: 30
+  GoldGain: 10

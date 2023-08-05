@@ -67,7 +67,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void Init(CharacterData CharData)
     {
         Character = CharData.GetCharacter();
-        OrigPos = CharData.OrigPos;
         CurrAnim = CharData.CurrAnim;
 
         Level = CharData.Level;
@@ -104,7 +103,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public void Init(SC_Character _Character, int _Level)
     {
         Character = _Character;
-        OrigPos = -1;
         CurrAnim = 0;
 
         Level = _Level;
@@ -143,9 +141,10 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         if (Health <= 0) 
         {
             IsDead = true;
+            PlayerBehav.AmtDead += 1;
+
             HandObject.SetActive(false);
             GameBehav.Delay = false;
-            GameBehav.Select(GameBehav.Player.CharacterTape[0]);
 
             if (IsEnemy)
             {
@@ -156,6 +155,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 PlayerBehav.RotationBehav.UpdateDeadCharacters();
                 gameObject.SetActive(false);
             }
+
+            if (PlayerBehav == GameBehav.Player) { GameBehav.Select(GameBehav.Player.CharacterTape[0]); }
         }
         if (Exp >= MaxExp)
         {

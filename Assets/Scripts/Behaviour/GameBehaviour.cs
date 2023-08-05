@@ -23,6 +23,7 @@ public class GameBehaviour : MonoBehaviour
 
     public GameObject TopObj;
     public GameObject BottomObj;
+    public GameObject RunObj;
 
     public GameObject GameOverScrn;
     public GameObject WinScrn;
@@ -52,6 +53,7 @@ public class GameBehaviour : MonoBehaviour
                 Player.CharacterTape[i].Init(save.Instance.PartyCharacterData[i]);
                 Player.CharacterTape[i].PlayerBehav = Player;
                 Player.CharacterTape[i].GetComponent<CharacterDisplay>().SetBehaviour(Player.CharacterTape[i]);
+                Player.CharacterTape[i].OrigPos = i;
             }
             else
             {
@@ -97,6 +99,12 @@ public class GameBehaviour : MonoBehaviour
             }
         }
         Opponent.UpdateActive();
+
+        if (save.Instance.CantRun)
+        {
+            save.Instance.CantRun = false;
+            RunObj.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update
@@ -171,6 +179,7 @@ public class GameBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    RunObj.GetComponent<Button>().interactable = false;
                     GameDis.ButtonPrint.text = "Opponent's Turn";
                     CurrentPlayerTurn = Opponent;
                 }
@@ -183,6 +192,7 @@ public class GameBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    RunObj.GetComponent<Button>().interactable = true;
                     GameDis.ButtonPrint.text = "End Turn";
                     CurrentPlayerTurn = Player;
                 }
@@ -360,6 +370,8 @@ public class GameBehaviour : MonoBehaviour
             GameOverScrn.SetActive(true);
             LoseScrn.SetActive(true);
 
+            GameObject.Find("EndTurn").GetComponent<Button>().interactable = false;
+
             return true;
         }
 
@@ -368,6 +380,8 @@ public class GameBehaviour : MonoBehaviour
             AudioManager.Instance.PlayMusic("Victory");
             GameOverScrn.SetActive(true);
             WinScrn.SetActive(true);
+
+            GameObject.Find("EndTurn").GetComponent<Button>().interactable = false;
 
             return true;
         }
@@ -406,41 +420,34 @@ public class GameBehaviour : MonoBehaviour
     {
         Delay = true;
 
-        int EXP = (CharacterBehav.Character.EXPGain + 20 * CharacterBehav.Level) / player.CharacterTape.Length;
+        int EXP = (CharacterBehav.Character.EXPGain + 20 * CharacterBehav.Level);
         float elapsedTime = 0;
         float Speed = 1f / EXP;
 
-        for (int j = 0; j < player.CharacterTape.Length; j++)
+        int i = 0;
+        while (i < EXP)
         {
-            if (j < 3)
+            if (elapsedTime >= Speed)
             {
-                int i = 0;
-                while (i < EXP)
+                for (int j = 0; j < player.CharacterTape.Length; j++)
                 {
-                    if (elapsedTime >= Speed)
+                    if (i >= EXP) { break; }
+
+                    player.CharacterTape[j].Exp++; i++;
+                    if (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
                     {
-                        player.CharacterTape[j].Exp++; i++;
-                        elapsedTime = 0;
-                        if (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
-                        {
-                            player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
-                            player.CharacterTape[j].LevelUp();
-                        }
+                        player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
+                        player.CharacterTape[j].LevelUp();
                     }
-                    else { elapsedTime += Time.deltaTime; yield return null; }
+                    elapsedTime = 0;
                 }
             }
-            else
-            {
-                player.CharacterTape[j].Exp += EXP;
-                while (player.CharacterTape[j].Exp >= player.CharacterTape[j].MaxExp)
-                {
-                    player.CharacterTape[j].Exp -= player.CharacterTape[j].MaxExp;
-                    player.CharacterTape[j].LevelUp();
-                    yield return null;
-                }
-            }
+            else { elapsedTime += Time.deltaTime; yield return null; }
         }
+
+        player.CharacterTape[0].Popup("Gained " + CharacterBehav.Character.GoldGain + " Gold!", Color.yellow);
+        save.Instance.Gold += CharacterBehav.Character.GoldGain;
+
         Delay = false;
         Opponent.RotationBehav.UpdateDeadCharacters();
         CharacterBehav.gameObject.SetActive(false);

@@ -26,19 +26,41 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public Text CardText;
 
     private bool HasInit;
+    private bool HasChanged = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool HasChanged = false;
         if (CharacterTape.Length < save.Instance.PartyCharacterData.Length || CharacterTape.Length > save.Instance.PartyCharacterData.Length) { HasChanged = true; }
 
+        if (HasChanged)
+        {
+            RotationUI.Init();
+            UpdateUI();
+            HasChanged = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!IsPointerOverUIElement())
+            {
+                BlackDrop.SetActive(false);
+                if (CharacterTape[CurrCharacter].Weapon == null)
+                {
+                    Card.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    public void UpdateUI()
+    {
         CharacterTape = new UICharacterDisplay[save.Instance.PartyCharacterData.Length];
 
         for (int i = 0; i <= save.Instance.PartyCharacterData.Length; i++)
@@ -61,9 +83,10 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 UICharacter[i].SetCharacter();
 
                 CharacterTape[i] = UICharacter[i];
+
+                RotationCharacter[i].CharUI.SetActive(true);
                 RotationCharacter[i].CharData = save.Instance.PartyCharacterData[i];
                 RotationCharacter[i].SetCharacter();
-                RotationCharacter[i].CharUI.SetActive(true);
             }
             else
             {
@@ -72,23 +95,6 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
                 RotationCharacter[i].CharUI.SetActive(false);
                 RotationCharacter[i].CharData = null;
-            }
-        }
-
-        if (HasChanged)
-        {
-            RotationUI.Init();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!IsPointerOverUIElement())
-            {
-                BlackDrop.SetActive(false);
-                if (CharacterTape[CurrCharacter].Weapon == null)
-                {
-                    Card.gameObject.SetActive(false);
-                }
             }
         }
     }

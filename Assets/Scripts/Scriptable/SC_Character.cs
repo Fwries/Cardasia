@@ -32,4 +32,5 @@ public class SC_Character : ScriptableObject
     [SerializeField] public Sprite[] Dead_Sprite;
 
     [SerializeField] public int EXPGain;
+    [SerializeField] public int GoldGain;
 }

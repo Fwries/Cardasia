@@ -244,6 +244,9 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         {
             if (PlayerBehav.CharacterTape[i].IsDead == true)
             {
+                PlayerBehav.DeadTape = new CharacterBehaviour[PlayerBehav.AmtDead];
+                PlayerBehav.DeadTape[PlayerBehav.DeadTape.Length - 1] = PlayerBehav.CharacterTape[i];
+
                 CharacterBehaviour[] Temp = new CharacterBehaviour[PlayerBehav.CharacterTape.Length - 1];
                 int k = 0;
                 for (int j = 0; j < PlayerBehav.CharacterTape.Length; j++)

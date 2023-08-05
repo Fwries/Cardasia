@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterData
 {
-	public int OrigPos;
 	public string CharJson;
 	public int Health;
 	public int Level;
@@ -16,9 +15,8 @@ public class CharacterData
 	public string ItemDeckJson;
 	public int CurrAnim;
 
-	public CharacterData(SC_Character _Character, int _Level, int _OrigPos, List<SC_Card> _ItemDeck)
+	public CharacterData(SC_Character _Character, int _Level, List<SC_Card> _ItemDeck)
     {
-		OrigPos = _OrigPos;
 		CharJson = JsonUtility.ToJson(_Character);
 		Level = _Level;
 		Health = _Character.Health;
@@ -30,9 +28,8 @@ public class CharacterData
 		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 	}
 
-	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, int _OrigPos, SC_Deck ItemDeck)
+	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
-		OrigPos = _OrigPos;
 		CharJson = JsonUtility.ToJson(_Character);
 		Health = _Health;
 		Level = _Level;
@@ -45,9 +42,8 @@ public class CharacterData
 		SetCurrAnim(_Character, _CurrAnim);
 	}
 
-	public CharacterData(CharacterBehaviour CharacterBehav, int _OrigPos)
+	public CharacterData(CharacterBehaviour CharacterBehav)
     {
-		OrigPos = _OrigPos;
 		CharJson = JsonUtility.ToJson(CharacterBehav.Character);
 
 		Level = CharacterBehav.Level;

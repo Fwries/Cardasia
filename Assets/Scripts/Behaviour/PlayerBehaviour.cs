@@ -6,9 +6,11 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public GameObject[] CharObj;
     public CharacterBehaviour[] CharacterTape;
+    public CharacterBehaviour[] DeadTape;
     public RotationBehaviour RotationBehav;
 
     public bool LoseATurn;
+    public int AmtDead;
 
     public bool CardPlayed;
     public bool IsAI;
@@ -103,6 +105,13 @@ public class PlayerBehaviour : MonoBehaviour
             if (CharacterTape[j].OrigPos == i)
             {
                 return CharacterTape[j];
+            }
+        }
+        for (int k = 0; k < DeadTape.Length; k++)
+        {
+            if (DeadTape[k].OrigPos == i)
+            {
+                return DeadTape[k];
             }
         }
         return null;

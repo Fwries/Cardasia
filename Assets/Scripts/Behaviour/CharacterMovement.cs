@@ -92,7 +92,7 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) && !isMoving && EventSc == null && !UI && !Delay)
                 Interact();
 
-            if (Input.GetKeyDown(KeyCode.X) && !isMoving && EventSc == null)
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))&& !isMoving && EventSc == null)
             {
                 UI = !UI;
                 MenuUI[0].SetActive(!MenuUI[0].activeSelf);
@@ -303,9 +303,8 @@ public class CharacterMovement : MonoBehaviour
                         if (!DialogueBehav.gameObject.activeSelf) { DialogueBehav.gameObject.SetActive(true); }
 
                         SC_Tile Tile = Map.GetTile(Convert.ToInt32(sX), Convert.ToInt32(sY));
-
                         DialogueBehav.DialogueString = save.Instance.Obtain(Tile.ObtainList);
-                        StartCoroutine(DialogueBehav.StartDialogue());
+                        StartCoroutine(DialogueBehav.StartDialogue(true));
                         return;
                     }
 
@@ -326,7 +325,7 @@ public class CharacterMovement : MonoBehaviour
                 }
                 DialogueBehav.Reset();
                 DialogueBehav.DialogueString[0] = Dialogue;
-                StartCoroutine(DialogueBehav.StartDialogue());
+                StartCoroutine(DialogueBehav.StartDialogue(false));
             }
         }
         else if (strg[1] == 'F' && strg[2] == 'c')
@@ -373,6 +372,7 @@ public class CharacterMovement : MonoBehaviour
                     int y = Convert.ToInt32(sY);
 
                     StartCoroutine(Battle(x, y));
+                    save.Instance.CantRun = true;
                     AudioManager.Instance.PlayMusic("Danger");
                     return;
                 }

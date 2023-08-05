@@ -63,4 +63,5 @@ MonoBehaviour:
   - {fileID: 1908144993, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
   Dead_Sprite:
   - {fileID: -363487520, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
-  EXPGain: 10
+  EXPGain: 30
+  GoldGain: 10

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63974e74eed33d54995a0419fbc1d5bc, type: 3}
-  m_Name: StaminaDeck
+  m_Name: Stamina
   m_EditorClassIdentifier: 
   Deck:
   - {fileID: 11400000, guid: e059e7058e01ad846860225ebf52f204, type: 2}

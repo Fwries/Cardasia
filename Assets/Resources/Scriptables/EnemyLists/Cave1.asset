@@ -17,7 +17,12 @@ MonoBehaviour:
   MaxSpawn: 3
   EnemyList:
   - name: Bat
-    SpawnChance: 100
+    SpawnChance: 80
     MinLevel: 4
     MaxLevel: 7
     scEnemy: {fileID: 11400000, guid: d4909ef434507e044a930f4f05dc05ab, type: 2}
+  - name: Bloody Bat
+    SpawnChance: 20
+    MinLevel: 7
+    MaxLevel: 9
+    scEnemy: {fileID: 11400000, guid: 65872c0f9674a9544b183e8d0ed1a4ea, type: 2}

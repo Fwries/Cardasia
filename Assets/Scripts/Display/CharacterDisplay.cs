@@ -29,15 +29,16 @@ public class CharacterDisplay : MonoBehaviour
     void Update()
     {
         if (IsDead) { return; }
-        if (CurrAnim == null) { return; }
-
-        AnimTime += Time.deltaTime;
-        if (AnimTime >= 0.12f)
+        if (CurrAnim != null) 
         {
-            CurrFrame++;
-            if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
-            this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
-            AnimTime = 0;
+            AnimTime += Time.deltaTime;
+            if (AnimTime >= 0.12f)
+            {
+                CurrFrame++;
+                if (CurrFrame >= CurrAnim.Count) { CurrFrame = 0; }
+                this.gameObject.GetComponent<Image>().sprite = CurrAnim[CurrFrame];
+                AnimTime = 0;
+            }
         }
 
         if (IsPlayer) { return; }

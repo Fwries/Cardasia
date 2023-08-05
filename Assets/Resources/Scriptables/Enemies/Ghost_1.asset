@@ -31,3 +31,4 @@ MonoBehaviour:
   Walk_Right_Anim: []
   Dead_Sprite: []
   EXPGain: 0
+  GoldGain: 10
