@@ -20,7 +20,6 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 startPos, targetPos;
     private float MoveTime = 0.22f;
 
-    private Vector3 CurrDirection;
     public Sprite[] CurrAnim;
     private int CurrFrame;
     private float AnimTime = 1;
@@ -56,7 +55,7 @@ public class CharacterMovement : MonoBehaviour
                 else
                 {
                     CurrAnim = Character.Idle_Down_Anim;
-                    CurrDirection = Vector3.down;
+                    save.Instance.CurrDirection = Vector3.down;
                 }
                 Init = true;
             }
@@ -151,7 +150,7 @@ public class CharacterMovement : MonoBehaviour
     {
         startPos = transform.position;
         targetPos = startPos + direction;
-        CurrDirection = direction;
+        save.Instance.CurrDirection = direction;
 
         if (targetPos.x > -1 && targetPos.x < Map.SolidTileMap.GetLength(1) &&
             targetPos.y > -1 && targetPos.y < Map.SolidTileMap.GetLength(0))
@@ -221,11 +220,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void Interact()
     {
-        targetPos = transform.position + CurrDirection;
+        targetPos = transform.position + save.Instance.CurrDirection;
 
         if (targetPos.x > -1 && targetPos.x < Map.InteractableTileMap.GetLength(1) &&
             targetPos.y > -1 && targetPos.y < Map.InteractableTileMap.GetLength(0))
         {
+            if (!Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].Interactable) { return; }
             EventSc = Map.Tileset[Map.TileLayer[(int)targetPos.y, (int)targetPos.x]].Script;
         }
     }
@@ -452,6 +452,19 @@ public class CharacterMovement : MonoBehaviour
                         if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
                     }
                 }
+                else if (strg[9] == 'A' && strg[10] == 'l' && strg[11] == 'l')
+                {
+                    string index = "";
+                    for (int i = 12; i <= strg.Length; i++)
+                    {
+                        if (i == strg.Length)
+                        {
+                            Map.AnimAll(Convert.ToInt32(index));
+                            return;
+                        }
+                        index += strg[i];
+                    }
+                }
                 else
                 {
                     for (int i = 10; i <= strg.Length; i++)
@@ -471,19 +484,39 @@ public class CharacterMovement : MonoBehaviour
             }
             else if (strg[5] == 'C' && strg[6] == 'h' && strg[7] == 'a' && strg[8] == 'n' && strg[9] == 'g' && strg[10] == 'e' && strg[11] == 'S' && strg[12] == 't' && strg[13] == 'a' && strg[14] == 't' && strg[15] == 'e')
             {
-                for (int i = 17; i <= strg.Length; i++)
+                if (strg[16] == 'A' && strg[17] == 'l' && strg[18] == 'l')
                 {
-                    if (i == strg.Length && XIsFound)
+                    for (int i = 20; i <= strg.Length; i++)
                     {
-                        Map.ChangeTileState(Convert.ToInt32(sX), Convert.ToInt32(sY));
-                        IsSc = false; CurrSc++;
-                        return;
+                        if (i == strg.Length && XIsFound)
+                        {
+                            Map.ChangeAllTileState(Convert.ToInt32(sX), Convert.ToInt32(sY));
+                            IsSc = false; CurrSc++;
+                            return;
+                        }
+
+                        if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                        else if (!XIsFound) { XIsFound = true; i++; }
+
+                        if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
                     }
+                }
+                else
+                {
+                    for (int i = 17; i <= strg.Length; i++)
+                    {
+                        if (i == strg.Length && XIsFound)
+                        {
+                            Map.ChangeTileState(Convert.ToInt32(sX), Convert.ToInt32(sY));
+                            IsSc = false; CurrSc++;
+                            return;
+                        }
 
-                    if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
-                    else if (!XIsFound) { XIsFound = true; i++; }
+                        if (strg[i] != ' ' && !XIsFound) { sX += strg[i]; }
+                        else if (!XIsFound) { XIsFound = true; i++; }
 
-                    if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+                        if (strg[i] != ' ' && XIsFound) { sY += strg[i]; }
+                    }
                 }
             }
         }

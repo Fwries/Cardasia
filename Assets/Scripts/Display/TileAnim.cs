@@ -73,6 +73,46 @@ public class TileAnim : MonoBehaviour
         GameObject.Find("Character_RPG").GetComponent<CharacterMovement>().Continue();
     }
 
+    public void StartAnimAll()
+    {
+        StartCoroutine(StartAnimMultiple());
+    }
+    private IEnumerator StartAnimMultiple()
+    {
+        IsAnim = true;
+        bool Reverse = false;
+
+        if (CurrFrame == CurrAnim.Length - 1)
+        {
+            Reverse = true;
+        }
+
+        while (true)
+        {
+            AnimTime += Time.deltaTime;
+            if (AnimTime >= 0.12f)
+            {
+                if (!Reverse)
+                {
+                    CurrFrame++;
+                    if (CurrFrame >= CurrAnim.Length) { CurrFrame = CurrAnim.Length - 1; break; }
+                    Renderer.sprite = CurrAnim[CurrFrame];
+                    AnimTime = 0;
+                }
+                else
+                {
+                    CurrFrame--;
+                    if (CurrFrame < 0) { CurrFrame = 0; break; }
+                    Renderer.sprite = CurrAnim[CurrFrame];
+                    AnimTime = 0;
+                }
+            }
+            yield return null;
+        }
+        IsAnim = Anim = false;
+        GameObject.Find("Map").GetComponent<MapBehaviour>().ContinueLock();
+    }
+
     public void SetCurrFrame(bool FirstOrLast)
     {
         if (FirstOrLast)

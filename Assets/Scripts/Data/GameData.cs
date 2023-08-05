@@ -9,17 +9,20 @@ public class GameData
 
 	public string MapName;
 	public int x, y;
+	public int xDirection, yDirection;
 
 	public CharacterData[] PartyCharacterData;
 	public InteractableData[] InteractableList;
 	public string InventoryJson;
 
-	public GameData(string _name, string _MapName, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory, InteractableData[] _InteractableList)
+	public GameData(string _name, string _MapName, Vector3 _CurrDirection, int _x, int _y, CharacterData[] _PartyCharacterData, List<SC_Card> _Inventory, InteractableData[] _InteractableList)
 	{
 		name = _name;
 		MapName = _MapName;
 		x = _x;
 		y = _y;
+		xDirection = (int)_CurrDirection.x;
+		yDirection = (int)_CurrDirection.y;
 
 		PartyCharacterData = _PartyCharacterData;
 		InteractableList = _InteractableList;

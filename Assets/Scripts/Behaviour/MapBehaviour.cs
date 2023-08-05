@@ -21,6 +21,8 @@ public class MapBehaviour : MonoBehaviour
     [HideInInspector] public bool[,] EventTileMap;
     [HideInInspector] public bool[,] SolidEventTileMap;
 
+    private bool Locked;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,18 +85,20 @@ public class MapBehaviour : MonoBehaviour
         EventTileMap        = new bool[TileLayer.GetLength(0), TileLayer.GetLength(1)];
         SolidEventTileMap   = new bool[TileLayer.GetLength(0), TileLayer.GetLength(1)];
 
-        for (int y = 0; y < TileLayer.GetLength(0); y++)
-        {
-            for (int x = 0; x < TileLayer.GetLength(1); x++)
-            {
-                SolidTileMap[y, x] = Tileset[TileLayer[y, x]].Solid;
-                InteractableTileMap[y, x] = Tileset[TileLayer[y, x]].Interactable;
-                EventTileMap[y, x] = Tileset[TileLayer[y, x]].Event;
-                SolidEventTileMap[y, x] = Tileset[TileLayer[y, x]].SolidEvent;
-            }
-        }
-
         SpawnMap();
+    }
+
+    public void ChangeTile(int TilesetTileNo, int x, int y)
+    {
+        TileLayer[y, x] = TilesetTileNo;
+
+        GameObject Tile = GameObject.Find(x + "x" + y + "yBottom");
+        GameObject TileTop = GameObject.Find(x + "x" + y + "yTop");
+
+        if (Tile != null) { Destroy(Tile); }
+        if (TileTop != null) { Destroy(TileTop); }
+
+        SpawnTile(x, y);
     }
 
     public void ChangeTileState(int x, int y)
@@ -108,11 +112,11 @@ public class MapBehaviour : MonoBehaviour
                     save.Instance.InteractableList[i].HasInteracted = !save.Instance.InteractableList[i].HasInteracted;
                     if (save.Instance.InteractableList[i].HasInteracted)
                     {
-                        TileLayer[y, x] = save.Instance.InteractableList[i].State2;
+                        ChangeTile(save.Instance.InteractableList[i].State2, x, y);
                     }
                     else
                     {
-                        TileLayer[y, x] = save.Instance.InteractableList[i].State1;
+                        ChangeTile(save.Instance.InteractableList[i].State1, x, y);
                     }
 
                     return;
@@ -123,7 +127,56 @@ public class MapBehaviour : MonoBehaviour
 
     public void ChangeAllTileState(int Index, int ConsumedIndex)
     {
+        for (int i = 0; i < save.Instance.InteractableList.Length; i++)
+        {
+            if (save.Instance.InteractableList[i].MapName == SCMap.MapName)
+            {
+                if ((save.Instance.InteractableList[i].State1 == Index && save.Instance.InteractableList[i].State2 == ConsumedIndex) ||
+                    (save.Instance.InteractableList[i].State1 == ConsumedIndex && save.Instance.InteractableList[i].State2 == Index))
+                {
+                    save.Instance.InteractableList[i].HasInteracted = !save.Instance.InteractableList[i].HasInteracted;
+                    for (int y = 0; y < TileLayer.GetLength(0); y++)
+                    {
+                        for (int x = 0; x < TileLayer.GetLength(1); x++)
+                        {
+                            if (TileLayer[y, x] != Index) { continue; }
 
+                            if (save.Instance.InteractableList[i].HasInteracted)
+                            {
+                                ChangeTile(save.Instance.InteractableList[i].State2, x, y);
+                            }
+                            else
+                            {
+                                ChangeTile(save.Instance.InteractableList[i].State1, x, y);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void AnimAll(int Index)
+    {
+        Locked = false;
+        for (int y = 0; y < TileLayer.GetLength(0); y++)
+        {
+            for (int x = 0; x < TileLayer.GetLength(1); x++)
+            {
+                if (TileLayer[y, x] == Index)
+                {
+                    GameObject.Find(x + "x" + y + "yTop").GetComponent<TileAnim>().StartAnimAll();
+                }
+            }
+        }
+    }
+    public void ContinueLock()
+    {
+        if (!Locked)
+        {
+            GameObject.Find("Character_RPG").GetComponent<CharacterMovement>().Continue();
+            Locked = true;
+        }
     }
 
     public SC_Tile GetTile(int x, int y)
@@ -143,37 +196,47 @@ public class MapBehaviour : MonoBehaviour
         {
             for (int x = 0; x < TileLayer.GetLength(1); x++)
             {
-                if (TileLayer[y, x] != 0 && TileLayer[y, x] != 1)
-                {
-                    if (Tileset[TileLayer[y, x]].TileImage != null)
-                    {
-                        GameObject TempTile = Instantiate(TilePrefab, new Vector3(x, y, -0.01f), Quaternion.identity);
-                        TempTile.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileImage;
-                        TempTile.transform.SetParent(MapObj.transform);
-                        TempTile.name = x + "x" + y + "y" + "Bottom";
-                    }
-
-                    if (Tileset[TileLayer[y, x]].TileTopImage.Length > 0)
-                    {
-                        float z = -0.1f;
-                        if (Tileset[TileLayer[y, x]].AbovePlayer) { z = -1.1f; }
-
-                        GameObject TempTileTop = Instantiate(TilePrefab, new Vector3(x, y, z), Quaternion.identity);
-                        TempTileTop.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileTopImage[0];
-                        TempTileTop.transform.SetParent(MapObj.transform);
-                        TempTileTop.name = x + "x" + y + "y" + "Top";
-
-                        if (Tileset[TileLayer[y, x]].IsAnim)
-                        {
-                            TileAnim newScript = TempTileTop.AddComponent<TileAnim>();
-                            newScript.Init(Tileset[TileLayer[y, x]]);
-                        }
-                    }
-                }
+                SpawnTile(x, y);
             }
         }
 
         if (SCMap.MusicTheme != "") { AudioManager.Instance.PlayMusic(SCMap.MusicTheme); }
+    }
+
+    void SpawnTile(int x, int y)
+    {
+        if (TileLayer[y, x] != 0 && TileLayer[y, x] != 1)
+        {
+            if (Tileset[TileLayer[y, x]].TileImage != null)
+            {
+                GameObject TempTile = Instantiate(TilePrefab, new Vector3(x, y, -0.01f), Quaternion.identity);
+                TempTile.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileImage;
+                TempTile.transform.SetParent(MapObj.transform);
+                TempTile.name = x + "x" + y + "yBottom";
+            }
+
+            if (Tileset[TileLayer[y, x]].TileTopImage.Length > 0)
+            {
+                float z = -0.1f;
+                if (Tileset[TileLayer[y, x]].AbovePlayer) { z = -1.1f; }
+
+                GameObject TempTileTop = Instantiate(TilePrefab, new Vector3(x, y, z), Quaternion.identity);
+                TempTileTop.GetComponent<SpriteRenderer>().sprite = Tileset[TileLayer[y, x]].TileTopImage[0];
+                TempTileTop.transform.SetParent(MapObj.transform);
+                TempTileTop.name = x + "x" + y + "yTop";
+
+                if (Tileset[TileLayer[y, x]].IsAnim)
+                {
+                    TileAnim newScript = TempTileTop.AddComponent<TileAnim>();
+                    newScript.Init(Tileset[TileLayer[y, x]]);
+                }
+            }
+        }
+
+        SolidTileMap[y, x] = Tileset[TileLayer[y, x]].Solid;
+        InteractableTileMap[y, x] = Tileset[TileLayer[y, x]].Interactable;
+        EventTileMap[y, x] = Tileset[TileLayer[y, x]].Event;
+        SolidEventTileMap[y, x] = Tileset[TileLayer[y, x]].SolidEvent;
     }
 
     void ReadCSVMap()

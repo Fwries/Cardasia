@@ -73,3 +73,4 @@ MonoBehaviour:
   - {fileID: -237869538, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}
   - {fileID: 1104713928, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}
   EXPGain: 0
+  GoldGain: 0

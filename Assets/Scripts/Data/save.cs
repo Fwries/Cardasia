@@ -14,6 +14,8 @@ public class save : MonoBehaviour
 	public string nameStr;
 	public SC_Map Map;
 	public int xPos, yPos;
+	public Vector3 CurrDirection;
+
 	public int Gold;
 	public bool CantRun;
 	
@@ -65,7 +67,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[0].SetCurrAnim(CharMove.Character, CharMove.CurrAnim);
 		}
 
-		GameData data = new GameData("Hero", Map.MapName, xPos, yPos, PartyCharacterData, Inventory, InteractableList);
+		GameData data = new GameData("Hero", Map.MapName, CurrDirection, xPos, yPos, PartyCharacterData, Inventory, InteractableList);
 		BinaryFormatter bf = new BinaryFormatter();
 		bf.Serialize(file, data);
 		file.Close();
@@ -92,6 +94,7 @@ public class save : MonoBehaviour
 
 		xPos = data.x;
 		yPos = data.y;
+		CurrDirection = new Vector3(data.xDirection, data.yDirection, 0);
 
 		PartyCharacterData = new CharacterData[data.PartyCharacterData.Length];
 		PartyCharacterData = data.PartyCharacterData;

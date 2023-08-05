@@ -52,10 +52,27 @@ MonoBehaviour:
     HasInteracted: 0
     State1: 8
     State2: 9
+  - MapName: Cave1
+    Single: 1
+    PosX: 5
+    PosY: 4
+    HasInteracted: 0
+    State1: 7
+    State2: 8
+  - MapName: Cave1
+    Single: 1
+    PosX: 7
+    PosY: 5
+    HasInteracted: 0
+    State1: 5
+    State2: 6
   nameStr: 
   Map: {fileID: 11400000, guid: 291b235f1e6aa8d4a83af92e4f5e8644, type: 2}
   xPos: 1
   yPos: 4
+  CurrDirection: {x: 0, y: -1, z: 0}
+  Gold: 0
+  CantRun: 0
   PartyCharacterData: []
   Inventory: []
   TempChar:

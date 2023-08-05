@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
+  Weapon: {fileID: 0}
   CharData:
-    OrigPos: 0
     CharJson: 
     Health: 0
     Level: 0

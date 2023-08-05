@@ -97,46 +97,15 @@ public class PartyCharacterBehaviour : MonoBehaviour
                 RotationCharacter[i].CharData = null;
             }
         }
+
+        RotationUI.Init();
     }
 
     public void Init()
     {
-        CharacterTape = new UICharacterDisplay[save.Instance.PartyCharacterData.Length];
-
-        for (int i = 0; i <= save.Instance.PartyCharacterData.Length; i++)
-        {
-            if (i == save.Instance.PartyCharacterData.Length)
-            {
-                for (int i2 = i; i2 < 5; i2++)
-                {
-                    UICharacter[i2].CharUI.SetActive(false);
-                    UICharacter[i2].CharData = null;
-
-                    RotationCharacter[i2].CharUI.SetActive(false);
-                    RotationCharacter[i2].CharData = null;
-                }
-            }
-            else if (save.Instance.PartyCharacterData[i] != null)
-            {
-                UICharacter[i].CharUI.SetActive(true);
-                UICharacter[i].CharData = save.Instance.PartyCharacterData[i];
-
-                CharacterTape[i] = UICharacter[i];
-                RotationCharacter[i].CharUI.SetActive(true);
-                RotationCharacter[i].CharData = save.Instance.PartyCharacterData[i];
-            }
-            else
-            {
-                UICharacter[i].CharUI.SetActive(false);
-                UICharacter[i].CharData = null;
-
-                RotationCharacter[i].CharUI.SetActive(false);
-                RotationCharacter[i].CharData = null;
-            }
-        }
+        UpdateUI();
         Inventory = save.Instance.Inventory;
-
-        RotationUI.Init();
+        UpdateInventory();
         SetCurrentDeck(0);
 
         HasInit = true;
@@ -163,7 +132,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
 
         DeckContainer.AddCards(ItemDeck.Deck);
 
-        UpdateInventory();
+        save.Instance.Inventory = InventoryContainer.CardContainer;
     }
 
     public void UpdateInventory()
