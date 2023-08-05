@@ -18,13 +18,6 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
     private Vector2 LeftBackPos;
     private Vector2 RightBackPos;
 
-    private Vector2 TempCentrePos;
-    private Vector2 TempLeftPos;
-    private Vector2 TempRightPos;
-
-    private Vector2 TempLeftBackPos;
-    private Vector2 TempRightBackPos;
-
     public float m_Speed;
     public float DragAmt;
 
@@ -49,15 +42,6 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     public void Init()
     {
-        CharacterPos = new Vector2(Character.transform.position.x, Character.transform.position.y);
-
-        TempCentrePos = CentrePos + CharacterPos;
-        TempLeftPos = LeftPos + CharacterPos;
-        TempRightPos = RightPos + CharacterPos;
-
-        TempLeftBackPos = LeftBackPos + CharacterPos;
-        TempRightBackPos = RightBackPos + CharacterPos;
-
         ResetCharPos();
 
         for (int i = 0; i < PartyBehav.CharacterTape.Length; i++)
@@ -77,7 +61,7 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             {
                 if (PartyBehav.CharacterTape.Length == 3)
                 {
-                    PartyBehav.RotationCharacter[PartyBehav.CharacterTape.Length - 1].transform.position = TempRightBackPos;
+                    PartyBehav.RotationCharacter[PartyBehav.CharacterTape.Length - 1].transform.position = RightBackPos;
                 }
                 OnStartDrag = false;
             }
@@ -85,26 +69,26 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             switch (PartyBehav.CharacterTape.Length)
             {
                 case 2:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempLeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempLeftPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 3:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempLeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempLeftPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempCentrePos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 4:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempLeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempLeftPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempCentrePos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[3].transform.position = TempRightBackPos + DistNormalize(TempRightBackPos, TempRightPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 5:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempLeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempLeftPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempCentrePos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[3].transform.position = TempRightBackPos + DistNormalize(TempRightBackPos, TempRightPos) * -DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[4].transform.position = TempLeftBackPos + DistNormalize(TempLeftBackPos, TempRightBackPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, RightBackPos) * -DragOffsetXPos * m_Speed;
                     break;
             }
 
@@ -123,7 +107,7 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             {
                 if (PartyBehav.CharacterTape.Length < 5)
                 {
-                    PartyBehav.RotationCharacter[PartyBehav.CharacterTape.Length - 1].transform.position = TempLeftBackPos;
+                    PartyBehav.RotationCharacter[PartyBehav.CharacterTape.Length - 1].transform.position = LeftBackPos;
                 }
                 OnStartDrag = false;
             }
@@ -131,26 +115,26 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             switch (PartyBehav.CharacterTape.Length)
             {
                 case 2:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempCentrePos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempRightPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 3:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempCentrePos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempRightPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempRightBackPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 4:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempCentrePos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempRightPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempRightBackPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[3].transform.position = TempLeftBackPos + DistNormalize(TempLeftBackPos, TempLeftPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[3].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 5:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos + DistNormalize(TempLeftPos, TempCentrePos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos + DistNormalize(TempCentrePos, TempRightPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos + DistNormalize(TempRightPos, TempRightBackPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[3].transform.position = TempRightBackPos + DistNormalize(TempRightBackPos, TempLeftBackPos) * DragOffsetXPos * m_Speed;
-                    PartyBehav.RotationCharacter[4].transform.position = TempLeftBackPos + DistNormalize(TempLeftBackPos, TempLeftPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[3].transform.position = RightBackPos + DistNormalize(RightBackPos, LeftBackPos) * DragOffsetXPos * m_Speed;
+                    PartyBehav.RotationCharacter[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
                     break;
             }
 
@@ -266,19 +250,19 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             switch (i)
             {
                 case 0:
-                    PartyBehav.RotationCharacter[0].transform.position = TempCentrePos;
+                    PartyBehav.RotationCharacter[0].transform.position = CentrePos;
                     break;
                 case 1:
-                    PartyBehav.RotationCharacter[1].transform.position = TempLeftPos;
+                    PartyBehav.RotationCharacter[1].transform.position = LeftPos;
                     break;
                 case 2:
-                    PartyBehav.RotationCharacter[2].transform.position = TempRightPos;
+                    PartyBehav.RotationCharacter[2].transform.position = RightPos;
                     break;
                 case 3:
-                    PartyBehav.RotationCharacter[3].transform.position = TempRightBackPos;
+                    PartyBehav.RotationCharacter[3].transform.position = RightBackPos;
                     break;
                 case 4:
-                    PartyBehav.RotationCharacter[4].transform.position = TempLeftBackPos;
+                    PartyBehav.RotationCharacter[4].transform.position = LeftBackPos;
                     break;
             }
         }
@@ -293,7 +277,7 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     public void Shift(bool right)
     {
-        CharacterData[] TempTape = save.Instance.PartyCharacterData;
+        CharacterData[] Tape = save.Instance.PartyCharacterData;
         save.Instance.PartyCharacterData = new CharacterData[save.Instance.PartyCharacterData.Length];
 
         if (right)
@@ -302,11 +286,11 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             {
                 if (i + 1 < save.Instance.PartyCharacterData.Length)
                 {
-                    save.Instance.PartyCharacterData[i] = TempTape[i + 1];
+                    save.Instance.PartyCharacterData[i] = Tape[i + 1];
                 }
                 else
                 {
-                    save.Instance.PartyCharacterData[i] = TempTape[0];
+                    save.Instance.PartyCharacterData[i] = Tape[0];
                 }
             }
         }
@@ -316,11 +300,11 @@ public class RotationBehaviourUI : MonoBehaviour, IBeginDragHandler, IEndDragHan
             {
                 if (i - 1 >= 0)
                 {
-                    save.Instance.PartyCharacterData[i] = TempTape[i - 1];
+                    save.Instance.PartyCharacterData[i] = Tape[i - 1];
                 }
                 else
                 {
-                    save.Instance.PartyCharacterData[i] = TempTape[save.Instance.PartyCharacterData.Length - 1];
+                    save.Instance.PartyCharacterData[i] = Tape[save.Instance.PartyCharacterData.Length - 1];
                 }
             }
         }
