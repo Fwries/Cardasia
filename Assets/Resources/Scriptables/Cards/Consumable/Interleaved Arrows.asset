@@ -20,4 +20,4 @@ MonoBehaviour:
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 20 DMG, 2 Times. Inflicts Trip.
-  CardCost: 0
+  CardCost: 100

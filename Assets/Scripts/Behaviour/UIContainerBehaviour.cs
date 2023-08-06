@@ -8,16 +8,30 @@ public class UIContainerBehaviour : MonoBehaviour, IEventSystemHandler, IDropHan
     public GameObject ContainerContent;
     public List<SC_Card> CardContainer;
 
+    public bool Shop;
+    public int Cost;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!Shop) { return; }
+        for (int i = 0; i < CardContainer.Count; i++)
+        {
+            GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
+            Card.transform.SetParent(ContainerContent.transform);
+            Card.GetComponent<CardDisplay>().Currentcard = CardContainer[i];
+            Card.GetComponent<DragDropUI>().currContainer = this;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Cost = 0;
+        for (int i = 0; i < CardContainer.Count; i++)
+        {
+            Cost += CardContainer[i].CardCost;
+        }
     }
 
     public void DestroyAllCards()

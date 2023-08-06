@@ -6,8 +6,11 @@ using UnityEngine.EventSystems;
 public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IInitializePotentialDragHandler
 {
     private CanvasGroup canvasGroup;
-    private GameObject PartyUI;
+    private GameObject UIObj;
+    
     private PartyCharacterBehaviour PartyBehav;
+    private ShopBehaviour ShopBehav;
+
     private Vector3 dragOffset;
     private Camera cam;
     public GameObject EmptyCard;
@@ -19,8 +22,17 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
     void Awake()
     {
         cam = Camera.main;
-        PartyUI = GameObject.Find("PartyUI");
-        PartyBehav = PartyUI.GetComponent<PartyCharacterBehaviour>();
+
+        UIObj = GameObject.Find("PartyUI");
+        if (UIObj != null)
+        {
+            PartyBehav = UIObj.GetComponent<PartyCharacterBehaviour>();
+        }
+        else
+        {
+            UIObj = GameObject.Find("ShopUI");
+            ShopBehav = UIObj.GetComponent<ShopBehaviour>();
+        }
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -49,7 +61,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
         if (cardDisplay.Currentcard.CardType != 0) { return; }
 
         EmptyCard.transform.SetParent(transform.parent);
-        transform.SetParent(PartyUI.transform);
+        transform.SetParent(UIObj.transform);
 
         canvasGroup.blocksRaycasts = false;
         IsDragging = true;
@@ -82,18 +94,28 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        PartyBehav.Card.Currentcard = GetComponent<CardDisplay>().Currentcard;
-
-        if (!PartyBehav.BlackDrop.activeSelf)
+        if (PartyBehav != null)
         {
-            PartyBehav.BlackDrop.SetActive(true);
-        }
-        if (!PartyBehav.Card.gameObject.activeSelf)
-        {
-            PartyBehav.Card.gameObject.SetActive(true);
-        }
+            PartyBehav.Card.Currentcard = GetComponent<CardDisplay>().Currentcard;
 
-        PartyBehav.CardText.text = PartyBehav.Card.Currentcard.CardName + "   " + PartyBehav.Card.Currentcard.CardTrait + "\n" + PartyBehav.Card.Currentcard.CardSkill;
+            if (!PartyBehav.BlackDrop.activeSelf)
+            {
+                PartyBehav.BlackDrop.SetActive(true);
+            }
+            if (!PartyBehav.Card.gameObject.activeSelf)
+            {
+                PartyBehav.Card.gameObject.SetActive(true);
+            }
+
+            PartyBehav.CardText.text = PartyBehav.Card.Currentcard.CardName + "   " + PartyBehav.Card.Currentcard.CardTrait + "\n" + PartyBehav.Card.Currentcard.CardSkill;
+        }
+        else
+        {
+            ShopBehav.Card.Currentcard = GetComponent<CardDisplay>().Currentcard;
+
+            ShopBehav.CardNameText.text = ShopBehav.Card.Currentcard.CardName + "   " + ShopBehav.Card.Currentcard.CardTrait + "\nCost: " + ShopBehav.Card.Currentcard.CardCost + " Gold";
+            ShopBehav.CardText.text = ShopBehav.Card.Currentcard.CardSkill;
+        }
     }
 
     private Vector3 GetMousePos()

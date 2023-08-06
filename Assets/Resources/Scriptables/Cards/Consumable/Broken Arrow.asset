@@ -20,4 +20,4 @@ MonoBehaviour:
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: 50% chance to Deal 20 DMG.
-  CardCost: 0
+  CardCost: 10

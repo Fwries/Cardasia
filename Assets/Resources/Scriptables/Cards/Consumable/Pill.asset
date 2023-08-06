@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 1
   DoesTarget: 1
   CardTarget: 2
-  CardClass: []
   CardTrait: 
   CardSkill: Cures a Random Status Effect.
-  CardCost: 0
+  CardCost: 20

@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 2
   DoesTarget: 1
   CardTarget: 2
-  CardClass: []
   CardTrait: 
   CardSkill: 'Restore 70 Health. '
-  CardCost: 0
+  CardCost: 50

@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 2
   DoesTarget: 1
   CardTarget: 1
-  CardClass: []
   CardTrait: 
   CardSkill: Inflict 2 Shock.
-  CardCost: 0
+  CardCost: 100

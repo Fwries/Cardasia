@@ -22,8 +22,11 @@ MonoBehaviour:
   SolidEvent: 0
   Script:
   - '/DL Shopkeeper: Would you like to buy something?'
+  - /Shop
+  - '/DL Shopkeeper: Thank you. Come again.'
   - /DLEnd
   IsAnim: 0
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
   EnemyList: {fileID: 0}
+  ObtainList: []

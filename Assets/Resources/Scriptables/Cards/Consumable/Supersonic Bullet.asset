@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 3
   DoesTarget: 0
   CardTarget: 0
-  CardClass: []
   CardTrait: <Bullet>
   CardSkill: Reload 1 Bullet. Draw a card.
-  CardCost: 0
+  CardCost: 80

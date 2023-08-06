@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour
     public SC_Character Character;
 
     [SerializeField] private GameObject[] MenuUI;
+    [SerializeField] private GameObject ShopUI;
 
     private bool isMoving;
     private Vector3 startPos, targetPos;
@@ -519,6 +520,11 @@ public class CharacterMovement : MonoBehaviour
                     }
                 }
             }
+        }
+        else if (strg[1] == 'S' && strg[2] == 'h' && strg[3] == 'o' && strg[4] == 'p')
+        {
+            AudioManager.Instance.PlaySFX("MenuIn");
+            ShopUI.SetActive(true);
         }
         else if (strg[1] == 'P' && strg[2] == 'l' && strg[3] == 'a' && strg[4] == 'y' && strg[5] == 'S' && strg[6] == 'o' && strg[7] == 'u' && strg[8] == 'n' && strg[9] == 'd')
         {

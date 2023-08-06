@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 2
   DoesTarget: 1
   CardTarget: 2
-  CardClass: []
   CardTrait: 
   CardSkill: Restores -20 Health. Cures a Random Status Effect 3 times.
-  CardCost: 0
+  CardCost: 100

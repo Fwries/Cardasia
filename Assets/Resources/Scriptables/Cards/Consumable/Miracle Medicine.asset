@@ -18,7 +18,6 @@ MonoBehaviour:
   CardRariety: 4
   DoesTarget: 1
   CardTarget: 2
-  CardClass: []
   CardTrait: 
   CardSkill: Restore 300 Health. Cures all Status effects.
-  CardCost: 0
+  CardCost: 200

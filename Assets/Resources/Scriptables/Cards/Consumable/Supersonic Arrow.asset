@@ -20,4 +20,4 @@ MonoBehaviour:
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 40 Pierce DMG.
-  CardCost: 0
+  CardCost: 70
