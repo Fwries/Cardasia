@@ -66,6 +66,20 @@ MonoBehaviour:
     HasInteracted: 0
     State1: 5
     State2: 6
+  - MapName: Cave1
+    Single: 1
+    PosX: 1
+    PosY: 3
+    HasInteracted: 0
+    State1: 10
+    State2: 9
+  - MapName: Cave1
+    Single: 1
+    PosX: 14
+    PosY: 12
+    HasInteracted: 0
+    State1: 11
+    State2: 9
   nameStr: 
   Map: {fileID: 11400000, guid: 291b235f1e6aa8d4a83af92e4f5e8644, type: 2}
   xPos: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cave1
   m_EditorClassIdentifier: 
   ListName: Cave1
-  MinSpawn: 2
+  MinSpawn: 1
   MaxSpawn: 3
   EnemyList:
   - name: Bat

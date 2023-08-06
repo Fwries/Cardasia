@@ -51,6 +51,7 @@ public class CharacterMovement : MonoBehaviour
 
                 if (save.Instance.PartyCharacterData.Length > 0)
                 {
+                    Character = save.Instance.PartyCharacterData[0].GetCharacter();
                     CurrAnim = save.Instance.PartyCharacterData[0].GetCurrAnim();
                 }
                 else
@@ -136,6 +137,9 @@ public class CharacterMovement : MonoBehaviour
             MenuUI[i].SetActive(false);
         }
         AudioManager.Instance.PlaySFX("MenuOut");
+
+        Character = save.Instance.PartyCharacterData[0].GetCharacter();
+        CurrAnim = save.Instance.PartyCharacterData[0].GetCurrAnim(save.Instance.CurrDirection);
     }
 
     public void TeleportPlayer(int X, int Y)

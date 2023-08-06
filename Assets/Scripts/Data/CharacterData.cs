@@ -123,6 +123,26 @@ public class CharacterData
 		}
 		return null;
 	}
+	public Sprite[] GetCurrAnim(Vector3 dir)
+    {
+		if (dir.x == -1)
+        {
+			return GetCharacter().Idle_Left_Anim;
+		}
+		else if (dir.x == 1)
+        {
+			return GetCharacter().Idle_Right_Anim;
+		}
+		else if (dir.y == -1)
+		{
+			return GetCharacter().Idle_Down_Anim;
+		}
+		else if (dir.y == 1)
+		{
+			return GetCharacter().Idle_Up_Anim;
+		}
+		return null;
+	}
 
 	public void SetCurrAnim(SC_Character _Character, Sprite[] _CurrAnim)
     {

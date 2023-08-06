@@ -10,26 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ba2ac214d35fe44a37a81d61df77cb, type: 3}
-  m_Name: LeverOn
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  TileImage: {fileID: 498453354, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  TileImage: {fileID: 0}
   TileTopImage:
-  - {fileID: -547952407, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  - {fileID: 1838871508, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
-  - {fileID: -1781356940, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: -783085944, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 1956504962, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 335061645, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
+  - {fileID: 681422779, guid: 7c56984385f060d4ca12dd1cf4d79c37, type: 3}
   Solid: 1
   AbovePlayer: 0
   Interactable: 1
   Event: 1
   SolidEvent: 0
   Script:
-  - /Obj Anim 5 4
-  - /Obj ChangeState 5 4
   - /PlaySound DoorOpen
-  - /Obj Anim 7 5
-  - /Obj ChangeState 7 5
+  - /Obj Anim 1 3
+  - /DLOptain 1 3
+  - /DLEnd
+  - /Obj ChangeState 1 3
   IsAnim: 1
   ConstantAnim: 0
   ChangeMap: {fileID: 0}
   EnemyList: {fileID: 0}
-  ObtainList: []
+  ObtainList:
+  - Con Supersonic Arrow

@@ -41,4 +41,4 @@ MonoBehaviour:
   ConstantAnim: 0
   ChangeMap: {fileID: 11400000, guid: 548f6eae49e63c94bb42a3ec90650557, type: 2}
   EnemyList: {fileID: 0}
-  ObtainCard: []
+  ObtainList: []

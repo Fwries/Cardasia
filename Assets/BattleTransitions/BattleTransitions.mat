@@ -36,7 +36,7 @@ Material:
     m_Floats:
     - _Cutoff: 0
     - _Distort: 0
-    - _Fade: -0.0049946015
+    - _Fade: -0.05057334
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

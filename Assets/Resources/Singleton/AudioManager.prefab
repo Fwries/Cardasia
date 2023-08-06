@@ -134,6 +134,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f7c567217f5435441bf091074d829228, type: 3}
   - name: Collect
     clip: {fileID: 8300000, guid: 168ce8c92bb05fb4998221c03e918c9c, type: 3}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 3448560a47fd8d04cab13d7935e38967, type: 3}
   musicSource: {fileID: 724204031925499429}
   sfxSource: {fileID: 724204032010065264}
 --- !u!1 &724204031925499434

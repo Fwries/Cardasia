@@ -25,6 +25,7 @@ MonoBehaviour:
   Script:
   - /Obj Anim 5 4
   - /Obj ChangeState 5 4
+  - /PlaySound DoorOpen
   - /Obj Anim 7 5
   - /Obj ChangeState 7 5
   IsAnim: 1

@@ -24,6 +24,7 @@ MonoBehaviour:
   Event: 1
   SolidEvent: 0
   Script:
+  - /PlaySound DoorOpen
   - /Obj Anim 6 1
   - /DLOptain 6 1
   - /DLEnd
