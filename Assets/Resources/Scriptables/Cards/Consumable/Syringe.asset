@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Syringe
   CardType: 0
   CardRariety: 1
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 2
   CardTrait: 
   CardSkill: Restore 20 Health.
-  CardCost: 5
+  CardCost: 0
+  GoldCost: 5
+  CardList: {fileID: 0}

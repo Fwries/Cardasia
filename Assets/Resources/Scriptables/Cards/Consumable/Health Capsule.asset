@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Health Capsule
   CardType: 0
   CardRariety: 3
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 2
   CardTrait: 
   CardSkill: 'Restore 150 Health. '
-  CardCost: 70
+  CardCost: 0
+  GoldCost: 70
+  CardList: {fileID: 0}

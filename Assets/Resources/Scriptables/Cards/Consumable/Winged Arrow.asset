@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Winged Arrow
   CardType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 20 DMG. Draw 2 cards. High Crit Chance.
-  CardCost: 200
+  CardCost: 0
+  GoldCost: 200
+  CardList: {fileID: 0}

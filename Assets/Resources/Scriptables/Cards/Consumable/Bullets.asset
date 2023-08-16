@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Bullets
   CardType: 0
   CardRariety: 2
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: <Bullet>
   CardSkill: Reload 3 Bullets.
-  CardCost: 200
+  CardCost: 0
+  GoldCost: 200
+  CardList: {fileID: 0}

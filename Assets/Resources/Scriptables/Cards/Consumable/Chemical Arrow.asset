@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Chemical Arrow
   CardType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 20 DMG. Inflicts a random status effect.
-  CardCost: 70
+  CardCost: 0
+  GoldCost: 70
+  CardList: {fileID: 0}

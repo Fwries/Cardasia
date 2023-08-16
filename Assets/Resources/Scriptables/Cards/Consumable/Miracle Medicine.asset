@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Miracle Medicine
   CardType: 0
   CardRariety: 4
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 2
   CardTrait: 
   CardSkill: Restore 300 Health. Cures all Status effects.
-  CardCost: 200
+  CardCost: 0
+  GoldCost: 200
+  CardList: {fileID: 0}

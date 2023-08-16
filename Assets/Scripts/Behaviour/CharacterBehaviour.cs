@@ -227,12 +227,19 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void AddCard(SC_Card SCCard)
     {
-        AudioManager.Instance.PlaySFX("draw");
+        if (SCCard == null) 
+        { 
+            Debug.Log("fail to Add Card, Invalid Card"); 
+            return; 
+        }
+
         GameObject Card = Instantiate(Resources.Load("Card", typeof(GameObject))) as GameObject;
         Card.transform.SetParent(HandObject.transform);
         Card.GetComponent<CardBehaviour>().Currentcard = Card.GetComponent<CardDisplay>().Currentcard = SCCard;
         Card.GetComponent<CardBehaviour>().CharacterBehav = this;
-
+        
+        Card.GetComponent<CardBehaviour>().IsGenerated = true;
+        AudioManager.Instance.PlaySFX("draw");
         HandCards.Add(Card);
         AdjustHand();
     }

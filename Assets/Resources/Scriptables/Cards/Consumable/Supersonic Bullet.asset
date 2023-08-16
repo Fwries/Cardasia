@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Supersonic Bullet
   CardType: 0
   CardRariety: 3
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: <Bullet>
   CardSkill: Reload 1 Bullet. Draw a card.
-  CardCost: 80
+  CardCost: 0
+  GoldCost: 80
+  CardList: {fileID: 0}

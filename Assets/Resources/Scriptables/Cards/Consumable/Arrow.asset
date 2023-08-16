@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Arrow
   CardType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 20 DMG.
-  CardCost: 50
+  CardCost: 0
+  GoldCost: 50
+  CardList: {fileID: 0}

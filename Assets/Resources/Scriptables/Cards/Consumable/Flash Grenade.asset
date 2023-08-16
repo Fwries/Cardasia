@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Flash Grenade
   CardType: 0
   CardRariety: 2
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: 
   CardSkill: Inflict 1 Shock to all Opponent's Active Characters.
-  CardCost: 100
+  CardCost: 0
+  GoldCost: 100
+  CardList: {fileID: 0}

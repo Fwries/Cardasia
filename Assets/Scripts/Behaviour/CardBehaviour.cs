@@ -13,6 +13,7 @@ public class CardBehaviour : MonoBehaviour
     public bool Frozen;
 
     public float m_Speed = 1.7f;
+    private int RepeatError = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -361,12 +362,40 @@ public class CardBehaviour : MonoBehaviour
     {
         if (SortByRariety)
         {
-            return null;
+            SC_Card ReturnCard;
+            ReturnCard = GetRandomCard(SC_Card.Rariety.Common);
+            //ReturnCard = GetRandomCard(SC_Card.Rariety.Rare);
+            //ReturnCard = GetRandomCard(SC_Card.Rariety.Epic);
+            //ReturnCard = GetRandomCard(SC_Card.Rariety.Legendary);
+
+            if (RepeatError >= 100) { return null; }
+            else if (ReturnCard == null)
+            {
+                RepeatError++;
+                Debug.Log(Currentcard + "'s List has an no Cards of this Rariety, " + RepeatError + " Reroll...");
+                return GetRandomCard(true);
+            }
+            RepeatError = 0;
+            return ReturnCard;
         }
         else
         {
             return Currentcard.CardList.List[Random.Range(0, Currentcard.CardList.List.Count)];
         }
+    }
+
+    public SC_Card GetRandomCard(SC_Card.Rariety rariety)
+    {
+        List<SC_Card> CardList = new List<SC_Card>();
+        for (int i = 0; i < Currentcard.CardList.List.Count; i++)
+        {
+            if (Currentcard.CardList.List[i].CardRariety == rariety)
+            {
+                CardList.Add(Currentcard.CardList.List[i]);
+            }
+        }
+
+        return CardList[Random.Range(0, CardList.Count)];
     }
 
     public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)

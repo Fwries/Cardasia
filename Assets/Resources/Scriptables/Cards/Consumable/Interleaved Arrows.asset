@@ -16,8 +16,11 @@ MonoBehaviour:
   CardName: Interleaved Arrows
   CardType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: <Arrow>
   CardSkill: Deal 20 DMG, 2 Times. Inflicts Trip.
-  CardCost: 100
+  CardCost: 0
+  GoldCost: 100
+  CardList: {fileID: 0}
