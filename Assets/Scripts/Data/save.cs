@@ -20,6 +20,7 @@ public class save : MonoBehaviour
 	public bool CantRun;
 	
 	public CharacterData[] PartyCharacterData;
+	public List<SC_Card> Skill;
 	public List<SC_Card> Inventory;
 
 	public SC_Character[] TempChar;

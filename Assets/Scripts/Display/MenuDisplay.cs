@@ -30,9 +30,10 @@ public class MenuDisplay : MonoBehaviour
         save.Instance = null;
         Instantiate(Resources.Load("Singleton/Save"));
 
-        save.Instance.CreateNewCharacterData(save.Instance.TempChar[0], 5);
-        save.Instance.CreateNewCharacterData(save.Instance.TempChar[1], 5);
-        save.Instance.CreateNewCharacterData(save.Instance.TempChar[2], 5);
+        for (int i = 0; i < save.Instance.TempChar.Length; i++)
+        {
+            save.Instance.CreateNewCharacterData(save.Instance.TempChar[i], 5);
+        }
 
         save.Instance.Inventory = save.Instance.TempItemDeck;
         save.Instance.SaveFile("save");

@@ -133,7 +133,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
             Card.GetComponent<CardDisplay>().Currentcard = scDeck.List[i];
         }
 
-        DeckContainer.AddCards(SkillDeck.List);
+        //DeckContainer.AddCards(SkillDeck.List);
         DeckContainer.AddCards(ItemDeck.List);
 
         save.Instance.Inventory = InventoryContainer.CardContainer;
@@ -147,6 +147,9 @@ public class PartyCharacterBehaviour : MonoBehaviour
             InventoryContainer.DestroyAllCards();
         }
 
+        // TODO Update Skill Cards OR Inventory Cards
+
+        InventoryContainer.AddCards(save.Instance.Skill);
         InventoryContainer.AddCards(save.Instance.Inventory);
     }
 
@@ -171,6 +174,9 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public void SaveAll()
     {
         if (!gameObject.activeSelf) { return; }
+        
+        // TODO Save Skill Cards OR Inventory Cards
+
         save.Instance.PartyCharacterData[CurrCharacter].ItemSetDeck(DeckContainer.CardContainer);
         save.Instance.Inventory = InventoryContainer.CardContainer;
     }
