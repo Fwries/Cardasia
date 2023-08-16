@@ -1,36 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 [CreateAssetMenu(fileName = "New Character", menuName = "Cardasia/Character")]
 public class SC_Character : ScriptableObject
 {
-    [SerializeField] public string CharName;
+    public string CharName;
+    public string FilePath = "Character/";
 
-    [SerializeField] public int Health;
-    [SerializeField] public int Defence;
-    [SerializeField] public int Attack;
+    public int Health;
+    public int Defence;
+    public int Attack;
 
-    [SerializeField] public int MaxBoth;
-    [SerializeField] public int MaxStamina;
-    [SerializeField] public int MaxMana;
+    public int MaxBoth;
+    public int MaxStamina;
+    public int MaxMana;
 
-    [SerializeField] public int MaxBullet;
+    public enum Class
+    {
+        None,
+        Common = 1,
+        Rare = 2,
+        Epic = 3,
+        Legendary = 4,
+    };
+    public Class CharacterClass;
 
-    [SerializeField] public SC_Deck DefaultDeck;
+    public int MaxBullet;
+    public int MaxSkillsDeck = 5;
+    public int MaxDeckSize = 30;
 
-    [SerializeField] public Sprite[] Idle_Down_Anim;
-    [SerializeField] public Sprite[] Idle_Up_Anim;
-    [SerializeField] public Sprite[] Idle_Left_Anim;
-    [SerializeField] public Sprite[] Idle_Right_Anim;
+    public List<SC_Card> DefaultDeck;
+    public List<SC_Card> SkillsDeck;
 
-    [SerializeField] public Sprite[] Walk_Down_Anim;
-    [SerializeField] public Sprite[] Walk_Up_Anim;
-    [SerializeField] public Sprite[] Walk_Left_Anim;
-    [SerializeField] public Sprite[] Walk_Right_Anim;
+    public Sprite[] Idle_Down_Anim;
+    public Sprite[] Idle_Up_Anim;
+    public Sprite[] Idle_Left_Anim;
+    public Sprite[] Idle_Right_Anim;
 
-    [SerializeField] public Sprite[] Dead_Sprite;
+    public Sprite[] Walk_Down_Anim;
+    public Sprite[] Walk_Up_Anim;
+    public Sprite[] Walk_Left_Anim;
+    public Sprite[] Walk_Right_Anim;
 
-    [SerializeField] public int EXPGain;
-    [SerializeField] public int GoldGain;
+    public Sprite[] Dead_Sprite;
+
+    public int EXPGain;
+    public int GoldGain;
 }

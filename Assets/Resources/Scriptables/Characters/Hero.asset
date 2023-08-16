@@ -13,14 +13,34 @@ MonoBehaviour:
   m_Name: Hero
   m_EditorClassIdentifier: 
   CharName: Hero
+  FilePath: Characters/
   Health: 150
   Defence: 10
   Attack: 10
   MaxBoth: 3
   MaxStamina: 0
   MaxMana: 0
+  CharacterClass: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 11400000, guid: 16d5426b09717a5458db613db23b21f8, type: 2}
+  MaxSkillsDeck: 10
+  MaxDeckSize: 35
+  DefaultDeck:
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: d9a70de0ce7ffb345bd87a9e11753964, type: 2}
+  - {fileID: 11400000, guid: d9a70de0ce7ffb345bd87a9e11753964, type: 2}
+  - {fileID: 11400000, guid: d9a70de0ce7ffb345bd87a9e11753964, type: 2}
+  - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
+  - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
+  - {fileID: 11400000, guid: 440806b91f3b21c45bbdba15141c4b60, type: 2}
+  - {fileID: 11400000, guid: fb21d4392c52e56459df3fd835da0b1a, type: 2}
+  - {fileID: 11400000, guid: fb21d4392c52e56459df3fd835da0b1a, type: 2}
+  SkillsDeck:
+  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
+  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
+  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
+  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
+  - {fileID: 11400000, guid: 677b89a2acfcc5e458f843da3b79e5f7, type: 2}
   Idle_Down_Anim:
   - {fileID: 1553993208, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}
   - {fileID: 1553993208, guid: bf7cd4e72b015474491d3c23dfcae725, type: 3}

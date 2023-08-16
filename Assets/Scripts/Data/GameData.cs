@@ -28,7 +28,7 @@ public class GameData
 		InteractableList = _InteractableList;
 
 		SC_Deck scInventory = ScriptableObject.CreateInstance<SC_Deck>();
-		scInventory.Deck = _Inventory;
+		scInventory.List = _Inventory;
 		InventoryJson = JsonUtility.ToJson(scInventory);
 	}
 
@@ -38,9 +38,9 @@ public class GameData
 		JsonUtility.FromJsonOverwrite(InventoryJson, scInventory);
 
 		List<SC_Card> Inventory = new List<SC_Card>();
-		for (int i = 0; i < scInventory.Deck.Count; i++)
+		for (int i = 0; i < scInventory.List.Count; i++)
 		{
-			Inventory.Add(scInventory.Deck[i]);
+			Inventory.Add(scInventory.List[i]);
 		}
 		return Inventory;
 	}

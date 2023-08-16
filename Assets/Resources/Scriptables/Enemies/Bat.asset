@@ -13,14 +13,39 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   CharName: Bat
+  FilePath: Enemies/
   Health: 20
   Defence: 0
   Attack: 30
   MaxBoth: 0
   MaxStamina: 2
   MaxMana: 0
+  CharacterClass: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 11400000, guid: 5fc50d47aeeaa4d41b505e2d55db0529, type: 2}
+  MaxSkillsDeck: 5
+  MaxDeckSize: 30
+  DefaultDeck:
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 477f5e71882e48846880b5ed46dd6432, type: 2}
+  - {fileID: 11400000, guid: 477f5e71882e48846880b5ed46dd6432, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  SkillsDeck: []
   Idle_Down_Anim:
   - {fileID: 1722773597, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}
   - {fileID: 450102683, guid: f9140e0253dc8d049bd23f222efd8d21, type: 3}

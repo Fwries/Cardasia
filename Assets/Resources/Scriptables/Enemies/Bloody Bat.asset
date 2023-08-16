@@ -10,17 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
-  m_Name: Bat_Bloody
+  m_Name: Bloody Bat
   m_EditorClassIdentifier: 
   CharName: Bloody Bat
+  FilePath: Enemies/
   Health: 20
   Defence: 0
   Attack: 50
   MaxBoth: 0
   MaxStamina: 3
   MaxMana: 0
+  CharacterClass: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 11400000, guid: a2ac6987c39a90d43a81ba38d30102fd, type: 2}
+  MaxSkillsDeck: 0
+  MaxDeckSize: 30
+  DefaultDeck:
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 47ae95efc3cc38947bc9720d0414f6c7, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 8c610eb854239644f9a2cbda3155083a, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  - {fileID: 11400000, guid: 98b5c723c65b1f142be7a8ced41756be, type: 2}
+  SkillsDeck: []
   Idle_Down_Anim:
   - {fileID: 828187414, guid: e486caadbe35c3340b7f95586d138b79, type: 3}
   - {fileID: -1690246687, guid: e486caadbe35c3340b7f95586d138b79, type: 3}

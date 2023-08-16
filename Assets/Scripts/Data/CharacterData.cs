@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterData
 {
-	public string CharJson;
+	public string FilePath;
 	public int Health;
 	public int Level;
 	public int Exp;
@@ -17,26 +17,26 @@ public class CharacterData
 
 	public CharacterData(SC_Character _Character, int _Level, List<SC_Card> _ItemDeck)
     {
-		CharJson = JsonUtility.ToJson(_Character);
+		FilePath = "Scriptables/" + _Character.FilePath + _Character.name;
 		Level = _Level;
 		Health = _Character.Health;
 
-		DeckJson = JsonUtility.ToJson(_Character.DefaultDeck);
+		//DeckJson = JsonUtility.ToJson(_Character.SkillsDeck);
 
 		SC_Deck ItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
-		ItemDeck.Deck = _ItemDeck;
+		ItemDeck.List = _ItemDeck;
 		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 	}
 
 	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
 	{
-		CharJson = JsonUtility.ToJson(_Character);
+		FilePath = "Scriptables/" + _Character.FilePath + _Character.name;
 		Health = _Health;
 		Level = _Level;
 		Exp = _Exp;
 		Bullet = _Bullet;
 		
-		DeckJson = JsonUtility.ToJson(_Character.DefaultDeck);
+		//DeckJson = JsonUtility.ToJson(_Character.SkillsDeck);
 		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 
 		SetCurrAnim(_Character, _CurrAnim);
@@ -44,14 +44,15 @@ public class CharacterData
 
 	public CharacterData(CharacterBehaviour CharacterBehav)
     {
-		CharJson = JsonUtility.ToJson(CharacterBehav.Character);
+		SC_Character _Character = CharacterBehav.Character;
+		FilePath = "Scriptables/" + _Character.FilePath + _Character.name;
 
 		Level = CharacterBehav.Level;
 		Health = CharacterBehav.Health;
 		Exp = CharacterBehav.Exp;
 		Bullet = CharacterBehav.Bullet;
 
-		DeckJson = JsonUtility.ToJson(CharacterBehav.scDeck);
+		//DeckJson = JsonUtility.ToJson(CharacterBehav.scDeck);
 		ItemSetDeck(CharacterBehav.ItemDeck);
 
 		CurrAnim = CharacterBehav.CurrAnim;
@@ -59,9 +60,7 @@ public class CharacterData
 
 	public SC_Character GetCharacter()
     {
-		SC_Character scCharacter = ScriptableObject.CreateInstance<SC_Character>();
-		JsonUtility.FromJsonOverwrite(CharJson, scCharacter);
-		return scCharacter;
+		return Resources.Load<SC_Character>(FilePath);
 	}
 
 	public SC_Deck GetDeck()
@@ -83,16 +82,16 @@ public class CharacterData
 		JsonUtility.FromJsonOverwrite(ItemDeckJson, scItemDeck);
 
 		List<SC_Card> ItemDeck = new List<SC_Card>();
-		for (int i = 0; i < scItemDeck.Deck.Count; i++)
+		for (int i = 0; i < scItemDeck.List.Count; i++)
         {
-			ItemDeck.Add(scItemDeck.Deck[i]);
+			ItemDeck.Add(scItemDeck.List[i]);
 		}
 		return ItemDeck;
 	}
 	public void ItemSetDeck(List<SC_Card> _ItemDeck)
     {
 		SC_Deck ItemDeck = ScriptableObject.CreateInstance<SC_Deck>();
-		ItemDeck.Deck = _ItemDeck;
+		ItemDeck.List = _ItemDeck;
 		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 	}
 

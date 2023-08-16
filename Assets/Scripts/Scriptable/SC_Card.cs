@@ -27,6 +27,8 @@ public class SC_Card : ScriptableObject
     };
     public Rariety CardRariety;
 
+    public SC_Character.Class CardClass;
+
     public bool DoesTarget;
     public enum Target
     {
@@ -40,5 +42,9 @@ public class SC_Card : ScriptableObject
 
     public string CardTrait;
     public string CardSkill;
+    
     public int CardCost;
+    public int GoldCost;
+
+    public SC_Deck CardList;
 }

@@ -13,14 +13,29 @@ MonoBehaviour:
   m_Name: Faherya
   m_EditorClassIdentifier: 
   CharName: Faherya
+  FilePath: Characters/
   Health: 100
   Defence: 20
   Attack: 0
   MaxBoth: 0
   MaxStamina: 0
   MaxMana: 3
+  CharacterClass: 0
   MaxBullet: 0
-  DefaultDeck: {fileID: 11400000, guid: de1dccbf7ea7a4742bf0ff22b99975e5, type: 2}
+  MaxSkillsDeck: 5
+  MaxDeckSize: 30
+  DefaultDeck:
+  - {fileID: 11400000, guid: cd9d94e7fda69b442a97e6980b6c937a, type: 2}
+  - {fileID: 11400000, guid: cd9d94e7fda69b442a97e6980b6c937a, type: 2}
+  - {fileID: 11400000, guid: 5034dc3203d074343b2d87be3b7fc029, type: 2}
+  - {fileID: 11400000, guid: 5034dc3203d074343b2d87be3b7fc029, type: 2}
+  - {fileID: 11400000, guid: 5034dc3203d074343b2d87be3b7fc029, type: 2}
+  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  - {fileID: 11400000, guid: a59850b1f79570149afef41850edb9c4, type: 2}
+  SkillsDeck: []
   Idle_Down_Anim:
   - {fileID: 539869626, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}
   - {fileID: 539869626, guid: af7d467f457378b46843b3de8ccbbe52, type: 3}

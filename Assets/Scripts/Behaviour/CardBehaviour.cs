@@ -108,7 +108,7 @@ public class CardBehaviour : MonoBehaviour
                 target.GainMana("Stamina", 1);
                 break;
             case "Fairy Wand":
-                CharacterBehav.AddCard(GameBehav.RandomCardPool.Deck[Random.Range(0, GameBehav.RandomCardPool.Deck.Count)]);
+                CharacterBehav.AddCard(GetRandomCard(false));
                 break;
             case "Guns & Roses":
                 if (CharacterBehav.Bullet < 1) { break; }
@@ -355,6 +355,18 @@ public class CardBehaviour : MonoBehaviour
         }
         CharacterBehav.PlayerBehav.CardPlayed = true;
         if (CharacterBehav.PlayerBehav == GameBehav.Player) { GameBehav.RunObj.GetComponent<Button>().interactable = false; }
+    }
+
+    public SC_Card GetRandomCard(bool SortByRariety)
+    {
+        if (SortByRariety)
+        {
+            return null;
+        }
+        else
+        {
+            return Currentcard.CardList.List[Random.Range(0, Currentcard.CardList.List.Count)];
+        }
     }
 
     public IEnumerator PlayAnim(GameBehaviour Game, CharacterBehaviour Target)

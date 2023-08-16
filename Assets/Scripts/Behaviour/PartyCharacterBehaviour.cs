@@ -120,17 +120,18 @@ public class PartyCharacterBehaviour : MonoBehaviour
         }
 
         CurrCharacter = pos;
-        scDeck = save.Instance.PartyCharacterData[pos].GetDeck();
+        scDeck = ScriptableObject.CreateInstance<SC_Deck>();
+        scDeck.List = save.Instance.PartyCharacterData[pos].GetCharacter().DefaultDeck;
         ItemDeck = save.Instance.PartyCharacterData[pos].ItemGetDeck();
 
-        for (int i = 0; i < scDeck.Deck.Count; i++)
+        for (int i = 0; i < scDeck.List.Count; i++)
         {
             GameObject Card = Instantiate(Resources.Load("CardUI", typeof(GameObject))) as GameObject;
             Card.transform.SetParent(DeckContainer.ContainerContent.transform);
-            Card.GetComponent<CardDisplay>().Currentcard = scDeck.Deck[i];
+            Card.GetComponent<CardDisplay>().Currentcard = scDeck.List[i];
         }
 
-        DeckContainer.AddCards(ItemDeck.Deck);
+        DeckContainer.AddCards(ItemDeck.List);
 
         save.Instance.Inventory = InventoryContainer.CardContainer;
     }

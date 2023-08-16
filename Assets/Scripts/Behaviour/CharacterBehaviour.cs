@@ -85,13 +85,14 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Bullet = CharData.Bullet;
         MaxBullet = Character.MaxBullet;
 
-        scDeck = Character.DefaultDeck;
+        scDeck = ScriptableObject.CreateInstance<SC_Deck>();
+        scDeck.List = Character.DefaultDeck;
         ItemDeck = CharData.ItemGetList();
 
         Deck = new List<SC_Card>();
-        for (int i = 0; i < scDeck.Deck.Count; i++)
+        for (int i = 0; i < scDeck.List.Count; i++)
         {
-            Deck.Add(scDeck.Deck[i]);
+            Deck.Add(scDeck.List[i]);
         }
         for (int i = 0; i < ItemDeck.Count; i++)
         {
@@ -117,12 +118,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         ATK = Character.Attack + 10 * Level;
         MaxBullet = Character.MaxBullet;
 
-        scDeck = Character.DefaultDeck;
+        scDeck = ScriptableObject.CreateInstance<SC_Deck>();
+        scDeck.List = Character.DefaultDeck;
 
         Deck = new List<SC_Card>();
-        for (int i = 0; i < scDeck.Deck.Count; i++)
+        for (int i = 0; i < scDeck.List.Count; i++)
         {
-            Deck.Add(scDeck.Deck[i]);
+            Deck.Add(scDeck.List[i]);
         }
         Shuffle();
     }
