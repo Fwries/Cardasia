@@ -74,3 +74,4 @@ ProjectSettings/ProjectVersion.txt
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 Packages/packages-lock.json
 Packages/manifest.json
+Assets/BattleTransitions/BattleTransitions.mat
