@@ -32,7 +32,7 @@ public class SC_Character : ScriptableObject
     public int MaxDeckSize = 30;
 
     public List<SC_Card> DefaultDeck;
-    public List<SC_Card> SkillsDeck;
+    public List<SC_Card> SkillDeck;
 
     public Sprite[] Idle_Down_Anim;
     public Sprite[] Idle_Up_Anim;

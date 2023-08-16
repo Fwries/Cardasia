@@ -14,6 +14,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public List<GameObject> HandCards;
     public SC_Deck scDeck;
+    public List<SC_Card> SkillDeck;
     public List<SC_Card> ItemDeck;
     public List<SC_Card> Deck;
 
@@ -87,12 +88,18 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         scDeck = ScriptableObject.CreateInstance<SC_Deck>();
         scDeck.List = Character.DefaultDeck;
-        ItemDeck = CharData.ItemGetList();
+
+        SkillDeck = CharData.GetDeck().List;
+        ItemDeck = CharData.ItemGetDeck().List;
 
         Deck = new List<SC_Card>();
         for (int i = 0; i < scDeck.List.Count; i++)
         {
             Deck.Add(scDeck.List[i]);
+        }
+        for (int i = 0; i < SkillDeck.Count; i++)
+        {
+            Deck.Add(SkillDeck[i]);
         }
         for (int i = 0; i < ItemDeck.Count; i++)
         {
@@ -121,10 +128,16 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         scDeck = ScriptableObject.CreateInstance<SC_Deck>();
         scDeck.List = Character.DefaultDeck;
 
+        SkillDeck = _Character.SkillDeck;
+
         Deck = new List<SC_Card>();
         for (int i = 0; i < scDeck.List.Count; i++)
         {
             Deck.Add(scDeck.List[i]);
+        }
+        for (int i = 0; i < SkillDeck.Count; i++)
+        {
+            Deck.Add(SkillDeck[i]);
         }
         Shuffle();
     }

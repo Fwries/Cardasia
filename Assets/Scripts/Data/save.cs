@@ -99,8 +99,22 @@ public class save : MonoBehaviour
 		PartyCharacterData = new CharacterData[data.PartyCharacterData.Length];
 		PartyCharacterData = data.PartyCharacterData;
 
-		InteractableList = new InteractableData[data.InteractableList.Length];
-		InteractableList = data.InteractableList;
+		InteractableData[] TempInteractableList = new InteractableData[InteractableList.Length];
+		for (int i = 0; i <= data.InteractableList.Length; i++)
+		{
+			if (i == data.InteractableList.Length)
+			{
+				for (int j = i; j < InteractableList.Length; j++)
+				{
+					TempInteractableList[j] = InteractableList[j];
+				}
+			}
+			else
+			{
+				TempInteractableList[i] = data.InteractableList[i];
+			}
+		}
+		InteractableList = TempInteractableList;
 
 		Inventory = data.GetInventory();
 	}
@@ -166,9 +180,9 @@ public class save : MonoBehaviour
         {
 			PartyCharacterData[i] = temp[i];
         }
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, null);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, _Character.SkillDeck, null);
 	}
-	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck ItemDeck)
+	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck SkillDeck, SC_Deck ItemDeck)
 	{
 		CharacterData[] temp = PartyCharacterData;
 		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
@@ -176,7 +190,7 @@ public class save : MonoBehaviour
 		{
 			PartyCharacterData[i] = temp[i];
 		}
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, ItemDeck);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, SkillDeck, ItemDeck);
 	}
 	public void CreateNewCharacterData(SC_Character _Character, int _Level)
 	{
@@ -188,7 +202,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = temp[i];
 		}
 
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, null);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, _Character.SkillDeck, null);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health + 20 * _Level;
 	}
 

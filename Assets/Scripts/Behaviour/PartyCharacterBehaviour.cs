@@ -16,6 +16,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
     public UIContainerBehaviour InventoryContainer;
 
     public SC_Deck scDeck;
+    public SC_Deck SkillDeck;
     public SC_Deck ItemDeck;
     public List<SC_Card> Inventory;
 
@@ -122,6 +123,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
         CurrCharacter = pos;
         scDeck = ScriptableObject.CreateInstance<SC_Deck>();
         scDeck.List = save.Instance.PartyCharacterData[pos].GetCharacter().DefaultDeck;
+        SkillDeck = save.Instance.PartyCharacterData[pos].GetDeck();
         ItemDeck = save.Instance.PartyCharacterData[pos].ItemGetDeck();
 
         for (int i = 0; i < scDeck.List.Count; i++)
@@ -131,6 +133,7 @@ public class PartyCharacterBehaviour : MonoBehaviour
             Card.GetComponent<CardDisplay>().Currentcard = scDeck.List[i];
         }
 
+        DeckContainer.AddCards(SkillDeck.List);
         DeckContainer.AddCards(ItemDeck.List);
 
         save.Instance.Inventory = InventoryContainer.CardContainer;
