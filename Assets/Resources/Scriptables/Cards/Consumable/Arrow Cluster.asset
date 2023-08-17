@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: c5a5df0c5c22b9b419e52abebc4e6db5, type: 3}
   CardName: Arrow Cluster
   CardType: 0
-  CardRariety: 0
+  CardRariety: 2
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

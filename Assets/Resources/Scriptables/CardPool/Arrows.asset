@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63974e74eed33d54995a0419fbc1d5bc, type: 3}
+  m_Name: Arrows
+  m_EditorClassIdentifier: 
+  List:
+  - {fileID: 11400000, guid: 01ad43e203fd31a42bf0a2dbdff80eb7, type: 2}
+  - {fileID: 11400000, guid: 95154cd5ed470e84c9900cfc78329a8e, type: 2}
+  - {fileID: 11400000, guid: bd4102a583967be4eb89bbd9849f5ee0, type: 2}
+  - {fileID: 11400000, guid: 734c8648f4400484fa67355c358aec2e, type: 2}
+  - {fileID: 11400000, guid: 60570ea5bd943e94ab2ee4484d103b44, type: 2}
+  - {fileID: 11400000, guid: 6e95cd285a503bb499e7627db42fb94f, type: 2}
+  - {fileID: 11400000, guid: a29d1bd59a787b94d96a56934fe1ca75, type: 2}
+  - {fileID: 11400000, guid: dafe985e9287b854f990e6e11df9bd10, type: 2}
+  - {fileID: 11400000, guid: adc4c632ec09a444a9c7a9873e1ca863, type: 2}
+  - {fileID: 11400000, guid: 3ef2f7d0c570d7e4cb2ed52c8461d493, type: 2}
+  - {fileID: 11400000, guid: 8b2a3a206ba679f4e86928833b9bb2d8, type: 2}
+  - {fileID: 11400000, guid: 51976e01631348f4a899fc4451e5a865, type: 2}
+  - {fileID: 11400000, guid: af2868a7b34f14d4c95553e125839025, type: 2}
+  - {fileID: 11400000, guid: 9ae911d92326b0544bb3a32bb28ab0d9, type: 2}
+  - {fileID: 11400000, guid: 091a9eef92d9c5f439d8ec15245bc685, type: 2}
+  Common: 1
+  Rare: 1
+  Epic: 1
+  Legendary: 1

@@ -84,13 +84,13 @@ public class CardBehaviour : MonoBehaviour
             case "Campfire":
                 for (int i = 0; i < MaxActive; i++)
                 {
-                    CharacterBehav.PlayerBehav.CharacterTape[i].FullRestore();
+                    FullRestore(CharacterBehav.PlayerBehav.CharacterTape[i]);
                 }
                 CharacterBehav.PlayerBehav.LoseATurn = true;
                 GameBehav.EndTurn(CharacterBehav.IsEnemy);
                 break;
             case "Cryo Chamber":
-                target.FullRestore();
+                FullRestore(target);
                 target.Freeze = 5;
                 target.Trip = true;
                 break;
@@ -118,7 +118,7 @@ public class CardBehaviour : MonoBehaviour
                 target.Trip = true;
                 break;
             case "Healing":
-                target.RestoreHealth(70);
+                Heal(target, 70);
                 break;
             case "Nuclear Bomb":
                 for (int i = 0; i < 3; i++)
@@ -174,6 +174,41 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.DealDamage(Currentcard, 70, 1, false, target);
                 target.Shock += 1;
                 break;
+            case "Quiver":
+                CharacterBehav.AddCard(GetRandomCard(true));
+                CharacterBehav.AddCard(GetRandomCard(true));
+                break;
+
+            case "Clear Body":
+                CharacterBehav.RestoreHealth(100);
+                CharacterBehav.Draw(1);
+                break;
+            case "Fly":
+                CharacterBehav.Draw(2);
+                break;
+            case "Grasping Claws":
+                CharacterBehav.DealDamage(Currentcard, 30, 1, false, target);
+                target.Trip = true;
+                break;
+            case "Midnight Claw":
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length)
+                    {
+                        CharacterBehav.PlayerBehav.CharacterTape[i].Claw += 20;
+                    }
+                }
+                break;
+            case "Sonic Screech":
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < target.PlayerBehav.CharacterTape.Length)
+                    {
+                        target.PlayerBehav.CharacterTape[i].Trip = true;
+                        CharacterBehav.DealDamage(Currentcard, 0, 1, false, target.PlayerBehav.CharacterTape[i]);
+                    }
+                }
+                break;
 
             #endregion CardSkills
 
@@ -192,29 +227,30 @@ public class CardBehaviour : MonoBehaviour
                 }
                 break;
             case "Health Capsule":
-                target.RestoreHealth(150);
+                Heal(target, 150);
                 break;
             case "Health Potion": // Heart Bottle
-                target.RestoreHealth(70);
+                Heal(target, 70);
                 break;
             case "Heavy Bullets":
                 CharacterBehav.Reload(3);
                 CharacterBehav.CritChance = 2;
                 break;
             case "Medicines":
-                target.RestoreHealth(50);
+                Heal(target, 50);
                 target.Burn = false;
                 target.Trip = false;
                 break;
             case "Miracle Medicine":
-                target.RestoreHealth(300);
+                Heal(target, 300);
                 target.ClearStatus("Freeze");
                 target.ClearStatus("Shock");
                 target.Burn = false;
                 target.Trip = false;
                 break;
             case "Overdose":
-                target.RestoreHealth(-20);
+                Heal(target, -20);
+                target.ClearStatus("Random");
                 target.ClearStatus("Random");
                 target.ClearStatus("Random");
                 target.ClearStatus("Random");
@@ -230,16 +266,9 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.Draw(1);
                 break;
             case "Syringe":
-                target.RestoreHealth(70);
+                Heal(target, 70);
                 break;
 
-            #endregion Consumables
-
-            #region NOTcoded
-
-            case "Quiver":
-                //CharacterBehav.AddCard();
-                break;
             case "Arrow":
                 CharacterBehav.DealDamage(Currentcard, 20, 1, false, target);
                 break;
@@ -313,42 +342,11 @@ public class CardBehaviour : MonoBehaviour
                 CharacterBehav.DealDamage(Currentcard, 40, 1, true, target);
                 break;
 
+            #endregion Consumables
+
+            #region NOTcoded
+
             #endregion NOTcoded
-
-            #region EnemyExclusive
-
-            case "Clear Body":
-                CharacterBehav.RestoreHealth(100);
-                CharacterBehav.Draw(1);
-                break;
-            case "Fly":
-                CharacterBehav.Draw(2);
-                break;
-            case "Grasping Claws":
-                CharacterBehav.DealDamage(Currentcard, 30, 1, false, target);
-                target.Trip = true;
-                break;
-            case "Midnight Claw":
-                for (int i = 0; i < 3; i++)
-                {
-                    if (i < CharacterBehav.PlayerBehav.CharacterTape.Length)
-                    {
-                        CharacterBehav.PlayerBehav.CharacterTape[i].Claw += 20;
-                    }
-                }
-                break;
-            case "Sonic Screech":
-                for (int i = 0; i < 3; i++)
-                {
-                    if (i < target.PlayerBehav.CharacterTape.Length)
-                    {
-                        target.PlayerBehav.CharacterTape[i].Trip = true;
-                        CharacterBehav.DealDamage(Currentcard, 0, 1, false, target.PlayerBehav.CharacterTape[i]);
-                    }
-                }
-                break;
-
-            #endregion EnemyExclusive
 
             default:
                 Debug.LogError(Currentcard.CardName + " does not exist");
@@ -358,17 +356,43 @@ public class CardBehaviour : MonoBehaviour
         if (CharacterBehav.PlayerBehav == GameBehav.Player) { GameBehav.RunObj.GetComponent<Button>().interactable = false; }
     }
 
+    public void Heal(CharacterBehaviour target, int HealAmt)
+    {
+        CharacterBehav.Agroo += HealAmt * 1.5f;
+        target.RestoreHealth(HealAmt);
+    }
+
+    public void FullRestore(CharacterBehaviour target)
+    {
+        CharacterBehav.Agroo += (target.MaxHealth - target.Health) * 1.5f;
+        target.FullRestore();
+    }
+
     public SC_Card GetRandomCard(bool SortByRariety)
     {
         if (SortByRariety)
         {
             SC_Card ReturnCard;
-            ReturnCard = GetRandomCard(SC_Card.Rariety.Common);
-            //ReturnCard = GetRandomCard(SC_Card.Rariety.Rare);
-            //ReturnCard = GetRandomCard(SC_Card.Rariety.Epic);
-            //ReturnCard = GetRandomCard(SC_Card.Rariety.Legendary);
+            int Rand = Random.Range(1, 101);
 
-            if (RepeatError >= 100) { return null; }
+            if (Rand <= 50)
+            {
+                ReturnCard = GetRandomCard(SC_Card.Rariety.Common);
+            }
+            else if (Rand <= 70)
+            {
+                ReturnCard = GetRandomCard(SC_Card.Rariety.Rare);
+            }
+            else if (Rand <= 98)
+            {
+                ReturnCard = GetRandomCard(SC_Card.Rariety.Epic);
+            }
+            else
+            {
+                ReturnCard = GetRandomCard(SC_Card.Rariety.Legendary);
+            }
+
+            if (RepeatError >= 150) { return null; }
             else if (ReturnCard == null)
             {
                 RepeatError++;
@@ -395,6 +419,7 @@ public class CardBehaviour : MonoBehaviour
             }
         }
 
+        if (CardList.Count == 0) { return null; }
         return CardList[Random.Range(0, CardList.Count)];
     }
 

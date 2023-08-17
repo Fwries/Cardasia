@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 800b1e45c0c20104197e6e041d10ee49, type: 3}
   CardName: Frozen Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 3
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

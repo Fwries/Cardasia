@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: c9dfb3fdfadd60e4d876cfd262b1b545, type: 3}
   CardName: Quiver
-  CardType: 0
+  CardType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: 
-  CardSkill: Add 3 random <Arrow> Cards to your hand.
-  CardCost: 0
+  CardSkill: Add 2 random <Arrow> Cards to your hand.
+  CardCost: 1
+  GoldCost: 0
+  CardList: {fileID: 11400000, guid: 6beb5015d48d4744884245cb61892d26, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: fa5138e39ede602469746ce826de6afe, type: 3}
   CardName: Fast Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 3
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

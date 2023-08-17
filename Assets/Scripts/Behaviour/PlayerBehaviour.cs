@@ -59,18 +59,19 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (TargetType == 1 /*Card.Currentcard.Target.Enemy*/)
         {
-            int LowestHealthChar = Opponent.CharacterTape[0].Health, LowestChar = 0;
+            float HighestAgroo = Opponent.CharacterTape[0].Health;
+            int HighestAgrooChar = 0;
 
             for (int i = 0; i < 3; i++)
             {
                 if (i >= Opponent.CharacterTape.Length) { break; }
-                if (Opponent.CharacterTape[i].Health < LowestHealthChar && Opponent.CharacterTape[i].Health > 0)
+                if (Opponent.CharacterTape[i].Agroo > HighestAgrooChar)
                 {
-                    LowestHealthChar = Opponent.CharacterTape[i].Health;
-                    LowestChar = i;
+                    HighestAgroo = Opponent.CharacterTape[i].Agroo;
+                    HighestAgrooChar = i;
                 }
             }
-            return Opponent.CharacterTape[LowestChar];
+            return Opponent.CharacterTape[HighestAgrooChar];
         }
         else if (TargetType == 2 /*Card.Currentcard.Target.Ally*/)
         {
@@ -89,7 +90,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (TargetType == 3 /*Card.Currentcard.Target.Centre*/)
         {
-
+            if (ActiveCharacter == 1) { return Opponent.CharacterTape[1]; }
+            else { return Opponent.CharacterTape[0]; }
         }
         else if (TargetType == 4 /*Card.Currentcard.Target.RandomEnemy*/)
         {

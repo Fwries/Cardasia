@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 42620dcc058508e4fbb5eef1783603c9, type: 3}
   CardName: Winged Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 4
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

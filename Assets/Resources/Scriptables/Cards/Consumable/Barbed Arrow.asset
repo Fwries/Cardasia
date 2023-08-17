@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 1d0b3c828059de84f95a9185d3683b5c, type: 3}
   CardName: Barbed Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 3
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

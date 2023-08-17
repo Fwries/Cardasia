@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 472cb2c09e3b79d4fa03fcb4e20e4062, type: 3}
   CardName: Branch Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 1
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1

@@ -24,6 +24,8 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     [HideInInspector] public int MaxExp;
     public int Exp;
 
+    public float Agroo;
+
     [HideInInspector] public int MaxBoth;
     [HideInInspector] public int MaxStamina;
     [HideInInspector] public int MaxMana;
@@ -402,6 +404,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         {
             Target = PlayerBehav.GetTarget(4, GameBehav.GetOpponent(PlayerBehav));
         }
+        Agroo += (DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF;
         Target.DealtDamage((DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF, CritMultiplier);
     }
 
@@ -426,6 +429,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public void Shake(int _strength)
     {
+        if (!gameObject.activeSelf) { return; }
         GameBehav.Delay = true;
         strength = _strength * 10;
         StartCoroutine(Shaking(_strength));
@@ -484,6 +488,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     public IEnumerator HealthRestoredPerFrame(int HealthRestored)
     {
         GameBehav.Delay = true;
+        int Inc = 1;
+
+        if (HealthRestored < 0) { HealthRestored *= -1; Inc = -1; }
 
         int i = 0;
         float elapsedTime = 0;
@@ -494,7 +501,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         {
             if (elapsedTime >= Speed)
             {
-                Health++; i++;
+                Health += Inc; i++;
                 elapsedTime = 0;
             }
             else { elapsedTime += Time.deltaTime; yield return null; }

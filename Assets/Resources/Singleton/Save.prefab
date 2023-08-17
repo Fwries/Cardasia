@@ -88,6 +88,7 @@ MonoBehaviour:
   Gold: 0
   CantRun: 0
   PartyCharacterData: []
+  Skill: []
   Inventory: []
   TempChar:
   - {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}

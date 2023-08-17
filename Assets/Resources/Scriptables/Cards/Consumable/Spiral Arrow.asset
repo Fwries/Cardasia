@@ -15,7 +15,7 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 8f536d42f19a97549bf01d7b77ed1670, type: 3}
   CardName: Spiral Arrow
   CardType: 0
-  CardRariety: 0
+  CardRariety: 3
   CardClass: 0
   DoesTarget: 1
   CardTarget: 1
