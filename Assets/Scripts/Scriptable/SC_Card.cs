@@ -33,10 +33,11 @@ public class SC_Card : ScriptableObject
     public enum Target
     {
         None,
-        Enemy = 1,
+        Agroo = 1,
         Ally = 2,
         Centre = 3,
-        RandomEnemy = 4
+        LowestEnemy = 4,
+        RandomEnemy = 5
     };
     public Target CardTarget;
 

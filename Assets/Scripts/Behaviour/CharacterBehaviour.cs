@@ -24,7 +24,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
     [HideInInspector] public int MaxExp;
     public int Exp;
 
-    public float Agroo;
+    public List<AgrooData> AgrooList = new List<AgrooData>();
 
     [HideInInspector] public int MaxBoth;
     [HideInInspector] public int MaxStamina;
@@ -402,9 +402,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
         if (Target == null)
         {
-            Target = PlayerBehav.GetTarget(4, GameBehav.GetOpponent(PlayerBehav));
+            Target = PlayerBehav.GetTarget(this, 4, GameBehav.GetOpponent(PlayerBehav));
         }
-        Agroo += (DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF;
+        Target.AddAgroo(this, (DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF);
         Target.DealtDamage((DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF, CritMultiplier);
     }
 
@@ -600,6 +600,32 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         Stamina = MaxStamina = Character.MaxStamina;
 
         MaxExp = 80 + 20 * Level;
+    }
+
+    public void AddAgroo(CharacterBehaviour target, int _AddAgroo)
+    {
+        if (target == null) // Add Agroo to ALL Enemies
+        {
+            for (int i = 0; i < AgrooList.Count; i++)
+            {
+                AgrooList[i].Agroo += _AddAgroo;
+            }
+        }
+        else
+        {
+            if (AgrooList.Count != 0)
+            {
+                for (int i = 0; i < AgrooList.Count; i++)
+                {
+                    if (AgrooList[i].AgrooTarget == target)
+                    {
+                        AgrooList[i].Agroo += _AddAgroo;
+                        return;
+                    }
+                }
+            }
+            AgrooList.Add(new AgrooData(target, _AddAgroo));
+        }
     }
 
     public void Popup(string text, Color textColor)
