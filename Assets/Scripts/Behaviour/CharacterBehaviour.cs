@@ -602,29 +602,44 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         MaxExp = 80 + 20 * Level;
     }
 
-    public void AddAgroo(CharacterBehaviour target, int _AddAgroo)
+    public void AddAgroo(CharacterBehaviour target, float _AddAgroo)
     {
-        if (target == null) // Add Agroo to ALL Enemies
+        if (AgrooList.Count != 0)
         {
             for (int i = 0; i < AgrooList.Count; i++)
             {
-                AgrooList[i].Agroo += _AddAgroo;
-            }
-        }
-        else
-        {
-            if (AgrooList.Count != 0)
-            {
-                for (int i = 0; i < AgrooList.Count; i++)
+                if (AgrooList[i].AgrooTarget == target)
                 {
-                    if (AgrooList[i].AgrooTarget == target)
-                    {
-                        AgrooList[i].Agroo += _AddAgroo;
-                        return;
-                    }
+                    AgrooList[i].Agroo += _AddAgroo;
+                    return;
                 }
             }
-            AgrooList.Add(new AgrooData(target, _AddAgroo));
+        }
+
+        if (_AddAgroo < 0) { return; }
+        AgrooList.Add(new AgrooData(target, _AddAgroo));
+    }
+
+    public void AddAgroo(PlayerBehaviour targetPlayer, float _AddAgroo)
+    {
+        int ActiveCharacter = 3, AgrooListCount = AgrooList.Count;
+        if (ActiveCharacter > targetPlayer.CharacterTape.Length) { ActiveCharacter = targetPlayer.CharacterTape.Length; }
+
+        for (int i = 0; i < ActiveCharacter; i++)
+        {
+            for (int j = 0; j <= AgrooListCount; j++)
+            {
+                if (j == AgrooListCount) 
+                {
+                    if (_AddAgroo < 0) { return; }
+                    AgrooList.Add(new AgrooData(targetPlayer.CharacterTape[i], _AddAgroo)); 
+                }
+                else if (AgrooList[j].AgrooTarget == targetPlayer.CharacterTape[i])
+                {
+                    Debug.Log("Found");
+                    AgrooList[j].Agroo += _AddAgroo;
+                }
+            }
         }
     }
 

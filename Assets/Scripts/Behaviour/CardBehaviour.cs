@@ -358,13 +358,13 @@ public class CardBehaviour : MonoBehaviour
 
     public void Heal(CharacterBehaviour target, int HealAmt)
     {
-        //CharacterBehav.Agroo += HealAmt * 1.5f;
+        CharacterBehav.AddAgroo(CharacterBehav.GameBehav.GetOpponent(CharacterBehav.PlayerBehav), HealAmt * 1.5f);
         target.RestoreHealth(HealAmt);
     }
 
     public void FullRestore(CharacterBehaviour target)
     {
-        //CharacterBehav.Agroo += (target.MaxHealth - target.Health) * 1.5f;
+        CharacterBehav.AddAgroo(CharacterBehav.GameBehav.GetOpponent(CharacterBehav.PlayerBehav), (target.MaxHealth - target.Health) * 1.5f);
         target.FullRestore();
     }
 
