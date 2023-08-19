@@ -25,10 +25,14 @@ MonoBehaviour:
   MaxSkillsDeck: 5
   MaxDeckSize: 30
   DefaultDeck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  SkillsDeck: []
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  - {fileID: 11400000, guid: 84d7a4dfcaf20694dad49643da2d2ff6, type: 2}
+  SkillDeck: []
   Idle_Down_Anim:
   - {fileID: 2110337436, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}
   - {fileID: 2110337436, guid: 5256ebebe884d6c45ae0049f0e50d491, type: 3}

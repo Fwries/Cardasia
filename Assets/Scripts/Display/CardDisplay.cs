@@ -22,7 +22,7 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (cardBehav != null)
+        if (cardBehav != null && Currentcard != null)
         {
             cardBehav.Currentcard = Currentcard;
             cardBehav.CardCost = Currentcard.CardCost;

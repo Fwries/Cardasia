@@ -173,6 +173,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 gameObject.SetActive(false);
             }
 
+            if (GameBehav.CheckGameOver()) { return; }
             if (PlayerBehav == GameBehav.Player) { GameBehav.Select(GameBehav.Player.CharacterTape[0]); }
         }
         if (Exp >= MaxExp)

@@ -57,8 +57,8 @@ public class SC_Card : ScriptableObject
     [SerializeField, HideInInspector] public int CardAtk;
     [SerializeField, HideInInspector] public int CardHp;
 
-    public int CardCost;
-    public int GoldCost;
+    public int CardCost = 0;
+    public int GoldCost = 0;
 
     [SerializeField, HideInInspector] public SC_Deck CardList;
 }

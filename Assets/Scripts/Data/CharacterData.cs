@@ -49,7 +49,7 @@ public class CharacterData
 		Exp = CharacterBehav.Exp;
 		Bullet = CharacterBehav.Bullet;
 
-		SetDeck(CharacterBehav.scDeck.List);
+		SetDeck(CharacterBehav.SkillDeck);
 		ItemSetDeck(CharacterBehav.ItemDeck);
 
 		CurrAnim = CharacterBehav.CurrAnim;
