@@ -53,9 +53,12 @@ public class SC_Card : ScriptableObject
 
     public string CardTrait;
     public string CardSkill;
-    
+
+    [SerializeField, HideInInspector] public int CardAtk;
+    [SerializeField, HideInInspector] public int CardHp;
+
     public int CardCost;
     public int GoldCost;
 
-    public SC_Deck CardList;
+    [SerializeField, HideInInspector] public SC_Deck CardList;
 }

@@ -4,18 +4,28 @@ using UnityEngine;
 [CustomEditor(typeof(SC_Card))]
 public class EditorCardDisplay : Editor
 {
-    //public override void OnInspectorGUI()
-    //{
-    //    base.OnInspectorGUI();
+    private SerializedProperty CardList;
 
-    //    SC_Card myBehaviour = target as SC_Card;
+    private void OnEnable()
+    {
+        CardList = serializedObject.FindProperty("CardList");
+    }
 
-    //    target.myBool = EditorGUILayout.Toggle("myBool", target.myBool);
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        serializedObject.Update();
 
-    //    if (target.myBool)
-    //    {
-    //        target.someFloat = EditorGUILayout.FloatField("Some Float:", target.someFloat);
+        SC_Card CardGUI = target as SC_Card;
 
-    //    }
-    //}
+        if (CardGUI.CardType == SC_Card.Type.Consumable || CardGUI.CardType == SC_Card.Type.Skill)
+        {
+            EditorGUILayout.PropertyField(CardList, true);
+        }
+        else if (CardGUI.CardType == SC_Card.Type.Weapon || CardGUI.CardType == SC_Card.Type.Armour)
+        {
+            CardGUI.CardAtk = EditorGUILayout.IntField("Card Attack", CardGUI.CardAtk);
+            CardGUI.CardHp = EditorGUILayout.IntField("Card Health", CardGUI.CardHp);
+        }
+    }
 }
