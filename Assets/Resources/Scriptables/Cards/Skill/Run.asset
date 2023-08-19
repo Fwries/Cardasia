@@ -15,10 +15,13 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 2ec85521221a78a45bc4f16f8deae8a9, type: 3}
   CardName: Run
   CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
-  CardClass: []
   CardTrait: 
   CardSkill: 'Draw a Card. Opener: Draw a Card.'
   CardCost: 2
+  GoldCost: 0
+  CardList: {fileID: 0}

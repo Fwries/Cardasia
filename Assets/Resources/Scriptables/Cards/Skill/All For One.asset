@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: 49d644fbf410b9c49b9e929c6b960da0, type: 3}
   CardName: All For One
-  CardType: 3
+  CardType: 1
+  CardManaType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: 
   CardSkill: Deal Pierce DMG equal to the combined ATK of your Active Characters.
   CardCost: 3
+  GoldCost: 0
+  CardList: {fileID: 0}

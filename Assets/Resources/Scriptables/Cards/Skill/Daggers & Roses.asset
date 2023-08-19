@@ -15,9 +15,13 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 98145b0b64eaaed4a9ce40e080ff3990, type: 3}
   CardName: Daggers & Roses
   CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: 
   CardSkill: Deal 20 DMG and Draw a card. Inflict Trip.
   CardCost: 1
+  GoldCost: 0
+  CardList: {fileID: 0}

@@ -15,9 +15,13 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: f97e88de10591514dbc19df2d0fcd793, type: 3}
   CardName: Claw
   CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: <Claw>
   CardSkill: Deal 20 DMG.
   CardCost: 1
+  GoldCost: 0
+  CardList: {fileID: 0}

@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: 41bd1e8911cf5834685336e909553fc3, type: 3}
   CardName: Cryo Chamber
-  CardIdx: 2
-  CardType: 3
+  CardType: 1
+  CardManaType: 0
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 2
-  CardClass: []
   CardTrait: 
   CardSkill: Restore a Character Health to the max. Inflict Trip and Frost 5.
   CardCost: 3
+  GoldCost: 0
+  CardList: {fileID: 0}

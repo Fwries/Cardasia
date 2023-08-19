@@ -37,20 +37,22 @@ public class CardDisplay : MonoBehaviour
             CardArt.sprite = Currentcard.CardArt;
             CostText.GetComponent<Text>().text = "" + Currentcard.CardCost;
 
-            switch (Currentcard.CardType)
+            //Debug.Log(Currentcard.CardName + " : " + Currentcard.CardType == SC_Card.Type.Consumable + " " + Currentcard.CardCost == 0);
+            if (Currentcard.CardType == SC_Card.Type.Consumable && Currentcard.CardCost == 0)
             {
-                case SC_Card.Type.Consumable:
-                    CostIcon.SetActive(false);
-                    break;
-                case SC_Card.Type.Stamina:
+                CostIcon.SetActive(false);
+            }
+            switch (Currentcard.CardManaType)
+            {
+                case SC_Card.ManaType.Stamina:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeStamina;
                     CostIcon.SetActive(true);
                     break;
-                case SC_Card.Type.Mana:
+                case SC_Card.ManaType.Mana:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeMana;
                     CostIcon.SetActive(true);
                     break;
-                case SC_Card.Type.Both:
+                case SC_Card.ManaType.None:
                     CostIcon.GetComponent<Image>().sprite = Template.TypeGeneric;
                     CostIcon.SetActive(true);
                     break;

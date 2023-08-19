@@ -15,9 +15,13 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: e845fbf48803cdc489e3386e46186a6f, type: 3}
   CardName: Power Up
   CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: 
   CardSkill: Gain +20 ATK until the end of the fight.
   CardCost: 2
+  GoldCost: 0
+  CardList: {fileID: 0}

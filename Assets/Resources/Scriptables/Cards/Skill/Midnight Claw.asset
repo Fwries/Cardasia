@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: 046a9d41602bf9341b61615b03758932, type: 3}
   CardName: Midnight Claw
-  CardType: 3
+  CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: <Claw>
   CardSkill: For the rest of the turn, all of your <Claw> Deal 20 more DMG.
   CardCost: 0
+  GoldCost: 0
+  CardList: {fileID: 0}

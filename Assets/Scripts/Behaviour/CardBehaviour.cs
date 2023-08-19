@@ -39,7 +39,7 @@ public class CardBehaviour : MonoBehaviour
             MaxActive = target.PlayerBehav.CharacterTape.Length;
         }
 
-        if (!IsGenerated && Currentcard.CardType == 0)
+        if (!IsGenerated && Currentcard.CardType == SC_Card.Type.Consumable)
         {
             for (int i = 0; i < CharacterBehav.ItemDeck.Count; i++)
             {

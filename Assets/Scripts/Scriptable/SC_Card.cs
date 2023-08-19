@@ -11,11 +11,21 @@ public class SC_Card : ScriptableObject
     public enum Type
     {
         Consumable = 0,
+        Skill = 1,
+        
+        Weapon = 2,
+        Armour = 3
+    };
+    public Type CardType;
+
+    public enum ManaType
+    {
+        None = 0,
         Stamina = 1,
         Mana = 2,
         Both = 3,
     };
-    public Type CardType;
+    public ManaType CardManaType;
 
     public enum Rariety
     {

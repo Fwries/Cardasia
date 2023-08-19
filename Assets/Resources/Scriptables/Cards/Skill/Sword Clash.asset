@@ -15,10 +15,14 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: a0173c3ef8cab7a4c9f22c79c1e77cc4, type: 3}
   CardName: Sword Clash
   CardType: 1
+  CardManaType: 1
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 1
   CardTarget: 1
   CardTrait: 
   CardSkill: Deal Pierce DMG equal to the difference of ATK of this Character and
     the Target.
   CardCost: 1
+  GoldCost: 0
+  CardList: {fileID: 0}

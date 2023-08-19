@@ -15,9 +15,13 @@ MonoBehaviour:
   CardArt: {fileID: 21300000, guid: 2d1fccbab0c066b4e84c27663fbaece0, type: 3}
   CardName: Sonic Screech
   CardType: 1
+  CardManaType: 3
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: 
   CardSkill: Deal 0 DMG to all Enemies. Inflict Trip to all Enemies.
   CardCost: 2
+  GoldCost: 0
+  CardList: {fileID: 0}

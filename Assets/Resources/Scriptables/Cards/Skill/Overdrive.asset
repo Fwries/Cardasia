@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardArt: {fileID: 21300000, guid: 333e6bf7cff5be74d959c91ee0de702b, type: 3}
   CardName: Overdrive
-  CardType: 2
+  CardType: 1
+  CardManaType: 2
   CardRariety: 0
+  CardClass: 0
   DoesTarget: 0
   CardTarget: 0
   CardTrait: 
   CardSkill: Gain 3 Mana until the end of the turn.
   CardCost: 2
+  GoldCost: 0
+  CardList: {fileID: 0}

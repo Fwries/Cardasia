@@ -284,11 +284,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public bool CanBePlayed(CardBehaviour Card, bool deduct)
     {
-        if (Card.Currentcard.CardType == SC_Card.Type.Consumable)
-            return true;
         if (Card.CardCost <= Both + Stamina + Mana)
         {
-            if (Card.Currentcard.CardType == SC_Card.Type.Stamina)
+            if (Card.Currentcard.CardManaType == SC_Card.ManaType.Stamina)
             {
                 if (Card.CardCost <= Stamina)
                 {
@@ -310,7 +308,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 }
                 else { return false; }
             }
-            else if (Card.Currentcard.CardType == SC_Card.Type.Mana)
+            else if (Card.Currentcard.CardManaType == SC_Card.ManaType.Mana)
             {
                 if (Card.CardCost <= Mana)
                 {
@@ -332,7 +330,7 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 }
                 else { return false; }
             }
-            else if (Card.Currentcard.CardType == SC_Card.Type.Both)
+            else if (Card.Currentcard.CardManaType == SC_Card.ManaType.None)
             {
                 if (Card.CardCost <= Mana)
                 {
