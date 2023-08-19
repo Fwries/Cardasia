@@ -634,7 +634,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
                 }
                 else if (AgrooList[j].AgrooTarget == targetPlayer.CharacterTape[i])
                 {
-                    Debug.Log("Found");
                     AgrooList[j].Agroo += _AddAgroo;
                 }
             }

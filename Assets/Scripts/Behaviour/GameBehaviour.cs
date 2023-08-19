@@ -285,9 +285,9 @@ public class GameBehaviour : MonoBehaviour
             {
                 for (int CardCostIdx = Opponent.CharacterTape[CharIdx].Both + Opponent.CharacterTape[CharIdx].Stamina + Opponent.CharacterTape[CharIdx].Mana; CardCostIdx >= 0; CardCostIdx--)
                 {
-                    if (Opponent.CharacterTape[CharIdx].Health <= 0) { shouldBreak = true; break; }
                     for (int CardIdx = 0; CardIdx < Opponent.CharacterTape[CharIdx].HandCards.Count; CardIdx++)
                     {
+                        if (Opponent.CharacterTape[CharIdx].Health <= 0) { shouldBreak = true; break; }
                         CardBehaviour Card = Opponent.CharacterTape[CharIdx].HandCards[CardIdx].GetComponent<CardBehaviour>();
                         if ((Card.CardCost == CardCostIdx || Card.CardCost == 0) && Card.Frozen == false)
                         {
