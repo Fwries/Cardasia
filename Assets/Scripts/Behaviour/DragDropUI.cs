@@ -113,7 +113,7 @@ public class DragDropUI : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
         {
             ShopBehav.Card.Currentcard = GetComponent<CardDisplay>().Currentcard;
 
-            ShopBehav.CardNameText.text = ShopBehav.Card.Currentcard.CardName + "   " + ShopBehav.Card.Currentcard.CardTrait + "\nCost: " + ShopBehav.Card.Currentcard.CardCost + " Gold";
+            ShopBehav.CardNameText.text = ShopBehav.Card.Currentcard.CardName + "   " + ShopBehav.Card.Currentcard.CardTrait + "\nCost: " + ShopBehav.Card.Currentcard.GoldCost + " Gold";
             ShopBehav.CardText.text = ShopBehav.Card.Currentcard.CardSkill;
         }
     }

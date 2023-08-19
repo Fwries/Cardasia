@@ -20,10 +20,6 @@ public class SC_Character : ScriptableObject
     public enum Class
     {
         None,
-        Common = 1,
-        Rare = 2,
-        Epic = 3,
-        Legendary = 4,
     };
     public Class CharacterClass;
 

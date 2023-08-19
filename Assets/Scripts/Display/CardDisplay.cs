@@ -37,11 +37,6 @@ public class CardDisplay : MonoBehaviour
             CardArt.sprite = Currentcard.CardArt;
             CostText.GetComponent<Text>().text = "" + Currentcard.CardCost;
 
-            //Debug.Log(Currentcard.CardName + " : " + Currentcard.CardType == SC_Card.Type.Consumable + " " + Currentcard.CardCost == 0);
-            if (Currentcard.CardType == SC_Card.Type.Consumable && Currentcard.CardCost == 0)
-            {
-                CostIcon.SetActive(false);
-            }
             switch (Currentcard.CardManaType)
             {
                 case SC_Card.ManaType.Stamina:
@@ -58,6 +53,10 @@ public class CardDisplay : MonoBehaviour
                     break;
             }
 
+            if (Currentcard.CardType == SC_Card.Type.Consumable && Currentcard.CardCost == 0)
+            {
+                CostIcon.SetActive(false);
+            }
             PrevCard = Currentcard;
         }
     }

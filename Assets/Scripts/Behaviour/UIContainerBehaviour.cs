@@ -30,7 +30,7 @@ public class UIContainerBehaviour : MonoBehaviour, IEventSystemHandler, IDropHan
         Cost = 0;
         for (int i = 0; i < CardContainer.Count; i++)
         {
-            Cost += CardContainer[i].CardCost;
+            Cost += CardContainer[i].GoldCost;
         }
     }
 
