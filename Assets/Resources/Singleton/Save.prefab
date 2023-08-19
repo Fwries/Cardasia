@@ -93,7 +93,7 @@ MonoBehaviour:
   TempChar:
   - {fileID: 11400000, guid: 36973ce5bf78eac4cbd9014977c7c85e, type: 2}
   - {fileID: 11400000, guid: 0811ab70cddbfd846988d8554c6ae7c6, type: 2}
-  - {fileID: 11400000, guid: d4909ef434507e044a930f4f05dc05ab, type: 2}
+  - {fileID: 11400000, guid: 88faa17db5dd65f4bb95ee76c50f6e81, type: 2}
   TempItemDeck:
   - {fileID: 11400000, guid: d13631aa13e5c7c419af206fa6d55258, type: 2}
   - {fileID: 11400000, guid: 3a5cde97557d9ed4c8cf124e11966c7e, type: 2}
