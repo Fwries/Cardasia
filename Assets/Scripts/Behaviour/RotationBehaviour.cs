@@ -54,23 +54,23 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             switch (PlayerBehav.CharacterTape.Length)
             {
                 case 2:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 3:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 4:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
                     break;
                 case 5:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, LeftBackPos) * -DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, LeftPos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, CentrePos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, RightPos) * -DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, RightBackPos) * -DragOffsetXPos * m_Speed;
@@ -100,23 +100,23 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             switch (PlayerBehav.CharacterTape.Length)
             {
                 case 2:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 3:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 4:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[3].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
                     break;
                 case 5:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos + DistNormalize(LeftPos, CentrePos) * DragOffsetXPos * m_Speed;
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos + DistNormalize(CentrePos, RightPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[2].transform.position = RightPos + DistNormalize(RightPos, RightBackPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[3].transform.position = RightBackPos + DistNormalize(RightBackPos, LeftBackPos) * DragOffsetXPos * m_Speed;
                     PlayerBehav.CharacterTape[4].transform.position = LeftBackPos + DistNormalize(LeftBackPos, LeftPos) * DragOffsetXPos * m_Speed;
@@ -158,23 +158,23 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             switch (PlayerBehav.CharacterTape.Length)
             {
                 case 2:
-                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
-                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Down_Anim);
                     break;
                 case 3:
-                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
-                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Down_Anim);
                     PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
                     break;
                 case 4:
-                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
-                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Down_Anim);
                     PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
                     PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
                     break;
                 case 5:
-                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Down_Anim);
-                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[0].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[0].Character.Walk_Left_Anim);
+                    PlayerBehav.CharacterTape[1].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[1].Character.Walk_Down_Anim);
                     PlayerBehav.CharacterTape[2].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[2].Character.Walk_Left_Anim);
                     PlayerBehav.CharacterTape[3].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[3].Character.Walk_Up_Anim);
                     PlayerBehav.CharacterTape[4].CharDisplay.SetCurrAnim(PlayerBehav.CharacterTape[4].Character.Walk_Right_Anim);
@@ -277,14 +277,10 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             switch (i)
             {
                 case 0:
-                    PlayerBehav.CharacterTape[0].transform.position = LeftPos;
-                    if (PlayerBehav.CharacterTape.Length == 1)
-                    {
-                        PlayerBehav.CharacterTape[0].transform.position = CentrePos;
-                    }
+                    PlayerBehav.CharacterTape[0].transform.position = CentrePos;
                     break;
                 case 1:
-                    PlayerBehav.CharacterTape[1].transform.position = CentrePos;
+                    PlayerBehav.CharacterTape[1].transform.position = LeftPos;
                     break;
                 case 2:
                     PlayerBehav.CharacterTape[2].transform.position = RightPos;
@@ -315,20 +311,6 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         {
             for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
             {
-                if (i - 1 >= 0)
-                {
-                    PlayerBehav.CharacterTape[i] = TempTape[i - 1];
-                }
-                else
-                {
-                    PlayerBehav.CharacterTape[i] = TempTape[PlayerBehav.CharacterTape.Length - 1];
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
-            {
                 if (i + 1 < PlayerBehav.CharacterTape.Length)
                 {
                     PlayerBehav.CharacterTape[i] = TempTape[i + 1];
@@ -336,6 +318,20 @@ public class RotationBehaviour : MonoBehaviour, IBeginDragHandler, IEndDragHandl
                 else
                 {
                     PlayerBehav.CharacterTape[i] = TempTape[0];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerBehav.CharacterTape.Length; i++)
+            {
+                if (i - 1 >= 0)
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[i - 1];
+                }
+                else
+                {
+                    PlayerBehav.CharacterTape[i] = TempTape[PlayerBehav.CharacterTape.Length - 1];
                 }
             }
         }
