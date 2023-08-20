@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDropHandler
 {
     public SC_Character Character;
-    public SC_Card Weapon;
     [HideInInspector] public GameBehaviour GameBehav;
     [HideInInspector] public PlayerBehaviour PlayerBehav;
     [HideInInspector] public CharacterDisplay CharDisplay;
 
     public List<GameObject> HandCards;
     public SC_Deck scDeck;
+    public SC_Card Weapon;
+    public SC_Card Ability;
+
     public List<SC_Card> SkillDeck;
     public List<SC_Card> ItemDeck;
     public List<SC_Card> Deck;
@@ -39,6 +41,9 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
 
     public int DEFModif;
     public int ATKModif;
+
+    public int WpnDEFModif;
+    public int WpnATKModif;
 
     [HideInInspector] public int MaxBullet;
     public int Bullet;
@@ -403,8 +408,10 @@ public class CharacterBehaviour : MonoBehaviour, IPointerDownHandler, IEventSyst
         {
             Target = PlayerBehav.GetTarget(this, 4, GameBehav.GetOpponent(PlayerBehav));
         }
-        Target.AddAgroo(this, (DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF);
-        Target.DealtDamage((DMG * CritMultiplier + ATK * IsConsumable + bonus) - IsPierce * Target.DEF, CritMultiplier);
+
+        int DamageDealt = (DMG * CritMultiplier + ATK * IsConsumable + bonus + ATKModif + WpnATKModif) - IsPierce * (Target.DEF + DEFModif + WpnDEFModif);
+        Target.AddAgroo(this, DamageDealt);
+        Target.DealtDamage(DamageDealt, CritMultiplier);
     }
 
     public void DealtDamage(int DMG)

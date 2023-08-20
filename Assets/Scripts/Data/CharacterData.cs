@@ -11,28 +11,37 @@ public class CharacterData
 	public int Exp;
 	public int Bullet;
 
+	public string WpnPath;
+	public string AbilityPath;
+
 	public string DeckJson;
 	public string ItemDeckJson;
 	public int CurrAnim;
 
-	public CharacterData(SC_Character _Character, int _Level, List<SC_Card> _SkillDeck, List<SC_Card> _ItemDeck)
+	public CharacterData(SC_Character _Character, int _Level, SC_Card _Wpn, SC_Card _Ability, List<SC_Card> _SkillDeck, List<SC_Card> _ItemDeck)
     {
 		FilePath = "Scriptables/" + _Character.FilePath + _Character.name;
 		Level = _Level;
 		Health = _Character.Health;
 
+		if (_Wpn != null) { WpnPath = "Scriptables/Cards/Weapon/" + _Wpn.CardName; }
+		if (_Ability != null) { AbilityPath = "Scriptables/Cards/Ability/" + _Ability.CardName; }
+
 		SetDeck(_SkillDeck);
 		ItemSetDeck(_ItemDeck);
 	}
 
-	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck SkillDeck, SC_Deck ItemDeck)
+	public CharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Card _Wpn, SC_Card _Ability, SC_Deck SkillDeck, SC_Deck ItemDeck)
 	{
 		FilePath = "Scriptables/" + _Character.FilePath + _Character.name;
 		Health = _Health;
 		Level = _Level;
 		Exp = _Exp;
 		Bullet = _Bullet;
-		
+
+		if (_Wpn != null) { WpnPath = "Scriptables/Cards/Weapon/" + _Wpn.CardName; }
+		if (_Ability != null) { AbilityPath = "Scriptables/Cards/Ability/" + _Ability.CardName; }
+
 		DeckJson = JsonUtility.ToJson(SkillDeck);
 		ItemDeckJson = JsonUtility.ToJson(ItemDeck);
 
@@ -48,6 +57,9 @@ public class CharacterData
 		Health = CharacterBehav.Health;
 		Exp = CharacterBehav.Exp;
 		Bullet = CharacterBehav.Bullet;
+
+		if (CharacterBehav.Weapon != null) { WpnPath = "Scriptables/Cards/Weapon/" + CharacterBehav.Weapon; }
+		if (CharacterBehav.Ability != null) { AbilityPath = "Scriptables/Cards/Ability/" + CharacterBehav.Ability; }
 
 		SetDeck(CharacterBehav.SkillDeck);
 		ItemSetDeck(CharacterBehav.ItemDeck);

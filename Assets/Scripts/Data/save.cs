@@ -173,26 +173,6 @@ public class save : MonoBehaviour
         AudioManager.Instance.sfxSource.volume = data.SFXVolume;
     }
 
-	public void CreateCharacterData(SC_Character _Character, int _Level)
-    {
-		CharacterData[] temp = PartyCharacterData;
-		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
-		for (int i = 0; i < temp.Length; i++)
-        {
-			PartyCharacterData[i] = temp[i];
-        }
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, _Character.SkillDeck, null);
-	}
-	public void CreateCharacterData(SC_Character _Character, int _Health, int _Level, int _Exp, int _Bullet, Sprite[] _CurrAnim, SC_Deck SkillDeck, SC_Deck ItemDeck)
-	{
-		CharacterData[] temp = PartyCharacterData;
-		PartyCharacterData = new CharacterData[PartyCharacterData.Length + 1];
-		for (int i = 0; i < temp.Length; i++)
-		{
-			PartyCharacterData[i] = temp[i];
-		}
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Health, _Level, _Exp, _Bullet, _CurrAnim, SkillDeck, ItemDeck);
-	}
 	public void CreateNewCharacterData(SC_Character _Character, int _Level)
 	{
 		CharacterData[] temp = PartyCharacterData;
@@ -203,7 +183,7 @@ public class save : MonoBehaviour
 			PartyCharacterData[i] = temp[i];
 		}
 
-		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, _Character.SkillDeck, null);
+		PartyCharacterData[PartyCharacterData.Length - 1] = new CharacterData(_Character, _Level, _Character.Weapon, _Character.Ability, _Character.SkillDeck, null);
 		PartyCharacterData[PartyCharacterData.Length - 1].Health = _Character.Health + 20 * _Level;
 	}
 

@@ -14,7 +14,7 @@ public class SC_Card : ScriptableObject
         Skill = 1,
         
         Weapon = 2,
-        Armour = 3
+        Ability = 3
     };
     public Type CardType;
 

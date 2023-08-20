@@ -14,7 +14,6 @@ public class EditorCardDisplay : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        serializedObject.Update();
 
         SC_Card CardGUI = target as SC_Card;
 
@@ -22,7 +21,7 @@ public class EditorCardDisplay : Editor
         {
             EditorGUILayout.PropertyField(CardList, true);
         }
-        else if (CardGUI.CardType == SC_Card.Type.Weapon || CardGUI.CardType == SC_Card.Type.Armour)
+        else if (CardGUI.CardType == SC_Card.Type.Weapon)
         {
             CardGUI.CardAtk = EditorGUILayout.IntField("Card Attack", CardGUI.CardAtk);
             CardGUI.CardHp = EditorGUILayout.IntField("Card Health", CardGUI.CardHp);

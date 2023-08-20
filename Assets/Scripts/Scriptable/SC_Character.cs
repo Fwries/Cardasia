@@ -30,6 +30,9 @@ public class SC_Character : ScriptableObject
     public List<SC_Card> DefaultDeck;
     public List<SC_Card> SkillDeck;
 
+    public SC_Card Weapon;
+    public SC_Card Ability;
+
     public Sprite[] Idle_Down_Anim;
     public Sprite[] Idle_Up_Anim;
     public Sprite[] Idle_Left_Anim;
