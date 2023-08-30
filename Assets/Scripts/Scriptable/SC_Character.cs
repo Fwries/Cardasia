@@ -7,7 +7,7 @@ using System.IO;
 public class SC_Character : ScriptableObject
 {
     public string CharName;
-    public string FilePath = "Character/";
+    public string FilePath = "Characters/";
 
     public int Health;
     public int Defence;
