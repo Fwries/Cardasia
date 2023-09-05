@@ -16,7 +16,7 @@ public class SC_Card : ScriptableObject
         Weapon = 2,
         Ability = 3
     };
-    public Type CardType;
+    [SerializeField, HideInInspector] public Type CardType;
 
     public enum ManaType
     {
@@ -25,7 +25,7 @@ public class SC_Card : ScriptableObject
         Mana = 2,
         Both = 3,
     };
-    public ManaType CardManaType;
+    [SerializeField, HideInInspector] public ManaType CardManaType;
 
     public enum Rariety
     {
@@ -35,11 +35,11 @@ public class SC_Card : ScriptableObject
         Epic = 3,
         Legendary = 4,
     };
-    public Rariety CardRariety;
+    [SerializeField, HideInInspector] public Rariety CardRariety;
 
-    public SC_Character.Class CardClass;
+    [SerializeField, HideInInspector] public SC_Character.Class CardClass;
 
-    public bool DoesTarget;
+    [SerializeField, HideInInspector] public bool DoesTarget;
     public enum Target
     {
         None,
@@ -49,16 +49,20 @@ public class SC_Card : ScriptableObject
         LowestEnemy = 4,
         RandomEnemy = 5
     };
-    public Target CardTarget;
+    [SerializeField, HideInInspector] public Target CardTarget;
 
-    public string CardTrait;
-    public string CardSkill;
+    [SerializeField, HideInInspector] public string CardTrait;
+    [SerializeField, HideInInspector] public string CardSkill;
 
+    // Weapon, Ability
+    [SerializeField, HideInInspector] public bool IsDragable = false;
+    [SerializeField, HideInInspector] public string[] StrongAgainst;
     [SerializeField, HideInInspector] public int CardAtk;
     [SerializeField, HideInInspector] public int CardHp;
 
-    public int CardCost = 0;
-    public int GoldCost = 0;
+    [SerializeField, HideInInspector] public int CardCost = 0;
+    [SerializeField, HideInInspector] public int GoldCost = 0;
 
+    // Consumable, Skill
     [SerializeField, HideInInspector] public SC_Deck CardList;
 }

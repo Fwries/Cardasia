@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f1464d1163a214bb8b5d1cfe9a53af, type: 3}
+  m_Name: Marksmen
+  m_EditorClassIdentifier: 
+  CharName: Marksmen
+  FilePath: Characters/
+  Health: 0
+  Defence: 0
+  Attack: 0
+  MaxBoth: 0
+  MaxStamina: 0
+  MaxMana: 0
+  CharacterClass: 0
+  MaxBullet: 6
+  MaxSkillsDeck: 5
+  MaxDeckSize: 30
+  DefaultDeck:
+  - {fileID: 11400000, guid: b703ca46a6211754aaed3b7af9bf1cc7, type: 2}
+  - {fileID: 11400000, guid: b703ca46a6211754aaed3b7af9bf1cc7, type: 2}
+  SkillDeck: []
+  Weapon: {fileID: 11400000, guid: 6808e64d03ea5994f8d1ed37620ced69, type: 2}
+  Ability: {fileID: 0}
+  Idle_Down_Anim:
+  - {fileID: -1795812816, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1795812816, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 1189250614, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 1189250614, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Idle_Up_Anim:
+  - {fileID: -1367712679, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1367712679, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -866921303, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -866921303, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Idle_Left_Anim:
+  - {fileID: -1424860386, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1424860386, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 947045737, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 947045737, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Idle_Right_Anim:
+  - {fileID: -1623153016, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1623153016, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 757027859, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 757027859, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Walk_Down_Anim:
+  - {fileID: -1683132145, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1683132145, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 1189250614, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 163734358, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 163734358, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 1189250614, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Walk_Up_Anim:
+  - {fileID: -23658314, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -23658314, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -866921303, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -683317880, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -683317880, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -866921303, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Walk_Left_Anim:
+  - {fileID: -769677477, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -769677477, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 947045737, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -393242189, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -393242189, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 947045737, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Walk_Right_Anim:
+  - {fileID: -1239166673, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -1239166673, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 757027859, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -93907422, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -93907422, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: 757027859, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  Dead_Sprite:
+  - {fileID: -616036612, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  - {fileID: -307847745, guid: 507d0e87aa6dd724ab00e10a02b7efcc, type: 3}
+  EXPGain: 0
+  GoldGain: 0
